@@ -1,0 +1,48 @@
+import { TestimonialItem } from '@/types';
+
+export const testimonialsData: TestimonialItem[] = [
+  {
+    id: 't1',
+    author: 'Jennifer & Marcus B.',
+    city: 'Pasadena',
+    state: 'CA',
+    projectType: 'Backyard Patio & Outdoor Kitchen',
+    rating: 5,
+    date: 'February 2026',
+    quote: 'Our backyard was basically an uneven dirt slope with cracked 1970s concrete. The 3D design phase was incredible—we saw exactly how the fire pit, seating walls, and pavers would fit. The installation crew completed it in 9 days and the rain drainage has been 100% flawless.',
+    verified: true,
+  },
+  {
+    id: 't2',
+    author: 'David L.',
+    city: 'Newport Beach',
+    state: 'CA',
+    projectType: 'Driveway Interlocking Pavers',
+    rating: 5,
+    date: 'January 2026',
+    quote: 'Everyone in our neighborhood is asking who did our driveway. We had heavy root damage from a neighbor’s tree that destroyed our previous slab. The team excavated down 10 inches, laid a rock-solid aggregate base, and the charcoal pavers look like a luxury resort.',
+    verified: true,
+  },
+  {
+    id: 't3',
+    author: 'Elena & Carlos R.',
+    city: 'Scottsdale',
+    state: 'AZ',
+    projectType: 'Pool Deck Pavers & Synthetic Turf',
+    rating: 5,
+    date: 'March 2026',
+    quote: 'In the Arizona summer, our old pool deck was burning our feet. The light travertine pavers stay dramatically cooler, and the pet turf has solved all of our dog mud issues. Financing at 0% made this an absolute no-brainer.',
+    verified: true,
+  },
+  {
+    id: 't4',
+    author: 'Robert M.',
+    city: 'Dallas',
+    state: 'TX',
+    projectType: 'Covered Pergola & Fire Pit Living Area',
+    rating: 5,
+    date: 'November 2025',
+    quote: 'From permitting through city inspection to the final polymeric sand lock, the project manager texted us updates daily with photos. True commercial-grade professionalism from start to finish.',
+    verified: true,
+  },
+];
