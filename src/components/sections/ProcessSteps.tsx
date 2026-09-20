@@ -1,81 +1,227 @@
-import React from 'react';
-import { Compass, FileText, Hammer, ShieldCheck } from 'lucide-react';
+'use client';
 
-export default function ProcessSteps() {
-  const steps = [
-    {
-      number: '01',
-      icon: Compass,
-      title: 'Complimentary In-Home 3D Design',
-      description: 'Your design specialist walks your property, listens to your lifestyle needs, and renders a photorealistic 3D model of your new patio or driveway with actual stone textures.',
-    },
-    {
-      number: '02',
-      icon: FileText,
-      title: 'Permits & HOA Approvals Handled',
-      description: 'We handle all site engineering, city permits, underground utility locating (811), and submit required architectural packages directly to your HOA.',
-    },
-    {
-      number: '03',
-      icon: Hammer,
-      title: 'Master Craftsmanship Installation',
-      description: 'Our in-house ICPI-certified crews excavate the proper base depth, install heavy-duty edge restraints, and compact polymeric locking sand to prevent weeds.',
-    },
-    {
-      number: '04',
-      icon: ShieldCheck,
-      title: '25-Year Warranty Activation',
-      description: 'Your project manager performs a multi-point quality audit, thoroughly pressure cleans the site, and activates your transferable 25-Year Workmanship Warranty.',
-    },
-  ];
+import React, { useState, useEffect, useRef } from 'react';
+
+interface StepItem {
+  id: number;
+  number: string;
+  title: string;
+  description: string;
+}
+
+const stepsData: StepItem[] = [
+  {
+    id: 1,
+    number: '1',
+    title: 'Free Consultation at Your Home',
+    description:
+      'Our design expert will look over your yard, then sit down with you to discuss exactly what you’re looking for in your outdoor remodel.',
+  },
+  {
+    id: 2,
+    number: '2',
+    title: 'Design- No Strings Attached',
+    description:
+      'We’ll craft a few personalized designs for your approval so you can see exactly how your space will transform. You\'ll see the design and a cost estimate the same day!',
+  },
+  {
+    id: 3,
+    number: '3',
+    title: 'Installation!',
+    description:
+      'Then, we’ll bring your vision to life through professional installation using premium materials, all backed by our industry-leading warranties.',
+  },
+];
+
+interface ProcessStepsProps {
+  onOpenModal?: (service?: string) => void;
+}
+
+export default function ProcessSteps({ onOpenModal }: ProcessStepsProps) {
+  const [expandedId, setExpandedId] = useState<number | null>(null);
+  const [rotationAngle, setRotationAngle] = useState<number>(0);
+  const [autoRotate, setAutoRotate] = useState<boolean>(true);
+  const [isMobile, setIsMobile] = useState<boolean>(false);
+
+  const containerRef = useRef<HTMLDivElement>(null);
+  const orbitRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 640);
+    };
+    handleResize();
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  const centerViewOnNode = (nodeId: number) => {
+    const nodeIndex = stepsData.findIndex((item) => item.id === nodeId);
+    const totalNodes = stepsData.length;
+    const targetAngle = (nodeIndex / totalNodes) * 360;
+    setRotationAngle(270 - targetAngle);
+  };
+
+  const toggleItem = (id: number) => {
+    if (expandedId === id) {
+      setExpandedId(null);
+      setAutoRotate(true);
+    } else {
+      setExpandedId(id);
+      setAutoRotate(false);
+      centerViewOnNode(id);
+    }
+  };
+
+  const handleContainerClick = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (e.target === containerRef.current || e.target === orbitRef.current) {
+      setExpandedId(null);
+      setAutoRotate(true);
+    }
+  };
+
+  useEffect(() => {
+    let rotationTimer: NodeJS.Timeout;
+
+    if (autoRotate) {
+      rotationTimer = setInterval(() => {
+        setRotationAngle((prev) => {
+          const newAngle = (prev + 0.25) % 360;
+          return Number(newAngle.toFixed(3));
+        });
+      }, 50);
+    }
+
+    return () => {
+      if (rotationTimer) {
+        clearInterval(rotationTimer);
+      }
+    };
+  }, [autoRotate]);
+
+  const calculateNodePosition = (index: number, total: number) => {
+    const angle = ((index / total) * 360 + rotationAngle) % 360;
+    const radius = isMobile ? 165 : 285;
+    const radian = (angle * Math.PI) / 180;
+
+    const x = radius * Math.cos(radian);
+    const y = radius * Math.sin(radian);
+
+    const zIndex = Math.round(100 + 50 * Math.cos(radian));
+    const opacity = Math.max(0.6, Math.min(1, 0.6 + 0.4 * ((1 + Math.sin(radian)) / 2)));
+
+    return { x, y, angle, zIndex, opacity };
+  };
 
   return (
-    <section className="py-20 bg-stone-50 text-stone-900">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center max-w-3xl mx-auto mb-16">
-          <span className="text-xs font-bold uppercase tracking-widest text-amber-700 bg-amber-100/80 px-3 py-1 rounded-full">
-            The Turnkey Experience
+    <section className="relative pt-16 sm:pt-20 pb-8 sm:pb-12 bg-[#0B1113] text-white border-t border-b border-stone-800 overflow-hidden select-none">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        {/* Clean Section Header */}
+        <div className="text-center max-w-2xl mx-auto mb-6 sm:mb-8">
+          <span className="text-xs font-bold uppercase tracking-widest text-[#019934] block">
+            How It Works
           </span>
-          <h2 className="text-3xl sm:text-4xl font-extrabold text-stone-900 tracking-tight mt-3">
-            From Blank Canvas to Backyard Resort in 4 Steps
+          <h2 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight font-serif-brand mt-2">
+            Our 3-Step Process
           </h2>
-          <p className="text-stone-600 text-base mt-2">
-            One dedicated company. One dedicated project manager. Zero hassle or subcontractor chaos.
-          </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 relative">
-          {steps.map((step, idx) => {
-            const Icon = step.icon;
-            return (
-              <div
-                key={idx}
-                className="bg-white rounded-2xl p-6 border border-stone-200 shadow-sm relative flex flex-col justify-between group hover:border-amber-600 transition-colors"
-              >
-                <div>
-                  <div className="flex items-center justify-between mb-4">
-                    <div className="w-12 h-12 rounded-xl bg-amber-50 border border-amber-200 flex items-center justify-center text-amber-700 group-hover:bg-amber-700 group-hover:text-white transition-colors">
-                      <Icon className="w-6 h-6" />
-                    </div>
-                    <span className="text-3xl font-black text-stone-200 group-hover:text-amber-200 transition-colors">
-                      {step.number}
-                    </span>
+        {/* Orbit Canvas Container */}
+        <div
+          ref={containerRef}
+          onClick={handleContainerClick}
+          className="relative w-full h-[560px] sm:h-[640px] lg:h-[680px] flex items-center justify-center cursor-default"
+        >
+          {/* Center Logo - Solo desaparece al abrir la tarjeta del step */}
+          <div
+            className={`relative flex items-center justify-center pointer-events-none z-10 transition-all duration-500 ease-in-out ${
+              expandedId !== null
+                ? 'opacity-0 scale-75 pointer-events-none'
+                : 'opacity-100 scale-100'
+            }`}
+          >
+            <img
+              src="/assets/logos/logo-stacked-white.svg"
+              alt="American Pavers & Turf"
+              className="w-36 sm:w-48 lg:w-52 h-auto object-contain"
+            />
+          </div>
+
+          {/* Orbital Circle Ring (Línea más clara y visible) */}
+          <div className="absolute w-[330px] h-[330px] sm:w-[570px] sm:h-[570px] rounded-full border border-white/35 sm:border-white/40 pointer-events-none" />
+
+          {/* Orbiting Nodes */}
+          <div
+            ref={orbitRef}
+            className="absolute inset-0 flex items-center justify-center"
+            style={{ perspective: '1000px' }}
+          >
+            {stepsData.map((item, index) => {
+              const position = calculateNodePosition(index, stepsData.length);
+              const isExpanded = expandedId === item.id;
+
+              const nodeStyle = {
+                transform: `translate(${position.x}px, ${position.y}px)`,
+                zIndex: isExpanded ? 200 : position.zIndex,
+                opacity: isExpanded ? 1 : position.opacity,
+              };
+
+              return (
+                <div
+                  key={item.id}
+                  className="absolute transition-all duration-700 cursor-pointer flex flex-col items-center"
+                  style={nodeStyle}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    toggleItem(item.id);
+                  }}
+                >
+                  {/* Number Icon Box (Recuadro blanco y número en blanco) */}
+                  <div
+                    className={`
+                      w-11 h-11 sm:w-13 sm:h-13 rounded-none flex items-center justify-center font-black text-sm sm:text-base transition-all duration-300 transform
+                      ${
+                        isExpanded
+                          ? 'bg-[#019934] text-white border-2 border-white shadow-xl scale-110'
+                          : 'bg-[#101719] text-white border-2 border-white/80 hover:border-white'
+                      }
+                    `}
+                  >
+                    {item.number}
                   </div>
 
-                  <h3 className="text-lg font-bold text-stone-900 mb-2">
-                    {step.title}
-                  </h3>
-                  <p className="text-xs sm:text-sm text-stone-600 leading-relaxed">
-                    {step.description}
-                  </p>
-                </div>
+                  {/* Step Title (Letras en blanco) */}
+                  <div
+                    className={`
+                      absolute top-13 sm:top-15 whitespace-nowrap
+                      text-xs sm:text-sm font-bold tracking-wide transition-all duration-300 pointer-events-none text-center text-white
+                      ${isExpanded ? 'scale-105 drop-shadow-md' : 'opacity-90 hover:opacity-100'}
+                    `}
+                  >
+                    {item.title}
+                  </div>
 
-                <div className="mt-6 pt-4 border-t border-stone-100 text-[11px] font-bold text-amber-700 uppercase tracking-wider">
-                  Step {idx + 1} of 4
+                  {/* Clean Descriptive Card when Opened with Entrance Animation */}
+                  {isExpanded && (
+                    <div
+                      className="absolute top-20 sm:top-24 left-1/2 -translate-x-1/2 w-[85vw] max-w-sm sm:max-w-md bg-[#101719]/95 backdrop-blur-2xl border-2 border-white/60 shadow-2xl p-6 rounded-none z-50 text-left animate-in fade-in zoom-in-95 duration-300"
+                      onClick={(e) => e.stopPropagation()}
+                    >
+                      <div className="absolute -top-3 left-1/2 -translate-x-1/2 w-px h-3 bg-white" />
+
+                      <h3 className="text-base sm:text-lg font-extrabold text-white">
+                        {item.title}
+                      </h3>
+
+                      <p className="text-xs sm:text-sm text-white/90 mt-2.5 leading-relaxed">
+                        {item.description}
+                      </p>
+                    </div>
+                  )}
                 </div>
-              </div>
-            );
-          })}
+              );
+            })}
+          </div>
         </div>
       </div>
     </section>

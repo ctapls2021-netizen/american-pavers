@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import { companyData } from '@/data/company';
-import { Shield, Sparkles, CheckCircle, ArrowRight, Award, Star } from 'lucide-react';
+import { Shield, Sparkles, CheckCircle, ChevronRight, Award, Star } from 'lucide-react';
 
 interface HeroWithFormProps {
   onOpenModal: (service?: string, zip?: string) => void;
@@ -55,18 +55,15 @@ export default function HeroWithForm({
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
           {/* Left Column: Value Proposition */}
           <div className="lg:col-span-7 space-y-6">
-            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-amber-500/20 border border-amber-500/40 text-amber-300 text-xs font-semibold tracking-wide backdrop-blur-xs">
-              <Award className="w-4 h-4 text-amber-400" />
-              <span>
-                {locationName ? `#1 Rated Outdoor Living in ${locationName}` : `${companyData.projectsCompleted.toLocaleString()}+ Homes Transformed Since 1992`}
-              </span>
+            <div className="text-xs font-bold uppercase tracking-widest text-[#42e078]">
+              {locationName ? `#1 Rated Outdoor Living in ${locationName}` : `${companyData.projectsCompleted.toLocaleString()}+ Homes Transformed`}
             </div>
 
             <h1 className="text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-white leading-tight">
               {title || (
                 <>
                   Never Replace <br />
-                  <span className="text-amber-400">Cracked Concrete</span> Again.
+                  <span className="text-[#42e078]">Cracked Concrete</span> Again.
                 </>
               )}
             </h1>
@@ -79,24 +76,24 @@ export default function HeroWithForm({
             {/* Quick Trust Badges */}
             <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 pt-2">
               <div className="flex items-center gap-2">
-                <Shield className="w-5 h-5 text-amber-400 shrink-0" />
+                <Shield className="w-5 h-5 text-[#019934] shrink-0" />
                 <span className="text-xs sm:text-sm font-semibold text-stone-200">25-Yr Transferable Warranty</span>
               </div>
               <div className="flex items-center gap-2">
-                <Sparkles className="w-5 h-5 text-amber-400 shrink-0" />
+                <Sparkles className="w-5 h-5 text-[#019934] shrink-0" />
                 <span className="text-xs sm:text-sm font-semibold text-stone-200">Free 3D Virtual Design</span>
               </div>
               <div className="flex items-center gap-2">
-                <CheckCircle className="w-5 h-5 text-amber-400 shrink-0" />
+                <CheckCircle className="w-5 h-5 text-[#019934] shrink-0" />
                 <span className="text-xs sm:text-sm font-semibold text-stone-200">0% APR Financing Available</span>
               </div>
             </div>
 
             {/* Social rating snippet */}
             <div className="pt-4 flex items-center gap-4">
-              <div className="flex items-center text-amber-400">
+              <div className="flex items-center text-[#019934]">
                 {[...Array(5)].map((_, i) => (
-                  <Star key={i} className="w-5 h-5 fill-amber-400" />
+                  <Star key={i} className="w-5 h-5 fill-[#019934]" />
                 ))}
               </div>
               <div className="text-xs sm:text-sm text-stone-300">
@@ -110,7 +107,7 @@ export default function HeroWithForm({
           <div id="quote-form" className="lg:col-span-5">
             <div className="bg-white/95 backdrop-blur-md rounded-2xl shadow-2xl p-6 sm:p-8 text-stone-900 border border-white/20">
               <div className="border-b border-stone-200 pb-4 mb-5">
-                <span className="text-xs font-bold uppercase tracking-wider text-amber-700 block mb-1">
+                <span className="text-xs font-bold uppercase tracking-wider text-[#019934] block mb-1">
                   Limited Availability
                 </span>
                 <h2 className="text-2xl font-extrabold text-stone-900 tracking-tight">
@@ -132,9 +129,9 @@ export default function HeroWithForm({
                         key={s}
                         type="button"
                         onClick={() => setSelectedService(s)}
-                        className={`p-2.5 rounded-lg text-xs font-bold border transition-all text-left cursor-pointer ${
+                        className={`p-2.5 rounded-none text-xs font-bold border transition-all text-left cursor-pointer ${
                           selectedService === s
-                            ? 'bg-amber-50 border-amber-600 text-amber-900 ring-2 ring-amber-600/30'
+                            ? 'bg-[#ebf9ee] border-[#019934] text-[#1A292C] ring-2 ring-[#019934]/30'
                             : 'bg-stone-50 border-stone-200 text-stone-700 hover:bg-stone-100'
                         }`}
                       >
@@ -155,16 +152,16 @@ export default function HeroWithForm({
                     value={zipCode}
                     onChange={(e) => setZipCode(e.target.value.replace(/\D/g, ''))}
                     placeholder="Enter 5-Digit ZIP (e.g. 90210)"
-                    className="w-full bg-stone-50 border border-stone-300 rounded-lg px-4 py-3 text-sm font-semibold text-stone-900 focus:bg-white focus:ring-2 focus:ring-amber-600 focus:border-amber-600 outline-hidden tracking-wider"
+                    className="w-full bg-stone-50 border border-stone-300 rounded-none px-4 py-3 text-sm font-semibold text-stone-900 focus:bg-white focus:ring-2 focus:ring-[#019934] focus:border-[#019934] outline-hidden tracking-wider"
                   />
                 </div>
 
                 <button
                   type="submit"
-                  className="w-full bg-amber-700 hover:bg-amber-800 text-white font-extrabold text-base py-4 rounded-xl shadow-lg hover:shadow-xl transition-all transform active:scale-98 flex items-center justify-center gap-2 cursor-pointer"
+                  className="w-full bg-[#019934] hover:bg-[#01802b] text-white font-extrabold text-base py-4 rounded-none shadow-lg hover:shadow-xl transition-all transform active:scale-98 flex items-center justify-center gap-2 cursor-pointer"
                 >
                   <span>Claim $2,500 Rebate & Free Estimate</span>
-                  <ArrowRight className="w-5 h-5" />
+                  <ChevronRight className="w-5 h-5" />
                 </button>
 
                 <div className="flex items-center justify-between text-[11px] text-stone-500 pt-2">

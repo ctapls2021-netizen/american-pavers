@@ -4,7 +4,6 @@ import React, { useState } from 'react';
 import Link from 'next/link';
 import { LocationItem } from '@/types';
 import { companyData } from '@/data/company';
-import AnnouncementBar from '@/components/layout/AnnouncementBar';
 import Navbar from '@/components/layout/Navbar';
 import Footer from '@/components/layout/Footer';
 import HeroWithForm from '@/components/sections/HeroWithForm';
@@ -34,7 +33,6 @@ export default function LocationPageClient({ location }: LocationPageClientProps
 
   return (
     <div className="flex flex-col min-h-screen">
-      <AnnouncementBar />
       <Navbar onOpenModal={() => handleOpenModal('General Consultation')} />
 
       <main className="flex-1">
@@ -56,7 +54,7 @@ export default function LocationPageClient({ location }: LocationPageClientProps
           title={
             <>
               {location.name}&rsquo;s Trusted Choice for <br />
-              <span className="text-amber-400">Interlocking Pavers & Turf</span>
+              <span className="text-[#42e078]">Interlocking Pavers & Turf</span>
             </>
           }
           subtitle={`Over ${location.projectsCompleted.toLocaleString()}+ outdoor renovations completed in ${location.county}. Certified ICPI installations with our 25-Year Master Warranty.`}
@@ -69,10 +67,10 @@ export default function LocationPageClient({ location }: LocationPageClientProps
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
               <div className="lg:col-span-7 space-y-4">
-                <span className="text-xs font-bold uppercase tracking-widest text-amber-700 bg-amber-100/80 px-3 py-1 rounded-full">
+                <span className="text-xs font-bold uppercase tracking-widest text-[#019934] block">
                   Local Service Guarantee
                 </span>
-                <h2 className="text-2xl sm:text-3xl font-extrabold text-stone-900">
+                <h2 className="text-2xl sm:text-3xl font-extrabold text-[#1A292C]">
                   Serving {location.name} & Surrounding Communities
                 </h2>
                 <p className="text-sm sm:text-base text-stone-600 leading-relaxed">
@@ -90,7 +88,7 @@ export default function LocationPageClient({ location }: LocationPageClientProps
                         key={i}
                         className="bg-stone-100 text-stone-800 text-xs font-semibold px-3 py-1.5 rounded-lg border border-stone-200 flex items-center gap-1"
                       >
-                        <CheckCircle className="w-3.5 h-3.5 text-amber-600" />
+                        <CheckCircle className="w-3.5 h-3.5 text-[#019934]" />
                         {nb}
                       </span>
                     ))}
@@ -100,12 +98,12 @@ export default function LocationPageClient({ location }: LocationPageClientProps
                 {/* Local Office and Contact */}
                 <div className="pt-4 flex flex-col sm:flex-row items-start sm:items-center gap-4 text-xs sm:text-sm text-stone-600">
                   <div className="flex items-center gap-2">
-                    <MapPin className="w-4 h-4 text-amber-700 shrink-0" />
+                    <MapPin className="w-4 h-4 text-[#019934] shrink-0" />
                     <span><strong>Local Office:</strong> {location.localOfficeAddress}</span>
                   </div>
                   <div className="flex items-center gap-2">
-                    <Phone className="w-4 h-4 text-amber-700 shrink-0" />
-                    <a href={`tel:${companyData.phone}`} className="font-bold text-stone-900 hover:text-amber-700">
+                    <Phone className="w-4 h-4 text-[#019934] shrink-0" />
+                    <a href={`tel:${companyData.phone}`} className="font-bold text-stone-900 hover:text-[#019934]">
                       {companyData.formattedPhone}
                     </a>
                   </div>
@@ -113,10 +111,10 @@ export default function LocationPageClient({ location }: LocationPageClientProps
               </div>
 
               {/* Local Stats Box */}
-              <div className="lg:col-span-5 bg-stone-900 text-white p-6 sm:p-8 rounded-2xl shadow-xl space-y-6">
-                <div className="flex items-center gap-2 text-amber-400">
+              <div className="lg:col-span-5 bg-[#1A292C] text-white p-6 sm:p-8 rounded-2xl shadow-xl space-y-6">
+                <div className="flex items-center gap-2 text-[#019934]">
                   {[...Array(5)].map((_, i) => (
-                    <Star key={i} className="w-5 h-5 fill-amber-400" />
+                    <Star key={i} className="w-5 h-5 fill-[#019934]" />
                   ))}
                   <span className="text-white font-bold ml-1">{location.averageRating} Stars</span>
                 </div>
@@ -128,13 +126,13 @@ export default function LocationPageClient({ location }: LocationPageClientProps
                   </span>
                 </div>
 
-                <div className="space-y-2 text-xs text-stone-300 border-t border-stone-800 pt-4">
+                <div className="space-y-2 text-xs text-stone-300 border-t border-stone-700/60 pt-4">
                   <div className="flex items-center gap-2">
-                    <Award className="w-4 h-4 text-amber-400" />
+                    <Award className="w-4 h-4 text-[#019934]" />
                     <span>Complimentary In-Home 3D Site Measurements</span>
                   </div>
                   <div className="flex items-center gap-2">
-                    <Award className="w-4 h-4 text-amber-400" />
+                    <Award className="w-4 h-4 text-[#019934]" />
                     <span>Permits Handled with {location.name} Building Dept.</span>
                   </div>
                 </div>
@@ -142,9 +140,10 @@ export default function LocationPageClient({ location }: LocationPageClientProps
                 <button
                   type="button"
                   onClick={() => handleOpenModal('Local Estimate')}
-                  className="w-full bg-amber-600 hover:bg-amber-700 text-white font-extrabold text-xs sm:text-sm py-3.5 rounded-xl shadow-md flex items-center justify-center gap-2 transition-colors cursor-pointer"
+                  className="w-full bg-[#019934] hover:bg-[#01802b] text-white font-extrabold text-xs sm:text-sm py-3.5 rounded-none shadow-md flex items-center justify-center gap-2 transition-colors cursor-pointer"
                 >
-                  Schedule Your {location.name} Design Visit
+                  <span>Schedule Your {location.name} Design Visit</span>
+                  <ChevronRight className="w-4 h-4" />
                 </button>
               </div>
             </div>

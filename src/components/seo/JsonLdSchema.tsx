@@ -7,7 +7,7 @@ export default function JsonLdSchema() {
     '@graph': [
       {
         '@type': 'HomeAndConstructionBusiness',
-        '@id': 'https://apexpavers.com/#organization',
+        '@id': 'https://americanpaversturf.com/#organization',
         name: companyData.name,
         legalName: companyData.legalName,
         telephone: companyData.phone,

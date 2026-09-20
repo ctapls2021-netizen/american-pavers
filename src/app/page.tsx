@@ -1,102 +1,78 @@
 'use client';
 
-import React, { useEffect, useRef } from 'react';
-import { systemPaversHtml } from '@/data/systemPaversHtml';
+import React, { useState } from 'react';
+import Navbar from '@/components/layout/Navbar';
+import ScrollVideoHero from '@/components/sections/ScrollVideoHero';
+import ServicesGrid from '@/components/sections/ServicesGrid';
+import WhyChooseUs from '@/components/sections/WhyChooseUs';
+import BeforeAfterSlider from '@/components/sections/BeforeAfterSlider';
+import ProcessSteps from '@/components/sections/ProcessSteps';
+import ServiceBannerSlider from '@/components/sections/ServiceBannerSlider';
+import TestimonialsGrid from '@/components/sections/TestimonialsGrid';
+import FaqAccordion from '@/components/sections/FaqAccordion';
+import BottomCtaBanner from '@/components/sections/BottomCtaBanner';
+import Footer from '@/components/layout/Footer';
+import LeadFormModal from '@/components/ui/LeadFormModal';
+import JsonLdSchema from '@/components/seo/JsonLdSchema';
+import { generalFaqs } from '@/data/faqs';
 
-export default function SystemPaversClonePage() {
-  const containerRef = useRef<HTMLDivElement>(null);
+export default function HomePage() {
+  const [modalOpen, setModalOpen] = useState(false);
+  const [selectedService, setSelectedService] = useState('Patio Pavers');
+  const [initialZip, setInitialZip] = useState('');
 
-  useEffect(() => {
-    if (!containerRef.current) return;
-    const root = containerRef.current;
-
-    // 1. Navigation Submenus / Mega-Menus
-    const navItems = root.querySelectorAll<HTMLElement>('[id^="top-nav-entry-"]');
-
-    const closeAllSubmenus = () => {
-      navItems.forEach((item) => {
-        item.classList.remove('is-active');
-        const panel = item.querySelector<HTMLElement>('.styles_imagePanel__eQk0_, .styles_panel__zG9h_');
-        if (panel) {
-          panel.classList.remove('styles_--open__bRN8s');
-        }
-      });
-    };
-
-    navItems.forEach((navItem) => {
-      const panel = navItem.querySelector<HTMLElement>('.styles_imagePanel__eQk0_, .styles_panel__zG9h_');
-      if (!panel) return;
-
-      let timer: NodeJS.Timeout;
-
-      // Mouse Enter
-      navItem.addEventListener('mouseenter', () => {
-        clearTimeout(timer);
-        closeAllSubmenus();
-        navItem.classList.add('is-active');
-        panel.classList.add('styles_--open__bRN8s');
-      });
-
-      // Mouse Leave with slight delay for smooth hover
-      navItem.addEventListener('mouseleave', () => {
-        timer = setTimeout(() => {
-          navItem.classList.remove('is-active');
-          panel.classList.remove('styles_--open__bRN8s');
-        }, 150);
-      });
-
-      // Click to toggle
-      const trigger = navItem.querySelector('span');
-      if (trigger) {
-        trigger.addEventListener('click', (e) => {
-          e.stopPropagation();
-          const isOpen = navItem.classList.contains('is-active');
-          closeAllSubmenus();
-          if (!isOpen) {
-            navItem.classList.add('is-active');
-            panel.classList.add('styles_--open__bRN8s');
-          }
-        });
-      }
-    });
-
-    // Close on click outside
-    const handleDocumentClick = (e: MouseEvent) => {
-      if (!root.querySelector('.styles_nav__QkCJl')?.contains(e.target as Node)) {
-        closeAllSubmenus();
-      }
-    };
-    document.addEventListener('click', handleDocumentClick);
-
-    // 2. FAQ Accordion Interaction
-    const faqItems = root.querySelectorAll<HTMLElement>('.styles_faqListItem__ozXz2');
-    faqItems.forEach((item) => {
-      const questionBtn = item.querySelector<HTMLElement>('.styles_question__W8Gme, button');
-      if (questionBtn) {
-        questionBtn.addEventListener('click', (e) => {
-          e.preventDefault();
-          const isOpen = item.classList.contains('styles_--open__brzuG');
-          // Close others
-          faqItems.forEach((f) => f.classList.remove('styles_--open__brzuG'));
-          // Toggle current
-          if (!isOpen) {
-            item.classList.add('styles_--open__brzuG');
-          }
-        });
-      }
-    });
-
-    return () => {
-      document.removeEventListener('click', handleDocumentClick);
-    };
-  }, []);
+  const handleOpenModal = (service?: string) => {
+    if (service) setSelectedService(service);
+    setModalOpen(true);
+  };
 
   return (
-    <div
-      ref={containerRef}
-      id="__next"
-      className="systempavers-exact-clone"
-      dangerouslySetInnerHTML={{ __html: systemPaversHtml }}
-    />
+    <div className="flex flex-col min-h-screen bg-white">
+      <JsonLdSchema />
+      <Navbar onOpenModal={() => handleOpenModal()} />
+
+      <main className="flex-1">
+        {/* Interactive Video Scroll Hero */}
+        <ScrollVideoHero
+          onOpenConsultation={() => handleOpenModal()}
+        />
+
+        {/* Core Services Catalog */}
+        <div id="services-grid">
+          <ServicesGrid onOpenModal={handleOpenModal} />
+        </div>
+
+        {/* Engineering & Comparison (Oculto temporalmente) */}
+        {/* <WhyChooseUs /> */}
+
+        {/* Before / After Interactive Slider */}
+        <BeforeAfterSlider onOpenModal={handleOpenModal} />
+
+        {/* Process Steps */}
+        <ProcessSteps onOpenModal={handleOpenModal} />
+
+        {/* Full-Width Service Showcase Banner Slider */}
+        <ServiceBannerSlider onOpenModal={handleOpenModal} />
+
+        {/* Real Customer Testimonials */}
+        <TestimonialsGrid />
+
+        {/* Frequently Asked Questions */}
+        <FaqAccordion faqs={generalFaqs} />
+
+        {/* Bottom CTA Banner */}
+        <BottomCtaBanner onOpenModal={() => handleOpenModal()} />
+      </main>
+
+      <Footer />
+
+      {/* Global Lead Capture Modal */}
+      <LeadFormModal
+        isOpen={modalOpen}
+        onClose={() => setModalOpen(false)}
+        defaultService={selectedService}
+        defaultZip={initialZip}
+      />
+    </div>
   );
 }

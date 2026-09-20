@@ -1,38 +1,39 @@
 export interface FaqItem {
   question: string;
   answer: string;
-  category: string;
+  category?: string;
 }
 
 export const generalFaqs: FaqItem[] = [
   {
     category: 'Process & Cost',
-    question: 'How much does a custom paver or outdoor remodeling project cost?',
-    answer: 'Every project is custom-engineered based on square footage, existing slope/demolition, paver style, and accessories (such as lighting, seating walls, or fire pits). During our complimentary In-Home 3D Design Consultation, our master designer measures your yard, produces a 3D visualization, and provides an itemized, guaranteed price with no hidden surprises.',
+    question: 'How much does a custom paver project cost with American Pavers & Turf?',
+    answer: 'Every outdoor project is custom-engineered based on square footage, soil preparation, demolition, and your chosen paver style. During our complimentary In-Home 3D Design Consultation, an American Pavers & Turf master designer evaluates your yard, visualizes your project in real-time 3D, and provides an itemized, guaranteed estimate with zero hidden fees.',
   },
   {
     category: 'Materials & Durability',
-    question: 'Why are interlocking pavers superior to poured concrete or stamped concrete?',
-    answer: 'Standard poured and stamped concrete is rigid; as the ground settles, experiences seismic micro-movements, or contracts under thermal changes, concrete inevitably cracks. Interlocking pavers are individual high-density stones (over 8,000 to 10,000 PSI) set over a compacted aggregate base and locked with polymeric sand. They flex naturally with soil movement, completely eliminating cracks, and if underground utility work is ever needed, individual pavers can be lifted and placed right back.',
+    question: 'Why does American Pavers recommend interlocking pavers over poured concrete?',
+    answer: 'Traditional poured and stamped concrete is rigid, cracking inevitably under California soil settling and seismic micro-movements. American Pavers & Turf installs high-density interlocking pavers rated at 10,000+ PSI over a deeply compacted crushed aggregate base locked with polymeric sand. They flex naturally without cracking and are backed by our lifetime warranty.',
   },
   {
     category: 'Timeline',
-    question: 'How long does a typical outdoor renovation take from start to finish?',
-    answer: 'Most standard driveway, patio, or turf installations take between 3 to 7 working days once on-site construction begins. Larger estate transformations involving multi-tier retaining walls, outdoor kitchens, and swimming pool copings typically take 2 to 3 weeks.',
+    question: 'How long does American Pavers take to complete an installation?',
+    answer: 'Most standard residential driveway, patio, and synthetic turf installations are completed by American Pavers & Turf in just 3 to 5 business days once on-site excavation begins. Comprehensive estate transformations involving multi-tier retaining walls, outdoor BBQ kitchens, and pool coping typically take 2 to 3 weeks.',
   },
   {
     category: 'Financing',
-    question: 'What financing options are available for homeowners?',
-    answer: 'We offer flexible financing plans through top national lending partners, including 0% APR promotional plans for 12 to 18 months, as well as low-interest, extended payment options starting as low as $149/month with zero upfront prepayment penalties.',
+    question: 'What financing options are available through American Pavers & Turf?',
+    answer: 'American Pavers & Turf partners with top California home improvement lenders to offer flexible financing solutions, including 0% APR promotional financing for up to 18 months, as well as low-interest monthly plans starting as low as $149/month with no prepayment penalties.',
   },
   {
-    category: 'Permits & Warranty',
-    question: 'Do you handle city permits and HOA approvals?',
-    answer: 'Yes. As a fully licensed General Building (Class B) and Landscape/Hardscape Contractor, we prepare complete architectural site plans, submit all city permits, and provide HOA architectural submission packages directly to your association board.',
+    category: 'Permits & HOA',
+    question: 'Does American Pavers handle city permits and HOA architectural approvals?',
+    answer: 'Yes, absolutely. As a licensed California General Building (Class B) and C-27 Landscape/Hardscape Contractor (CSLB #1087421), American Pavers & Turf drafts full architectural site plans, pulls municipal permits, and provides complete HOA architectural submission packages for your board.',
   },
   {
-    category: 'Permits & Warranty',
-    question: 'What does your 25-Year Workmanship Warranty cover?',
-    answer: 'Our comprehensive warranty covers base settling, paver shifting, edge restraint integrity, and installation craftsmanship. It is also transferable to future homeowners, which adds substantial appraised value to your property.',
+    category: 'Warranty',
+    question: 'What does the American Pavers Lifetime Craftsmanship Warranty cover?',
+    answer: 'Our comprehensive warranty protects your investment against base settling, paver shifting, edge restraint failure, and installation defects. Furthermore, the American Pavers & Turf warranty is fully transferable to the next homeowner, increasing the appraised market value of your property.',
   },
 ];
+

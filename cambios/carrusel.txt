@@ -1,0 +1,38 @@
+"use client";
+
+import { Carousel } from "@/components/ui/carousel";
+
+export function CarouselDemo() {
+  const slideData = [
+    {
+      title: "Pasadena, CA",
+      src: "/assets/driveways/driveway-real-3.webp",
+    },
+    {
+      title: "Beverly Hills, CA",
+      src: "/assets/driveways/driveway-real-1.webp",
+    },
+    {
+      title: "Newport Beach, CA",
+      src: "/assets/driveways/driveway-real-8.webp",
+    },
+    {
+      title: "San Fernando Valley, CA",
+      src: "/assets/driveways/driveway-real-5.webp",
+    },
+    {
+      title: "Irvine, CA",
+      src: "/assets/driveways/driveway-real-2.webp",
+    },
+    {
+      title: "Encino, CA",
+      src: "/assets/driveways/driveway-real-4.webp",
+    },
+  ];
+
+  return (
+    <div className="relative overflow-hidden w-full h-full py-20">
+      <Carousel slides={slideData} />
+    </div>
+  );
+}

@@ -27,9 +27,9 @@ export default function TrustBar() {
   ];
 
   return (
-    <section className="bg-stone-900 text-white border-y border-stone-800 py-8 px-4 sm:px-6 lg:px-8">
+    <section className="bg-[#1A292C] text-white border-y border-stone-800/80 py-8 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 lg:gap-8 divide-y sm:divide-y-0 sm:divide-x divide-stone-800">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 lg:gap-8 divide-y sm:divide-y-0 sm:divide-x divide-stone-700/60">
           {stats.map((stat, idx) => {
             const Icon = stat.icon;
             return (
@@ -39,13 +39,13 @@ export default function TrustBar() {
                   idx > 0 ? 'pt-4 sm:pt-0 sm:pl-6' : ''
                 }`}
               >
-                <div className="w-10 h-10 rounded-full bg-amber-500/10 flex items-center justify-center text-amber-400 mb-2">
+                <div className="w-10 h-10 rounded-full bg-[#019934]/15 flex items-center justify-center text-[#42e078] mb-2">
                   <Icon className="w-5 h-5" />
                 </div>
                 <div className="text-xl sm:text-2xl font-extrabold text-white tracking-tight">
                   {stat.value}
                 </div>
-                <p className="text-xs text-stone-400 mt-0.5 font-medium">
+                <p className="text-xs text-stone-300 mt-0.5 font-medium">
                   {stat.label}
                 </p>
               </div>
@@ -53,10 +53,10 @@ export default function TrustBar() {
           })}
         </div>
 
-        <div className="mt-8 pt-6 border-t border-stone-800/80 flex flex-wrap items-center justify-center gap-6 sm:gap-12 text-xs font-semibold text-stone-400">
-          <span className="flex items-center gap-1.5 text-stone-300">
-            <CheckCircle className="w-4 h-4 text-emerald-400" />
-            CSLB Licensed & Fully Insured
+        <div className="mt-8 pt-6 border-t border-stone-700/60 flex flex-wrap items-center justify-center gap-6 sm:gap-12 text-xs font-semibold text-stone-300">
+          <span className="flex items-center gap-1.5 text-stone-200">
+            <CheckCircle className="w-4 h-4 text-[#019934]" />
+            Licensed & Fully Insured Contractor
           </span>
           <span className="flex items-center gap-1.5 text-stone-300">
             <CheckCircle className="w-4 h-4 text-emerald-400" />

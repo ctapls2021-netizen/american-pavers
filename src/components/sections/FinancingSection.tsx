@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
-import { Sparkles, CheckCircle2, ShieldCheck, DollarSign } from 'lucide-react';
+import { Sparkles, CheckCircle2, ShieldCheck, DollarSign, ChevronRight } from 'lucide-react';
 
 interface FinancingSectionProps {
   onOpenModal: (service?: string) => void;
@@ -22,14 +22,13 @@ export default function FinancingSection({ onOpenModal }: FinancingSectionProps)
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
           {/* Left Column */}
           <div className="lg:col-span-6 space-y-6">
-            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-amber-500/20 text-amber-300 text-xs font-bold uppercase tracking-wider border border-amber-500/30">
-              <Sparkles className="w-3.5 h-3.5 text-amber-400" />
+            <span className="text-xs font-bold uppercase tracking-widest text-[#42e078] block">
               Flexible Homeowner Financing
             </span>
 
             <h2 className="text-3xl sm:text-5xl font-extrabold tracking-tight text-white leading-tight">
               Enjoy Your Dream Patio Today. <br />
-              <span className="text-amber-400">Pay Over Time.</span>
+              <span className="text-[#42e078]">Pay Over Time.</span>
             </h2>
 
             <p className="text-stone-300 text-base sm:text-lg leading-relaxed">
@@ -38,19 +37,19 @@ export default function FinancingSection({ onOpenModal }: FinancingSectionProps)
 
             <div className="space-y-3 pt-2">
               <div className="flex items-start gap-3">
-                <CheckCircle2 className="w-5 h-5 text-amber-400 shrink-0 mt-0.5" />
+                <CheckCircle2 className="w-5 h-5 text-[#019934] shrink-0 mt-0.5" />
                 <span className="text-sm font-semibold text-stone-200">
                   <strong className="text-white">0% Interest for 18 Months</strong> on approved credit with equal monthly payments.
                 </span>
               </div>
               <div className="flex items-start gap-3">
-                <CheckCircle2 className="w-5 h-5 text-amber-400 shrink-0 mt-0.5" />
+                <CheckCircle2 className="w-5 h-5 text-[#019934] shrink-0 mt-0.5" />
                 <span className="text-sm font-semibold text-stone-200">
                   <strong className="text-white">Low-Rate Long Term Plans</strong> extending up to 120 months for maximum affordability.
                 </span>
               </div>
               <div className="flex items-start gap-3">
-                <CheckCircle2 className="w-5 h-5 text-amber-400 shrink-0 mt-0.5" />
+                <CheckCircle2 className="w-5 h-5 text-[#019934] shrink-0 mt-0.5" />
                 <span className="text-sm font-semibold text-stone-200">
                   <strong className="text-white">Zero Prepayment Penalties:</strong> Pay off your balance anytime without fees.
                 </span>
@@ -61,13 +60,13 @@ export default function FinancingSection({ onOpenModal }: FinancingSectionProps)
               <button
                 type="button"
                 onClick={() => onOpenModal('Financing Pre-Approval')}
-                className="bg-amber-600 hover:bg-amber-700 text-white font-extrabold text-sm sm:text-base px-8 py-4 rounded-xl shadow-lg hover:shadow-xl transition-all flex items-center gap-2 cursor-pointer"
+                className="bg-[#019934] hover:bg-[#01802b] text-white font-extrabold text-sm sm:text-base px-8 py-4 rounded-none shadow-lg hover:shadow-xl transition-all flex items-center gap-2 cursor-pointer"
               >
-                <DollarSign className="w-5 h-5" />
                 <span>Check Your Financing Pre-Qualification</span>
+                <ChevronRight className="w-5 h-5" />
               </button>
               <p className="text-[11px] text-stone-400 mt-2 flex items-center gap-1">
-                <ShieldCheck className="w-4 h-4 text-emerald-400" />
+                <ShieldCheck className="w-4 h-4 text-[#019934]" />
                 Soft credit inquiry will not impact your credit score.
               </p>
             </div>
@@ -86,7 +85,7 @@ export default function FinancingSection({ onOpenModal }: FinancingSectionProps)
                   </p>
                 </div>
                 <div className="text-right">
-                  <div className="text-3xl sm:text-4xl font-black text-amber-400">
+                  <div className="text-3xl sm:text-4xl font-black text-[#42e078]">
                     ${estimatedMonthly}
                     <span className="text-xs font-normal text-stone-400">/mo*</span>
                   </div>
@@ -97,7 +96,7 @@ export default function FinancingSection({ onOpenModal }: FinancingSectionProps)
               <div className="space-y-4">
                 <div className="flex justify-between text-xs font-bold uppercase tracking-wider text-stone-300">
                   <span>Project Investment:</span>
-                  <span className="text-amber-400 text-base font-extrabold">
+                  <span className="text-[#42e078] text-base font-extrabold">
                     ${budget.toLocaleString()}
                   </span>
                 </div>
@@ -109,7 +108,7 @@ export default function FinancingSection({ onOpenModal }: FinancingSectionProps)
                   step={1000}
                   value={budget}
                   onChange={(e) => setBudget(Number(e.target.value))}
-                  className="w-full h-2 bg-stone-700 rounded-lg appearance-none cursor-pointer accent-amber-500"
+                  className="w-full h-2 bg-stone-700 rounded-lg appearance-none cursor-pointer accent-[#019934]"
                 />
 
                 <div className="flex justify-between text-[11px] text-stone-500 font-semibold">
@@ -122,7 +121,7 @@ export default function FinancingSection({ onOpenModal }: FinancingSectionProps)
               {/* Sample inclusions box */}
               <div className="mt-8 bg-stone-950/80 rounded-xl p-4 border border-stone-800 text-xs text-stone-300 space-y-2">
                 <div className="font-bold text-stone-100 flex items-center gap-1.5">
-                  <CheckCircle2 className="w-4 h-4 text-emerald-400" />
+                  <CheckCircle2 className="w-4 h-4 text-[#019934]" />
                   What’s included in your financing:
                 </div>
                 <p className="text-[11px] text-stone-400">
@@ -134,9 +133,10 @@ export default function FinancingSection({ onOpenModal }: FinancingSectionProps)
                 <button
                   type="button"
                   onClick={() => onOpenModal('Financing Plan')}
-                  className="w-full bg-stone-800 hover:bg-stone-700 text-amber-400 border border-stone-700 font-bold text-sm py-3.5 rounded-xl transition-colors cursor-pointer text-center"
+                  className="w-full bg-[#1A292C] hover:bg-stone-800 text-[#42e078] border border-stone-700 font-bold text-sm py-3.5 rounded-none transition-colors cursor-pointer text-center flex items-center justify-center gap-2"
                 >
-                  Apply Estimate to In-Home Consultation
+                  <span>Apply Estimate to In-Home Consultation</span>
+                  <ChevronRight className="w-4 h-4" />
                 </button>
               </div>
             </div>

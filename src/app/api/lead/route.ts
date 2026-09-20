@@ -6,9 +6,9 @@ export async function POST(request: Request) {
     const data: LeadSubmission = await request.json();
 
     // Basic validation
-    if (!data.firstName || !data.phone || !data.zipCode) {
+    if (!data.firstName || !data.phone) {
       return NextResponse.json(
-        { error: 'Missing required lead fields (first name, phone, or zip code).' },
+        { error: 'Missing required lead fields (first name or phone).' },
         { status: 400 }
       );
     }
@@ -21,7 +21,7 @@ export async function POST(request: Request) {
         name: `${data.firstName} ${data.lastName || ''}`.trim(),
         phone: data.phone,
         email: data.email,
-        zipCode: data.zipCode,
+        zipCode: data.zipCode || 'California',
       },
       project: {
         service: data.serviceInterest,
@@ -31,23 +31,18 @@ export async function POST(request: Request) {
       },
       attribution: {
         sourceUrl: data.sourceUrl || 'direct',
-        platform: 'Next.js Scalable Outdoor Engine',
+        platform: 'American Pavers & Turf Web Engine',
       },
     };
 
-    // In production, this can forward to a Webhook URL or CRM API
-    // e.g.: if (process.env.CRM_WEBHOOK_URL) await fetch(process.env.CRM_WEBHOOK_URL, { ... })
-    console.log('✅ [NEW HARDSCAPE LEAD CAPTURED]:', JSON.stringify(formattedLead, null, 2));
-
     return NextResponse.json({
       success: true,
-      message: 'Lead captured successfully. Representative notified.',
+      message: 'Thank you! Your estimate request has been received.',
       leadId: formattedLead.id,
     });
   } catch (error) {
-    console.error('❌ Lead processing error:', error);
     return NextResponse.json(
-      { error: 'Internal server error while capturing lead.' },
+      { error: 'Internal server error.' },
       { status: 500 }
     );
   }
