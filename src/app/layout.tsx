@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import './globals.css';
+import LiveVisualEditing from '@/components/sanity/LiveVisualEditing';
 
 export const metadata: Metadata = {
   title: 'American Pavers & Turf | Luxury Pavers, Artificial Turf & Outdoor Living',
@@ -52,6 +53,7 @@ export default function RootLayout({
         </noscript>
       </head>
       <body className="antialiased selection:bg-[#019934] selection:text-white">
+        <LiveVisualEditing />
         {children}
       </body>
     </html>

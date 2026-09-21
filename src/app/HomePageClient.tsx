@@ -84,7 +84,6 @@ export default function HomePageClient({
 
   return (
     <div className="flex flex-col min-h-screen bg-white">
-      <LiveVisualEditing />
       <JsonLdSchema />
       <Navbar onOpenModal={() => handleOpenModal()} />
 
