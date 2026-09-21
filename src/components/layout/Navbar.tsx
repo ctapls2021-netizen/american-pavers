@@ -32,6 +32,7 @@ import {
 
 interface NavbarProps {
   onOpenModal?: () => void;
+  disabledNav?: boolean;
 }
 
 type NavLinkItem = {
@@ -121,12 +122,12 @@ function DropdownListItem({
             : 'bg-[#ebf9ee] text-[#019934] group-hover:bg-[#019934] group-hover:text-white'
         )}
       >
-        <Icon className="size-5 transition-transform group-hover:scale-110" />
+        <Icon className="w-5 h-5 shrink-0" />
       </div>
-      <div className="flex flex-col items-start justify-center min-w-0">
+      <div className="flex flex-col text-left">
         <span
           className={cn(
-            'font-bold text-sm leading-tight',
+            'text-sm font-bold tracking-tight transition-colors',
             isActive ? 'text-[#019934]' : 'text-[#1A292C] group-hover:text-[#019934]'
           )}
         >
@@ -142,8 +143,9 @@ function DropdownListItem({
   );
 }
 
-export default function Navbar({ onOpenModal }: NavbarProps) {
+export default function Navbar({ onOpenModal, disabledNav }: NavbarProps) {
   const pathname = usePathname();
+  const isAltPage = disabledNav || pathname === '/home-alt';
   const [openMobile, setOpenMobile] = useState(false);
   const [servicesOpen, setServicesOpen] = useState(false);
   const scrolled = useScroll(15);
@@ -178,143 +180,186 @@ export default function Navbar({ onOpenModal }: NavbarProps) {
       <nav className="mx-auto flex h-20 w-full max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
         {/* Brand Logo & Desktop Nav */}
         <div className="flex items-center gap-8">
-          <Link href="/" className="flex items-center gap-3 shrink-0 py-2">
-            <img
-              src="/assets/logos/logo-primary.svg"
-              alt="American Pavers & Turf"
-              width="220"
-              height="48"
-              className="h-10 sm:h-12 w-auto object-contain transition-transform hover:scale-[1.02] duration-150"
-            />
-          </Link>
+          {isAltPage ? (
+            <div className="flex items-center gap-3 shrink-0 py-2 select-none cursor-default">
+              <img
+                src="/assets/logos/logo-primary.svg"
+                alt="American Pavers & Turf"
+                width="220"
+                height="48"
+                className="h-10 sm:h-12 w-auto object-contain"
+              />
+            </div>
+          ) : (
+            <Link href="/" className="flex items-center gap-3 shrink-0 py-2">
+              <img
+                src="/assets/logos/logo-primary.svg"
+                alt="American Pavers & Turf"
+                width="220"
+                height="48"
+                className="h-10 sm:h-12 w-auto object-contain transition-transform hover:scale-[1.02] duration-150"
+              />
+            </Link>
+          )}
 
           {/* Desktop Navigation Links: Home, About Us, Services, Gallery, Contact Us */}
           <div className="hidden lg:flex items-center gap-1 xl:gap-2">
             {/* 1. Home */}
-            <Link
-              href="/"
-              className={cn(
-                'px-3 py-2 text-sm transition-colors',
-                isHomeActive
-                  ? 'text-[#019934] font-bold'
-                  : 'text-[#1A292C] font-semibold hover:text-[#019934]'
-              )}
-            >
-              Home
-            </Link>
-
-            {/* 2. About Us */}
-            <Link
-              href="/about"
-              className={cn(
-                'px-3 py-2 text-sm transition-colors',
-                isAboutActive
-                  ? 'text-[#019934] font-bold'
-                  : 'text-[#1A292C] font-semibold hover:text-[#019934]'
-              )}
-            >
-              About Us
-            </Link>
-
-            {/* 3. Services Dropdown */}
-            <div
-              className="relative"
-              onMouseEnter={() => setServicesOpen(true)}
-              onMouseLeave={() => setServicesOpen(false)}
-            >
-              <button
-                type="button"
-                onClick={(e) => {
-                  e.preventDefault();
-                  setServicesOpen((prev) => !prev);
-                }}
+            {isAltPage ? (
+              <span className="px-3 py-2 text-sm text-[#019934] font-bold select-none cursor-default">
+                Home
+              </span>
+            ) : (
+              <Link
+                href="/"
                 className={cn(
-                  'flex items-center gap-1.5 px-3 py-2 text-sm transition-colors cursor-default select-none',
-                  isServicesActive || servicesOpen
+                  'px-3 py-2 text-sm transition-colors',
+                  isHomeActive
                     ? 'text-[#019934] font-bold'
                     : 'text-[#1A292C] font-semibold hover:text-[#019934]'
                 )}
-                aria-expanded={servicesOpen}
               >
+                Home
+              </Link>
+            )}
+
+            {/* 2. About Us */}
+            {isAltPage ? (
+              <span className="px-3 py-2 text-sm text-[#1A292C] font-semibold select-none cursor-default">
+                About Us
+              </span>
+            ) : (
+              <Link
+                href="/about"
+                className={cn(
+                  'px-3 py-2 text-sm transition-colors',
+                  isAboutActive
+                    ? 'text-[#019934] font-bold'
+                    : 'text-[#1A292C] font-semibold hover:text-[#019934]'
+                )}
+              >
+                About Us
+              </Link>
+            )}
+
+            {/* 3. Services Dropdown */}
+            {isAltPage ? (
+              <span className="flex items-center gap-1.5 px-3 py-2 text-sm text-[#1A292C] font-semibold select-none cursor-default">
                 <span>Services</span>
-                <ChevronDown
+                <ChevronDown className="w-4 h-4 text-stone-500" />
+              </span>
+            ) : (
+              <div
+                className="relative"
+                onMouseEnter={() => setServicesOpen(true)}
+                onMouseLeave={() => setServicesOpen(false)}
+              >
+                <button
+                  type="button"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    setServicesOpen((prev) => !prev);
+                  }}
                   className={cn(
-                    'w-4 h-4 transition-transform duration-200',
-                    isServicesActive || servicesOpen ? 'text-[#019934]' : 'text-stone-500',
-                    servicesOpen && 'rotate-180'
+                    'flex items-center gap-1.5 px-3 py-2 text-sm transition-colors cursor-default select-none',
+                    isServicesActive || servicesOpen
+                      ? 'text-[#019934] font-bold'
+                      : 'text-[#1A292C] font-semibold hover:text-[#019934]'
                   )}
-                />
-              </button>
+                  aria-expanded={servicesOpen}
+                >
+                  <span>Services</span>
+                  <ChevronDown
+                    className={cn(
+                      'w-4 h-4 transition-transform duration-200',
+                      isServicesActive || servicesOpen ? 'text-[#019934]' : 'text-stone-500',
+                      servicesOpen && 'rotate-180'
+                    )}
+                  />
+                </button>
 
-              {servicesOpen && (
-                <div className="absolute left-0 top-full pt-2 w-[640px] z-50 animate-in fade-in slide-in-from-top-2 duration-150">
-                  <div className="bg-white rounded-none shadow-2xl border border-stone-200/90 p-4">
-                    <div className="grid grid-cols-2 gap-2">
-                      {servicesData.map((s) => {
-                        const Icon = serviceIcons[s.slug] || Layers;
-                        const isCurrentService = pathname === `/services/${s.slug}`;
-                        return (
-                          <DropdownListItem
-                            key={s.slug}
-                            title={s.shortTitle}
-                            description={s.tagline}
-                            icon={Icon}
-                            href={`/services/${s.slug}`}
-                            isActive={isCurrentService}
-                            onClick={() => setServicesOpen(false)}
-                          />
-                        );
-                      })}
-                    </div>
+                {servicesOpen && (
+                  <div className="absolute left-0 top-full pt-2 w-[640px] z-50 animate-in fade-in slide-in-from-top-2 duration-150">
+                    <div className="bg-white rounded-none shadow-2xl border border-stone-200/90 p-4">
+                      <div className="grid grid-cols-2 gap-2">
+                        {servicesData.map((s) => {
+                          const Icon = serviceIcons[s.slug] || Layers;
+                          const isCurrentService = pathname === `/services/${s.slug}`;
+                          return (
+                            <DropdownListItem
+                              key={s.slug}
+                              title={s.shortTitle}
+                              description={s.tagline}
+                              icon={Icon}
+                              href={`/services/${s.slug}`}
+                              isActive={isCurrentService}
+                              onClick={() => setServicesOpen(false)}
+                            />
+                          );
+                        })}
+                      </div>
 
-                    {/* Dropdown Footer */}
-                    <div className="mt-3 pt-3 border-t border-stone-100 flex items-center justify-between px-3 text-xs">
-                      <span className="text-stone-500 flex items-center gap-1.5 font-medium">
-                        <ShieldCheck className="w-4 h-4 text-[#019934]" />
-                        25-Year Transferable Craftsmanship Warranty
-                      </span>
-                      <button
-                        type="button"
-                        onClick={() => {
-                          setServicesOpen(false);
-                          if (onOpenModal) onOpenModal();
-                        }}
-                        className="text-[#019934] font-bold hover:underline flex items-center gap-1 cursor-pointer"
-                      >
-                        <span>Free 3D Design Consultation</span>
-                        <ChevronRight className="w-3.5 h-3.5" />
-                      </button>
+                      {/* Dropdown Footer */}
+                      <div className="mt-3 pt-3 border-t border-stone-100 flex items-center justify-between px-3 text-xs">
+                        <span className="text-stone-500 flex items-center gap-1.5 font-medium">
+                          <ShieldCheck className="w-4 h-4 text-[#019934]" />
+                          25-Year Transferable Craftsmanship Warranty
+                        </span>
+                        <button
+                          type="button"
+                          onClick={() => {
+                            setServicesOpen(false);
+                            if (onOpenModal) onOpenModal();
+                          }}
+                          className="text-[#019934] font-bold hover:underline flex items-center gap-1 cursor-pointer"
+                        >
+                          <span>Free 3D Design Consultation</span>
+                          <ChevronRight className="w-3.5 h-3.5" />
+                        </button>
+                      </div>
                     </div>
                   </div>
-                </div>
-              )}
-            </div>
+                )}
+              </div>
+            )}
 
             {/* 4. Gallery */}
-            <Link
-              href="/gallery"
-              className={cn(
-                'px-3 py-2 text-sm transition-colors',
-                isGalleryActive
-                  ? 'text-[#019934] font-bold'
-                  : 'text-[#1A292C] font-semibold hover:text-[#019934]'
-              )}
-            >
-              Gallery
-            </Link>
+            {isAltPage ? (
+              <span className="px-3 py-2 text-sm text-[#1A292C] font-semibold select-none cursor-default">
+                Gallery
+              </span>
+            ) : (
+              <Link
+                href="/gallery"
+                className={cn(
+                  'px-3 py-2 text-sm transition-colors',
+                  isGalleryActive
+                    ? 'text-[#019934] font-bold'
+                    : 'text-[#1A292C] font-semibold hover:text-[#019934]'
+                )}
+              >
+                Gallery
+              </Link>
+            )}
 
             {/* 5. Contact Us */}
-            <Link
-              href="/contact"
-              className={cn(
-                'px-3 py-2 text-sm transition-colors',
-                isContactActive
-                  ? 'text-[#019934] font-bold'
-                  : 'text-[#1A292C] font-semibold hover:text-[#019934]'
-              )}
-            >
-              Contact Us
-            </Link>
+            {isAltPage ? (
+              <span className="px-3 py-2 text-sm text-[#1A292C] font-semibold select-none cursor-default">
+                Contact Us
+              </span>
+            ) : (
+              <Link
+                href="/contact"
+                className={cn(
+                  'px-3 py-2 text-sm transition-colors',
+                  isContactActive
+                    ? 'text-[#019934] font-bold'
+                    : 'text-[#1A292C] font-semibold hover:text-[#019934]'
+                )}
+              >
+                Contact Us
+              </Link>
+            )}
           </div>
         </div>
 
@@ -359,13 +404,19 @@ export default function Navbar({ onOpenModal }: NavbarProps) {
 
           <button
             type="button"
-            onClick={() => setOpenMobile(!openMobile)}
-            className="p-2.5 rounded-none text-stone-800 hover:bg-stone-100 transition-colors focus:outline-hidden cursor-pointer"
-            aria-expanded={openMobile}
+            onClick={() => {
+              if (isAltPage) return;
+              setOpenMobile(!openMobile);
+            }}
+            className={cn(
+              'p-2.5 rounded-none text-stone-800 focus:outline-hidden',
+              isAltPage ? 'cursor-default select-none opacity-80' : 'hover:bg-stone-100 cursor-pointer'
+            )}
+            aria-expanded={isAltPage ? false : openMobile}
             aria-controls="mobile-menu"
             aria-label="Toggle navigation menu"
           >
-            <MenuToggleIcon open={openMobile} className="text-[#1A292C]" />
+            <MenuToggleIcon open={isAltPage ? false : openMobile} className="text-[#1A292C]" />
           </button>
         </div>
       </nav>

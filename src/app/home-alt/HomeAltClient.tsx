@@ -28,8 +28,8 @@ export default function HomeAltClient() {
     <div id="top" className="flex flex-col min-h-screen bg-white">
       <JsonLdSchema />
 
-      {/* Official Master Navbar (Same as original home) */}
-      <Navbar onOpenModal={() => handleOpenModal()} />
+      {/* Official Master Navbar (Same as original home, with non-navigating presentation items) */}
+      <Navbar onOpenModal={() => handleOpenModal()} disabledNav={true} />
 
       <main className="flex-1">
         {/* High-Impact Luxury Image Hero (Replaces scroll-video) */}
