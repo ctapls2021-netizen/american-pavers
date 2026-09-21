@@ -2,13 +2,14 @@ import React from 'react';
 import Link from 'next/link';
 import { companyData } from '@/data/company';
 import { servicesData } from '@/data/services';
+import { locationsData } from '@/data/locations';
 import { Phone, Mail, MapPin, ShieldCheck, Layers } from 'lucide-react';
 
 export default function Footer() {
   return (
     <footer className="bg-[#1A292C] text-stone-300 border-t border-stone-800 text-xs sm:text-sm">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10">
           {/* Col 1: Brand & Bio */}
           <div className="lg:col-span-2 space-y-4">
             <Link href="/" className="inline-block">
@@ -73,7 +74,26 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Col 3: Company & Trust */}
+          {/* Col 3: Service Areas */}
+          <div>
+            <h3 className="text-white font-bold text-sm uppercase tracking-wider mb-4 border-b border-stone-700/70 pb-2">
+              Service Areas
+            </h3>
+            <ul className="space-y-2.5 text-xs text-stone-400">
+              {locationsData.map((loc) => (
+                <li key={loc.slug}>
+                  <Link
+                    href={`/locations/${loc.slug}`}
+                    className="hover:text-[#42e078] transition-colors"
+                  >
+                    {loc.name}, {loc.stateCode}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Col 4: Company & Trust */}
           <div>
             <h3 className="text-white font-bold text-sm uppercase tracking-wider mb-4 border-b border-stone-700/70 pb-2">
               Customer Resources

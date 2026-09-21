@@ -6,6 +6,7 @@ import { usePathname } from 'next/navigation';
 import { createPortal } from 'react-dom';
 import { companyData } from '@/data/company';
 import { servicesData } from '@/data/services';
+import { locationsData } from '@/data/locations';
 import { cn } from '@/lib/utils';
 import {
   Phone,
@@ -462,6 +463,13 @@ export default function Navbar({ onOpenModal }: NavbarProps) {
                   )}
                 >
                   Contact Us
+                </Link>
+                <Link
+                  href="/locations/los-angeles"
+                  onClick={() => setOpenMobile(false)}
+                  className="p-2.5 rounded-none bg-stone-50 font-semibold text-xs text-stone-800 hover:text-[#019934]"
+                >
+                  Service Areas
                 </Link>
               </div>
             </div>
