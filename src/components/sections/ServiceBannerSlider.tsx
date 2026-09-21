@@ -170,9 +170,9 @@ export default function ServiceBannerSlider({ onOpenModal }: ServiceBannerSlider
               src={slide.image}
               alt={slide.imageAlt}
               className="w-full h-full object-cover object-center"
-              loading={index === 0 ? 'eager' : 'lazy'}
+              loading="lazy"
               decoding="async"
-              fetchPriority={index === 0 ? 'high' : 'auto'}
+              fetchPriority="low"
             />
 
             {/* Subtle atmospheric vignette overlay for crisp readability */}

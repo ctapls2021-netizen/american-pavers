@@ -143,6 +143,8 @@ export default function ProcessSteps({ onOpenModal }: ProcessStepsProps) {
             <img
               src="/assets/logos/logo-stacked-white.svg"
               alt="American Pavers & Turf"
+              loading="lazy"
+              decoding="async"
               className="w-36 sm:w-48 lg:w-52 h-auto object-contain"
             />
           </div>

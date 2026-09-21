@@ -36,6 +36,8 @@ export default function ServicesGrid({ onOpenModal }: ServicesGridProps) {
                 <img
                   src={service.heroImage}
                   alt={service.title}
+                  loading="lazy"
+                  decoding="async"
                   className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500"
                 />
               </div>

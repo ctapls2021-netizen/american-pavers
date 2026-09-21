@@ -71,8 +71,9 @@ export default function ScrollVideoHero({
       onLoadedData();
     }
 
-    // Safely kickstart frame buffer without leaving video playing
+    // Safely kickstart frame buffer without leaving video playing (desktop only to prevent mobile network starvation)
     const kickstartLoad = () => {
+      if (typeof window !== 'undefined' && window.innerWidth < 768) return;
       const p = video.play();
       if (p && typeof p.then === 'function') {
         p.then(() => {
@@ -154,8 +155,8 @@ export default function ScrollVideoHero({
       window.scrollTo(0, y);
     }
 
-    // Engage lock on top position
-    if (window.scrollY < 20) {
+    // Engage lock on top position (desktop only for smooth scrolling on mobile)
+    if (window.scrollY < 20 && (typeof window !== 'undefined' && window.innerWidth >= 768)) {
       lockScroll();
     } else {
       setIsUnlocked(true);
@@ -293,15 +294,24 @@ export default function ScrollVideoHero({
   return (
     <div
       ref={sectionRef}
-      className="relative w-full h-[100dvh] overflow-hidden select-none bg-stone-950"
-      style={{ touchAction: 'none' }}
+      className="relative w-full h-[100dvh] overflow-hidden select-none bg-stone-950 md:touch-none"
     >
+      {/* Instant LCP Poster Image (Paints immediately on frame 1) */}
+      <img
+        src="/assets/banners/banner-driveway.webp"
+        alt="American Pavers & Turf Hero"
+        loading="eager"
+        decoding="sync"
+        className="absolute inset-0 w-full h-full object-cover pointer-events-none"
+      />
+
       {/* Background Scrubbed Video — Only moves with scroll */}
       <video
         ref={videoRef}
         muted
         playsInline
-        preload="auto"
+        preload="metadata"
+        poster="/assets/banners/banner-driveway.webp"
         className="absolute inset-0 w-full h-full object-cover pointer-events-none"
         style={{
           transformOrigin: 'center center',

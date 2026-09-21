@@ -159,6 +159,8 @@ export default function BeforeAfterSlider({
             <img
               src={currentProject.afterImg}
               alt={`${currentProject.title} - After`}
+              loading="lazy"
+              decoding="async"
               className="absolute inset-0 w-full h-full object-cover pointer-events-none"
             />
             <div className="absolute top-4 right-4 bg-[#019934] text-white text-xs font-extrabold px-3 py-1.5 rounded-none shadow-md pointer-events-none uppercase tracking-wider">
@@ -173,6 +175,8 @@ export default function BeforeAfterSlider({
               <img
                 src={currentProject.beforeImg}
                 alt={`${currentProject.title} - Before`}
+                loading="lazy"
+                decoding="async"
                 className="absolute inset-0 w-full h-full object-cover pointer-events-none"
               />
               <div className="absolute top-4 left-4 bg-stone-900/90 text-stone-200 text-xs font-extrabold px-3 py-1.5 rounded-none shadow-md pointer-events-none uppercase tracking-wider">

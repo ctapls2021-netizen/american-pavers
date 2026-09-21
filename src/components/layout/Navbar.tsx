@@ -180,6 +180,8 @@ export default function Navbar({ onOpenModal }: NavbarProps) {
             <img
               src="/assets/logos/logo-primary.svg"
               alt="American Pavers & Turf"
+              width="220"
+              height="48"
               className="h-10 sm:h-12 w-auto object-contain transition-transform hover:scale-[1.02] duration-150"
             />
           </Link>
