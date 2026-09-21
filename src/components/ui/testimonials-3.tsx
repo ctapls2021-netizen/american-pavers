@@ -133,15 +133,15 @@ const Testimonial = React.forwardRef<HTMLDivElement, TestimonialProps>(
         {/* Large Decorative Quote Watermark */}
         <div
           aria-hidden={true}
-          className="absolute right-6 top-4 text-7xl font-serif text-stone-200/50 pointer-events-none select-none transition-colors duration-300 group-hover:text-[#019934]/20"
+          className="absolute right-6 top-4 text-7xl font-serif text-stone-200/60 pointer-events-none select-none transition-colors duration-300 group-hover:text-[#019934]/25"
         >
           &ldquo;
         </div>
 
         <div className="flex flex-col gap-4 justify-between h-full relative z-10">
           <div>
-            {/* Top Bar: Stars + Platform Badge */}
-            <div className="flex items-center justify-between gap-2 mb-3">
+            {/* Top Bar: Stars + Platform Badge (clears quotation mark, no bg, no border) */}
+            <div className="flex items-center justify-between gap-3 mb-4 pr-10 sm:pr-12">
               {rating > 0 && (
                 <div className="flex items-center gap-1">
                   {Array.from({ length: 5 }).map((_, index) => (
@@ -159,9 +159,9 @@ const Testimonial = React.forwardRef<HTMLDivElement, TestimonialProps>(
               )}
 
               {platformInfo && (
-                <div className="inline-flex items-center gap-1.5 bg-stone-50 border border-stone-200/80 px-2.5 py-0.5 rounded-full">
+                <div className="inline-flex items-center gap-1.5 text-xs text-stone-500 shrink-0">
                   {platformInfo.icon}
-                  <span className="text-xs font-semibold text-stone-600">
+                  <span className="font-semibold text-stone-600">
                     {platformInfo.name}
                   </span>
                 </div>
