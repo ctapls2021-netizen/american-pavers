@@ -164,13 +164,13 @@ export default function ProcessSteps({
             }`}
           >
             <img
-              src="/assets/logos/logo-stacked-white.svg"
+              src="/assets/logos/logo-step.svg"
               alt="American Pavers & Turf"
-              width={208}
-              height={161}
+              width={180}
+              height={150}
               loading="lazy"
               decoding="async"
-              className="w-36 sm:w-48 lg:w-52 h-auto object-contain"
+              className="w-28 sm:w-36 lg:w-40 h-auto object-contain"
             />
           </div>
 
