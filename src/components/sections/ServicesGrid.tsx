@@ -3,11 +3,16 @@ import Link from 'next/link';
 import { servicesData } from '@/data/services';
 import { ChevronRight } from 'lucide-react';
 
+import { urlForImage } from '@/sanity/image';
+
 interface ServicesGridProps {
   onOpenModal: (service?: string) => void;
+  customServices?: any[];
 }
 
-export default function ServicesGrid({ onOpenModal }: ServicesGridProps) {
+export default function ServicesGrid({ onOpenModal, customServices }: ServicesGridProps) {
+  const list = customServices && customServices.length > 0 ? customServices : servicesData;
+
   return (
     <section className="py-20 bg-stone-50 text-stone-900">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -26,7 +31,12 @@ export default function ServicesGrid({ onOpenModal }: ServicesGridProps) {
 
         {/* Services Cards Grid — replica minimalist card-grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
-          {servicesData.map((service) => (
+          {list.map((service) => {
+            const imgSrc = service.heroImage?.asset
+              ? urlForImage(service.heroImage).width(400).height(250).url()
+              : (typeof service.heroImage === 'string' ? service.heroImage : '/assets/cards/card-driveway.webp');
+
+            return (
             <div
               key={service.slug}
               className="bg-white rounded-none overflow-hidden border border-stone-200/90 hover:border-stone-400 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col group"
@@ -34,10 +44,10 @@ export default function ServicesGrid({ onOpenModal }: ServicesGridProps) {
               {/* Clean Real Image — sin textos ni gradientes oscuros superpuestos */}
               <div className="relative aspect-[16/10] w-full overflow-hidden bg-stone-100 rounded-none">
                 <img
-                  src={service.heroImage}
+                  src={imgSrc}
                   alt={service.title}
-                  width={500}
-                  height={312}
+                  width={400}
+                  height={250}
                   loading="lazy"
                   decoding="async"
                   fetchPriority="low"
@@ -49,10 +59,10 @@ export default function ServicesGrid({ onOpenModal }: ServicesGridProps) {
               <div className="p-6 sm:p-7 flex-1 flex flex-col justify-between">
                 <div>
                   <h3 className="text-xl font-bold text-[#1A292C] group-hover:text-[#019934] transition-colors leading-snug">
-                    {service.shortTitle}
+                    {service.shortTitle || service.title}
                   </h3>
                   <p className="mt-2.5 text-stone-600 text-sm leading-relaxed line-clamp-2">
-                    {service.tagline}
+                    {service.tagline || service.description}
                   </p>
                 </div>
 
@@ -77,7 +87,8 @@ export default function ServicesGrid({ onOpenModal }: ServicesGridProps) {
                 </div>
               </div>
             </div>
-          ))}
+          );
+        })}
         </div>
       </div>
     </section>
