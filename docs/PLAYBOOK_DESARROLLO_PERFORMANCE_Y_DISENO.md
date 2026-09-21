@@ -92,29 +92,116 @@ return (
 
 ### B. Optimización del LCP (Largest Contentful Paint < 2.5s)
 El LCP casi siempre es la imagen del Hero.
-1. **Doble versión obligatoria del Banner Hero**:
-   - **Versión Móvil**: Máximo 750-800 px de ancho, WebP calidad 75-80. **Peso estricto: entre 40 KB y 65 KB**.
-   - **Versión Desktop**: 1920 px de ancho, WebP calidad 80. **Peso: entre 200 KB y 380 KB**.
+1. **Doble versión obligatoria del Banner Hero (La Regla del Aspect Ratio)**:
+   > [!WARNING]
+   > **La Trampa de Relación de Aspecto (Aspect Ratio Trap)**: NUNCA utilices un recorte panorámico horizontal (ej. 720 × 216 px, ratio 3.3:1) en un contenedor móvil `h-[100dvh]` con `object-cover`.
+   > - El navegador escala la imagen verticalmente casi 4x para llenar los ~850 px de alto del teléfono, recortando el 85% de los laterales y arruinando el encuadre.
+   > - Lighthouse analiza los píxeles nativos (0.15 MP) frente al peso (38 KB) y asume un factor de compresión pésimo, reportando la advertencia *"Mejorar la entrega de imágenes: Ahorro estimado de 33 KiB"*.
+   - **Versión Móvil**: Encuadre **vertical nativo 9:16** (540 × 960 px o 480 × 854 px), WebP calidad 60-65. **Peso estricto: entre 22 KB y 30 KB**. Encaja natural en la pantalla y aprueba al 100% la entrega de imágenes.
+   - **Versión Desktop**: 1920 × 1080 px (o 1920 × 580 px panorámico), WebP calidad 75-80. **Peso: entre 200 KB y 350 KB**.
 2. **Precarga en el `<head>` del HTML (`RootLayout`)**:
    Precarga condicionalmente la imagen correspondiente al dispositivo en `src/app/layout.tsx`:
    ```html
-   <link rel="preload" as="image" href="/assets/banners/hero-mobile.webp" type="image/webp" media="(max-width: 768px)" />
-   <link rel="preload" as="image" href="/assets/banners/hero-desktop.webp" type="image/webp" media="(min-width: 769px)" />
+   <link rel="preload" as="image" href="/assets/banners/hero-mobile.webp" type="image/webp" media="(max-width: 768px)" fetchPriority="high" />
+   <link rel="preload" as="image" href="/assets/banners/hero-desktop.webp" type="image/webp" media="(min-width: 769px)" fetchPriority="high" />
    ```
 3. **Atributos en el `<img>` del Hero**:
    - `loading="eager"` (nunca `lazy` en el Hero).
-   - `decoding="sync"` (para forzar renderizado en el primer frame).
+   - `decoding="async"` (permite que el hilo de renderizado pinte el primer fotograma sin esperar la decodificación síncrona).
    - `fetchPriority="high"`.
 
-### C. Control de CLS (Cumulative Layout Shift = 0.000)
-1. **Dimensiones explícitas**: En todas las etiquetas `<img>` y `<svg>`, define siempre `width` y `height` o utiliza un contenedor con `aspect-ratio` fijo (`aspect-[16/9]`, `aspect-square`).
-2. **Reserva de espacio para fuentes**:
-   Usa `display=swap` en Google Fonts y define un fallback con métricas similares para evitar saltos tipográficos al cargar la fuente web.
+### C. Eliminación del "Element Render Delay" (De 1190ms a <250ms)
+> [!IMPORTANT]
+> **El Asesino Invisible del LCP Móvil**: En el desglose de LCP de PageSpeed, puedes ver que el recurso se descarga en apenas 40 ms, pero el tiempo de renderizado se dilata a 1190 ms. Esto se debe a 3 causas principales:
 
-### D. Optimización de TBT (Total Blocking Time < 150ms)
-1. **Lazy Loading de sliders y carruseles**: Si tienes un carrusel de 6 diapositivas, **no montes las 6 imágenes pesadas de golpe**. Carga únicamente la imagen activa y sus dos adyacentes (`Math.abs(index - currentIndex) <= 1`).
-2. **Scroll Táctil Nativo**: Nunca apliques `touch-action: none` al contenedor raíz en dispositivos móviles; resérvalo para pantallas de escritorio (`md:touch-none`) si usas efectos de scrub interactivo.
-3. **Scripts de Terceros**: Analíticas (Google Tag Manager, Facebook Pixel, Cloudflare Insights) deben cargarse con `strategy="lazyOnload"` o retrasarse hasta la primera interacción del usuario.
+1. **Timers e Intervalos Fuera de Pantalla (Offscreen Main-Thread Starvation)**:
+   - Si un componente secundario (ej. un círculo orbital de pasos, un contador animado o un carrusel) ejecuta un `setInterval` cada 50 ms desde el montaje, fuerza 20 re-renderizados de React por segundo.
+   - En CPUs móviles con estrangulamiento (throttling), React acapara el hilo principal recalculando estilos durante 3+ segundos.
+   - **Solución Obligatoria**: Pausar cualquier loop continuo con `IntersectionObserver` hasta que el componente sea visible:
+   ```tsx
+   const [isVisible, setIsVisible] = useState(false);
+   const containerRef = useRef<HTMLDivElement>(null);
+
+   useEffect(() => {
+     const el = containerRef.current;
+     if (!el || typeof IntersectionObserver === 'undefined') {
+       setIsVisible(true);
+       return;
+     }
+     const observer = new IntersectionObserver(([entry]) => {
+       setIsVisible(entry.isIntersecting);
+     }, { rootMargin: '100px' });
+     observer.observe(el);
+     return () => observer.disconnect();
+   }, []);
+
+   useEffect(() => {
+     if (!isVisible) return; // Cero consumo de CPU durante la carga inicial
+     const timer = setInterval(() => { /* animar */ }, 50);
+     return () => clearInterval(timer);
+   }, [isVisible]);
+   ```
+
+2. **Redistribución Forzada (Forced Reflow / Layout Thrashing)**:
+   - En `Navbar` o barras superiores, consultar `window.scrollY`, `offsetWidth` o `getBoundingClientRect` dentro de un `useEffect` durante la hidratación fuerza al navegador a recalcular la geometría antes de pintar.
+   - **Solución Obligatoria**: Diferir siempre la lectura de scroll inicial mediante `requestAnimationFrame`:
+   ```tsx
+   useEffect(() => {
+     const onScroll = () => setScrolled(window.scrollY > 15);
+     window.addEventListener('scroll', onScroll, { passive: true });
+     const rafId = requestAnimationFrame(onScroll); // Difiere tras el primer paint
+     return () => {
+       cancelAnimationFrame(rafId);
+       window.removeEventListener('scroll', onScroll);
+     };
+   }, []);
+   ```
+
+### D. Optimización de Fuentes en el Edge (Cloudflare Fonts y Zero Render-Blocking)
+1. **Eliminar Preconnects Huérfanos**:
+   - Si el sitio corre detrás de Cloudflare con "Cloudflare Fonts" activo, Cloudflare reescribe las fuentes para servirlas desde `/cf-fonts/`.
+   - **Nunca incluyas** `<link rel="preconnect" href="https://fonts.googleapis.com">` o `fonts.gstatic.com` si Cloudflare proxifica las fuentes, ya que Lighthouse penalizará las conexiones abiertas que nunca se usaron.
+2. **Carga Asíncrona de Hojas de Estilos de Fuentes**:
+   - Evita que la hoja de estilos de Google Fonts bloquee el First Contentful Paint (FCP) usando la técnica de cambio de medio:
+   ```html
+   <link
+     href="https://fonts.googleapis.com/css2?family=Fustat:wght@400;600;700;800&family=Source+Serif+4:ital,opsz,wght@0,8..60,600..800&display=swap"
+     rel="stylesheet"
+     media="print"
+     // @ts-ignore
+     onLoad="this.media='all'"
+   />
+   <noscript>
+     <link
+       href="https://fonts.googleapis.com/css2?family=Fustat:wght@400;600;700;800&family=Source+Serif+4:ital,opsz,wght@0,8..60,600..800&display=swap"
+       rel="stylesheet"
+     />
+   </noscript>
+   ```
+
+### E. Desactivación de "Rocket Loader" en Cloudflare
+> [!CAUTION]
+> Cloudflare suele tener activado por defecto **Rocket Loader** (`rocket-loader.min.js`). Rocket Loader altera los scripts de JavaScript a `type="text/rocketscript"` para retrasar su ejecución hasta después del evento `window.onload`.
+> En aplicaciones Next.js y React, esto retrasa la hidratación, rompe event listeners y degrada la interactividad móvil.
+> **Acción requerida**: En el panel de Cloudflare ➔ **Speed** ➔ **Optimization** ➔ **Rocket Loader**: poner en **OFF**.
+
+### F. Control de CLS (Cumulative Layout Shift = 0.000)
+1. **Dimensiones explícitas y la trampa de Preload en React 19**:
+   - En React 19 / Next.js App Router, **cualquier etiqueta `<img>` sin `loading="lazy"` se considera crítica y el compilador inyecta un `<link rel="preload" as="image">` en el `<head>`**.
+   - Si el logotipo del Footer o una imagen secundaria no lleva `loading="lazy"`, se precargará en el `<head>`, compitiendo por ancho de banda móvil con el póster LCP del Hero.
+   - **Regla Estricta**: Toda imagen secundaria o bajo el pliegue debe incluir:
+     ```tsx
+     <img src="..." alt="..." width={163} height={44} loading="lazy" decoding="async" />
+     ```
+2. **Reserva de espacio para fuentes**:
+   Usa `display=swap` en Google Fonts y define fallbacks tipográficos (`-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif` y `Georgia, serif`) para evitar saltos visuales al renderizar el texto.
+
+### G. Optimización de Tarjetas de Servicios Secundarias
+- Las imágenes de tarjetas en grids de servicios se muestran en móvil a un ancho de entre 350 px y 390 px.
+- **Dimensiones ideales**: `400 × 250 px` (formato WebP calidad 65).
+- **Peso objetivo**: **Entre 13 KB y 20 KB** (nunca más de 30 KB).
+- **Atributos**: `loading="lazy" decoding="async" fetchPriority="low"`.
+- Esto reduce el peso acumulado de 6 tarjetas de 240 KB a menos de 100 KB.
 
 ---
 
@@ -231,27 +318,37 @@ El rendimiento y la estética dependen directamente de la preparación de los ac
 | Tipo de Activo | Formato | Resolución Máxima | Peso Máximo Objetivo | Regla de Implementación |
 |---|:---:|:---:|:---:|---|
 | **Hero Video (Desktop)** | `.mp4` (H.264/AAC) o `.webm` | 1920 × 1080 px | **< 6 - 8 MB** | Solo en Desktop; silenciado (`muted`), sin pista de audio, bitrate < 3 Mbps. |
-| **Hero Poster (Desktop)** | `.webp` | 1920 × 1080 px (o 1920 × 600) | **< 250 - 350 KB** | Calidad 80-82, `loading="eager"`. |
-| **Hero Poster (Móvil)** | `.webp` | 750 × 800 px (o 800 × 600) | **< 45 - 65 KB** | Calidad 75-78, servido en `<picture>` condicional. |
-| **Banners de Sección** | `.webp` | 1920 × 600 px | **< 200 - 300 KB** | Compresión WebP método 6. |
-| **Tarjetas de Grid / Slider** | `.webp` | 800 × 600 px | **< 80 - 120 KB** | `loading="lazy"`, decodificación asíncrona. |
-| **Fotos Antes / Después** | `.webp` | 1000 × 750 px | **< 120 - 160 KB** | Mismo ratio de aspecto para ambas fotos (4:3 o 16:9). |
-| **Logotipos e Iconos** | `.svg` | Vectorial | **< 15 KB** | Limpios con SVGO, con `width` y `height` explícitos. |
+| **Hero Poster (Desktop)** | `.webp` | 1920 × 1080 px (o 1920 × 580) | **< 200 - 350 KB** | Calidad 75-80, `loading="eager"`, `fetchPriority="high"`. |
+| **Hero Poster (Móvil)** | `.webp` | 540 × 960 px (vertical 9:16) | **< 22 - 30 KB** | Calidad 60-65, `loading="eager"`, `decoding="async"`, `fetchPriority="high"`. |
+| **Banners de Sección** | `.webp` | 1920 × 600 px | **< 150 - 250 KB** | Compresión WebP método 6. |
+| **Tarjetas de Grid / Catálogo** | `.webp` | 400 × 250 px | **< 13 - 20 KB** | `loading="lazy"`, `decoding="async"`, `fetchPriority="low"`. |
+| **Fotos Antes / Después** | `.webp` | 900 × 675 px | **< 80 - 120 KB** | Mismo ratio de aspecto para ambas fotos (4:3 o 16:9). |
+| **Logotipos e Iconos** | `.svg` | Vectorial | **< 15 KB** | Con `width`, `height`, y `loading="lazy"` si está en el footer. |
 
-### Comandos de Optimización Rápida con Python / Pillow:
-Para optimizar un lote de banners en la terminal local:
+### Script de Optimización de Activos con Python (Pillow):
+Generador automático de banner móvil vertical 9:16 y tarjetas comprimidas:
 ```python
 from PIL import Image
 
-def optimize_image(input_path, output_path, max_width=1920, quality=80):
+def generate_mobile_portrait_hero(input_path, output_path, target_w=540, target_h=960, quality=65):
+    """Recorta el centro de una imagen o fotograma 16:9 a formato vertical 9:16 móvil."""
     img = Image.open(input_path)
     if img.mode in ("RGBA", "P"):
         img = img.convert("RGB")
     w, h = img.size
-    if w > max_width:
-        h = int(h * (max_width / w))
-        img = img.resize((max_width, h), Image.Resampling.LANCZOS)
-    img.save(output_path, "WEBP", quality=quality, method=6)
+    crop_w = int(h * 9 / 16)
+    left = (w - crop_w) // 2
+    crop = img.crop((left, 0, left + crop_w, h))
+    mobile = crop.resize((target_w, target_h), Image.Resampling.LANCZOS)
+    mobile.save(output_path, "WEBP", quality=quality, method=6)
+
+def optimize_card(input_path, output_path, width=400, height=250, quality=65):
+    """Comprime tarjetas de catálogo para grids móviles rápidos."""
+    img = Image.open(input_path)
+    if img.mode in ("RGBA", "P"):
+        img = img.convert("RGB")
+    card = img.resize((width, height), Image.Resampling.LANCZOS)
+    card.save(output_path, "WEBP", quality=quality, method=6)
 ```
 
 ---
@@ -260,13 +357,18 @@ def optimize_image(input_path, output_path, max_width=1920, quality=80):
 
 Antes de entregar o publicar un proyecto a producción, ejecuta esta lista de verificación:
 
+- [ ] **Configuración Next.js estática**: `output: 'export'` y `images: { unoptimized: true }` en `next.config.ts`.
 - [ ] **Compilación limpia**: `npm run build` genera 0 errores de TypeScript y produce la carpeta estática `out/`.
-- [ ] **No hay video descargándose en móvil**: Inspeccionar en Chrome DevTools con throttling móvil que no se descarguen archivos `.mp4` en el primer segundo de carga.
-- [ ] **LCP Móvil optimizado**: El póster de móvil mide menos de 70 KB y está precargado en el `<head>`.
-- [ ] **CLS Cero**: No hay saltos bruscos en la barra de navegación ni al cargarse el logo.
-- [ ] **Formularios conectados**: Las acciones de cotización envían datos limpios con validación de teléfono y correo.
-- [ ] **Comprobación de PageSpeed**:
-  - Desktop: **98 - 100 / 100**.
+- [ ] **Sin descarga de video en móviles**: El componente `<video>` se monta únicamente si `isDesktop === true`.
+- [ ] **Hero LCP Móvil Vertical 9:16**: Pesa entre 22 KB y 30 KB, con `loading="eager"`, `decoding="async"`, y precarga en `<head>`.
+- [ ] **Zero Forced Reflow**: La lectura inicial de `window.scrollY` en la navegación se posterga mediante `requestAnimationFrame`.
+- [ ] **Timers secundarios protegidos**: Todo `setInterval` de rotación o animación fuera del pliegue usa `IntersectionObserver` y se apaga cuando no es visible.
+- [ ] **Fuentes No Bloqueantes**: Google Fonts se carga con `media="print" onLoad="this.media='all'"`; sin `<link rel="preconnect">` huérfanos si el CDN proxifica fuentes.
+- [ ] **Panel Cloudflare verificado**: "Rocket Loader" desactivado (OFF) en Cloudflare Speed > Optimization.
+- [ ] **Sin imágenes sin dimensiones**: Cada etiqueta `<img>` y `<svg>` incluye `width` y `height`; imágenes fuera de pantalla tienen `loading="lazy"`.
+- [ ] **Tarjetas de Grid ultraligeras**: Cada tarjeta pesa < 20 KB.
+- [ ] **Comprobación de PageSpeed Insights**:
+  - Desktop: **96 - 100 / 100**.
   - Mobile: **90 - 98 / 100**.
 - [ ] **Teléfonos y Enlaces**: Todos los botones de llamada tienen el formato `tel:+18005558873` y los de WhatsApp `https://wa.me/...` sin caracteres inválidos.
 - [ ] **Metadatos SEO**: `title`, `description`, `canonical` y OpenGraph configurados correctamente en `layout.tsx`.
