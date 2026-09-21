@@ -1,9 +1,7 @@
 'use client';
 
 import React from 'react';
-import { ChevronRight, ShieldCheck, Award, CheckCircle2 } from 'lucide-react';
-import { companyData } from '@/data/company';
-import ReviewLogoMarquee from '@/components/ui/ReviewLogoMarquee';
+import { ArrowRight, Shield, CheckCircle2, Hammer, Calendar, Star } from 'lucide-react';
 
 interface AltImageHeroProps {
   onOpenConsultation: () => void;
@@ -27,8 +25,8 @@ export default function AltImageHero({
   };
 
   return (
-    <section className="relative min-h-[92vh] sm:min-h-screen flex flex-col justify-between overflow-hidden bg-stone-950 text-white pt-24 pb-12 sm:pt-32 sm:pb-16">
-      {/* High-Resolution Luxury Photography Background — Light & Clear */}
+    <section className="relative min-h-[92vh] sm:min-h-screen flex flex-col justify-between overflow-hidden bg-stone-950 text-white pt-28 pb-6 sm:pt-36 sm:pb-8">
+      {/* High-Resolution Luxury Photography Background */}
       <div className="absolute inset-0 z-0">
         <picture>
           <source
@@ -44,120 +42,136 @@ export default function AltImageHero({
           <img
             src="/assets/banners/banner-driveway.webp"
             alt="Luxury Estate Custom Interlocking Pavers & Turf by American Pavers & Turf"
-            className="w-full h-full object-cover object-center sm:object-[center_35%]"
+            className="w-full h-full object-cover object-[70%_center] sm:object-[65%_center]"
             // @ts-ignore
             fetchPriority="high"
             decoding="sync"
           />
         </picture>
-        {/* Lighter, clear architectural overlay so the stone driveway and estate are vivid and bright */}
-        <div className="absolute inset-0 bg-stone-950/20" />
-        <div className="absolute inset-0 bg-gradient-to-t from-stone-950/90 via-stone-950/10 to-stone-950/30" />
+
+        {/* Left-Side Dark Vignette Overlay so White Text & Buttons Pop With 100% Contrast */}
+        <div className="absolute inset-0 bg-gradient-to-r from-stone-950/95 via-stone-950/80 to-transparent sm:w-[75%] lg:w-[62%]" />
+        <div className="absolute inset-0 bg-stone-950/30" />
+        <div className="absolute inset-x-0 bottom-0 h-36 bg-gradient-to-t from-stone-950 via-stone-950/80 to-transparent" />
       </div>
 
-      {/* Main Content Container */}
-      <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 flex-1 flex flex-col justify-center items-center text-center mt-6 sm:mt-10">
-        {/* Top Trust Eyebrow (Clean text: no background, no border) */}
-        <div className="inline-flex items-center gap-2 text-stone-100 text-xs sm:text-sm font-semibold tracking-wide mb-6 sm:mb-8 drop-shadow-md">
-          <ShieldCheck className="w-4 h-4 text-[#42e078] shrink-0" />
-          <span>CSLB Licensed &amp; Insured</span>
-          <span className="text-white/40">•</span>
-          <span className="text-[#42e078] font-bold">25-Year Master Warranty</span>
-        </div>
-
-        {/* Hero Title */}
-        <h1
-          className="font-extrabold tracking-tight text-white drop-shadow-2xl max-w-5xl"
-          style={{
-            fontSize: 'clamp(2.35rem, 6vw, 4.85rem)',
-            lineHeight: 1.08,
-            letterSpacing: '-0.025em',
-          }}
-        >
-          Luxury Custom Pavers, Turf &amp;{' '}
-          <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-stone-100 to-[#42e078]">
-            Architectural Outdoor Living
-          </span>
-        </h1>
-
-        {/* Subheading */}
-        <p className="mt-5 sm:mt-6 text-stone-200 text-base sm:text-lg md:text-xl max-w-3xl font-normal leading-relaxed drop-shadow-md">
-          Transforming Southern California estates with interlocking stone driveways, private resort patios, and lush synthetic turf. Zero cracking, engineered drainage, and guaranteed 3D plans before we break ground.
-        </p>
-
-        {/* Action Buttons */}
-        <div className="mt-8 sm:mt-10 flex flex-col sm:flex-row items-center justify-center gap-4 w-full max-w-md sm:max-w-none">
-          <button
-            onClick={onOpenConsultation}
-            type="button"
-            className="w-full sm:w-auto px-8 py-4 bg-[#019934] hover:bg-[#01802b] text-white font-bold text-base shadow-2xl hover:shadow-[#019934]/30 transition-all duration-200 flex items-center justify-center gap-2.5 cursor-pointer rounded-none active:scale-98"
-          >
-            <span>Get Free 3D Design &amp; Estimate</span>
-            <ChevronRight className="w-5 h-5" />
-          </button>
-
-          <a
-            href="#services"
-            onClick={handleScrollToServices}
-            className="w-full sm:w-auto px-8 py-4 bg-stone-900/80 hover:bg-stone-900 border border-white/30 hover:border-white/70 text-white font-semibold text-base shadow-xl transition-all duration-200 flex items-center justify-center gap-2 cursor-pointer rounded-none"
-          >
-            <span>Explore All 6 Services</span>
-            <ChevronRight className="w-5 h-5 text-stone-400" />
-          </a>
-        </div>
-
-        {/* Quick Homeowner Guarantee Badges */}
-        <div className="mt-8 flex flex-wrap items-center justify-center gap-y-2 gap-x-6 text-xs sm:text-sm text-stone-300">
-          <div className="flex items-center gap-1.5">
-            <CheckCircle2 className="w-4 h-4 text-[#019934] shrink-0" />
-            <span>Complimentary In-Home 3D Render</span>
+      {/* Main Left-Aligned Hero Content */}
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full flex-1 flex flex-col justify-center my-auto">
+        <div className="max-w-2xl text-left">
+          {/* Eyebrow Tag */}
+          <div className="text-xs sm:text-sm font-semibold tracking-[0.2em] uppercase text-[#48a24c] mb-3 sm:mb-4">
+            LOS ANGELES · PAVERS &amp; TURF
           </div>
-          <div className="flex items-center gap-1.5">
-            <CheckCircle2 className="w-4 h-4 text-[#019934] shrink-0" />
-            <span>0% APR Financing Available</span>
+
+          {/* Luxury Editorial Serif Title */}
+          <h1 className="font-serif text-4xl sm:text-5xl lg:text-[62px] font-normal text-white leading-[1.12] tracking-tight">
+            Luxury remodeling<br className="hidden sm:inline" />
+            {' '}designed around your<br className="hidden sm:inline" />
+            {' '}lifestyle.
+          </h1>
+
+          {/* Subheading Paragraph */}
+          <p className="mt-5 sm:mt-6 text-stone-300 text-base sm:text-lg font-normal leading-relaxed max-w-xl">
+            We design and install paver driveways, patios and artificial turf lawns across Los Angeles County. One crew, one warranty, and the base work done properly underneath.
+          </p>
+
+          {/* Call-to-Action Buttons */}
+          <div className="mt-8 flex flex-wrap items-center gap-3.5">
+            {/* Primary Quote Button — Arrow and text strictly locked in one single line */}
+            <button
+              type="button"
+              onClick={onOpenConsultation}
+              className="inline-flex items-center justify-center gap-2.5 whitespace-nowrap flex-nowrap px-6 sm:px-7 py-3.5 bg-[#48a24c] hover:bg-[#3ea748] text-white font-medium text-sm sm:text-base rounded-md shadow-lg shadow-[#48a24c]/20 transition-all duration-150 cursor-pointer active:scale-98 group shrink-0"
+            >
+              <span className="whitespace-nowrap">Get a free quote</span>
+              <ArrowRight className="w-4 h-4 shrink-0 transition-transform group-hover:translate-x-1" />
+            </button>
+
+            {/* Secondary See Our Work Button */}
+            <a
+              href="#services"
+              onClick={handleScrollToServices}
+              className="inline-flex items-center justify-center whitespace-nowrap flex-nowrap px-6 sm:px-7 py-3.5 bg-stone-900/70 hover:bg-stone-800/90 border border-white/20 hover:border-white/40 text-white font-medium text-sm sm:text-base rounded-md backdrop-blur-xs transition-all duration-150 cursor-pointer shrink-0"
+            >
+              <span className="whitespace-nowrap">See our work</span>
+            </a>
           </div>
-          <div className="flex items-center gap-1.5">
-            <CheckCircle2 className="w-4 h-4 text-[#019934] shrink-0" />
-            <span>No Obligation Same-Day Quote</span>
+
+          {/* Trust Guarantee Pills */}
+          <div className="mt-5 sm:mt-6 flex flex-wrap items-center gap-3">
+            <div className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-stone-900/70 border border-white/10 text-xs text-stone-300 font-medium whitespace-nowrap backdrop-blur-xs">
+              <Shield className="w-3.5 h-3.5 text-stone-400 shrink-0" />
+              <span>Licensed, bonded &amp; insured</span>
+            </div>
+            <div className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-stone-900/70 border border-white/10 text-xs text-stone-300 font-medium whitespace-nowrap backdrop-blur-xs">
+              <CheckCircle2 className="w-3.5 h-3.5 text-stone-400 shrink-0" />
+              <span>12-year installation warranty</span>
+            </div>
           </div>
         </div>
       </div>
 
-      {/* Bottom Section: Trust Stats & Review Platforms Marquee */}
-      <div className="relative z-10 w-full mt-12 sm:mt-16">
-        {/* Trust Stats Bar */}
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 mb-8">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 py-5 px-6 bg-stone-900/75 backdrop-blur-md border border-white/15">
-            <div className="text-center sm:text-left border-r border-white/10 last:border-0 pr-4">
-              <span className="block text-2xl sm:text-3xl font-extrabold text-white tracking-tight">
-                {companyData.yearsInBusiness}+ Years
-              </span>
-              <span className="text-xs text-stone-400 font-medium">Southern California Authority</span>
+      {/* Bottom Horizontal Stats Bar (Clean 4-column divider layout) */}
+      <div className="relative z-10 w-full mt-12 sm:mt-16 pt-6 pb-2 border-t border-white/15 bg-stone-950/60 backdrop-blur-xs">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 sm:gap-8">
+            {/* Stat 1: Installs */}
+            <div className="flex items-center gap-3.5 md:border-r border-white/10 pr-4">
+              <Hammer className="w-5 h-5 text-[#48a24c] shrink-0" />
+              <div>
+                <div className="text-xl sm:text-2xl font-bold text-white tracking-tight flex items-baseline">
+                  1,200<span className="text-[#48a24c] font-normal ml-0.5">+</span>
+                </div>
+                <div className="text-[11px] font-semibold text-stone-400 tracking-wider uppercase mt-0.5">
+                  Installs Completed
+                </div>
+              </div>
             </div>
-            <div className="text-center sm:text-left md:border-r border-white/10 pr-4">
-              <span className="block text-2xl sm:text-3xl font-extrabold text-white tracking-tight">
-                {companyData.projectsCompleted.toLocaleString()}+
-              </span>
-              <span className="text-xs text-stone-400 font-medium">Completed Hardscape Projects</span>
+
+            {/* Stat 2: In Business */}
+            <div className="flex items-center gap-3.5 md:border-r border-white/10 pr-4">
+              <Calendar className="w-5 h-5 text-[#48a24c] shrink-0" />
+              <div>
+                <div className="text-xl sm:text-2xl font-bold text-white tracking-tight flex items-baseline">
+                  18<span className="text-xs font-normal text-[#48a24c] ml-1">yrs</span>
+                </div>
+                <div className="text-[11px] font-semibold text-stone-400 tracking-wider uppercase mt-0.5">
+                  In Business
+                </div>
+              </div>
             </div>
-            <div className="text-center sm:text-left border-r border-white/10 last:border-0 pr-4">
-              <span className="block text-2xl sm:text-3xl font-extrabold text-[#42e078] tracking-tight">
-                {companyData.averageRating} ★
-              </span>
-              <span className="text-xs text-stone-400 font-medium">Google, Yelp &amp; Houzz</span>
+
+            {/* Stat 3: Warranty */}
+            <div className="flex items-center gap-3.5 md:border-r border-white/10 pr-4">
+              <Shield className="w-5 h-5 text-[#48a24c] shrink-0" />
+              <div>
+                <div className="text-xl sm:text-2xl font-bold text-white tracking-tight flex items-baseline">
+                  12<span className="text-xs font-normal text-[#48a24c] ml-1">yrs</span>
+                </div>
+                <div className="text-[11px] font-semibold text-stone-400 tracking-wider uppercase mt-0.5">
+                  Workmanship Warranty
+                </div>
+              </div>
             </div>
-            <div className="text-center sm:text-left">
-              <span className="block text-2xl sm:text-3xl font-extrabold text-white tracking-tight">
-                25-Year
-              </span>
-              <span className="text-xs text-stone-400 font-medium">Workmanship Master Warranty</span>
+
+            {/* Stat 4: Reviews */}
+            <div className="flex items-center gap-3.5">
+              <Star className="w-5 h-5 text-[#48a24c] shrink-0 fill-[#48a24c]" />
+              <div>
+                <div className="text-xl sm:text-2xl font-bold text-white tracking-tight">
+                  4.9
+                </div>
+                <div className="text-[11px] font-semibold text-stone-400 tracking-wider uppercase mt-0.5">
+                  Average Review
+                </div>
+              </div>
             </div>
           </div>
-        </div>
 
-        {/* Verified Review Platforms Marquee */}
-        <div className="w-full max-w-5xl mx-auto px-4">
-          <ReviewLogoMarquee />
+          {/* Muted Disclamer Note */}
+          <div className="mt-4 text-[11px] text-stone-500 font-normal">
+            Placeholder figures — replace with the company&apos;s real numbers before publishing.
+          </div>
         </div>
       </div>
     </section>

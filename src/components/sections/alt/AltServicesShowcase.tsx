@@ -155,10 +155,10 @@ export default function AltServicesShowcase({ onOpenModal }: AltServicesShowcase
                   <button
                     type="button"
                     onClick={() => onOpenModal(service.title)}
-                    className="px-4 py-2.5 bg-[#019934] hover:bg-[#01802b] text-white font-bold text-xs uppercase tracking-wider transition-colors flex items-center gap-1.5 cursor-pointer shadow-xs active:scale-98"
+                    className="px-4 py-2.5 bg-[#019934] hover:bg-[#01802b] text-white font-bold text-xs uppercase tracking-wider transition-colors inline-flex items-center justify-center gap-1.5 whitespace-nowrap flex-nowrap cursor-pointer shadow-xs active:scale-98 shrink-0"
                   >
-                    <span>Request 3D Plan</span>
-                    <ArrowUpRight className="w-4 h-4" />
+                    <span className="whitespace-nowrap">Request 3D Plan</span>
+                    <ArrowUpRight className="w-4 h-4 shrink-0" />
                   </button>
                 </div>
               </div>
@@ -182,10 +182,10 @@ export default function AltServicesShowcase({ onOpenModal }: AltServicesShowcase
           <button
             type="button"
             onClick={() => onOpenModal('Full Yard Transformation')}
-            className="w-full md:w-auto px-6 py-3 bg-[#1A292C] hover:bg-black text-white font-bold text-xs uppercase tracking-wider cursor-pointer shrink-0 transition-colors flex items-center justify-center gap-2"
+            className="w-full md:w-auto px-6 py-3 bg-[#1A292C] hover:bg-black text-white font-bold text-xs uppercase tracking-wider cursor-pointer shrink-0 transition-colors inline-flex items-center justify-center gap-2 whitespace-nowrap flex-nowrap"
           >
-            <span>Claim Multi-Service Discount</span>
-            <ChevronRight className="w-4 h-4 text-[#42e078]" />
+            <span className="whitespace-nowrap">Claim Multi-Service Discount</span>
+            <ChevronRight className="w-4 h-4 text-[#42e078] shrink-0" />
           </button>
         </div>
       </div>

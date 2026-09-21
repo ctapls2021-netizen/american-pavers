@@ -259,17 +259,17 @@ export default function LeadFormModal({
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className="w-full bg-[#019934] hover:bg-[#01802b] disabled:opacity-75 text-white font-bold text-sm sm:text-base py-3.5 rounded-none shadow-md flex items-center justify-center gap-2 cursor-pointer transition-colors"
+                  className="w-full bg-[#019934] hover:bg-[#01802b] disabled:opacity-75 text-white font-bold text-sm sm:text-base py-3.5 rounded-none shadow-md inline-flex items-center justify-center gap-2 whitespace-nowrap flex-nowrap cursor-pointer transition-colors"
                 >
                   {isSubmitting ? (
                     <>
-                      <Loader2 className="w-4 h-4 animate-spin" />
-                      <span>Submitting Request...</span>
+                      <Loader2 className="w-4 h-4 shrink-0 animate-spin" />
+                      <span className="whitespace-nowrap">Submitting Request...</span>
                     </>
                   ) : (
                     <>
-                      <span>Schedule Free 3D Design</span>
-                      <ChevronRight className="w-5 h-5" />
+                      <span className="whitespace-nowrap">Schedule Free 3D Design</span>
+                      <ChevronRight className="w-5 h-5 shrink-0" />
                     </>
                   )}
                 </button>
