@@ -225,7 +225,7 @@ export default function ServiceBannerSlider({ onOpenModal }: ServiceBannerSlider
       </button>
 
       {/* Bottom Indicator Dots */}
-      <div className="absolute bottom-4 sm:bottom-6 left-1/2 -translate-x-1/2 z-30 flex items-center gap-2">
+      <div className="absolute bottom-4 sm:bottom-6 left-1/2 -translate-x-1/2 z-30 flex items-center gap-1">
         {serviceSlides.map((slide, index) => {
           const isActive = index === currentIndex;
           return (
@@ -234,10 +234,14 @@ export default function ServiceBannerSlider({ onOpenModal }: ServiceBannerSlider
               type="button"
               onClick={() => goToSlide(index)}
               aria-label={`Go to slide ${index + 1}: ${slide.serviceName}`}
-              className={`h-2 rounded-full transition-all duration-300 cursor-pointer ${
-                isActive ? 'w-8 bg-white' : 'w-2 bg-white/50 hover:bg-white/80'
-              }`}
-            />
+              className="p-2 min-w-[32px] min-h-[32px] flex items-center justify-center cursor-pointer"
+            >
+              <span
+                className={`h-2 rounded-full transition-all duration-300 block ${
+                  isActive ? 'w-8 bg-white' : 'w-2 bg-white/50 hover:bg-white/80'
+                }`}
+              />
+            </button>
           );
         })}
       </div>

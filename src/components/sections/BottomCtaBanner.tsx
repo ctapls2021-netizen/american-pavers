@@ -260,10 +260,11 @@ export default function BottomCtaBanner({
                   {/* Row 1: First name & Last name */}
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
-                      <label className="block text-xs sm:text-sm font-semibold text-[#1A292C] mb-1.5">
+                      <label htmlFor="cta-first-name" className="block text-xs sm:text-sm font-semibold text-[#1A292C] mb-1.5">
                         First name
                       </label>
                       <input
+                        id="cta-first-name"
                         type="text"
                         required
                         value={formData.firstName}
@@ -272,10 +273,11 @@ export default function BottomCtaBanner({
                       />
                     </div>
                     <div>
-                      <label className="block text-xs sm:text-sm font-semibold text-[#1A292C] mb-1.5">
+                      <label htmlFor="cta-last-name" className="block text-xs sm:text-sm font-semibold text-[#1A292C] mb-1.5">
                         Last name
                       </label>
                       <input
+                        id="cta-last-name"
                         type="text"
                         value={formData.lastName}
                         onChange={(e) => setFormData({ ...formData, lastName: e.target.value })}
@@ -287,10 +289,11 @@ export default function BottomCtaBanner({
                   {/* Row 2: Email & Phone */}
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
-                      <label className="block text-xs sm:text-sm font-semibold text-[#1A292C] mb-1.5">
+                      <label htmlFor="cta-email" className="block text-xs sm:text-sm font-semibold text-[#1A292C] mb-1.5">
                         Email
                       </label>
                       <input
+                        id="cta-email"
                         type="email"
                         required
                         value={formData.email}
@@ -299,10 +302,11 @@ export default function BottomCtaBanner({
                       />
                     </div>
                     <div>
-                      <label className="block text-xs sm:text-sm font-semibold text-[#1A292C] mb-1.5">
+                      <label htmlFor="cta-phone" className="block text-xs sm:text-sm font-semibold text-[#1A292C] mb-1.5">
                         Phone
                       </label>
                       <input
+                        id="cta-phone"
                         type="tel"
                         required
                         value={formData.phone}
@@ -314,10 +318,11 @@ export default function BottomCtaBanner({
 
                   {/* Row 3: Project type */}
                   <div>
-                    <label className="block text-xs sm:text-sm font-semibold text-[#1A292C] mb-1.5">
+                    <label htmlFor="cta-project-type" className="block text-xs sm:text-sm font-semibold text-[#1A292C] mb-1.5">
                       Project type
                     </label>
                     <select
+                      id="cta-project-type"
                       value={formData.projectType}
                       onChange={(e) => setFormData({ ...formData, projectType: e.target.value })}
                       className="w-full bg-[#f8faf8] border border-stone-300 rounded-none px-3.5 py-2.5 text-sm text-[#1A292C] focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#019934] focus:border-[#019934] transition-all"
@@ -334,10 +339,11 @@ export default function BottomCtaBanner({
 
                   {/* Row 4: Tell us about your project */}
                   <div>
-                    <label className="block text-xs sm:text-sm font-semibold text-[#1A292C] mb-1.5">
+                    <label htmlFor="cta-notes" className="block text-xs sm:text-sm font-semibold text-[#1A292C] mb-1.5">
                       Tell us about your project
                     </label>
                     <textarea
+                      id="cta-notes"
                       rows={3}
                       value={formData.notes}
                       onChange={(e) => setFormData({ ...formData, notes: e.target.value })}

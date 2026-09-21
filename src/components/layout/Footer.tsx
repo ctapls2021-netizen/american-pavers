@@ -53,9 +53,9 @@ export default function Footer() {
 
           {/* Col 2: Services */}
           <div>
-            <h4 className="text-white font-bold text-sm uppercase tracking-wider mb-4 border-b border-stone-700/70 pb-2">
+            <h3 className="text-white font-bold text-sm uppercase tracking-wider mb-4 border-b border-stone-700/70 pb-2">
               Products & Systems
-            </h4>
+            </h3>
             <ul className="space-y-2.5 text-xs text-stone-400">
               {servicesData.map((s) => (
                 <li key={s.slug}>
@@ -72,9 +72,9 @@ export default function Footer() {
 
           {/* Col 3: Service Areas */}
           <div>
-            <h4 className="text-white font-bold text-sm uppercase tracking-wider mb-4 border-b border-stone-700/70 pb-2">
+            <h3 className="text-white font-bold text-sm uppercase tracking-wider mb-4 border-b border-stone-700/70 pb-2">
               Service Areas
-            </h4>
+            </h3>
             <ul className="space-y-2.5 text-xs text-stone-400">
               {locationsData.map((loc) => (
                 <li key={loc.slug}>
@@ -91,9 +91,9 @@ export default function Footer() {
 
           {/* Col 4: Company & Trust */}
           <div>
-            <h4 className="text-white font-bold text-sm uppercase tracking-wider mb-4 border-b border-stone-700/70 pb-2">
+            <h3 className="text-white font-bold text-sm uppercase tracking-wider mb-4 border-b border-stone-700/70 pb-2">
               Customer Resources
-            </h4>
+            </h3>
             <ul className="space-y-2.5 text-xs text-stone-400">
               <li>
                 <Link href="/about" className="hover:text-[#42e078] transition-colors">

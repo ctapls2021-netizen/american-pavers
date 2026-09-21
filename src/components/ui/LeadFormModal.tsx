@@ -154,10 +154,11 @@ export default function LeadFormModal({
               {/* Row 1: First name & Last name */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-xs sm:text-sm font-semibold text-[#1A292C] mb-1.5">
+                  <label htmlFor="modal-first-name" className="block text-xs sm:text-sm font-semibold text-[#1A292C] mb-1.5">
                     First name
                   </label>
                   <input
+                    id="modal-first-name"
                     type="text"
                     required
                     value={firstName}
@@ -167,10 +168,11 @@ export default function LeadFormModal({
                   />
                 </div>
                 <div>
-                  <label className="block text-xs sm:text-sm font-semibold text-[#1A292C] mb-1.5">
+                  <label htmlFor="modal-last-name" className="block text-xs sm:text-sm font-semibold text-[#1A292C] mb-1.5">
                     Last name
                   </label>
                   <input
+                    id="modal-last-name"
                     type="text"
                     value={lastName}
                     onChange={(e) => setLastName(e.target.value)}
@@ -183,10 +185,11 @@ export default function LeadFormModal({
               {/* Row 2: Email & Phone */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-xs sm:text-sm font-semibold text-[#1A292C] mb-1.5">
+                  <label htmlFor="modal-email" className="block text-xs sm:text-sm font-semibold text-[#1A292C] mb-1.5">
                     Email
                   </label>
                   <input
+                    id="modal-email"
                     type="email"
                     required
                     value={email}
@@ -196,10 +199,11 @@ export default function LeadFormModal({
                   />
                 </div>
                 <div>
-                  <label className="block text-xs sm:text-sm font-semibold text-[#1A292C] mb-1.5">
+                  <label htmlFor="modal-phone" className="block text-xs sm:text-sm font-semibold text-[#1A292C] mb-1.5">
                     Phone
                   </label>
                   <input
+                    id="modal-phone"
                     type="tel"
                     required
                     value={phone}
@@ -212,10 +216,11 @@ export default function LeadFormModal({
 
               {/* Row 3: Project type */}
               <div>
-                <label className="block text-xs sm:text-sm font-semibold text-[#1A292C] mb-1.5">
+                <label htmlFor="modal-project-type" className="block text-xs sm:text-sm font-semibold text-[#1A292C] mb-1.5">
                   Project type
                 </label>
                 <select
+                  id="modal-project-type"
                   value={projectType}
                   onChange={(e) => setProjectType(e.target.value)}
                   className="w-full bg-[#f8faf8] border border-stone-300 rounded-none px-3.5 py-2.5 text-sm text-[#1A292C] focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#019934] focus:border-[#019934] transition-all"
@@ -230,10 +235,11 @@ export default function LeadFormModal({
 
               {/* Row 4: Tell us about your project */}
               <div>
-                <label className="block text-xs sm:text-sm font-semibold text-[#1A292C] mb-1.5">
+                <label htmlFor="modal-notes" className="block text-xs sm:text-sm font-semibold text-[#1A292C] mb-1.5">
                   Tell us about your project
                 </label>
                 <textarea
+                  id="modal-notes"
                   rows={3}
                   value={notes}
                   onChange={(e) => setNotes(e.target.value)}
