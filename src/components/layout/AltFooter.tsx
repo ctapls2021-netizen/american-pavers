@@ -43,7 +43,7 @@ export default function AltFooter({ onOpenModal }: AltFooterProps) {
             <div className="flex items-center gap-3 mb-4">
               <div className="relative w-10 h-10 shrink-0">
                 <Image
-                  src="/assets/logos/logo-icon.svg"
+                  src="/assets/logos/logo-icon-white.svg"
                   alt="American Pavers & Turf"
                   fill
                   className="object-contain"

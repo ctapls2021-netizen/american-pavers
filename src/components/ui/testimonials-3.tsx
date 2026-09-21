@@ -1,21 +1,24 @@
 'use client';
 
-import React, { useEffect, useState } from 'react';
+import * as React from 'react';
+import { Star, CheckCircle2, ChevronLeft, ChevronRight } from 'lucide-react';
 import { cn } from '@/lib/utils';
-import { Star, CheckCircle2 } from 'lucide-react';
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 
-export interface TestimonialItem {
-  quote: string;
+export interface TestimonialProps extends React.HTMLAttributes<HTMLDivElement> {
   name: string;
   role: string;
-  company: string;
-  image: string;
+  company?: string;
+  testimonial: string;
   rating?: number;
-  service?: string;
+  image?: string;
   platform?: 'google' | 'yelp' | 'houzz';
+  service?: string;
 }
 
-const platformData = {
+export type TestimonialItem = TestimonialProps;
+
+export const platformData = {
   google: {
     name: 'Google Review',
     icon: (
@@ -47,7 +50,7 @@ const platformData = {
 
 export const testimonials: TestimonialItem[] = [
   {
-    quote:
+    testimonial:
       "American Pavers & Turf completely transformed our outdated concrete backyard into a breathtaking private resort. The 3D design session was eye-opening — seeing the exact stone layout and lighting before excavation gave us total confidence. Six months later, the interlocking pavers and custom BBQ island still look brand new. Their craftsmanship is second to none.",
     image: "/assets/avatars/avatar-1.webp",
     name: "Elena & David Richardson",
@@ -58,7 +61,7 @@ export const testimonials: TestimonialItem[] = [
     platform: "google",
   },
   {
-    quote:
+    testimonial:
       "Our cracked, oil-stained driveway was an eyesore. American Pavers replaced it with 10,000 PSI interlocking pavers in just five days. The crew was punctual, clean, and masterfully engineered the slope pitch to prevent water pooling. Neighbors constantly stop on their walks to ask who did our driveway. We couldn't be happier!",
     image: "/assets/avatars/avatar-2.webp",
     name: "Marcus Vance",
@@ -69,7 +72,7 @@ export const testimonials: TestimonialItem[] = [
     platform: "yelp",
   },
   {
-    quote:
+    testimonial:
       "From the initial consultation to the final polymeric sand lock, American Pavers & Turf exceeded every expectation. Our kids and dogs love the heat-resistant synthetic grass, and our new composite deck overlooking the hills is our favorite spot for entertaining. Honest pricing, zero hidden fees, and backed by a true lifetime warranty.",
     image: "/assets/avatars/avatar-3.webp",
     name: "Sarah & Liam Chen",
@@ -79,189 +82,268 @@ export const testimonials: TestimonialItem[] = [
     service: "Turf & Decking",
     platform: "houzz",
   },
+  {
+    testimonial:
+      "Our old stamped concrete around the pool was dangerously slippery and burned our feet in the summer. American Pavers installed non-slip silver travertine pavers with bullnose pool coping. Not only does it stay dramatically cooler under the California sun, but it completely elevated our home's curb appeal and appraisal value.",
+    image: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&auto=format&fit=crop&q=80",
+    name: "Robert & Patricia Miller",
+    role: "Pool Deck & Travertine Pavers",
+    company: "Beverly Hills, CA",
+    rating: 5,
+    service: "Travertine Pool Deck",
+    platform: "google",
+  },
+  {
+    testimonial:
+      "We had serious tree root upheaval and drainage issues on our hillside property. The engineering team excavated down 12 inches, installed a commercial-grade base, and built a structural retaining wall with integrated drainage. The project was completed on budget and passed city inspections without a single hitch. Worth every penny.",
+    image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&auto=format&fit=crop&q=80",
+    name: "Carlos & Sofia Mendez",
+    role: "Driveway & Retaining Wall",
+    company: "Encino, CA",
+    rating: 5,
+    service: "Driveway & Hardscaping",
+    platform: "yelp",
+  },
+  {
+    testimonial:
+      "We wanted a tournament-grade backyard putting green with sand bunkers and an integrated gas fire pit for evening family gatherings. The attention to detail on the grass fringe cuts and interlock paver patterns was artistic. Truly a five-star white glove contractor experience in Southern California.",
+    image: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=150&auto=format&fit=crop&q=80",
+    name: "Amanda & Keith Reynolds",
+    role: "Putting Green & Fire Pit",
+    company: "San Marino, CA",
+    rating: 5,
+    service: "Golf Turf & Fire Pit",
+    platform: "houzz",
+  },
 ];
 
-export function DecorIcon({ className, ...props }: React.ComponentPropsWithoutRef<"svg">) {
-  return (
-    <svg
-      aria-hidden="true"
-      className={cn(
-        "pointer-events-none absolute top-0 left-0 z-10 size-4 shrink-0 -translate-x-[calc(50%+0.5px)] -translate-y-[calc(50%+0.5px)] stroke-1 stroke-stone-300 transition-all duration-300",
-        className
-      )}
-      fill="none"
-      stroke="currentColor"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      viewBox="0 0 24 24"
-      xmlns="http://www.w3.org/2000/svg"
-      {...props}
-    >
-      <path d="M5 12h14" />
-      <path d="M12 5v14" />
-    </svg>
-  );
-}
+const Testimonial = React.forwardRef<HTMLDivElement, TestimonialProps>(
+  ({ name, role, company, testimonial, rating = 5, image, platform = 'google', service, className, ...props }, ref) => {
+    const platformInfo = platformData[platform] || platformData.google;
 
-export function QuoteIcon({ className, ...props }: React.ComponentPropsWithoutRef<"svg">) {
-  return (
-    <svg
-      aria-hidden="true"
-      className={className}
-      fill="none"
-      stroke="currentColor"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      viewBox="0 0 24 24"
-      xmlns="http://www.w3.org/2000/svg"
-      {...props}
-    >
-      <path d="M3 21c3 0 7-1 7-8V5c0-1.25-.756-2.017-2-2H4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 1-1 2-2 2s-1 .008-1 1.031V20c0 1 0 1 1 1z" />
-      <path d="M15 21c3 0 7-1 7-8V5c0-1.25-.757-2.017-2-2h-4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2h.75c0 2.25.25 4-2.75 4v3c0 1 0 1 1 1z" />
-    </svg>
-  );
-}
-
-export function TestimonialCard({
-  testimonial,
-  index,
-  className,
-  ...props
-}: {
-  testimonial: TestimonialItem;
-  index: number;
-  className?: string;
-}) {
-  const { quote, name, role, company, image, rating = 5, service, platform = 'google' } = testimonial;
-  const platformInfo = platformData[platform] || platformData.google;
-
-  return (
-    <div
-      className={cn(
-        "relative w-full md:translate-y-[calc(2.5rem*var(--t-card-index))] transition-all duration-700 ease-out",
-        className
-      )}
-      style={{
-        "--t-card-index": index,
-      } as React.CSSProperties}
-    >
-      <figure
-        className="group relative flex flex-col justify-between gap-6 px-7 sm:px-8 pt-8 pb-7 bg-white shadow-sm border border-stone-200/90 transition-all duration-500 hover:shadow-2xl hover:border-[#019934]/60 hover:-translate-y-2 animate-testimonial-drift hover:[animation-play-state:paused]"
-        style={{
-          animationDelay: `${index * 1.4}s`,
-          animationDuration: `${5.8 + index * 0.9}s`,
-        }}
+    return (
+      <div
+        ref={ref}
+        className={cn(
+          "relative overflow-hidden rounded-2xl border border-stone-200/90 bg-white p-6 sm:p-8 transition-all duration-300 hover:shadow-xl hover:border-[#019934]/40 hover:-translate-y-1 flex flex-col justify-between h-full group",
+          className
+        )}
         {...props}
       >
-        {/* Architectural blueprint extended lines extending beyond borders */}
-        <div className="absolute -inset-y-6 -left-px w-px bg-stone-200 transition-colors duration-500 group-hover:bg-[#019934]/50 pointer-events-none" />
-        <div className="absolute -inset-y-6 -right-px w-px bg-stone-200 transition-colors duration-500 group-hover:bg-[#019934]/50 pointer-events-none" />
-        <div className="absolute -inset-x-6 -top-px h-px bg-stone-200 transition-colors duration-500 group-hover:bg-[#019934]/50 pointer-events-none" />
-        <div className="absolute -right-6 -bottom-px -left-6 h-px bg-stone-200 transition-colors duration-500 group-hover:bg-[#019934]/50 pointer-events-none" />
+        {/* Large Decorative Quote Watermark */}
+        <div
+          aria-hidden={true}
+          className="absolute right-6 top-4 text-7xl font-serif text-stone-200/50 pointer-events-none select-none transition-colors duration-300 group-hover:text-[#019934]/20"
+        >
+          &ldquo;
+        </div>
 
-        {/* Decorative Corner Crosshair with 90° rotation on card hover */}
-        <DecorIcon className="transition-transform duration-500 group-hover:rotate-90 group-hover:stroke-[#019934] group-hover:scale-125" />
+        <div className="flex flex-col gap-4 justify-between h-full relative z-10">
+          <div>
+            {/* Top Bar: Stars + Platform Badge */}
+            <div className="flex items-center justify-between gap-2 mb-3">
+              {rating > 0 && (
+                <div className="flex items-center gap-1">
+                  {Array.from({ length: 5 }).map((_, index) => (
+                    <Star
+                      key={index}
+                      size={16}
+                      className={cn(
+                        index < rating
+                          ? "fill-amber-400 text-amber-400"
+                          : "fill-stone-200 text-stone-200"
+                      )}
+                    />
+                  ))}
+                </div>
+              )}
 
-        {/* Card Content Top: Service Tag, Star Rating & Platform Badge */}
-        <div>
-          <div className="flex items-center justify-between mb-4">
-            <div className="flex items-center gap-1">
-              {[...Array(rating)].map((_, i) => (
-                <Star
-                  key={i}
-                  className="w-4 h-4 fill-[#019934] text-[#019934] transition-transform duration-300 group-hover:scale-110"
-                  style={{ transitionDelay: `${i * 50}ms` }}
-                />
-              ))}
+              {platformInfo && (
+                <div className="inline-flex items-center gap-1.5 bg-stone-50 border border-stone-200/80 px-2.5 py-0.5 rounded-full">
+                  {platformInfo.icon}
+                  <span className="text-xs font-semibold text-stone-600">
+                    {platformInfo.name}
+                  </span>
+                </div>
+              )}
             </div>
 
-            {platformInfo && (
-              <div className="inline-flex items-center gap-1.5">
-                {platformInfo.icon}
-                <span className="text-xs font-semibold tracking-tight text-stone-600">
-                  {platformInfo.name}
+            {/* Service Tag if provided */}
+            {service && (
+              <div className="mb-3">
+                <span className="text-[10px] sm:text-[11px] font-bold uppercase tracking-wider text-stone-600 bg-stone-100 px-2 py-0.5 border border-stone-200/80 rounded group-hover:text-[#019934] group-hover:border-[#019934]/40 group-hover:bg-emerald-50/50 transition-colors">
+                  {service}
                 </span>
               </div>
             )}
-          </div>
 
-          {service && (
-            <div className="mb-3">
-              <span className="text-[10px] sm:text-[11px] font-bold uppercase tracking-wider text-stone-600 bg-stone-100 px-2.5 py-0.5 border border-stone-200/80 group-hover:text-[#019934] group-hover:border-[#019934]/40 group-hover:bg-emerald-50/50 transition-colors">
-                {service}
-              </span>
-            </div>
-          )}
-
-          {/* Quote */}
-          <blockquote className="flex gap-3 sm:gap-4">
-            <QuoteIcon
-              aria-hidden="true"
-              className="size-6 shrink-0 stroke-1 text-stone-300 transition-colors duration-300 group-hover:text-[#019934]"
-            />
-            <p className="flex-1 font-normal text-sm sm:text-base text-stone-600 leading-relaxed group-hover:text-stone-800 transition-colors">
-              &ldquo;{quote}&rdquo;
+            {/* Testimonial Quote Text */}
+            <p className="text-pretty text-sm sm:text-base text-stone-600 leading-relaxed font-normal">
+              &ldquo;{testimonial}&rdquo;
             </p>
-          </blockquote>
-        </div>
+          </div>
 
-        {/* Card Bottom: Avatar & Client Metadata */}
-        <figcaption className="flex items-center justify-between pt-4 border-t border-stone-100 mt-2">
-          <div className="flex items-center gap-3">
-            <div className="relative size-11 rounded-full overflow-hidden ring-2 ring-stone-200 ring-offset-2 ring-offset-white transition-all duration-300 group-hover:ring-[#019934] group-hover:scale-105">
-              <img
-                src={image}
-                alt={`${name}'s photo`}
-                className="size-full object-cover object-center"
-                loading="lazy"
-              />
-            </div>
-            <div className="flex flex-col">
-              <div className="flex items-center gap-1.5">
-                <cite className="font-bold text-stone-900 text-sm not-italic font-serif-brand">
-                  {name}
-                </cite>
-                <span title="Verified Project" className="inline-flex items-center">
-                  <CheckCircle2 className="w-3.5 h-3.5 text-[#019934]" />
-                </span>
+          {/* Bottom Client Info */}
+          <div className="flex items-center gap-4 justify-start pt-4 border-t border-stone-100 mt-2">
+            <div className="flex items-center gap-3">
+              {image && (
+                <Avatar className="h-12 w-12 rounded-full overflow-hidden ring-2 ring-stone-200/80 group-hover:ring-[#019934]/40 transition-all duration-300">
+                  <AvatarImage src={image} alt={name} height={48} width={48} />
+                  <AvatarFallback className="bg-[#019934]/10 text-[#019934] font-bold text-sm">
+                    {name[0]}
+                  </AvatarFallback>
+                </Avatar>
+              )}
+
+              <div className="flex flex-col">
+                <div className="flex items-center gap-1.5">
+                  <h3 className="font-bold text-stone-900 font-serif-brand text-sm sm:text-base">
+                    {name}
+                  </h3>
+                  <span title="Verified California Homeowner">
+                    <CheckCircle2 className="w-3.5 h-3.5 text-[#019934]" />
+                  </span>
+                </div>
+                <p className="text-xs sm:text-sm text-stone-500">
+                  {role}
+                  {company && ` • ${company}`}
+                </p>
               </div>
-              <p className="text-stone-500 text-xs">
-                {role} • <span className="text-stone-700 font-medium">{company}</span>
-              </p>
             </div>
           </div>
-        </figcaption>
-      </figure>
-    </div>
-  );
-}
+        </div>
+      </div>
+    );
+  }
+);
+Testimonial.displayName = 'Testimonial';
 
+export { Testimonial };
+export const TestimonialCard = Testimonial;
+
+// --- Testimonials Carousel Section ---
 export default function TestimonialsSection() {
-  const [isVisible, setIsVisible] = useState(false);
+  const [currentPage, setCurrentPage] = React.useState(0);
+  const touchStartX = React.useRef<number | null>(null);
 
-  useEffect(() => {
-    // Reveal entrance animation on mount
-    const timer = setTimeout(() => setIsVisible(true), 150);
-    return () => clearTimeout(timer);
-  }, []);
+  // Number of cards per page on desktop is 3; total pages with 6 items = 2
+  const pageSize = 3;
+  const totalPages = Math.ceil(testimonials.length / pageSize);
+
+  const handlePrev = () => {
+    setCurrentPage((prev) => (prev > 0 ? prev - 1 : totalPages - 1));
+  };
+
+  const handleNext = () => {
+    setCurrentPage((prev) => (prev < totalPages - 1 ? prev + 1 : 0));
+  };
+
+  const handleTouchStart = (e: React.TouchEvent) => {
+    touchStartX.current = e.touches[0].clientX;
+  };
+
+  const handleTouchEnd = (e: React.TouchEvent) => {
+    if (touchStartX.current === null) return;
+    const diffX = touchStartX.current - e.changedTouches[0].clientX;
+    if (diffX > 40) {
+      handleNext();
+    } else if (diffX < -40) {
+      handlePrev();
+    }
+    touchStartX.current = null;
+  };
+
+  const visibleTestimonials = testimonials.slice(
+    currentPage * pageSize,
+    currentPage * pageSize + pageSize
+  );
 
   return (
-    <div className="mx-auto w-full max-w-6xl px-4 sm:px-6">
-      <div
-        className={cn(
-          "grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-8 transition-all duration-1000 ease-out",
-          isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
-        )}
-      >
-        {testimonials.map((testimonial, index) => (
-          <TestimonialCard
+    <div
+      className="mx-auto w-full max-w-6xl px-4 sm:px-6"
+      onTouchStart={handleTouchStart}
+      onTouchEnd={handleTouchEnd}
+    >
+      {/* Testimonials Carousel Track */}
+      <div className="grid gap-6 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 transition-all duration-500 ease-in-out">
+        {visibleTestimonials.map((testimonial) => (
+          <Testimonial
             key={testimonial.name}
-            index={index}
-            testimonial={testimonial}
+            {...testimonial}
+            className="animate-in fade-in zoom-in-95 duration-300"
           />
         ))}
+      </div>
+
+      {/* Carousel Navigation Controls: 100% single-line, no wraps */}
+      <div className="flex items-center justify-center gap-4 mt-10">
+        <button
+          type="button"
+          onClick={handlePrev}
+          aria-label="Previous testimonials"
+          className="h-10 w-10 flex items-center justify-center rounded-full bg-white border border-stone-300 text-stone-700 hover:bg-[#019934] hover:border-[#019934] hover:text-white transition-all shadow-sm active:scale-95 shrink-0 whitespace-nowrap cursor-pointer"
+        >
+          <ChevronLeft className="w-5 h-5 shrink-0" />
+        </button>
+
+        {/* Page indicator dots */}
+        <div className="flex items-center gap-2">
+          {Array.from({ length: totalPages }).map((_, i) => (
+            <button
+              key={i}
+              type="button"
+              onClick={() => setCurrentPage(i)}
+              aria-label={`Go to slide ${i + 1}`}
+              className={cn(
+                "h-2.5 rounded-full transition-all duration-300 cursor-pointer",
+                currentPage === i
+                  ? "w-8 bg-[#019934]"
+                  : "w-2.5 bg-stone-300 hover:bg-stone-400"
+              )}
+            />
+          ))}
+        </div>
+
+        <button
+          type="button"
+          onClick={handleNext}
+          aria-label="Next testimonials"
+          className="h-10 w-10 flex items-center justify-center rounded-full bg-white border border-stone-300 text-stone-700 hover:bg-[#019934] hover:border-[#019934] hover:text-white transition-all shadow-sm active:scale-95 shrink-0 whitespace-nowrap cursor-pointer"
+        >
+          <ChevronRight className="w-5 h-5 shrink-0" />
+        </button>
+      </div>
+
+      {/* Trust Rating Summary Footer Banner */}
+      <div className="mt-8 flex flex-wrap items-center justify-center gap-6 text-xs text-stone-500 font-medium">
+        <div className="flex items-center gap-1.5">
+          {platformData.google.icon}
+          <span>4.9 / 5.0 on Google (180+ reviews)</span>
+        </div>
+        <span className="hidden sm:inline text-stone-300">•</span>
+        <div className="flex items-center gap-1.5">
+          {platformData.yelp.icon}
+          <span>5.0 / 5.0 on Yelp (110+ reviews)</span>
+        </div>
+        <span className="hidden sm:inline text-stone-300">•</span>
+        <div className="flex items-center gap-1.5">
+          {platformData.houzz.icon}
+          <span>5.0 / 5.0 on Houzz (60+ reviews)</span>
+        </div>
       </div>
     </div>
   );
 }
 
+// --- Demo Export for testimonial 3 compatibility ---
+export function TestimonialDemo() {
+  return (
+    <div className="container py-10">
+      <div className="grid gap-4 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+        {testimonials.map((testimonial) => (
+          <Testimonial key={testimonial.name} {...testimonial} />
+        ))}
+      </div>
+    </div>
+  );
+}
