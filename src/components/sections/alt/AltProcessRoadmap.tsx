@@ -2,7 +2,7 @@
 
 import React from 'react';
 import Image from 'next/image';
-import { ChevronRight, Ruler, Layers, Award, CheckCircle2, Calendar, FileText, Sparkles } from 'lucide-react';
+import { ChevronRight, CheckCircle2 } from 'lucide-react';
 
 interface AltProcessRoadmapProps {
   onOpenModal: () => void;
@@ -10,25 +10,21 @@ interface AltProcessRoadmapProps {
 
 interface ProcessPhase {
   step: string;
-  badge: string;
   title: string;
   subtitle: string;
   description: string;
   image: string;
-  icon: React.ReactNode;
   deliverables: string[];
 }
 
 const processPhases: ProcessPhase[] = [
   {
     step: '01',
-    badge: 'Day 1 • 100% Free',
     title: 'In-Home 3D Design & Precision Laser Scan',
     subtitle: 'Visualize Before You Commit',
     description:
       'A senior hardscaping architect visits your property, assesses grade elevations and water drainage, and generates a realistic 3D architectural rendering of your new yard.',
     image: '/assets/driveway-slide-1.webp',
-    icon: <Ruler className="w-5 h-5 text-[#019934]" />,
     deliverables: [
       'Laser-accurate boundary measurements',
       'Photorealistic 3D layout of your space',
@@ -37,13 +33,11 @@ const processPhases: ProcessPhase[] = [
   },
   {
     step: '02',
-    badge: 'Phase 2 • Zero Stress',
     title: 'Physical Stone Curation & City Permitting',
     subtitle: 'Touch the Materials First',
     description:
       'We bring physical interlocking stone pavers and turf swatches right to your home so you can match textures in natural sunlight. We handle all city permits and HOA approvals.',
     image: '/assets/cards/card-patio.webp',
-    icon: <Layers className="w-5 h-5 text-[#019934]" />,
     deliverables: [
       'Full sample catalog brought to your door',
       'All municipal permits & HOA filings managed',
@@ -52,13 +46,11 @@ const processPhases: ProcessPhase[] = [
   },
   {
     step: '03',
-    badge: 'Completion • Lifetime Peace of Mind',
     title: 'ICPI Master Installation & 25-Yr Warranty',
     subtitle: 'Built to Last Generations',
     description:
       'Certified master craftsmen excavate, compact geotextile aggregate sub-base, precision-lay interlocking stone, and sweep polymeric sand. Complete final walkthrough inspection.',
     image: '/assets/banners/banner-deck.webp',
-    icon: <Award className="w-5 h-5 text-[#019934]" />,
     deliverables: [
       'Geotextile compacted sub-base armor',
       'Signed 25-Year Workmanship Warranty',
@@ -91,17 +83,11 @@ export default function AltProcessRoadmap({ onOpenModal }: AltProcessRoadmapProp
               key={phase.step}
               className="relative bg-stone-50 border border-stone-200/90 p-6 sm:p-8 flex flex-col justify-between hover:border-stone-400 hover:shadow-xl transition-all duration-300 group"
             >
-              {/* Step Top Header */}
+              {/* Step Top Header (Only the number) */}
               <div>
-                <div className="flex items-center justify-between pb-5 mb-5 border-b border-stone-200">
-                  <div className="flex items-center gap-3">
-                    <span className="text-3xl font-black text-stone-300 font-mono tracking-tighter group-hover:text-[#019934] transition-colors">
-                      {phase.step}
-                    </span>
-                    {phase.icon}
-                  </div>
-                  <span className="text-xs font-bold text-[#019934] uppercase tracking-wider">
-                    {phase.badge}
+                <div className="pb-4 mb-5 border-b border-stone-200">
+                  <span className="text-3xl sm:text-4xl font-black text-stone-300 font-mono tracking-tighter group-hover:text-[#019934] transition-colors">
+                    {phase.step}
                   </span>
                 </div>
 
