@@ -136,14 +136,6 @@ export default function ServiceBannerSlider({ onOpenModal }: ServiceBannerSlider
     touchEndX.current = null;
   };
 
-  // Preload all banner images into browser cache for instant high-res transitions
-  useEffect(() => {
-    serviceSlides.forEach((slide) => {
-      const img = new Image();
-      img.src = slide.image;
-    });
-  }, []);
-
   return (
     <section
       className="relative w-full h-[380px] sm:h-[440px] md:h-[490px] lg:h-[540px] overflow-hidden bg-stone-950 select-none"
@@ -165,8 +157,8 @@ export default function ServiceBannerSlider({ onOpenModal }: ServiceBannerSlider
             }`}
             aria-hidden={!isActive}
           >
-            {/* Background Image - Loaded on demand for active or adjacent slide */}
-            {Math.abs(index - currentIndex) <= 1 ? (
+            {/* Background Image - Loaded ONLY when slide is active to save bandwidth */}
+            {isActive ? (
               <img
                 src={slide.image}
                 alt={slide.imageAlt}

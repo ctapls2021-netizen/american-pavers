@@ -303,18 +303,19 @@ export default function ScrollVideoHero({
       ref={sectionRef}
       className="relative w-full h-[100dvh] overflow-hidden select-none bg-stone-950 md:touch-none"
     >
-      {/* Instant LCP Responsive Poster Image (55KB on mobile vs full-res on desktop) */}
+      {/* Instant LCP Responsive Poster Image (37KB on mobile vs full-res on desktop) */}
       <picture className="absolute inset-0 w-full h-full pointer-events-none">
         <source
-          media="(max-width: 768px)"
-          srcSet="/assets/banners/banner-driveway-mobile.webp"
+          media="(min-width: 769px)"
+          srcSet="/assets/banners/banner-driveway.webp"
           type="image/webp"
         />
         <img
-          src="/assets/banners/banner-driveway.webp"
+          src="/assets/banners/banner-driveway-mobile.webp"
           alt="American Pavers & Turf Hero"
           loading="eager"
           decoding="sync"
+          fetchPriority="high"
           className="w-full h-full object-cover"
         />
       </picture>

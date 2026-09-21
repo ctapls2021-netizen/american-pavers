@@ -27,6 +27,8 @@ export default function RootLayout({
           href="/assets/banners/banner-driveway-mobile.webp"
           type="image/webp"
           media="(max-width: 768px)"
+          // @ts-ignore
+          fetchPriority="high"
         />
         <link
           rel="preload"
@@ -34,6 +36,8 @@ export default function RootLayout({
           href="/assets/banners/banner-driveway.webp"
           type="image/webp"
           media="(min-width: 769px)"
+          // @ts-ignore
+          fetchPriority="high"
         />
         <link
           rel="preload"

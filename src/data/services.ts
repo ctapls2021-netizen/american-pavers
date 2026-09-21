@@ -7,7 +7,7 @@ export const servicesData: ServiceItem[] = [
     shortTitle: 'Driveway Pavers',
     tagline: 'Transform your home’s curb appeal with cracked-free, 10,000+ PSI engineered driveway pavers.',
     description: 'Say goodbye to ugly cracked concrete, oil stains, and constant sealing. Our interlocking driveway pavers offer 4x the compressive strength of poured concrete, flexible jointing that resists earthquakes and ground movement, and lifetime aesthetic elegance.',
-    heroImage: '/assets/driveway-feature-card.webp',
+    heroImage: '/assets/cards/card-driveway.webp',
     startingPrice: 'Free 3D Design Consultation',
     benefits: [
       'Over 10,000 PSI Compressive Strength (4x stronger than standard concrete)',
@@ -93,7 +93,7 @@ export const servicesData: ServiceItem[] = [
     shortTitle: 'Patio Pavers',
     tagline: 'Create your private resort with custom patio pavers designed for California outdoor living.',
     description: 'Transform unused dirt, dated slabs, or decaying wood into a breathtaking outdoor living retreat. Our patio paver systems are custom tailored to your architecture with integrated seating walls, lighting, and entertainment layouts.',
-    heroImage: 'https://images.ctfassets.net/zkpxzicsuxng/7CTlE9jM5t4dItHH9r7bfo/17cb31b1fe4863f1e5c2256eb5d6eb5d/patiofeature1.webp',
+    heroImage: '/assets/cards/card-patio.webp',
     startingPrice: 'Free 3D Design Consultation',
     benefits: [
       'Custom 3D CAD modeling of your yard before a single shovel enters the ground',
@@ -165,7 +165,7 @@ export const servicesData: ServiceItem[] = [
     shortTitle: 'Pool Deck Pavers',
     tagline: 'Resort-style pool surrounds that stay cool underfoot and eliminate slippery wet hazards.',
     description: 'Upgrade your swimming pool surround with porcelain, travertine, and interlocking concrete pool pavers. Engineered with textured non-slip finishes and coping stones with bullnose edges for safe swimming and effortless entertaining.',
-    heroImage: 'https://images.ctfassets.net/zkpxzicsuxng/5WY3aoz4ZlVuh7jJAgm0LK/6ec8b073d454967d98c9b479a18e9235/pooldecks.jpg',
+    heroImage: '/assets/cards/card-pool.webp',
     startingPrice: 'Free 3D Design Consultation',
     benefits: [
       'ADA compliant wet slip-resistance test ratings',
@@ -226,7 +226,7 @@ export const servicesData: ServiceItem[] = [
     shortTitle: 'Synthetic Turf',
     tagline: 'Drought-tolerant, pet-friendly, zero-water artificial turf that stays emerald green 365 days a year.',
     description: 'Cut your water bills by up to 70% while enjoying a pristine, manicured lawn all year long. Our American-made artificial turf features antimicrobial pet infill, heat-dissipating blade technology, and 15-year UV fade warranties.',
-    heroImage: '/assets/transformations/turf-lawn-after.webp',
+    heroImage: '/assets/cards/card-turf.webp',
     startingPrice: 'Free 3D Design Consultation',
     benefits: [
       'Save tens of thousands of gallons of water annually',
@@ -287,7 +287,7 @@ export const servicesData: ServiceItem[] = [
     shortTitle: 'Outdoor Kitchens & Fire Pits',
     tagline: 'Gourmet outdoor cooking suites, custom BBQ islands, granite countertops, and cozy gas fire features.',
     description: 'Bring the culinary experience outdoors. We engineer custom stainless steel BBQ islands, outdoor pizza ovens, wine coolers, bar seating, and linear fire pits plumbed directly to natural gas or propane.',
-    heroImage: '/assets/transformations/fire-pit-after.webp',
+    heroImage: '/assets/cards/card-kitchen.webp',
     startingPrice: 'Free 3D Design Consultation',
     benefits: [
       'Commercial-grade 304 stainless steel appliances',
@@ -348,7 +348,7 @@ export const servicesData: ServiceItem[] = [
     shortTitle: 'Decks & Pergolas',
     tagline: 'Modern composite decking and motorized pergolas engineered for sun protection and modern outdoor living.',
     description: 'Elevate your outdoor environment with splinter-free Trex composite decking and motorized louvred aluminum pergolas. Complete with wind sensors, integrated LED dimmable lighting, and rainproof gutters.',
-    heroImage: '/assets/transformations/pergola-after.webp',
+    heroImage: '/assets/cards/card-deck.webp',
     startingPrice: 'Free 3D Design Consultation',
     benefits: [
       'Zero splintering, warping, or annual repainting required',
