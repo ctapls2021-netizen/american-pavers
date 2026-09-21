@@ -69,28 +69,28 @@ const servicesCatalog: ServiceCardData[] = [
 
 export default function AltServicesShowcase({ onOpenModal }: AltServicesShowcaseProps) {
   return (
-    <section id="services" className="py-20 sm:py-28 bg-stone-950 text-white scroll-mt-20 border-t border-white/10">
+    <section id="services" className="py-20 sm:py-28 bg-white text-stone-900 scroll-mt-20 border-y border-stone-200/80">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Section Header */}
+        {/* Section Header (White background theme) */}
         <div className="max-w-3xl mb-12 sm:mb-16 text-left">
           <span className="text-xs font-semibold uppercase tracking-[0.2em] text-[#48a24c] block mb-2">
             LOS ANGELES · SERVICES
           </span>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-serif font-normal text-white tracking-tight">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-serif font-normal text-[#1A292C] tracking-tight">
             Master Hardscape &amp; Turf Services
           </h2>
-          <p className="mt-3 text-stone-400 text-base sm:text-lg font-normal">
+          <p className="mt-3 text-stone-600 text-base sm:text-lg font-normal">
             Commercial-grade foundation engineering, physical stone curation, and photorealistic 3D architectural renders included with every project.
           </p>
         </div>
 
-        {/* Services Grid (Full-bleed image cards with dark gradient overlay, top pill, bold title, and button — zero emojis, zero icons) */}
+        {/* Services Grid (Full-bleed image cards, no bg/border on subtitle, zero emojis, zero icons) */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-7">
           {servicesCatalog.map((service) => (
             <div
               key={service.id}
               onClick={() => onOpenModal(service.title)}
-              className="relative aspect-[4/3] sm:aspect-[16/11] rounded-2xl overflow-hidden group shadow-xl cursor-pointer border border-white/10 hover:border-white/25 transition-all duration-300"
+              className="relative aspect-[4/3] sm:aspect-[16/11] rounded-2xl overflow-hidden group shadow-md hover:shadow-2xl cursor-pointer border border-stone-200/70 hover:border-stone-300 transition-all duration-300"
             >
               {/* Full Bleed Photography Background */}
               <Image
@@ -104,9 +104,9 @@ export default function AltServicesShowcase({ onOpenModal }: AltServicesShowcase
               {/* Dark Gradient Overlay for Crisp Text Legibility */}
               <div className="absolute inset-0 bg-gradient-to-t from-stone-950 via-stone-950/40 to-stone-950/20 group-hover:from-stone-950/95 transition-all duration-300" />
 
-              {/* Top-Left Pill Badge (No emojis, no icons) */}
+              {/* Top-Left Subtitle (Clean text: NO background, NO border, no icons, no emojis) */}
               <div className="absolute top-4 left-4 z-10">
-                <span className="px-3.5 py-1.5 rounded-full bg-stone-950/60 backdrop-blur-md border border-white/15 text-white text-xs font-semibold tracking-wide shadow-sm">
+                <span className="text-xs sm:text-sm font-semibold tracking-wider uppercase text-white/95 drop-shadow-[0_2px_4px_rgba(0,0,0,0.9)]">
                   {service.tag}
                 </span>
               </div>
@@ -120,7 +120,7 @@ export default function AltServicesShowcase({ onOpenModal }: AltServicesShowcase
                   {service.description}
                 </p>
 
-                {/* Action Button (No emojis, no icons) */}
+                {/* Action Button (Clean button, no emojis, no icons) */}
                 <button
                   type="button"
                   onClick={(e) => {
@@ -137,7 +137,7 @@ export default function AltServicesShowcase({ onOpenModal }: AltServicesShowcase
         </div>
 
         {/* Bottom Multi-Service Bundle Banner (No emojis, no icons) */}
-        <div className="mt-14 p-7 sm:p-9 bg-stone-900 border border-white/10 rounded-2xl flex flex-col md:flex-row items-center justify-between gap-6 shadow-xl">
+        <div className="mt-14 p-7 sm:p-9 bg-stone-950 text-white rounded-2xl flex flex-col md:flex-row items-center justify-between gap-6 shadow-xl border border-stone-800">
           <div className="max-w-2xl text-left">
             <span className="text-xs font-semibold text-[#48a24c] uppercase tracking-widest block mb-1">
               MULTI-SERVICE PACKAGE
