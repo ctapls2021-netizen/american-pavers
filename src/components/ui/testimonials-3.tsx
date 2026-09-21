@@ -304,24 +304,6 @@ export default function TestimonialsSection() {
           <ChevronRight className="w-5 h-5 shrink-0" />
         </button>
       </div>
-
-      {/* Trust Rating Summary Footer Banner */}
-      <div className="mt-8 flex flex-wrap items-center justify-center gap-6 text-xs text-stone-500 font-medium">
-        <div className="flex items-center gap-1.5">
-          {platformData.google.icon}
-          <span>4.9 / 5.0 on Google (180+ reviews)</span>
-        </div>
-        <span className="hidden sm:inline text-stone-300">•</span>
-        <div className="flex items-center gap-1.5">
-          {platformData.yelp.icon}
-          <span>5.0 / 5.0 on Yelp (110+ reviews)</span>
-        </div>
-        <span className="hidden sm:inline text-stone-300">•</span>
-        <div className="flex items-center gap-1.5">
-          {platformData.houzz.icon}
-          <span>5.0 / 5.0 on Houzz (60+ reviews)</span>
-        </div>
-      </div>
     </div>
   );
 }
