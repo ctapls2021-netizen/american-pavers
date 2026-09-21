@@ -2,7 +2,6 @@
 
 import React from 'react';
 import Image from 'next/image';
-import { ArrowRight, ShieldCheck, Sparkles } from 'lucide-react';
 
 interface AltServicesShowcaseProps {
   onOpenModal: (serviceName?: string) => void;
@@ -14,149 +13,139 @@ interface ServiceCardData {
   tag: string;
   description: string;
   image: string;
-  warranty: string;
+  buttonText: string;
 }
 
 const servicesCatalog: ServiceCardData[] = [
   {
     id: 'patio-pavers',
     title: 'Backyard Patio Pavers',
-    tag: 'Patios & Fire Lounges',
-    description:
-      'Interlocking stone surfaces engineered for open-air dining, fire pits, and lifelong stability without cracking.',
+    tag: 'Patio Pavers',
+    description: 'Open-air dining patios and custom fire lounges.',
     image: '/assets/cards/card-patio.webp',
-    warranty: '25-Year Warranty',
+    buttonText: 'Request 3D Plan',
   },
   {
     id: 'driveway-pavers',
     title: 'Interlocking Driveways',
-    tag: 'Heavy-Duty Driveways',
-    description:
-      'Engineered to withstand 8,000+ PSI vehicular loads with compacted base armor to prevent shifting or sinking.',
+    tag: 'Driveways',
+    description: 'Engineered for heavy vehicle loads with zero cracking.',
     image: '/assets/cards/card-driveway.webp',
-    warranty: '25-Year Warranty',
+    buttonText: 'Request 3D Plan',
   },
   {
     id: 'pool-deck-pavers',
     title: 'Pool Deck Remodeling',
-    tag: 'Cool-Touch Pool Decks',
-    description:
-      'Heat-reflective, barefoot-friendly pavers with rapid water drainage and smooth, salt-resistant safety coping.',
+    tag: 'Pool Decks',
+    description: 'Cool-touch, barefoot-friendly stone surfaces.',
     image: '/assets/cards/card-pool.webp',
-    warranty: '25-Year Warranty',
+    buttonText: 'Request 3D Plan',
   },
   {
     id: 'synthetic-turf',
     title: 'Luxury Synthetic Turf',
-    tag: 'Pet & Family Turf',
-    description:
-      'Antimicrobial, pet-friendly artificial grass engineered for zero watering, rapid drainage, and lush green all year.',
+    tag: 'Artificial Turf',
+    description: 'Pet-friendly, zero-maintenance lush green lawn.',
     image: '/assets/cards/card-turf.webp',
-    warranty: '15-Year Turf Warranty',
+    buttonText: 'Request 3D Plan',
   },
   {
     id: 'outdoor-kitchens',
     title: 'Outdoor Kitchens & BBQs',
-    tag: 'Custom Masonry Living',
-    description:
-      'Handcrafted culinary islands with built-in stainless grills, quartz prep countertops, and integrated LED task lighting.',
+    tag: 'Outdoor Living',
+    description: 'Custom masonry islands with built-in stainless grills.',
     image: '/assets/cards/card-kitchen.webp',
-    warranty: 'Lifetime Craftsmanship',
+    buttonText: 'Request 3D Plan',
   },
   {
     id: 'retaining-walls',
     title: 'Retaining & Seat Walls',
-    tag: 'Structural Terracing',
-    description:
-      'Architectural stone masonry engineered for hillside slope stability, expansive terracing, and built-in perimeter seating.',
+    tag: 'Hardscape Masonry',
+    description: 'Architectural stone walls for slope stability and seating.',
     image: '/assets/cards/card-deck.webp',
-    warranty: '25-Year Warranty',
+    buttonText: 'Request 3D Plan',
   },
 ];
 
 export default function AltServicesShowcase({ onOpenModal }: AltServicesShowcaseProps) {
   return (
-    <section id="services" className="py-20 sm:py-28 bg-stone-100/70 text-stone-900 scroll-mt-20">
+    <section id="services" className="py-20 sm:py-28 bg-stone-950 text-white scroll-mt-20 border-t border-white/10">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
-        <div className="max-w-3xl mb-12 sm:mb-16">
-          <span className="text-xs font-bold uppercase tracking-[0.2em] text-[#019934] block mb-2">
-            Master Hardscape Portfolio
+        <div className="max-w-3xl mb-12 sm:mb-16 text-left">
+          <span className="text-xs font-semibold uppercase tracking-[0.2em] text-[#48a24c] block mb-2">
+            LOS ANGELES · SERVICES
           </span>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-[#1A292C] tracking-tight font-serif-brand">
-            Comprehensive Outdoor Transformations
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-serif font-normal text-white tracking-tight">
+            Master Hardscape &amp; Turf Services
           </h2>
-          <p className="mt-3 text-stone-600 text-base sm:text-lg">
-            Commercial-grade foundation engineering, physical stone curation in sunlight, and photorealistic 3D architectural renders included with every project.
+          <p className="mt-3 text-stone-400 text-base sm:text-lg font-normal">
+            Commercial-grade foundation engineering, physical stone curation, and photorealistic 3D architectural renders included with every project.
           </p>
         </div>
 
-        {/* Services Grid (Clean, minimalist, zero bullet points, punchy text) */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {/* Services Grid (Full-bleed image cards with dark gradient overlay, top pill, bold title, and button — zero emojis, zero icons) */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-7">
           {servicesCatalog.map((service) => (
             <div
               key={service.id}
-              className="group bg-white rounded-xl border border-stone-200/90 hover:border-stone-300 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between overflow-hidden"
+              onClick={() => onOpenModal(service.title)}
+              className="relative aspect-[4/3] sm:aspect-[16/11] rounded-2xl overflow-hidden group shadow-xl cursor-pointer border border-white/10 hover:border-white/25 transition-all duration-300"
             >
-              {/* Photo Header with Floating Pill Tag */}
-              <div className="relative aspect-[16/10] w-full overflow-hidden bg-stone-100">
-                <Image
-                  src={service.image}
-                  alt={service.title}
-                  fill
-                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                  className="object-cover object-center group-hover:scale-105 transition-transform duration-500"
-                />
-                <div className="absolute top-3.5 left-3.5">
-                  <span className="px-3 py-1 rounded-full bg-stone-950/75 backdrop-blur-md text-white text-[11px] font-semibold tracking-wider uppercase border border-white/15">
-                    {service.tag}
-                  </span>
-                </div>
+              {/* Full Bleed Photography Background */}
+              <Image
+                src={service.image}
+                alt={service.title}
+                fill
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                className="object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out"
+              />
+
+              {/* Dark Gradient Overlay for Crisp Text Legibility */}
+              <div className="absolute inset-0 bg-gradient-to-t from-stone-950 via-stone-950/40 to-stone-950/20 group-hover:from-stone-950/95 transition-all duration-300" />
+
+              {/* Top-Left Pill Badge (No emojis, no icons) */}
+              <div className="absolute top-4 left-4 z-10">
+                <span className="px-3.5 py-1.5 rounded-full bg-stone-950/60 backdrop-blur-md border border-white/15 text-white text-xs font-semibold tracking-wide shadow-sm">
+                  {service.tag}
+                </span>
               </div>
 
-              {/* Card Body — Short concise description, no bullet points */}
-              <div className="p-6 sm:p-7 flex-1 flex flex-col justify-between">
-                <div>
-                  <h3 className="text-xl sm:text-2xl font-bold font-serif text-[#1A292C] group-hover:text-[#019934] transition-colors leading-snug">
-                    {service.title}
-                  </h3>
-                  <p className="mt-2.5 text-stone-600 text-sm leading-relaxed">
-                    {service.description}
-                  </p>
-                </div>
+              {/* Bottom Card Content */}
+              <div className="absolute inset-x-0 bottom-0 z-10 p-5 sm:p-6 flex flex-col items-start justify-end">
+                <h3 className="text-xl sm:text-2xl font-bold text-white tracking-tight leading-snug">
+                  {service.title}
+                </h3>
+                <p className="text-stone-300 text-xs sm:text-sm mt-1.5 leading-relaxed font-normal max-w-sm">
+                  {service.description}
+                </p>
 
-                {/* Card Action Footer */}
-                <div className="mt-6 pt-5 border-t border-stone-100 flex items-center justify-between gap-3">
-                  <span className="text-xs font-semibold text-stone-500 flex items-center gap-1.5">
-                    <ShieldCheck className="w-4 h-4 text-[#019934] shrink-0" />
-                    <span>{service.warranty}</span>
-                  </span>
-
-                  {/* Clean CTA Button — Locked in single line */}
-                  <button
-                    type="button"
-                    onClick={() => onOpenModal(service.title)}
-                    className="inline-flex items-center justify-center gap-1.5 whitespace-nowrap flex-nowrap px-4 py-2.5 bg-[#019934] hover:bg-[#01802b] text-white font-medium text-xs uppercase tracking-wider rounded-md shadow-xs transition-all duration-150 cursor-pointer active:scale-98 shrink-0 group/btn"
-                  >
-                    <span className="whitespace-nowrap">Free Estimate</span>
-                    <ArrowRight className="w-3.5 h-3.5 shrink-0 transition-transform group-hover/btn:translate-x-1" />
-                  </button>
-                </div>
+                {/* Action Button (No emojis, no icons) */}
+                <button
+                  type="button"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    onOpenModal(service.title);
+                  }}
+                  className="mt-4 px-5 py-2.5 bg-white hover:bg-stone-100 active:scale-98 text-stone-900 font-bold text-xs sm:text-sm rounded-lg shadow-md transition-all whitespace-nowrap cursor-pointer"
+                >
+                  {service.buttonText}
+                </button>
               </div>
             </div>
           ))}
         </div>
 
-        {/* Bottom Multi-Service Bundle Banner */}
-        <div className="mt-14 p-7 sm:p-9 bg-[#1A292C] text-white rounded-xl flex flex-col md:flex-row items-center justify-between gap-6 shadow-xl">
-          <div className="max-w-2xl">
-            <span className="text-xs font-bold text-[#42e078] uppercase tracking-widest block mb-1">
-              Multi-Service Package
+        {/* Bottom Multi-Service Bundle Banner (No emojis, no icons) */}
+        <div className="mt-14 p-7 sm:p-9 bg-stone-900 border border-white/10 rounded-2xl flex flex-col md:flex-row items-center justify-between gap-6 shadow-xl">
+          <div className="max-w-2xl text-left">
+            <span className="text-xs font-semibold text-[#48a24c] uppercase tracking-widest block mb-1">
+              MULTI-SERVICE PACKAGE
             </span>
-            <h4 className="text-xl sm:text-2xl font-bold font-serif text-white">
+            <h4 className="text-xl sm:text-2xl font-serif font-normal text-white">
               Need Multiple Services Combined Into One Master Project?
             </h4>
-            <p className="text-stone-300 text-xs sm:text-sm mt-1.5 leading-relaxed">
+            <p className="text-stone-400 text-xs sm:text-sm mt-1.5 leading-relaxed">
               Save up to $2,500 when bundling Pavers + Synthetic Turf + Built-In Outdoor Living with a single master crew and lifetime guarantee.
             </p>
           </div>
@@ -164,10 +153,9 @@ export default function AltServicesShowcase({ onOpenModal }: AltServicesShowcase
           <button
             type="button"
             onClick={() => onOpenModal('Full Yard Transformation')}
-            className="inline-flex items-center justify-center gap-2 whitespace-nowrap flex-nowrap px-6 py-3.5 bg-[#019934] hover:bg-[#01802b] text-white font-bold text-xs sm:text-sm uppercase tracking-wider rounded-md transition-all cursor-pointer shrink-0 shadow-md active:scale-98"
+            className="px-6 py-3.5 bg-[#48a24c] hover:bg-[#3ea748] active:scale-98 text-white font-bold text-xs sm:text-sm uppercase tracking-wider rounded-lg transition-all cursor-pointer shrink-0 shadow-lg whitespace-nowrap"
           >
-            <span className="whitespace-nowrap">Claim Multi-Service Discount</span>
-            <ArrowRight className="w-4 h-4 shrink-0" />
+            Claim Multi-Service Discount
           </button>
         </div>
       </div>
