@@ -165,15 +165,17 @@ export default function ServiceBannerSlider({ onOpenModal }: ServiceBannerSlider
             }`}
             aria-hidden={!isActive}
           >
-            {/* Background Image - Razor sharp 2560px WebP */}
-            <img
-              src={slide.image}
-              alt={slide.imageAlt}
-              className="w-full h-full object-cover object-center"
-              loading="lazy"
-              decoding="async"
-              fetchPriority="low"
-            />
+            {/* Background Image - Loaded on demand for active or adjacent slide */}
+            {Math.abs(index - currentIndex) <= 1 ? (
+              <img
+                src={slide.image}
+                alt={slide.imageAlt}
+                className="w-full h-full object-cover object-center"
+                loading="lazy"
+                decoding="async"
+                fetchPriority="low"
+              />
+            ) : null}
 
             {/* Subtle atmospheric vignette overlay for crisp readability */}
             <div className="absolute inset-0 bg-gradient-to-b from-black/25 via-black/15 to-black/40 pointer-events-none" />

@@ -24,8 +24,16 @@ export default function RootLayout({
         <link
           rel="preload"
           as="image"
+          href="/assets/banners/banner-driveway-mobile.webp"
+          type="image/webp"
+          media="(max-width: 768px)"
+        />
+        <link
+          rel="preload"
+          as="image"
           href="/assets/banners/banner-driveway.webp"
           type="image/webp"
+          media="(min-width: 769px)"
         />
         <link
           rel="preload"

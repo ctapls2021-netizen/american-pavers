@@ -296,23 +296,30 @@ export default function ScrollVideoHero({
       ref={sectionRef}
       className="relative w-full h-[100dvh] overflow-hidden select-none bg-stone-950 md:touch-none"
     >
-      {/* Instant LCP Poster Image (Paints immediately on frame 1) */}
-      <img
-        src="/assets/banners/banner-driveway.webp"
-        alt="American Pavers & Turf Hero"
-        loading="eager"
-        decoding="sync"
-        className="absolute inset-0 w-full h-full object-cover pointer-events-none"
-      />
+      {/* Instant LCP Responsive Poster Image (55KB on mobile vs full-res on desktop) */}
+      <picture className="absolute inset-0 w-full h-full pointer-events-none">
+        <source
+          media="(max-width: 768px)"
+          srcSet="/assets/banners/banner-driveway-mobile.webp"
+          type="image/webp"
+        />
+        <img
+          src="/assets/banners/banner-driveway.webp"
+          alt="American Pavers & Turf Hero"
+          loading="eager"
+          decoding="sync"
+          className="w-full h-full object-cover"
+        />
+      </picture>
 
-      {/* Background Scrubbed Video — Only moves with scroll */}
+      {/* Background Scrubbed Video — Active on desktop, hidden on mobile to avoid 13.6MB download */}
       <video
         ref={videoRef}
         muted
         playsInline
         preload="metadata"
         poster="/assets/banners/banner-driveway.webp"
-        className="absolute inset-0 w-full h-full object-cover pointer-events-none"
+        className="hidden md:block absolute inset-0 w-full h-full object-cover pointer-events-none"
         style={{
           transformOrigin: 'center center',
           willChange: 'transform',
