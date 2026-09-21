@@ -98,11 +98,9 @@ export default function AltProcessRoadmap({ onOpenModal }: AltProcessRoadmapProp
                     <span className="text-3xl font-black text-stone-300 font-mono tracking-tighter group-hover:text-[#019934] transition-colors">
                       {phase.step}
                     </span>
-                    <div className="w-9 h-9 bg-white border border-stone-200 flex items-center justify-center shadow-2xs">
-                      {phase.icon}
-                    </div>
+                    {phase.icon}
                   </div>
-                  <span className="text-[11px] font-bold text-[#019934] bg-emerald-50 px-2.5 py-1 border border-emerald-200/80 uppercase tracking-wide">
+                  <span className="text-xs font-bold text-[#019934] uppercase tracking-wider">
                     {phase.badge}
                   </span>
                 </div>

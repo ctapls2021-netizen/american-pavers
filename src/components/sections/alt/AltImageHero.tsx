@@ -29,7 +29,7 @@ export default function AltImageHero({
 
   return (
     <section className="relative min-h-[92vh] sm:min-h-screen flex flex-col justify-between overflow-hidden bg-stone-950 text-white pt-24 pb-12 sm:pt-32 sm:pb-16">
-      {/* High-Resolution Luxury Photography Background */}
+      {/* High-Resolution Luxury Photography Background — Light & Clear */}
       <div className="absolute inset-0 z-0">
         <Image
           src="/assets/banners/banner-patio.webp"
@@ -37,18 +37,17 @@ export default function AltImageHero({
           fill
           priority
           sizes="100vw"
-          className="object-cover object-center scale-105 transition-transform duration-1000"
+          className="object-cover object-center scale-100 transition-transform duration-1000"
         />
-        {/* Architectural Cinematic Overlays */}
-        <div className="absolute inset-0 bg-stone-950/70" />
-        <div className="absolute inset-0 bg-gradient-to-t from-stone-950 via-stone-950/30 to-stone-950/80" />
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_35%,rgba(10,12,15,0.75)_100%)]" />
+        {/* Lighter, clear architectural overlay so the patio photo is vivid and bright */}
+        <div className="absolute inset-0 bg-stone-950/30" />
+        <div className="absolute inset-0 bg-gradient-to-t from-stone-950/85 via-stone-950/15 to-stone-950/30" />
       </div>
 
       {/* Main Content Container */}
       <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 flex-1 flex flex-col justify-center items-center text-center mt-6 sm:mt-10">
-        {/* Top Trust Eyebrow */}
-        <div className="inline-flex items-center gap-2 px-3.5 py-1.5 bg-stone-900/85 backdrop-blur-md border border-white/20 text-stone-200 text-xs sm:text-sm font-semibold tracking-wide mb-6 sm:mb-8 shadow-lg">
+        {/* Top Trust Eyebrow (Clean text: no background, no border) */}
+        <div className="inline-flex items-center gap-2 text-stone-100 text-xs sm:text-sm font-semibold tracking-wide mb-6 sm:mb-8 drop-shadow-md">
           <ShieldCheck className="w-4 h-4 text-[#42e078] shrink-0" />
           <span>CSLB Licensed &amp; Insured</span>
           <span className="text-white/40">•</span>

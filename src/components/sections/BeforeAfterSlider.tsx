@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState, useRef, useCallback } from 'react';
-import { ChevronRight, ArrowLeftRight } from 'lucide-react';
+import { ChevronRight } from 'lucide-react';
 
 interface BeforeAfterPair {
   id: string;
@@ -147,13 +147,13 @@ export default function BeforeAfterSlider({
           )}
         </div>
 
-        {/* Interactive Comparison Container */}
+        {/* Interactive Comparison Container (Reduced height, clean no text/icons over image) */}
         <div className="max-w-5xl mx-auto">
           <div
             ref={containerRef}
             onMouseMove={handleMouseMove}
             onTouchMove={handleTouchMove}
-            className="relative aspect-16/10 sm:aspect-16/9 rounded-none overflow-hidden shadow-2xl select-none cursor-ew-resize border border-stone-300 bg-stone-100"
+            className="relative aspect-[16/9] sm:aspect-[21/9] max-h-[440px] rounded-none overflow-hidden shadow-xl select-none cursor-ew-resize border border-stone-200 bg-stone-100"
           >
             {/* After Image (Background) */}
             <img
@@ -163,9 +163,6 @@ export default function BeforeAfterSlider({
               decoding="async"
               className="absolute inset-0 w-full h-full object-cover pointer-events-none"
             />
-            <div className="absolute top-4 right-4 bg-[#019934] text-white text-xs font-extrabold px-3 py-1.5 rounded-none shadow-md pointer-events-none uppercase tracking-wider">
-              After Transformation
-            </div>
 
             {/* Before Image (Clipped Foreground) */}
             <div
@@ -179,18 +176,27 @@ export default function BeforeAfterSlider({
                 decoding="async"
                 className="absolute inset-0 w-full h-full object-cover pointer-events-none"
               />
-              <div className="absolute top-4 left-4 bg-stone-900/90 text-stone-200 text-xs font-extrabold px-3 py-1.5 rounded-none shadow-md pointer-events-none uppercase tracking-wider">
-                Before
-              </div>
             </div>
 
-            {/* Vertical Divider Handle */}
+            {/* Vertical Divider Handle with clean horizontal arrows */}
             <div
-              className="absolute top-0 bottom-0 w-1 bg-white shadow-2xl pointer-events-none z-20 flex items-center justify-center"
+              className="absolute top-0 bottom-0 w-0.5 bg-white shadow-2xl pointer-events-none z-20 flex items-center justify-center"
               style={{ left: `${sliderPosition}%` }}
             >
-              <div className="w-9 h-9 bg-white text-stone-800 rounded-none shadow-xl flex items-center justify-center border-2 border-[#019934]">
-                <ArrowLeftRight className="w-4 h-4 text-[#019934]" />
+              <div className="w-9 h-9 bg-white text-stone-800 rounded-full shadow-xl flex items-center justify-center border border-stone-300">
+                <svg
+                  className="w-4 h-4 text-stone-800"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                >
+                  <polyline points="8 7 3 12 8 17" />
+                  <polyline points="16 7 21 12 16 17" />
+                  <line x1="3" y1="12" x2="21" y2="12" />
+                </svg>
               </div>
             </div>
           </div>
