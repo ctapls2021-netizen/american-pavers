@@ -115,11 +115,6 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
-                <Link href="/financing" className="hover:text-[#42e078] transition-colors">
-                  0% Financing Options
-                </Link>
-              </li>
-              <li>
                 <span className="text-[#019934] font-semibold">
                   25-Year Workmanship Warranty
                 </span>

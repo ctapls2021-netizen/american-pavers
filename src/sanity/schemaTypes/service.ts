@@ -62,5 +62,10 @@ export const service = defineType({
       title: 'Orden de Visualización',
       type: 'number',
     }),
+    defineField({
+      name: 'seo',
+      title: '🎯 Optimización SEO y Redes Sociales',
+      type: 'seo',
+    }),
   ],
 });

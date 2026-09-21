@@ -62,5 +62,10 @@ export const location = defineType({
       type: 'array',
       of: [{ type: 'string' }],
     }),
+    defineField({
+      name: 'seo',
+      title: '🎯 Optimización SEO y Redes Sociales',
+      type: 'seo',
+    }),
   ],
 });

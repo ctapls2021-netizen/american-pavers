@@ -33,7 +33,8 @@ export const locationsQuery = groq`
     projectsCompleted,
     localOfficeAddress,
     highlightNeighborhoods,
-    zipCodes
+    zipCodes,
+    seo
   }
 `;
 
@@ -48,7 +49,8 @@ export const servicesQuery = groq`
     heroImage,
     startingPrice,
     benefits,
-    order
+    order,
+    seo
   }
 `;
 
@@ -63,7 +65,8 @@ export const serviceBySlugQuery = groq`
     heroImage,
     startingPrice,
     benefits,
-    order
+    order,
+    seo
   }
 `;
 

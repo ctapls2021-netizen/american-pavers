@@ -71,5 +71,10 @@ export const aboutPage = defineType({
         }),
       ],
     }),
+    defineField({
+      name: 'seo',
+      title: '🎯 Optimización SEO y Redes Sociales',
+      type: 'seo',
+    }),
   ],
 });

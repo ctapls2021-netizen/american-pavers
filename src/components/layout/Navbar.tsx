@@ -465,13 +465,6 @@ export default function Navbar({ onOpenModal }: NavbarProps) {
                   Contact Us
                 </Link>
                 <Link
-                  href="/financing"
-                  onClick={() => setOpenMobile(false)}
-                  className="p-2.5 rounded-none bg-stone-50 font-semibold text-xs text-stone-800 hover:text-[#019934]"
-                >
-                  0% Financing
-                </Link>
-                <Link
                   href="/locations/los-angeles"
                   onClick={() => setOpenMobile(false)}
                   className="p-2.5 rounded-none bg-stone-50 font-semibold text-xs text-stone-800 hover:text-[#019934]"

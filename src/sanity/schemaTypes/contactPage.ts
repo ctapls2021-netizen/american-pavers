@@ -44,5 +44,10 @@ export const contactPage = defineType({
       type: 'string',
       initialValue: 'Prefer to speak with an estimator right now? Call us directly:',
     }),
+    defineField({
+      name: 'seo',
+      title: '🎯 Optimización SEO y Redes Sociales',
+      type: 'seo',
+    }),
   ],
 });

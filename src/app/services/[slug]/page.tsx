@@ -6,6 +6,8 @@ import { companyData } from '@/data/company';
 import { getServiceBySlug } from '@/sanity/queries';
 import ServicePageClient from './ServicePageClient';
 
+import { buildMetadata } from '@/sanity/seoHelper';
+
 interface ServicePageProps {
   params: Promise<{ slug: string }>;
 }
@@ -24,10 +26,11 @@ export async function generateMetadata({ params }: ServicePageProps): Promise<Me
 
   if (!service) return { title: 'Service Not Found' };
 
-  return {
-    title: `${service.title} | ${companyData.name}`,
-    description: service.description,
-  };
+  return buildMetadata({
+    seo: service.seo,
+    defaultTitle: `${service.title} | ${companyData.name}`,
+    defaultDescription: service.description || service.tagline || '',
+  });
 }
 
 export default async function ServiceDetailPage({ params }: ServicePageProps) {

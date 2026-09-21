@@ -76,5 +76,11 @@ export const siteSettings = defineType({
       title: 'Área de Cobertura Principal',
       type: 'string',
     }),
+    defineField({
+      name: 'seo',
+      title: '🎯 SEO Global por Defecto (Sitio Completo)',
+      type: 'seo',
+      description: 'Metadatos predeterminados para páginas que no tengan SEO individual.',
+    }),
   ],
 });

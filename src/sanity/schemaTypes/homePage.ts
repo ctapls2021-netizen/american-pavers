@@ -209,5 +209,12 @@ export const homePage = defineType({
         }),
       ],
     }),
+
+    // --- SECCIÓN SEO Y METADATOS ---
+    defineField({
+      name: 'seo',
+      title: '🎯 Optimización SEO y Redes Sociales',
+      type: 'seo',
+    }),
   ],
 });
