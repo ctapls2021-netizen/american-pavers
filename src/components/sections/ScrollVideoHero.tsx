@@ -36,6 +36,13 @@ export default function ScrollVideoHero({
   const progressBarRef = useRef<HTMLDivElement>(null);
 
   const [isUnlocked, setIsUnlocked] = useState(false);
+  const [isDesktop, setIsDesktop] = useState(false);
+
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      setIsDesktop(window.innerWidth >= 768);
+    }
+  }, []);
 
   useEffect(() => {
     const video = videoRef.current;
@@ -273,7 +280,7 @@ export default function ScrollVideoHero({
       cancelAnimationFrame(rafId);
       unlockScroll();
     };
-  }, [scrubDistance]);
+  }, [scrubDistance, isDesktop]);
 
   const handleSkipToContent = () => {
     const nextSection = document.getElementById('services-grid');
@@ -312,22 +319,24 @@ export default function ScrollVideoHero({
         />
       </picture>
 
-      {/* Background Scrubbed Video — Active on desktop, hidden on mobile to avoid 13.6MB download */}
-      <video
-        ref={videoRef}
-        muted
-        playsInline
-        preload="metadata"
-        poster="/assets/banners/banner-driveway.webp"
-        className="hidden md:block absolute inset-0 w-full h-full object-cover pointer-events-none"
-        style={{
-          transformOrigin: 'center center',
-          willChange: 'transform',
-        }}
-      >
-        <source src={videoSrc} type="video/mp4" />
-        <source src={FALLBACK_VIDEO} type="video/mp4" />
-      </video>
+      {/* Background Scrubbed Video — Rendered ONLY on desktop to eliminate 4MB mobile data download */}
+      {isDesktop && (
+        <video
+          ref={videoRef}
+          muted
+          playsInline
+          preload="metadata"
+          poster="/assets/banners/banner-driveway.webp"
+          className="hidden md:block absolute inset-0 w-full h-full object-cover pointer-events-none"
+          style={{
+            transformOrigin: 'center center',
+            willChange: 'transform',
+          }}
+        >
+          <source src={videoSrc} type="video/mp4" />
+          <source src={FALLBACK_VIDEO} type="video/mp4" />
+        </video>
+      )}
 
       {/* Atmospheric Contrast Overlays */}
       <div className="absolute inset-0 bg-gradient-to-b from-stone-950/60 via-stone-950/20 to-stone-950/75 pointer-events-none" />

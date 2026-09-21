@@ -226,7 +226,7 @@ export const servicesData: ServiceItem[] = [
     shortTitle: 'Synthetic Turf',
     tagline: 'Drought-tolerant, pet-friendly, zero-water artificial turf that stays emerald green 365 days a year.',
     description: 'Cut your water bills by up to 70% while enjoying a pristine, manicured lawn all year long. Our American-made artificial turf features antimicrobial pet infill, heat-dissipating blade technology, and 15-year UV fade warranties.',
-    heroImage: '/assets/banners/banner-turf.webp',
+    heroImage: '/assets/transformations/turf-lawn-after.webp',
     startingPrice: 'Free 3D Design Consultation',
     benefits: [
       'Save tens of thousands of gallons of water annually',
