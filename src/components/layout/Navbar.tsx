@@ -54,15 +54,17 @@ const serviceIcons: Record<string, LucideIcon> = {
 function useScroll(threshold = 10) {
   const [scrolled, setScrolled] = useState(false);
 
-  const onScroll = useCallback(() => {
-    setScrolled(window.scrollY > threshold);
-  }, [threshold]);
-
   useEffect(() => {
+    const onScroll = () => {
+      setScrolled(window.scrollY > threshold);
+    };
     window.addEventListener('scroll', onScroll, { passive: true });
-    onScroll();
-    return () => window.removeEventListener('scroll', onScroll);
-  }, [onScroll]);
+    const rafId = requestAnimationFrame(onScroll);
+    return () => {
+      cancelAnimationFrame(rafId);
+      window.removeEventListener('scroll', onScroll);
+    };
+  }, [threshold]);
 
   return scrolled;
 }

@@ -42,6 +42,7 @@ export default function ProcessSteps({ onOpenModal }: ProcessStepsProps) {
   const [rotationAngle, setRotationAngle] = useState<number>(0);
   const [autoRotate, setAutoRotate] = useState<boolean>(true);
   const [isMobile, setIsMobile] = useState<boolean>(false);
+  const [isVisible, setIsVisible] = useState<boolean>(false);
 
   const containerRef = useRef<HTMLDivElement>(null);
   const orbitRef = useRef<HTMLDivElement>(null);
@@ -53,6 +54,22 @@ export default function ProcessSteps({ onOpenModal }: ProcessStepsProps) {
     handleResize();
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  useEffect(() => {
+    const el = containerRef.current;
+    if (!el || typeof IntersectionObserver === 'undefined') {
+      setIsVisible(true);
+      return;
+    }
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setIsVisible(entry.isIntersecting);
+      },
+      { rootMargin: '100px' }
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
   }, []);
 
   const centerViewOnNode = (nodeId: number) => {
@@ -83,7 +100,7 @@ export default function ProcessSteps({ onOpenModal }: ProcessStepsProps) {
   useEffect(() => {
     let rotationTimer: NodeJS.Timeout;
 
-    if (autoRotate) {
+    if (autoRotate && isVisible) {
       rotationTimer = setInterval(() => {
         setRotationAngle((prev) => {
           const newAngle = (prev + 0.25) % 360;
@@ -97,7 +114,7 @@ export default function ProcessSteps({ onOpenModal }: ProcessStepsProps) {
         clearInterval(rotationTimer);
       }
     };
-  }, [autoRotate]);
+  }, [autoRotate, isVisible]);
 
   const calculateNodePosition = (index: number, total: number) => {
     const angle = ((index / total) * 360 + rotationAngle) % 360;
@@ -143,6 +160,8 @@ export default function ProcessSteps({ onOpenModal }: ProcessStepsProps) {
             <img
               src="/assets/logos/logo-stacked-white.svg"
               alt="American Pavers & Turf"
+              width={208}
+              height={161}
               loading="lazy"
               decoding="async"
               className="w-36 sm:w-48 lg:w-52 h-auto object-contain"

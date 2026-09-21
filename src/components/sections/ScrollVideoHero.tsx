@@ -314,7 +314,7 @@ export default function ScrollVideoHero({
           src="/assets/banners/banner-driveway-mobile.webp"
           alt="American Pavers & Turf Hero"
           loading="eager"
-          decoding="sync"
+          decoding="async"
           fetchPriority="high"
           className="w-full h-full object-cover"
         />

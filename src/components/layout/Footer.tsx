@@ -16,6 +16,10 @@ export default function Footer() {
               <img
                 src="/assets/logos/logo-white.svg"
                 alt="American Pavers & Turf"
+                width={163}
+                height={44}
+                loading="lazy"
+                decoding="async"
                 className="h-11 sm:h-13 w-auto object-contain"
               />
             </Link>
