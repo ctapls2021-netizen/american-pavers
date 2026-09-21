@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
-import AltNavbar from '@/components/layout/AltNavbar';
+import Navbar from '@/components/layout/Navbar';
 import AltImageHero from '@/components/sections/alt/AltImageHero';
 import AltServicesShowcase from '@/components/sections/alt/AltServicesShowcase';
 import BeforeAfterSlider from '@/components/sections/BeforeAfterSlider';
@@ -28,8 +28,8 @@ export default function HomeAltClient() {
     <div id="top" className="flex flex-col min-h-screen bg-white">
       <JsonLdSchema />
 
-      {/* Self-Contained Anchor Navigation Header */}
-      <AltNavbar onOpenModal={() => handleOpenModal()} />
+      {/* Official Master Navbar (Same as original home) */}
+      <Navbar onOpenModal={() => handleOpenModal()} />
 
       <main className="flex-1">
         {/* High-Impact Luxury Image Hero (Replaces scroll-video) */}

@@ -32,16 +32,16 @@ export default function AltImageHero({
       {/* High-Resolution Luxury Photography Background — Light & Clear */}
       <div className="absolute inset-0 z-0">
         <Image
-          src="/assets/banners/banner-patio.webp"
-          alt="Luxury Custom Interlocking Pavers Patio by American Pavers & Turf"
+          src="/assets/banners/banner-driveway.webp"
+          alt="Luxury Estate Custom Interlocking Pavers & Turf by American Pavers & Turf"
           fill
           priority
           sizes="100vw"
-          className="object-cover object-center scale-100 transition-transform duration-1000"
+          className="object-cover object-center sm:object-[center_40%] scale-100 transition-transform duration-1000"
         />
-        {/* Lighter, clear architectural overlay so the patio photo is vivid and bright */}
-        <div className="absolute inset-0 bg-stone-950/30" />
-        <div className="absolute inset-0 bg-gradient-to-t from-stone-950/85 via-stone-950/15 to-stone-950/30" />
+        {/* Lighter, clear architectural overlay so the stone driveway and estate are vivid and bright */}
+        <div className="absolute inset-0 bg-stone-950/25" />
+        <div className="absolute inset-0 bg-gradient-to-t from-stone-950/90 via-stone-950/15 to-stone-950/35" />
       </div>
 
       {/* Main Content Container */}
