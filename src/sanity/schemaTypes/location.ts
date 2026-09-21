@@ -9,7 +9,9 @@ export const location = defineType({
       name: 'name',
       title: 'Nombre de la Ciudad / Zona',
       type: 'string',
-      validation: (Rule) => Rule.required(),
+      description: 'Longitud ideal: hasta 25 caracteres (máx. recomendado: 35)',
+      validation: (Rule) =>
+        Rule.required().max(35).warning('Recomendado: máximo 35 caracteres.'),
     }),
     defineField({
       name: 'slug',
@@ -22,6 +24,9 @@ export const location = defineType({
       name: 'county',
       title: 'Condado (County)',
       type: 'string',
+      description: 'Ej: Los Angeles County (máx. recomendado: 35)',
+      validation: (Rule) =>
+        Rule.max(35).warning('Recomendado: máximo 35 caracteres.'),
     }),
     defineField({
       name: 'metaTitle',
