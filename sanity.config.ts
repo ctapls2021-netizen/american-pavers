@@ -16,38 +16,58 @@ export default defineConfig({
         S.list()
           .title('Panel de Contenido')
           .items([
-            // Menú de Páginas
+            // Menú de Páginas del Sitio
             S.listItem()
-              .title('📄 Todas las Páginas')
+              .title('📄 Todas las Páginas del Sitio')
               .child(
                 S.list()
-                  .title('Páginas del Sitio')
+                  .title('Páginas del Sitio Web')
                   .items([
+                    // 1. Portada
                     S.listItem()
-                      .title('Página de Inicio (Home)')
+                      .title('🏠 Página de Inicio (Home)')
                       .child(S.document().schemaType('homePage').documentId('homePage')),
+
+                    // 2. Páginas de Servicios individuales
                     S.listItem()
-                      .title('Nosotros (About Us)')
+                      .title('🛠️ Páginas de Servicios (6 Servicios)')
+                      .child(
+                        S.documentList()
+                          .title('Páginas de Servicios')
+                          .filter('_type == "service"')
+                      ),
+
+                    // 3. Páginas por Ciudad
+                    S.listItem()
+                      .title('📍 Páginas de Ciudades (6 Ubicaciones)')
+                      .child(
+                        S.documentList()
+                          .title('Páginas de Ciudades')
+                          .filter('_type == "location"')
+                      ),
+
+                    // 4. Nosotros
+                    S.listItem()
+                      .title('ℹ️ Nosotros (About Us)')
                       .child(S.document().schemaType('aboutPage').documentId('aboutPage')),
+
+                    // 5. Galería
                     S.listItem()
-                      .title('Financiamiento (Financing)')
-                      .child(S.document().schemaType('financingPage').documentId('financingPage')),
-                    S.listItem()
-                      .title('Galería (Gallery)')
+                      .title('📸 Galería de Trabajos (Gallery)')
                       .child(S.document().schemaType('galleryPage').documentId('galleryPage')),
+
+                    // 6. Contacto
                     S.listItem()
-                      .title('Contacto (Contact Us)')
+                      .title('📞 Contacto (Contact Us)')
                       .child(S.document().schemaType('contactPage').documentId('contactPage')),
                   ])
               ),
 
-            // Catálogo de Servicios
+            S.divider(),
+
+            // Acceso Directo a Colecciones
             S.documentTypeListItem('service').title('🛠️ Catálogo de Servicios'),
-
-            // Ciudades y Ubicaciones
-            S.documentTypeListItem('location').title('📍 Ciudades y Ubicaciones'),
-
-            // Proyectos y Testimonios
+            S.documentTypeListItem('location').title('📍 Catálogo de Ciudades'),
             S.documentTypeListItem('project').title('📸 Transformaciones (Antes/Después)'),
             S.documentTypeListItem('testimonial').title('⭐ Reseñas de Clientes'),
 
@@ -76,10 +96,6 @@ export default defineConfig({
           {
             route: '/contact',
             filter: `_type in ["contactPage", "siteSettings"]`,
-          },
-          {
-            route: '/financing',
-            filter: `_type in ["financingPage", "siteSettings"]`,
           },
           {
             route: '/gallery',

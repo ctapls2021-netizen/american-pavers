@@ -17,10 +17,6 @@ export const contactPageQuery = groq`
   *[_type == "contactPage"][0]
 `;
 
-export const financingPageQuery = groq`
-  *[_type == "financingPage"][0]
-`;
-
 export const galleryPageQuery = groq`
   *[_type == "galleryPage"][0]
 `;
@@ -43,6 +39,21 @@ export const locationsQuery = groq`
 
 export const servicesQuery = groq`
   *[_type == "service"] | order(order asc, _createdAt desc) {
+    _id,
+    title,
+    shortTitle,
+    "slug": slug.current,
+    tagline,
+    description,
+    heroImage,
+    startingPrice,
+    benefits,
+    order
+  }
+`;
+
+export const serviceBySlugQuery = groq`
+  *[_type == "service" && slug.current == $slug][0] {
     _id,
     title,
     shortTitle,
@@ -109,6 +120,15 @@ export async function getServices() {
   }
 }
 
+export async function getServiceBySlug(slug: string) {
+  try {
+    return await client.fetch(serviceBySlugQuery, { slug });
+  } catch (err) {
+    console.warn(`[Sanity] Error fetching service by slug (${slug}):`, err);
+    return null;
+  }
+}
+
 export async function getProjects() {
   try {
     const data = await client.fetch(projectsQuery);
@@ -143,15 +163,6 @@ export async function getContactPage() {
     return await client.fetch(contactPageQuery);
   } catch (err) {
     console.warn('[Sanity] Error fetching contactPage, using fallback:', err);
-    return null;
-  }
-}
-
-export async function getFinancingPage() {
-  try {
-    return await client.fetch(financingPageQuery);
-  } catch (err) {
-    console.warn('[Sanity] Error fetching financingPage, using fallback:', err);
     return null;
   }
 }

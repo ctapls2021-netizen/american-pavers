@@ -3,6 +3,7 @@ import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
 import { servicesData } from '@/data/services';
 import { companyData } from '@/data/company';
+import { getServiceBySlug } from '@/sanity/queries';
 import ServicePageClient from './ServicePageClient';
 
 interface ServicePageProps {
@@ -17,7 +18,10 @@ export async function generateStaticParams() {
 
 export async function generateMetadata({ params }: ServicePageProps): Promise<Metadata> {
   const { slug } = await params;
-  const service = servicesData.find((s) => s.slug === slug);
+  const localService = servicesData.find((s) => s.slug === slug);
+  const sanityService = await getServiceBySlug(slug);
+  const service = sanityService || localService;
+
   if (!service) return { title: 'Service Not Found' };
 
   return {
@@ -28,11 +32,24 @@ export async function generateMetadata({ params }: ServicePageProps): Promise<Me
 
 export default async function ServiceDetailPage({ params }: ServicePageProps) {
   const { slug } = await params;
-  const service = servicesData.find((s) => s.slug === slug);
+  const localService = servicesData.find((s) => s.slug === slug);
+  const sanityService = await getServiceBySlug(slug);
 
-  if (!service) {
+  if (!localService && !sanityService) {
     notFound();
   }
 
-  return <ServicePageClient service={service} />;
+  // Merge Sanity live data with localService structure (features, materials, faqs)
+  const mergedService = {
+    ...(localService || {}),
+    ...(sanityService || {}),
+    title: sanityService?.title || localService?.title,
+    shortTitle: sanityService?.shortTitle || localService?.shortTitle,
+    tagline: sanityService?.tagline || localService?.tagline,
+    description: sanityService?.description || localService?.description,
+    startingPrice: sanityService?.startingPrice || localService?.startingPrice,
+    benefits: sanityService?.benefits?.length ? sanityService.benefits : localService?.benefits,
+  };
+
+  return <ServicePageClient service={mergedService as any} />;
 }
