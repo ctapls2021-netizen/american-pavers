@@ -1,7 +1,6 @@
 'use client';
 
 import React from 'react';
-import Image from 'next/image';
 import { ChevronRight, ShieldCheck, Award, CheckCircle2 } from 'lucide-react';
 import { companyData } from '@/data/company';
 import ReviewLogoMarquee from '@/components/ui/ReviewLogoMarquee';
@@ -31,17 +30,29 @@ export default function AltImageHero({
     <section className="relative min-h-[92vh] sm:min-h-screen flex flex-col justify-between overflow-hidden bg-stone-950 text-white pt-24 pb-12 sm:pt-32 sm:pb-16">
       {/* High-Resolution Luxury Photography Background — Light & Clear */}
       <div className="absolute inset-0 z-0">
-        <Image
-          src="/assets/banners/banner-driveway.webp"
-          alt="Luxury Estate Custom Interlocking Pavers & Turf by American Pavers & Turf"
-          fill
-          priority
-          sizes="100vw"
-          className="object-cover object-center sm:object-[center_40%] scale-100 transition-transform duration-1000"
-        />
+        <picture>
+          <source
+            media="(max-width: 768px)"
+            srcSet="/assets/banners/banner-driveway-mobile.webp"
+            type="image/webp"
+          />
+          <source
+            media="(min-width: 769px)"
+            srcSet="/assets/banners/banner-driveway.webp"
+            type="image/webp"
+          />
+          <img
+            src="/assets/banners/banner-driveway.webp"
+            alt="Luxury Estate Custom Interlocking Pavers & Turf by American Pavers & Turf"
+            className="w-full h-full object-cover object-center sm:object-[center_35%]"
+            // @ts-ignore
+            fetchPriority="high"
+            decoding="sync"
+          />
+        </picture>
         {/* Lighter, clear architectural overlay so the stone driveway and estate are vivid and bright */}
-        <div className="absolute inset-0 bg-stone-950/25" />
-        <div className="absolute inset-0 bg-gradient-to-t from-stone-950/90 via-stone-950/15 to-stone-950/35" />
+        <div className="absolute inset-0 bg-stone-950/20" />
+        <div className="absolute inset-0 bg-gradient-to-t from-stone-950/90 via-stone-950/10 to-stone-950/30" />
       </div>
 
       {/* Main Content Container */}
