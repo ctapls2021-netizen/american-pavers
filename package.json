@@ -12,6 +12,7 @@
     "@emnapi/core": "^1.11.3",
     "@emnapi/runtime": "^1.11.3",
     "@sanity/image-url": "^2.1.1",
+    "@sanity/visual-editing": "^6.1.2",
     "clsx": "^2.1.1",
     "framer-motion": "^13.4.0",
     "lucide-react": "^1.40.0",

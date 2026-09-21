@@ -15,6 +15,7 @@ import LeadFormModal from '@/components/ui/LeadFormModal';
 import JsonLdSchema from '@/components/seo/JsonLdSchema';
 import { generalFaqs } from '@/data/faqs';
 import { client } from '@/sanity/client';
+import LiveVisualEditing from '@/components/sanity/LiveVisualEditing';
 
 interface HomePageClientProps {
   sanitySettings?: any;
@@ -83,6 +84,7 @@ export default function HomePageClient({
 
   return (
     <div className="flex flex-col min-h-screen bg-white">
+      <LiveVisualEditing />
       <JsonLdSchema />
       <Navbar onOpenModal={() => handleOpenModal()} />
 
