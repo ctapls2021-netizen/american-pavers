@@ -1,7 +1,6 @@
 'use client';
 
 import React from 'react';
-import Image from 'next/image';
 import { PhoneCall, ArrowRight } from 'lucide-react';
 import { companyData } from '@/data/company';
 
@@ -75,13 +74,12 @@ export default function DrivewayFeatureSplit({
           {/* Right Column: Real Paver Image */}
           <div className="relative w-full">
             <div className="relative aspect-[4/3] sm:aspect-[16/11] lg:aspect-[4/3] rounded-2xl overflow-hidden shadow-xl border border-stone-200/80 bg-stone-100">
-              <Image
+              <img
                 src={imageSrc}
                 alt={imageAlt}
-                fill
-                className="object-cover"
-                sizes="(max-width: 1024px) 100vw, 50vw"
-                priority
+                loading="eager"
+                decoding="sync"
+                className="w-full h-full object-cover object-center"
               />
             </div>
           </div>

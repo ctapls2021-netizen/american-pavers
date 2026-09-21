@@ -317,7 +317,7 @@ export default function ServicePageClient({ service }: ServicePageClientProps) {
               overline="Resort Pool Living & Safety"
               title="Engineered for Barefoot Comfort, Wet Traction & Resort Elegance."
               description="Upgrade cracked, burning-hot concrete with high-performance interlocking pool deck pavers and custom bullnose safety coping. Engineered with textured non-slip finishes meeting strict ADA slip-resistance standards, high Solar Reflectance Index (SRI) materials that stay cool on summer afternoons, and impervious sealants unaffected by chlorine or saltwater splash."
-              imageSrc="https://images.ctfassets.net/zkpxzicsuxng/5WY3aoz4ZlVuh7jJAgm0LK/6ec8b073d454967d98c9b479a18e9235/pooldecks.jpg"
+              imageSrc="/assets/transformations/pool-deck-after.webp"
               imageAlt="Luxury Slip-Resistant Pool Deck Pavers and Bullnose Coping"
               primaryBtnText="Schedule Free 3D Design"
               onOpenModal={handleOpenModal}
@@ -338,7 +338,7 @@ export default function ServicePageClient({ service }: ServicePageClientProps) {
               subtitle="Explore authentic resort-inspired pool surrounds, bullnose coping, and integrated spas built across Southern California."
               slides={[
                 { title: 'Palm Springs, CA', src: '/assets/banners/banner-pool.webp' },
-                { title: 'Beverly Hills, CA', src: 'https://images.ctfassets.net/zkpxzicsuxng/5WY3aoz4ZlVuh7jJAgm0LK/6ec8b073d454967d98c9b479a18e9235/pooldecks.jpg' },
+                { title: 'Beverly Hills, CA', src: '/assets/transformations/pool-deck-after.webp' },
                 { title: 'Newport Beach, CA', src: '/assets/transformations/turf-pool-after.webp' },
                 { title: 'Irvine, CA', src: '/assets/banners/banner-patio.webp' },
                 { title: 'Pasadena, CA', src: '/assets/transformations/patio-after.webp' },
