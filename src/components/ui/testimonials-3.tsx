@@ -168,15 +168,6 @@ const Testimonial = React.forwardRef<HTMLDivElement, TestimonialProps>(
               )}
             </div>
 
-            {/* Service Tag if provided */}
-            {service && (
-              <div className="mb-3">
-                <span className="text-[10px] sm:text-[11px] font-bold uppercase tracking-wider text-stone-600 bg-stone-100 px-2 py-0.5 border border-stone-200/80 rounded group-hover:text-[#019934] group-hover:border-[#019934]/40 group-hover:bg-emerald-50/50 transition-colors">
-                  {service}
-                </span>
-              </div>
-            )}
-
             {/* Testimonial Quote Text */}
             <p className="text-pretty text-sm sm:text-base text-stone-600 leading-relaxed font-normal">
               &ldquo;{testimonial}&rdquo;
