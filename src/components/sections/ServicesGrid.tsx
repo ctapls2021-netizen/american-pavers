@@ -8,9 +8,14 @@ import { urlForImage } from '@/sanity/image';
 interface ServicesGridProps {
   onOpenModal: (service?: string) => void;
   customServices?: any[];
+  customHeader?: {
+    badge?: string;
+    heading?: string;
+    subheading?: string;
+  };
 }
 
-export default function ServicesGrid({ onOpenModal, customServices }: ServicesGridProps) {
+export default function ServicesGrid({ onOpenModal, customServices, customHeader }: ServicesGridProps) {
   const list = customServices && customServices.length > 0 ? customServices : servicesData;
 
   return (
@@ -19,13 +24,13 @@ export default function ServicesGrid({ onOpenModal, customServices }: ServicesGr
         {/* Section Header */}
         <div className="max-w-3xl mb-12">
           <span className="text-xs font-bold uppercase tracking-widest text-[#019934] block">
-            Our Core Specialties
+            {customHeader?.badge || 'Our Core Specialties'}
           </span>
           <h2 className="text-3xl sm:text-4xl font-extrabold text-[#1A292C] tracking-tight font-serif-brand mt-2">
-            Custom Paver & Outdoor Living Solutions
+            {customHeader?.heading || 'Custom Paver & Outdoor Living Solutions'}
           </h2>
           <p className="text-base text-stone-600 mt-2">
-            Engineered for superior durability, natural drainage, and lifelong elegance.
+            {customHeader?.subheading || 'Engineered for superior durability, natural drainage, and lifelong elegance.'}
           </p>
         </div>
 

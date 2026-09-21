@@ -5,6 +5,10 @@ export const siteSettingsQuery = groq`
   *[_type == "siteSettings"][0]
 `;
 
+export const homePageQuery = groq`
+  *[_type == "homePage"][0]
+`;
+
 export const servicesQuery = groq`
   *[_type == "service"] | order(order asc, _createdAt desc) {
     _id,
@@ -50,6 +54,15 @@ export async function getSiteSettings() {
     return await client.fetch(siteSettingsQuery);
   } catch (err) {
     console.warn('[Sanity] Error fetching siteSettings, using fallback:', err);
+    return null;
+  }
+}
+
+export async function getHomePage() {
+  try {
+    return await client.fetch(homePageQuery);
+  } catch (err) {
+    console.warn('[Sanity] Error fetching homePage, using fallback:', err);
     return null;
   }
 }

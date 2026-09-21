@@ -35,9 +35,15 @@ const stepsData: StepItem[] = [
 
 interface ProcessStepsProps {
   onOpenModal?: (service?: string) => void;
+  badge?: string;
+  heading?: string;
 }
 
-export default function ProcessSteps({ onOpenModal }: ProcessStepsProps) {
+export default function ProcessSteps({
+  onOpenModal,
+  badge = 'How It Works',
+  heading = 'Our 3-Step Process',
+}: ProcessStepsProps) {
   const [expandedId, setExpandedId] = useState<number | null>(null);
   const [rotationAngle, setRotationAngle] = useState<number>(0);
   const [autoRotate, setAutoRotate] = useState<boolean>(true);
@@ -136,10 +142,10 @@ export default function ProcessSteps({ onOpenModal }: ProcessStepsProps) {
         {/* Clean Section Header */}
         <div className="text-center max-w-2xl mx-auto mb-6 sm:mb-8">
           <span className="text-xs font-bold uppercase tracking-widest text-[#019934] block">
-            How It Works
+            {badge}
           </span>
           <h2 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight font-serif-brand mt-2">
-            Our 3-Step Process
+            {heading}
           </h2>
         </div>
 

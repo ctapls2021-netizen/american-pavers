@@ -1,11 +1,12 @@
-import { getSiteSettings, getServices, getProjects, getTestimonials } from '@/sanity/queries';
+import { getSiteSettings, getHomePage, getServices, getProjects, getTestimonials } from '@/sanity/queries';
 import HomePageClient from './HomePageClient';
 
 export const dynamic = 'force-static';
 
 export default async function HomePage() {
-  const [sanitySettings, sanityServices, sanityProjects, sanityTestimonials] = await Promise.all([
+  const [sanitySettings, sanityHomePage, sanityServices, sanityProjects, sanityTestimonials] = await Promise.all([
     getSiteSettings(),
+    getHomePage(),
     getServices(),
     getProjects(),
     getTestimonials(),
@@ -14,6 +15,7 @@ export default async function HomePage() {
   return (
     <HomePageClient
       sanitySettings={sanitySettings}
+      sanityHomePage={sanityHomePage}
       sanityServices={sanityServices}
       sanityProjects={sanityProjects}
       sanityTestimonials={sanityTestimonials}
