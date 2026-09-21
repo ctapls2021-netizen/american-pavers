@@ -3,6 +3,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { ChevronDown, ChevronRight, Phone } from 'lucide-react';
 import { companyData } from '@/data/company';
+import ReviewLogoMarquee from '@/components/ui/ReviewLogoMarquee';
 
 export interface ScrollVideoHeroProps {
   videoSrc?: string;
@@ -381,6 +382,11 @@ export default function ScrollVideoHero({
             <span>Explore All Services</span>
             <ChevronRight className="w-5 h-5" />
           </button>
+        </div>
+
+        {/* Verified Review Platforms Marquee: Google, Yelp, BuildZoom, Houzz */}
+        <div className="mt-8 sm:mt-10 w-full max-w-4xl mx-auto pointer-events-auto">
+          <ReviewLogoMarquee />
         </div>
       </div>
 

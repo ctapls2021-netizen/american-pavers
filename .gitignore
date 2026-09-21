@@ -48,4 +48,5 @@ next-env.d.ts
 # reports & scratch
 lh-*.json
 psi_*.json
+cambios/
 scratch/
