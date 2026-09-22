@@ -74,7 +74,7 @@ export default function AltServicesShowcase({ onOpenModal }: AltServicesShowcase
         {/* Section Header (Kōzen Editorial Minimalism) */}
         <div className="max-w-3xl mb-14 sm:mb-20 text-left">
           <span className="text-[11px] font-semibold uppercase tracking-[0.25em] text-[#019934] block mb-3">
-            01 — LOS ANGELES · SERVICES
+            LOS ANGELES · SERVICES
           </span>
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-serif font-normal text-[#1A292C] tracking-tight leading-tight">
             Master Hardscape &amp; Turf Services

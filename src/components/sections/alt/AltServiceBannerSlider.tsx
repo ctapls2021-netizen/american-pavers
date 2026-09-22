@@ -175,7 +175,7 @@ export default function AltServiceBannerSlider({ onOpenModal }: AltServiceBanner
             {/* Centered Content Box with Kōzen Editorial Serenity */}
             <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-6 sm:px-12 md:px-20 z-20">
               <span className="text-[10px] sm:text-[11px] font-semibold tracking-[0.25em] text-[#42e078] uppercase mb-3 sm:mb-4 block">
-                04 — SIGNATURE COLLECTION {index + 1} OF {totalSlides}
+                SIGNATURE COLLECTION
               </span>
 
               <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-serif font-normal text-white tracking-tight leading-tight max-w-4xl drop-shadow-sm">

@@ -8,7 +8,7 @@ export default function AltTestimonialsGrid() {
         {/* Header Section in Kōzen Editorial Minimalism */}
         <div className="mx-auto mb-16 md:mb-20 max-w-2xl text-center">
           <span className="text-[11px] font-semibold uppercase tracking-[0.25em] text-[#019934] block mb-3">
-            05 — HOMEOWNER TESTIMONIALS
+            HOMEOWNER TESTIMONIALS
           </span>
 
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-serif font-normal text-[#1A292C] tracking-tight leading-tight">

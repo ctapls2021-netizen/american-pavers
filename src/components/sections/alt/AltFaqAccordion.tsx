@@ -15,7 +15,7 @@ interface AltFaqAccordionProps {
 
 export default function AltFaqAccordion({
   faqs = generalFaqs,
-  tag = '06 — FREQUENTLY ASKED QUESTIONS',
+  tag = 'FREQUENTLY ASKED QUESTIONS',
   title = 'Looking for Answers?',
   subtitle = 'Everything you need to know about our outdoor living process, 10,000 PSI pavers, California permits, and American Pavers & Turf lifetime warranty.',
   imageSrc = '/assets/faq-pavers.webp',
@@ -115,9 +115,6 @@ export default function AltFaqAccordion({
                 >
                   {/* Question Header */}
                   <div className="flex items-start justify-between gap-4 select-none">
-                    <span className="text-xs font-serif text-stone-400 mt-1 shrink-0 w-6">
-                      {String(index + 1).padStart(2, '0')}
-                    </span>
                     <h3
                       className={`text-lg sm:text-xl font-serif flex-1 transition-colors duration-200 leading-snug ${
                         isOpen
@@ -142,7 +139,7 @@ export default function AltFaqAccordion({
 
                   {/* Smooth Expandable Answer */}
                   <div
-                    className={`grid transition-all duration-300 ease-in-out pl-10 ${
+                    className={`grid transition-all duration-300 ease-in-out ${
                       isOpen
                         ? 'grid-rows-[1fr] opacity-100 pt-3.5'
                         : 'grid-rows-[0fr] opacity-0'

@@ -50,7 +50,7 @@ export default function AltProcessRoadmap({ onOpenModal }: AltProcessRoadmapProp
         {/* Header (Kōzen Editorial Minimalism) */}
         <div className="text-center max-w-3xl mx-auto mb-16 sm:mb-20">
           <span className="text-[11px] font-semibold uppercase tracking-[0.25em] text-[#019934] block mb-3">
-            03 — ARCHITECTURAL ROADMAP
+            ARCHITECTURAL ROADMAP
           </span>
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-serif font-normal text-[#1A292C] tracking-tight leading-tight">
             How We Transform Your Property in 3 Simple Steps

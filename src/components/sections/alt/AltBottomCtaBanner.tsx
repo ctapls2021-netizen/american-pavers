@@ -84,7 +84,7 @@ export default function AltBottomCtaBanner({
           {/* Left Column (6 cols): Copy & Assurances */}
           <div className="lg:col-span-6 flex flex-col space-y-6 text-left">
             <span className="text-[11px] font-semibold uppercase tracking-[0.25em] text-[#42e078] block">
-              07 — COMPLIMENTARY 3D SESSION
+              COMPLIMENTARY 3D SESSION
             </span>
 
             <h2 className="text-white text-3xl sm:text-4xl lg:text-5xl font-serif font-normal tracking-tight leading-tight">
