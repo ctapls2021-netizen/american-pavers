@@ -65,7 +65,7 @@ export default function Home2QuoteSplit() {
   return (
     <section id="quote-section" className="grid grid-cols-1 lg:grid-cols-2 scroll-mt-20 border-b border-stone-200">
       {/* Left Column: Photograph under translucent wash, content pushed right toward center seam */}
-      <div className="relative min-h-[520px] flex items-center bg-[#0E1719] text-white overflow-hidden py-16 sm:py-20 px-6 sm:px-10 lg:px-16">
+      <div className="relative min-h-[560px] flex items-center bg-[#0E1719] text-white overflow-hidden py-16 sm:py-20 lg:py-24 px-6 sm:px-10 lg:px-16">
         <Image
           src="/assets/brand/photo-crew-installer-closeup.png"
           alt="Installer hand-setting a paver"
@@ -77,39 +77,39 @@ export default function Home2QuoteSplit() {
         <div className="absolute inset-0 bg-[#0E1719]/80" />
 
         <div className="relative z-10 w-full max-w-[560px] ml-auto mr-0 text-left">
-          <span className="text-xs font-bold uppercase tracking-[0.22em] text-[#4CC66E] block mb-2.5">
+          <span className="text-xs sm:text-sm font-bold uppercase tracking-[0.22em] text-[#4CC66E] block mb-3">
             FREE ESTIMATE
           </span>
 
-          <h2 className="text-2xl sm:text-3xl lg:text-[28px] font-serif font-normal text-white tracking-tight leading-tight">
+          <h2 className="text-3xl sm:text-4xl lg:text-[42px] font-serif font-normal text-white tracking-tight leading-[1.12]">
             Tell us about the project.
           </h2>
 
           {/* Green accent rule (56px x 3px) */}
-          <div className="w-14 h-[3px] bg-[#019934] mt-3.5 mb-5" />
+          <div className="w-14 h-[3px] bg-[#019934] mt-4 mb-6" />
 
-          <p className="text-stone-300 text-sm sm:text-base lg:text-[17px] leading-relaxed font-normal">
+          <p className="text-stone-200 text-lg sm:text-xl lg:text-[22px] leading-[1.5] font-normal max-w-[500px]">
             We reply within one business day and book the site visit at a time you are home.
           </p>
 
-          <div className="mt-8 space-y-3.5">
-            <div className="flex items-center gap-3 text-stone-200 text-xs sm:text-sm">
+          <div className="mt-8 sm:mt-10 space-y-4">
+            <div className="flex items-center gap-3.5 text-stone-200 text-sm sm:text-base">
               <span className="text-[#4CC66E] flex items-center shrink-0">
-                <MapPin className="w-4 h-4 stroke-[1.5]" />
+                <MapPin className="w-5 h-5 stroke-[1.75]" />
               </span>
               <span>Serving Los Angeles County — Valley to the South Bay</span>
             </div>
 
-            <div className="flex items-center gap-3 text-stone-200 text-xs sm:text-sm">
+            <div className="flex items-center gap-3.5 text-stone-200 text-sm sm:text-base">
               <span className="text-[#4CC66E] flex items-center shrink-0">
-                <Clock className="w-4 h-4 stroke-[1.5]" />
+                <Clock className="w-5 h-5 stroke-[1.75]" />
               </span>
               <span>Mon–Sat, 7am–6pm</span>
             </div>
 
-            <div className="flex items-center gap-3 text-stone-200 text-xs sm:text-sm">
+            <div className="flex items-center gap-3.5 text-stone-200 text-sm sm:text-base">
               <span className="text-[#4CC66E] flex items-center shrink-0">
-                <Phone className="w-4 h-4 stroke-[1.5]" />
+                <Phone className="w-5 h-5 stroke-[1.75]" />
               </span>
               <a
                 href={`tel:${companyData.phone}`}
@@ -123,17 +123,17 @@ export default function Home2QuoteSplit() {
       </div>
 
       {/* Right Column: Pure white background, form pushed left toward center seam */}
-      <div className="bg-white text-stone-900 flex items-center py-16 sm:py-20 px-6 sm:px-10 lg:px-16">
+      <div className="bg-white text-stone-900 flex items-center py-16 sm:py-20 lg:py-24 px-6 sm:px-10 lg:px-16">
         <div className="w-full max-w-[560px] mr-auto ml-0 text-left">
           {status === 'success' ? (
             <div className="py-12 text-center space-y-4">
               <div className="w-14 h-14 bg-[#019934]/15 rounded-full flex items-center justify-center mx-auto text-[#019934]">
                 <Check className="w-7 h-7 stroke-[2.5]" />
               </div>
-              <h3 className="font-serif text-2xl text-[#1A292C]">
+              <h3 className="font-serif text-2xl sm:text-3xl text-[#1A292C]">
                 Request received
               </h3>
-              <p className="text-stone-600 text-sm max-w-sm mx-auto leading-relaxed">
+              <p className="text-stone-600 text-base max-w-sm mx-auto leading-relaxed">
                 Thank you, <strong className="text-[#1A292C]">{formData.name}</strong>. We will call you to book the site visit within one business day.
               </p>
               <button
@@ -148,7 +148,7 @@ export default function Home2QuoteSplit() {
                     consent: true,
                   });
                 }}
-                className="mt-4 px-6 py-2.5 bg-[#019934] text-white text-xs font-semibold rounded hover:bg-[#017026] transition-colors"
+                className="mt-4 px-6 py-2.5 bg-[#019934] text-white text-sm font-semibold rounded hover:bg-[#017026] transition-colors"
               >
                 Submit another request
               </button>
@@ -156,7 +156,7 @@ export default function Home2QuoteSplit() {
           ) : (
             <form onSubmit={handleSubmit} className="space-y-4">
               <div>
-                <h3 className="font-serif text-2xl sm:text-[26px] text-[#1A292C] font-normal leading-tight">
+                <h3 className="font-serif text-2xl sm:text-3xl lg:text-[34px] text-[#1A292C] font-normal leading-tight">
                   Get a free on-site estimate
                 </h3>
                 {/* Green accent rule (56px x 3px) */}
@@ -276,7 +276,7 @@ export default function Home2QuoteSplit() {
                   >
                     {formData.consent && <Check className="w-3.5 h-3.5 stroke-[2.5]" />}
                   </span>
-                  <span className="text-sm text-stone-700 leading-normal">
+                  <span className="text-sm sm:text-[15px] text-stone-700 leading-normal">
                     Text me photos of similar installs in my neighborhood.
                   </span>
                 </label>
