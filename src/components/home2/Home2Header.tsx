@@ -1,26 +1,80 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
-import { Phone, ArrowRight, ShieldCheck, CheckCircle2, Menu, X, ChevronDown } from 'lucide-react';
+import {
+  ShieldCheck,
+  CheckCircle2,
+  ChevronDown,
+  Phone,
+  Mail,
+  MapPin,
+  ArrowRight,
+  Menu,
+  X,
+} from 'lucide-react';
 import { companyData } from '@/data/company';
 
 interface Home2HeaderProps {
   onOpenQuote?: () => void;
 }
 
+const NAV_ITEMS = [
+  {
+    label: 'Services',
+    href: '#services',
+    hasMegaMenu: true,
+  },
+  { label: 'Our work', href: '#work' },
+  { label: 'Process', href: '#process' },
+  { label: 'Contact', href: '#quote-section' },
+];
+
+const PAVER_LINKS = [
+  'All pavers',
+  'Driveway pavers',
+  'Patio pavers',
+  'Pool deck pavers',
+  'Walkway pavers',
+  'Retaining walls',
+];
+
+const TURF_LINKS = [
+  'All turf',
+  'Front lawns',
+  'Backyards',
+  'Pet turf',
+  'Putting greens',
+  'Drainage & grading',
+];
+
 export default function Home2Header({ onOpenQuote }: Home2HeaderProps) {
+  const [megaOpen, setMegaOpen] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [servicesDropdown, setServicesDropdown] = useState(false);
+
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        setMegaOpen(false);
+        setMobileMenuOpen(false);
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, []);
 
   const scrollTo = (id: string) => {
+    setMegaOpen(false);
     setMobileMenuOpen(false);
-    setServicesDropdown(false);
-    const el = document.getElementById(id);
-    if (el) el.scrollIntoView({ behavior: 'smooth' });
+    const targetId = id.replace('#', '');
+    const el = document.getElementById(targetId);
+    if (el) {
+      el.scrollIntoView({ behavior: 'smooth' });
+    }
   };
 
   const handleQuoteClick = () => {
+    setMegaOpen(false);
     setMobileMenuOpen(false);
     if (onOpenQuote) {
       onOpenQuote();
@@ -30,33 +84,35 @@ export default function Home2Header({ onOpenQuote }: Home2HeaderProps) {
   };
 
   return (
-    <header className="sticky top-0 z-50 w-full bg-white text-stone-900 shadow-sm border-b border-stone-200">
-      {/* Top Utility Bar (Dark Slate) */}
-      <div className="bg-[#1A292C] text-white text-xs py-2 px-4 sm:px-6 lg:px-8 border-b border-white/10 hidden md:block">
-        <div className="max-w-7xl mx-auto flex items-center justify-between">
-          <div className="flex items-center gap-6 text-stone-300">
-            <span className="font-medium">Serving Los Angeles County — Valley to South Bay</span>
+    <header className="sticky top-0 z-50 w-full bg-[#1A292C] text-white border-b border-white/10 shadow-md">
+      {/* Top Utility Bar (Black 20% overlay, 35px height) */}
+      <div className="bg-black/20 border-b border-white/10 hidden md:block">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-[34px] flex items-center gap-6">
+          <div className="flex items-center gap-1.5 text-[11px] font-medium tracking-[0.06em] uppercase text-stone-300">
+            <ShieldCheck className="w-3.5 h-3.5 text-[#4CC66E] stroke-[1.75]" />
+            <span>Licensed, bonded &amp; insured</span>
           </div>
 
-          <div className="flex items-center gap-6">
-            <div className="flex items-center gap-1.5 text-stone-200 font-medium">
-              <ShieldCheck className="w-4 h-4 text-[#4CC66E]" />
-              <span>Licensed, bonded &amp; insured</span>
-            </div>
-            <div className="flex items-center gap-1.5 text-stone-200 font-medium">
-              <CheckCircle2 className="w-4 h-4 text-[#4CC66E]" />
-              <span>12-year installation warranty</span>
-            </div>
+          <div className="flex items-center gap-1.5 text-[11px] font-medium tracking-[0.06em] uppercase text-stone-300">
+            <CheckCircle2 className="w-3.5 h-3.5 text-[#4CC66E] stroke-[1.75]" />
+            <span>12-year installation warranty</span>
           </div>
         </div>
       </div>
 
-      {/* Main Navigation Row */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between gap-4">
-        {/* Logo */}
-        <a href="#hero" onClick={(e) => { e.preventDefault(); scrollTo('hero'); }} className="relative w-44 sm:w-52 h-10 shrink-0">
+      {/* Main Navigation Bar (84px height) */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-[84px] flex items-center justify-between gap-6">
+        {/* Logo (Horizontal White) */}
+        <a
+          href="#top"
+          onClick={(e) => {
+            e.preventDefault();
+            scrollTo('top');
+          }}
+          className="relative w-48 sm:w-56 h-[42px] shrink-0 flex items-center"
+        >
           <Image
-            src="/assets/brand/logo-horizontal-dark.png"
+            src="/assets/brand/logo-horizontal-white.png"
             alt="American Pavers & Turf"
             fill
             className="object-contain object-left"
@@ -65,196 +121,265 @@ export default function Home2Header({ onOpenQuote }: Home2HeaderProps) {
         </a>
 
         {/* Desktop Navigation Links */}
-        <nav className="hidden lg:flex items-center gap-1 xl:gap-2">
-          {/* Services with Dropdown */}
-          <div className="relative">
-            <button
-              type="button"
-              onClick={() => setServicesDropdown(!servicesDropdown)}
-              onMouseEnter={() => setServicesDropdown(true)}
-              className="flex items-center gap-1 px-3.5 py-2 text-sm font-semibold text-stone-700 hover:text-[#019934] transition-colors rounded-md cursor-pointer"
-            >
-              <span>Services</span>
-              <ChevronDown className={`w-4 h-4 transition-transform ${servicesDropdown ? 'rotate-180' : ''}`} />
-            </button>
+        <nav className="hidden lg:flex items-center gap-2">
+          {NAV_ITEMS.map((item) => {
+            if (item.hasMegaMenu) {
+              return (
+                <button
+                  key={item.label}
+                  type="button"
+                  onClick={() => setMegaOpen(!megaOpen)}
+                  className={`flex items-center gap-1.5 h-[38px] px-3.5 rounded-[6px] text-sm font-semibold tracking-[0.02em] transition-colors cursor-pointer ${
+                    megaOpen
+                      ? 'bg-white/10 text-[#4CC66E]'
+                      : 'text-white hover:text-[#4CC66E] hover:bg-white/5'
+                  }`}
+                >
+                  <span>{item.label}</span>
+                  <ChevronDown
+                    className={`w-3.5 h-3.5 transition-transform duration-200 stroke-[2] ${
+                      megaOpen ? 'rotate-180' : ''
+                    }`}
+                  />
+                </button>
+              );
+            }
 
-            {servicesDropdown && (
-              <div
-                onMouseLeave={() => setServicesDropdown(false)}
-                className="absolute top-full left-0 w-64 bg-white rounded-md shadow-xl border border-stone-200 py-2 z-50"
+            return (
+              <a
+                key={item.label}
+                href={item.href}
+                onClick={(e) => {
+                  e.preventDefault();
+                  scrollTo(item.href);
+                }}
+                className="flex items-center h-[38px] px-3.5 rounded-[6px] text-sm font-semibold tracking-[0.02em] text-white hover:text-[#4CC66E] hover:bg-white/5 transition-colors"
               >
-                <button
-                  type="button"
-                  onClick={() => scrollTo('services')}
-                  className="w-full text-left px-4 py-2.5 text-sm text-stone-700 hover:bg-stone-50 hover:text-[#019934] font-medium"
-                >
-                  Paver Driveways
-                </button>
-                <button
-                  type="button"
-                  onClick={() => scrollTo('services')}
-                  className="w-full text-left px-4 py-2.5 text-sm text-stone-700 hover:bg-stone-50 hover:text-[#019934] font-medium"
-                >
-                  Patios &amp; Pool Decks
-                </button>
-                <button
-                  type="button"
-                  onClick={() => scrollTo('services')}
-                  className="w-full text-left px-4 py-2.5 text-sm text-stone-700 hover:bg-stone-50 hover:text-[#019934] font-medium"
-                >
-                  Artificial Turf
-                </button>
-                <button
-                  type="button"
-                  onClick={() => scrollTo('services')}
-                  className="w-full text-left px-4 py-2.5 text-sm text-stone-700 hover:bg-stone-50 hover:text-[#019934] font-medium"
-                >
-                  Walkways &amp; Steps
-                </button>
-                <button
-                  type="button"
-                  onClick={() => scrollTo('services')}
-                  className="w-full text-left px-4 py-2.5 text-sm text-stone-700 hover:bg-stone-50 hover:text-[#019934] font-medium"
-                >
-                  Retaining Walls
-                </button>
-                <button
-                  type="button"
-                  onClick={() => scrollTo('services')}
-                  className="w-full text-left px-4 py-2.5 text-sm text-stone-700 hover:bg-stone-50 hover:text-[#019934] font-medium"
-                >
-                  Drainage &amp; Grading
-                </button>
-              </div>
-            )}
-          </div>
-
-          <button
-            type="button"
-            onClick={() => scrollTo('about')}
-            className="px-3.5 py-2 text-sm font-semibold text-stone-700 hover:text-[#019934] transition-colors rounded-md cursor-pointer"
-          >
-            About us
-          </button>
-
-          <button
-            type="button"
-            onClick={() => scrollTo('process')}
-            className="px-3.5 py-2 text-sm font-semibold text-stone-700 hover:text-[#019934] transition-colors rounded-md cursor-pointer"
-          >
-            Process
-          </button>
-
-          <button
-            type="button"
-            onClick={() => scrollTo('work')}
-            className="px-3.5 py-2 text-sm font-semibold text-stone-700 hover:text-[#019934] transition-colors rounded-md cursor-pointer"
-          >
-            Our work
-          </button>
-
-          <button
-            type="button"
-            onClick={() => scrollTo('reviews')}
-            className="px-3.5 py-2 text-sm font-semibold text-stone-700 hover:text-[#019934] transition-colors rounded-md cursor-pointer"
-          >
-            Reviews
-          </button>
-
-          <button
-            type="button"
-            onClick={() => scrollTo('faq')}
-            className="px-3.5 py-2 text-sm font-semibold text-stone-700 hover:text-[#019934] transition-colors rounded-md cursor-pointer"
-          >
-            FAQ
-          </button>
+                {item.label}
+              </a>
+            );
+          })}
         </nav>
 
-        {/* Right CTA & Phone */}
-        <div className="flex items-center gap-4">
+        {/* Right CTA Actions */}
+        <div className="flex items-center gap-4 shrink-0">
+          {/* Direct Phone Link */}
           <a
             href={`tel:${companyData.phone}`}
-            className="hidden sm:flex items-center gap-2 text-sm font-bold text-[#1A292C] hover:text-[#019934] transition-colors whitespace-nowrap"
+            className="hidden sm:flex items-center gap-2 text-white hover:text-[#4CC66E] text-sm font-semibold transition-colors"
           >
-            <Phone className="w-4 h-4 text-[#019934]" />
+            <Phone className="w-4 h-4 stroke-[1.75]" />
             <span>{companyData.formattedPhone}</span>
           </a>
 
+          {/* Primary Action Button */}
           <button
             type="button"
             onClick={handleQuoteClick}
-            className="px-5 py-2.5 bg-[#019934] hover:bg-[#017026] text-white font-bold text-xs sm:text-sm tracking-wider uppercase rounded shadow transition-all flex items-center gap-1.5 cursor-pointer active:scale-98"
+            className="px-5 py-2.5 bg-[#019934] hover:bg-[#017026] text-white text-sm font-semibold rounded-[6px] shadow-sm transition-colors cursor-pointer active:scale-98"
           >
-            <span>Get a free quote</span>
-            <ArrowRight className="w-4 h-4" />
+            Get a free quote
           </button>
 
-          {/* Mobile Hamburger Button */}
+          {/* Mobile Menu Toggle Button */}
           <button
             type="button"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="lg:hidden p-2 text-stone-700 hover:text-[#019934] transition-colors"
-            aria-label="Toggle menu"
+            className="lg:hidden p-2 text-white hover:text-[#4CC66E] rounded-md transition-colors"
+            aria-label="Toggle Navigation Menu"
           >
             {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
           </button>
         </div>
       </div>
 
-      {/* Mobile Drawer */}
-      {mobileMenuOpen && (
-        <div className="lg:hidden bg-white border-t border-stone-200 px-4 pt-3 pb-6 space-y-2 shadow-lg animate-fadeIn">
-          <button
-            type="button"
-            onClick={() => scrollTo('services')}
-            className="w-full text-left py-2.5 px-3 text-base font-semibold text-stone-800 hover:bg-stone-50 rounded"
-          >
-            Services
-          </button>
-          <button
-            type="button"
-            onClick={() => scrollTo('about')}
-            className="w-full text-left py-2.5 px-3 text-base font-semibold text-stone-800 hover:bg-stone-50 rounded"
-          >
-            About us
-          </button>
-          <button
-            type="button"
-            onClick={() => scrollTo('process')}
-            className="w-full text-left py-2.5 px-3 text-base font-semibold text-stone-800 hover:bg-stone-50 rounded"
-          >
-            Process
-          </button>
-          <button
-            type="button"
-            onClick={() => scrollTo('work')}
-            className="w-full text-left py-2.5 px-3 text-base font-semibold text-stone-800 hover:bg-stone-50 rounded"
-          >
-            Our work
-          </button>
-          <button
-            type="button"
-            onClick={() => scrollTo('reviews')}
-            className="w-full text-left py-2.5 px-3 text-base font-semibold text-stone-800 hover:bg-stone-50 rounded"
-          >
-            Reviews
-          </button>
-          <button
-            type="button"
-            onClick={() => scrollTo('faq')}
-            className="w-full text-left py-2.5 px-3 text-base font-semibold text-stone-800 hover:bg-stone-50 rounded"
-          >
-            FAQ
-          </button>
+      {/* Mega Menu Overlay (Services Dropdown) */}
+      {megaOpen && (
+        <div className="hidden lg:block absolute left-0 right-0 top-[100%] bg-[#1A292C] border-t border-b border-white/10 shadow-2xl z-50">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+            <div className="grid grid-cols-12 gap-10 items-start">
+              {/* Group 1: Pavers */}
+              <div className="col-span-4">
+                <h3 className="font-serif text-xl text-white font-normal mb-5">
+                  Pavers
+                </h3>
+                <ul className="space-y-3">
+                  {PAVER_LINKS.map((link) => (
+                    <li key={link}>
+                      <a
+                        href="#services"
+                        onClick={(e) => {
+                          e.preventDefault();
+                          scrollTo('services');
+                        }}
+                        className="text-stone-300 hover:text-[#4CC66E] text-base transition-colors"
+                      >
+                        {link}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </div>
 
-          <div className="pt-3 border-t border-stone-100 flex flex-col gap-3">
+              {/* Group 2: Turf & Drainage */}
+              <div className="col-span-4">
+                <h3 className="font-serif text-xl text-white font-normal mb-5">
+                  Turf &amp; drainage
+                </h3>
+                <ul className="grid grid-cols-2 gap-x-6 gap-y-3">
+                  {TURF_LINKS.map((link) => (
+                    <li key={link}>
+                      <a
+                        href="#services"
+                        onClick={(e) => {
+                          e.preventDefault();
+                          scrollTo('services');
+                        }}
+                        className="text-stone-300 hover:text-[#4CC66E] text-base transition-colors"
+                      >
+                        {link}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              {/* Group 3: Featured Card */}
+              <div className="col-span-4">
+                <a
+                  href="#services"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    scrollTo('services');
+                  }}
+                  className="group relative block aspect-[4/3] rounded-[6px] overflow-hidden bg-stone-800 shadow-md border border-white/10"
+                >
+                  <Image
+                    src="/assets/brand/photo-bluestone-slabs.png"
+                    alt="Featured turf & outdoor design"
+                    fill
+                    className="object-cover object-center group-hover:scale-105 transition-transform duration-500"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#0E1719]/90 via-[#0E1719]/40 to-transparent" />
+                  <div className="absolute left-5 right-5 bottom-5">
+                    <span className="text-[11px] font-semibold tracking-[0.22em] uppercase text-[#4CC66E] block mb-1">
+                      Featured
+                    </span>
+                    <div className="flex items-center gap-2 font-serif text-lg text-white">
+                      <span>Explore turf &amp; outdoor design</span>
+                      <ArrowRight className="w-4 h-4 text-[#4CC66E] group-hover:translate-x-1 transition-transform" />
+                    </div>
+                  </div>
+                </a>
+              </div>
+            </div>
+
+            {/* Bottom Info Strip inside Mega Menu */}
+            <div className="mt-8 pt-6 border-t border-white/10 flex flex-wrap items-center justify-between gap-6 text-sm text-stone-300">
+              <a
+                href={`tel:${companyData.phone}`}
+                className="flex items-center gap-2 hover:text-white transition-colors"
+              >
+                <Phone className="w-4 h-4 text-[#4CC66E]" />
+                <span>{companyData.formattedPhone}</span>
+              </a>
+
+              <a
+                href="mailto:info@americanpaversturf.com"
+                className="flex items-center gap-2 hover:text-white transition-colors"
+              >
+                <Mail className="w-4 h-4 text-[#4CC66E]" />
+                <span>info@americanpaversturf.com</span>
+              </a>
+
+              <div className="flex items-center gap-2 ml-auto">
+                <MapPin className="w-4 h-4 text-[#4CC66E]" />
+                <span>Serving Los Angeles County</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Mobile Drawer Navigation */}
+      {mobileMenuOpen && (
+        <div className="lg:hidden bg-[#1A292C] border-t border-white/10 px-4 py-6 space-y-4">
+          <nav className="flex flex-col space-y-2">
+            <a
+              href="#services"
+              onClick={(e) => {
+                e.preventDefault();
+                scrollTo('services');
+              }}
+              className="py-2 text-base font-semibold text-white hover:text-[#4CC66E]"
+            >
+              Services
+            </a>
+            <div className="pl-4 space-y-1.5 pb-2">
+              {PAVER_LINKS.slice(0, 4).map((link) => (
+                <a
+                  key={link}
+                  href="#services"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    scrollTo('services');
+                  }}
+                  className="block text-sm text-stone-300 hover:text-white"
+                >
+                  {link}
+                </a>
+              ))}
+            </div>
+
+            <a
+              href="#work"
+              onClick={(e) => {
+                e.preventDefault();
+                scrollTo('work');
+              }}
+              className="py-2 text-base font-semibold text-white hover:text-[#4CC66E]"
+            >
+              Our work
+            </a>
+
+            <a
+              href="#process"
+              onClick={(e) => {
+                e.preventDefault();
+                scrollTo('process');
+              }}
+              className="py-2 text-base font-semibold text-white hover:text-[#4CC66E]"
+            >
+              Process
+            </a>
+
+            <a
+              href="#quote-section"
+              onClick={(e) => {
+                e.preventDefault();
+                scrollTo('quote-section');
+              }}
+              className="py-2 text-base font-semibold text-white hover:text-[#4CC66E]"
+            >
+              Contact
+            </a>
+          </nav>
+
+          <div className="pt-4 border-t border-white/10 flex flex-col gap-3">
             <a
               href={`tel:${companyData.phone}`}
-              className="flex items-center justify-center gap-2 py-3 bg-stone-100 text-[#1A292C] font-bold text-sm rounded"
+              className="flex items-center gap-2 text-white font-semibold text-sm"
             >
-              <Phone className="w-4 h-4 text-[#019934]" />
+              <Phone className="w-4 h-4 text-[#4CC66E]" />
               <span>{companyData.formattedPhone}</span>
             </a>
+            <button
+              type="button"
+              onClick={handleQuoteClick}
+              className="w-full py-3 bg-[#019934] text-white font-semibold text-sm rounded-[6px] text-center"
+            >
+              Get a free quote
+            </button>
           </div>
         </div>
       )}
