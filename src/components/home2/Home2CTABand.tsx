@@ -9,8 +9,8 @@ export default function Home2CTABand() {
   };
 
   return (
-    <section className="relative py-20 sm:py-24 bg-[#0E1719] text-white overflow-hidden text-center">
-      {/* Background Image */}
+    <section className="relative overflow-hidden bg-[#1A292C]">
+      {/* Background Image with Authentic Scrim Gradient */}
       <div className="absolute inset-0 z-0">
         <Image
           src="/assets/brand/photo-driveway-herringbone.png"
@@ -19,38 +19,49 @@ export default function Home2CTABand() {
           sizes="100vw"
           className="object-cover object-center"
         />
-        <div className="absolute inset-0 bg-[#0E1719]/85" />
+        {/* Scrim: Dark on the left for contrast, translucent on the right to reveal lush landscaping */}
+        <div
+          className="absolute inset-0"
+          style={{
+            background:
+              'linear-gradient(90deg, rgba(14,23,25,0.88) 0%, rgba(14,23,25,0.62) 45%, rgba(14,23,25,0.15) 100%)',
+          }}
+        />
       </div>
 
-      <div className="relative z-10 max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-        <span className="text-xs font-bold uppercase tracking-[0.22em] text-[#4CC66E] block mb-3">
-          FREE ESTIMATE
-        </span>
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16 md:py-20 flex flex-col md:flex-row md:items-center justify-between gap-8">
+        {/* Left: Text Content */}
+        <div className="max-w-[620px] text-left">
+          <span className="text-xs font-bold uppercase tracking-[0.22em] text-[#4CC66E] block mb-3">
+            FREE ESTIMATE
+          </span>
 
-        <h2 className="text-3xl sm:text-4xl md:text-5xl font-serif font-normal text-white tracking-tight leading-tight">
-          Book a site visit this week.
-        </h2>
+          <h2 className="font-serif font-normal text-2xl sm:text-3xl lg:text-[35px] leading-[1.12] text-white">
+            Book a site visit this week.
+          </h2>
 
-        <p className="mt-4 text-stone-300 text-base sm:text-lg leading-relaxed max-w-xl mx-auto">
-          No pressure, no subcontractors, no moving prices.
-        </p>
+          <p className="mt-4 text-base sm:text-lg lg:text-[21px] leading-[1.5] text-stone-300">
+            No pressure, no subcontractors, no moving prices.
+          </p>
+        </div>
 
-        <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
+        {/* Right: Action Buttons Side by Side */}
+        <div className="flex items-center gap-3.5 flex-wrap shrink-0">
           <button
             type="button"
             onClick={() => scrollTo('quote-section')}
-            className="px-8 py-4 bg-[#019934] hover:bg-[#017026] text-white font-bold text-xs sm:text-sm uppercase tracking-wider rounded shadow-lg transition-all flex items-center gap-2 cursor-pointer active:scale-98"
+            className="px-7 py-4 bg-[#019934] hover:bg-[#017026] text-white font-semibold text-base sm:text-lg rounded-md transition-colors flex items-center gap-2.5 cursor-pointer shadow-sm active:scale-98"
           >
             <span>Get a free quote</span>
-            <ArrowRight className="w-4 h-4" />
+            <ArrowRight className="w-5 h-5 stroke-[1.75]" />
           </button>
 
           <button
             type="button"
             onClick={() => scrollTo('work')}
-            className="px-8 py-4 bg-white/10 hover:bg-white/20 text-white font-semibold text-xs sm:text-sm uppercase tracking-wider rounded border border-white/20 backdrop-blur-sm transition-colors cursor-pointer"
+            className="px-7 py-4 bg-transparent hover:bg-white/10 text-white font-semibold text-base sm:text-lg rounded-md border border-white/20 hover:border-white/40 transition-colors flex items-center cursor-pointer active:scale-98"
           >
-            See our work
+            <span>See our work</span>
           </button>
         </div>
       </div>
