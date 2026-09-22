@@ -69,22 +69,22 @@ export default function Home2Services() {
           </p>
         </div>
 
-        {/* 6 Service Cards Grid (3 columns >=1200px, 2 columns <1200px, 1 column mobile) */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6 sm:gap-8">
+        {/* 6 Service Cards Grid (3 columns >=1200px, 2 columns on mobile and tablet) */}
+        <div className="grid grid-cols-2 xl:grid-cols-3 gap-3 sm:gap-6 xl:gap-8">
           {SERVICES.map((s, idx) => {
             const IconComp = s.icon;
             return (
               <div
                 key={idx}
                 onClick={() => scrollTo('quote-section')}
-                className="group relative aspect-[3/4] rounded-lg overflow-hidden bg-[#1A292C] shadow-md hover:shadow-xl transition-all duration-300 cursor-pointer border border-stone-200/80"
+                className="group relative aspect-[4/5] sm:aspect-[3/4] rounded-lg overflow-hidden bg-[#1A292C] shadow-md hover:shadow-xl transition-all duration-300 cursor-pointer border border-stone-200/80"
               >
                 {/* Background Image */}
                 <Image
                   src={s.image}
                   alt={s.title}
                   fill
-                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                  sizes="(max-width: 640px) 50vw, (max-width: 1200px) 50vw, 33vw"
                   className="object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out"
                 />
 
@@ -92,24 +92,24 @@ export default function Home2Services() {
                 <div className="absolute inset-0 bg-gradient-to-t from-[#0E1719]/95 via-[#0E1719]/50 to-[#0E1719]/30 pointer-events-none" />
 
                 {/* Top-Left Icon */}
-                <div className="absolute top-5 left-5 text-white z-10">
-                  <span className="w-10 h-10 rounded-md bg-white/10 backdrop-blur-md border border-white/15 flex items-center justify-center">
-                    <IconComp className="w-5 h-5 text-white" />
+                <div className="absolute top-2.5 left-2.5 sm:top-5 sm:left-5 text-white z-10">
+                  <span className="w-7 h-7 sm:w-10 sm:h-10 rounded-md bg-white/10 backdrop-blur-md border border-white/15 flex items-center justify-center">
+                    <IconComp className="w-3.5 h-3.5 sm:w-5 sm:h-5 text-white" />
                   </span>
                 </div>
 
                 {/* Bottom Details */}
-                <div className="absolute left-6 right-6 bottom-6 text-left z-10">
-                  <h3 className="font-serif text-2xl sm:text-[26px] text-white font-normal leading-snug">
+                <div className="absolute left-2.5 right-2.5 bottom-2.5 sm:left-6 sm:right-6 sm:bottom-6 text-left z-10">
+                  <h3 className="font-serif text-sm sm:text-2xl sm:text-[26px] text-white font-normal leading-tight sm:leading-snug line-clamp-2 sm:line-clamp-none">
                     {s.title}
                   </h3>
-                  <p className="mt-2 text-stone-300 text-sm leading-relaxed font-normal">
+                  <p className="hidden sm:block mt-2 text-stone-300 text-sm leading-relaxed font-normal">
                     {s.description}
                   </p>
 
-                  <span className="inline-flex items-center gap-2 mt-5 px-4 py-2.5 rounded bg-white/15 group-hover:bg-[#019934] border border-white/20 group-hover:border-[#019934] backdrop-blur-md text-white text-xs font-bold uppercase tracking-wider transition-all duration-300">
+                  <span className="inline-flex items-center gap-1.5 sm:gap-2 mt-2 sm:mt-5 px-2.5 sm:px-4 py-1.5 sm:py-2.5 rounded bg-white/15 group-hover:bg-[#019934] border border-white/20 group-hover:border-[#019934] backdrop-blur-md text-white text-[10px] sm:text-xs font-bold uppercase tracking-wider transition-all duration-300">
                     <span>{s.linkLabel}</span>
-                    <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
+                    <ArrowRight className="w-3 h-3 sm:w-3.5 sm:h-3.5 group-hover:translate-x-1 transition-transform" />
                   </span>
                 </div>
               </div>

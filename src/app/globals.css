@@ -132,3 +132,16 @@ input[type="submit"] {
   animation-play-state: paused;
 }
 
+@keyframes marquee-loop {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-marquee-loop {
+  animation: marquee-loop 14s linear infinite;
+}
+

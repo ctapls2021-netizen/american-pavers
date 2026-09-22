@@ -10,56 +10,56 @@ const WORK_ITEMS = [
     tag: 'Driveway',
     title: 'Herringbone driveway, 2,400 sq ft',
     location: 'Sherman Oaks',
-    spanClass: 'col-span-1 sm:col-span-2 sm:row-span-2 xl:col-span-2 xl:row-span-2',
+    spanClass: 'col-span-2 row-span-2 xl:col-span-2 xl:row-span-2',
   },
   {
     image: '/assets/brand/photo-cobble-walkway.png',
     tag: 'Steps',
     title: 'Stepped entry, 42 risers',
     location: 'Silver Lake',
-    spanClass: 'col-span-1 sm:col-span-1 sm:row-span-2 xl:col-span-1 xl:row-span-2',
+    spanClass: 'col-span-1 row-span-2 xl:col-span-1 xl:row-span-2',
   },
   {
     image: '/assets/brand/photo-bluestone-slabs.png',
     tag: 'Patio',
     title: 'Bluestone patio',
     location: 'Pasadena',
-    spanClass: 'col-span-1 sm:col-span-1 sm:row-span-1 xl:col-span-1 xl:row-span-1',
+    spanClass: 'col-span-1 row-span-1 xl:col-span-1 xl:row-span-1',
   },
   {
     image: '/assets/brand/photo-cobble-walkway.png',
     tag: 'Walkway',
     title: 'Charcoal cobble path',
     location: 'Glendale',
-    spanClass: 'col-span-1 sm:col-span-1 sm:row-span-1 xl:col-span-1 xl:row-span-1',
+    spanClass: 'col-span-1 row-span-1 xl:col-span-1 xl:row-span-1',
   },
   {
     image: '/assets/brand/photo-bluestone-slabs.png',
     tag: 'Pool deck',
     title: 'Porcelain pool deck',
     location: 'Studio City',
-    spanClass: 'col-span-1 sm:col-span-1 sm:row-span-1 xl:col-span-1 xl:row-span-1',
+    spanClass: 'col-span-1 row-span-1 xl:col-span-1 xl:row-span-1',
   },
   {
     image: '/assets/brand/photo-driveway-herringbone.png',
     tag: 'Driveway',
     title: 'Twin-band apron',
     location: 'Encino',
-    spanClass: 'col-span-1 sm:col-span-1 sm:row-span-1 xl:col-span-1 xl:row-span-1',
+    spanClass: 'col-span-1 row-span-1 xl:col-span-1 xl:row-span-1',
   },
   {
     image: '/assets/brand/photo-driveway-herringbone.png',
     tag: 'Turf',
     title: 'Front lawn replacement',
     location: 'Culver City',
-    spanClass: 'col-span-1 sm:col-span-1 sm:row-span-1 xl:col-span-1 xl:row-span-1',
+    spanClass: 'col-span-1 row-span-1 xl:col-span-1 xl:row-span-1',
   },
   {
     image: '/assets/brand/photo-bluestone-slabs.png',
     tag: 'Pool deck',
     title: 'Porcelain coping run',
     location: 'Woodland Hills',
-    spanClass: 'col-span-1 sm:col-span-1 sm:row-span-1 xl:col-span-1 xl:row-span-1',
+    spanClass: 'col-span-1 row-span-1 xl:col-span-1 xl:row-span-1',
   },
 ];
 
@@ -94,8 +94,8 @@ export default function Home2WorkMosaic() {
           </button>
         </div>
 
-        {/* Mosaic Grid: 1 col (<640px), 2 cols (<1200px), 4 cols (>=1200px) */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4 sm:gap-6 auto-rows-[240px] sm:auto-rows-[clamp(220px,18vw,300px)]">
+        {/* Mosaic Grid: 2 cols on mobile and tablet (<1200px), 4 cols (>=1200px) */}
+        <div className="grid grid-cols-2 xl:grid-cols-4 gap-3 sm:gap-6 auto-rows-[140px] sm:auto-rows-[clamp(220px,18vw,300px)]">
           {WORK_ITEMS.map((item, idx) => (
             <div
               key={idx}
@@ -106,7 +106,7 @@ export default function Home2WorkMosaic() {
                 src={item.image}
                 alt={item.title}
                 fill
-                sizes="(max-width: 640px) 100vw, (max-width: 1199px) 50vw, 25vw"
+                sizes="(max-width: 640px) 50vw, (max-width: 1199px) 50vw, 25vw"
                 className="object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out"
               />
 
@@ -114,19 +114,19 @@ export default function Home2WorkMosaic() {
               <div className="absolute inset-0 bg-gradient-to-t from-[#0E1719]/90 via-[#0E1719]/35 to-transparent pointer-events-none" />
 
               {/* Tag */}
-              <div className="absolute top-4 left-4 z-10">
-                <span className="px-3 py-1 rounded-full bg-white/15 backdrop-blur-md border border-white/20 text-white text-xs font-semibold tracking-wide">
+              <div className="absolute top-2.5 left-2.5 sm:top-4 sm:left-4 z-10">
+                <span className="px-2 py-0.5 sm:px-3 sm:py-1 rounded-full bg-white/15 backdrop-blur-md border border-white/20 text-white text-[10px] sm:text-xs font-semibold tracking-wide">
                   {item.tag}
                 </span>
               </div>
 
               {/* Title & Location */}
-              <div className="absolute bottom-4 sm:bottom-5 left-4 sm:left-5 right-4 sm:right-5 text-left z-10">
-                <h3 className="text-white text-base sm:text-lg lg:text-xl font-bold leading-snug">
+              <div className="absolute bottom-2.5 sm:bottom-5 left-2.5 sm:left-5 right-2.5 sm:right-5 text-left z-10">
+                <h3 className="text-white text-xs sm:text-lg lg:text-xl font-bold leading-snug line-clamp-2">
                   {item.title}
                 </h3>
-                <div className="flex items-center gap-1.5 text-stone-300 text-xs sm:text-sm mt-1 sm:mt-1.5">
-                  <MapPin className="w-3.5 h-3.5 text-[#4CC66E] shrink-0" />
+                <div className="flex items-center gap-1 sm:gap-1.5 text-stone-300 text-[10px] sm:text-sm mt-0.5 sm:mt-1.5">
+                  <MapPin className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-[#4CC66E] shrink-0" />
                   <span>{item.location}</span>
                 </div>
               </div>
