@@ -1,85 +1,66 @@
 'use client';
 
-import React, { useState } from 'react';
-import Navbar from '@/components/layout/Navbar';
-import AltImageHero from '@/components/sections/alt/AltImageHero';
-import AltServicesShowcase from '@/components/sections/alt/AltServicesShowcase';
-import BeforeAfterSlider from '@/components/sections/BeforeAfterSlider';
-import AltProcessRoadmap from '@/components/sections/alt/AltProcessRoadmap';
-import AltServiceBannerSlider from '@/components/sections/alt/AltServiceBannerSlider';
-import AltTestimonialsGrid from '@/components/sections/alt/AltTestimonialsGrid';
-import AltFaqAccordion from '@/components/sections/alt/AltFaqAccordion';
-import AltBottomCtaBanner from '@/components/sections/alt/AltBottomCtaBanner';
-import AltFooter from '@/components/layout/AltFooter';
-import LeadFormModal from '@/components/ui/LeadFormModal';
+import React from 'react';
 import JsonLdSchema from '@/components/seo/JsonLdSchema';
-import { generalFaqs } from '@/data/faqs';
+import Home2Header from '@/components/home2/Home2Header';
+import Home2Hero from '@/components/home2/Home2Hero';
+import Home2Services from '@/components/home2/Home2Services';
+import Home2About from '@/components/home2/Home2About';
+import Home2Process from '@/components/home2/Home2Process';
+import Home2WorkMosaic from '@/components/home2/Home2WorkMosaic';
+import Home2Reviews from '@/components/home2/Home2Reviews';
+import Home2CTABand from '@/components/home2/Home2CTABand';
+import Home2FAQ from '@/components/home2/Home2FAQ';
+import Home2QuoteSplit from '@/components/home2/Home2QuoteSplit';
+import Home2Footer from '@/components/home2/Home2Footer';
 
 export default function HomeAltClient() {
-  const [modalOpen, setModalOpen] = useState(false);
-  const [selectedService, setSelectedService] = useState('Patio Pavers');
-
-  const handleOpenModal = (serviceName?: string) => {
-    if (serviceName) setSelectedService(serviceName);
-    setModalOpen(true);
+  const handleScrollToQuote = () => {
+    const el = document.getElementById('quote-section');
+    if (el) {
+      el.scrollIntoView({ behavior: 'smooth' });
+    }
   };
 
   return (
-    <div id="top" className="flex flex-col min-h-screen bg-white">
+    <div id="top" className="flex flex-col min-h-screen bg-white text-stone-900 selection:bg-[#019934] selection:text-white">
+      {/* Rich SEO Structured Data */}
       <JsonLdSchema />
 
-      {/* Official Master Navbar (Same as original home, with non-navigating presentation items) */}
-      <Navbar onOpenModal={() => handleOpenModal()} disabledNav={true} />
+      {/* Top Utility Bar & Official Header */}
+      <Home2Header onOpenQuote={handleScrollToQuote} />
 
-      <main className="flex-1">
-        {/* High-Impact Luxury Image Hero (Replaces scroll-video) */}
-        <AltImageHero
-          onOpenConsultation={() => handleOpenModal()}
-          onExploreServices={() => {
-            const el = document.getElementById('services');
-            if (el) el.scrollIntoView({ behavior: 'smooth' });
-          }}
-        />
+      <main className="flex-1 w-full">
+        {/* Hero Section with Scrim, Value Proposition & Key Metrics */}
+        <Home2Hero />
 
-        {/* Redesigned Services Showcase (Self-contained, no subpage navigation) */}
-        <AltServicesShowcase onOpenModal={handleOpenModal} />
+        {/* What We Install: 6 Service Cards with 3:4 Aspect Ratios */}
+        <Home2Services />
 
-        {/* Real Interactive Before / After Transformations */}
-        <div id="transformations" className="scroll-mt-20">
-          <BeforeAfterSlider onOpenModal={handleOpenModal} />
-        </div>
+        {/* About Us: 18 Years, 4 Core Values & Green Statement Bar */}
+        <Home2About />
 
-        {/* Redesigned 3-Phase Architectural Process Roadmap */}
-        <AltProcessRoadmap onOpenModal={() => handleOpenModal()} />
+        {/* Process Timeline: 4 Visits, No Surprises with Animated Step Indicator */}
+        <Home2Process />
 
-        {/* Kōzen Curated Signature Spaces Slider */}
-        <AltServiceBannerSlider onOpenModal={handleOpenModal} />
+        {/* Work Mosaic: Asymmetric Project Showcase Across Los Angeles */}
+        <Home2WorkMosaic />
 
-        {/* Verified Customer Testimonials with Editorial Header */}
-        <div id="reviews" className="scroll-mt-20">
-          <AltTestimonialsGrid />
-        </div>
+        {/* Official Reviews: Google (4.9), Yelp (4.8), Houzz (5.0) & Testimonials */}
+        <Home2Reviews />
 
-        {/* Frequently Asked Questions with Architectural Consultation Card */}
-        <div id="faq" className="scroll-mt-20">
-          <AltFaqAccordion faqs={generalFaqs} />
-        </div>
+        {/* High-Impact Direct CTA Banner */}
+        <Home2CTABand />
 
-        {/* Closing Atelier Consultation & Estimate Studio */}
-        <div id="contact">
-          <AltBottomCtaBanner onOpenModal={() => handleOpenModal()} />
-        </div>
+        {/* FAQ Accordion: Honest Answers to 5 Common Customer Questions */}
+        <Home2FAQ />
+
+        {/* Split Quote Studio: On-Site Photography & Connected Lead Capture */}
+        <Home2QuoteSplit />
       </main>
 
-      {/* Self-Contained Footer */}
-      <AltFooter onOpenModal={() => handleOpenModal()} />
-
-      {/* Direct 3D Consultation Capture Modal */}
-      <LeadFormModal
-        isOpen={modalOpen}
-        onClose={() => setModalOpen(false)}
-        defaultService={selectedService}
-      />
+      {/* Multi-Column Corporate Footer with License Details */}
+      <Home2Footer />
     </div>
   );
 }

@@ -1,0 +1,126 @@
+import React from 'react';
+import Image from 'next/image';
+import { Layers, Ruler, Sprout, Hammer, Droplets, ArrowRight } from 'lucide-react';
+
+const SERVICES = [
+  {
+    icon: Layers,
+    image: '/assets/brand/photo-driveway-herringbone.png',
+    title: 'Paver driveways',
+    description: 'Sand-set over six inches of compacted base, edge-restrained on all four sides.',
+    linkLabel: 'See driveways',
+  },
+  {
+    icon: Ruler,
+    image: '/assets/brand/photo-bluestone-slabs.png',
+    title: 'Patios & pool decks',
+    description: 'Large-format bluestone and porcelain, laid to fall so water leaves the house.',
+    linkLabel: 'See patios',
+  },
+  {
+    icon: Sprout,
+    image: '/assets/brand/photo-cobble-walkway.png',
+    title: 'Artificial turf',
+    description: 'Pet-rated and putting-green blades over a drainage base that does not hold odor.',
+    linkLabel: 'See turf',
+  },
+  {
+    icon: Hammer,
+    image: '/assets/brand/photo-cobble-walkway.png',
+    title: 'Walkways & steps',
+    description: 'Front paths, side yards and stepped entries cut to the grade of the lot.',
+    linkLabel: 'See walkways',
+  },
+  {
+    icon: Layers,
+    image: '/assets/brand/photo-bluestone-slabs.png',
+    title: 'Retaining walls',
+    description: 'Engineered block walls with drainage behind, permitted where required.',
+    linkLabel: 'See walls',
+  },
+  {
+    icon: Droplets,
+    image: '/assets/brand/photo-driveway-herringbone.png',
+    title: 'Drainage & grading',
+    description: 'French drains and re-grading, quoted openly rather than buried in the paver price.',
+    linkLabel: 'See drainage',
+  },
+];
+
+export default function Home2Services() {
+  const scrollTo = (id: string) => {
+    const el = document.getElementById(id);
+    if (el) el.scrollIntoView({ behavior: 'smooth' });
+  };
+
+  return (
+    <section id="services" className="py-20 sm:py-28 bg-white text-stone-900 border-b border-stone-200 scroll-mt-20">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Section Header */}
+        <div className="max-w-3xl mb-12 sm:mb-16 text-left">
+          <span className="text-xs font-bold uppercase tracking-[0.22em] text-[#019934] block mb-3">
+            What we install
+          </span>
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-serif font-normal text-[#1A292C] tracking-tight leading-tight">
+            Two trades, one crew.
+          </h2>
+          <p className="mt-4 text-stone-600 text-base sm:text-lg leading-relaxed">
+            Hardscape and turf are quoted, based and installed together — so nothing gets blamed on the other guy.
+          </p>
+        </div>
+
+        {/* 6 Service Cards Grid (3 columns desktop, 1 column mobile) */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+          {SERVICES.map((s, idx) => {
+            const IconComp = s.icon;
+            return (
+              <div
+                key={idx}
+                onClick={() => scrollTo('quote-section')}
+                className="group relative aspect-[3/4] rounded-lg overflow-hidden bg-[#1A292C] shadow-md hover:shadow-xl transition-all duration-300 cursor-pointer border border-stone-200/80"
+              >
+                {/* Background Image */}
+                <Image
+                  src={s.image}
+                  alt={s.title}
+                  fill
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                  className="object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out"
+                />
+
+                {/* Dark Scrim */}
+                <div className="absolute inset-0 bg-gradient-to-t from-[#0E1719]/95 via-[#0E1719]/50 to-[#0E1719]/30 pointer-events-none" />
+
+                {/* Top-Left Icon */}
+                <div className="absolute top-5 left-5 text-white z-10">
+                  <span className="w-10 h-10 rounded-md bg-white/10 backdrop-blur-md border border-white/15 flex items-center justify-center">
+                    <IconComp className="w-5 h-5 text-white" />
+                  </span>
+                </div>
+
+                {/* Bottom Details */}
+                <div className="absolute left-6 right-6 bottom-6 text-left z-10">
+                  <h3 className="font-serif text-2xl sm:text-[26px] text-white font-normal leading-snug">
+                    {s.title}
+                  </h3>
+                  <p className="mt-2 text-stone-300 text-sm leading-relaxed font-normal">
+                    {s.description}
+                  </p>
+
+                  <span className="inline-flex items-center gap-2 mt-5 px-4 py-2.5 rounded bg-white/15 group-hover:bg-[#019934] border border-white/20 group-hover:border-[#019934] backdrop-blur-md text-white text-xs font-bold uppercase tracking-wider transition-all duration-300">
+                    <span>{s.linkLabel}</span>
+                    <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
+                  </span>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+
+        <p className="mt-6 text-xs text-stone-400 text-left">
+          Photography repeats across the six cards — only three brand images exist. Turf, retaining walls and drainage need their own shots.
+        </p>
+      </div>
+    </section>
+  );
+}
