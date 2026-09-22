@@ -6,10 +6,10 @@ import AltImageHero from '@/components/sections/alt/AltImageHero';
 import AltServicesShowcase from '@/components/sections/alt/AltServicesShowcase';
 import BeforeAfterSlider from '@/components/sections/BeforeAfterSlider';
 import AltProcessRoadmap from '@/components/sections/alt/AltProcessRoadmap';
-import ServiceBannerSlider from '@/components/sections/ServiceBannerSlider';
-import TestimonialsGrid from '@/components/sections/TestimonialsGrid';
-import FaqAccordion from '@/components/sections/FaqAccordion';
-import BottomCtaBanner from '@/components/sections/BottomCtaBanner';
+import AltServiceBannerSlider from '@/components/sections/alt/AltServiceBannerSlider';
+import AltTestimonialsGrid from '@/components/sections/alt/AltTestimonialsGrid';
+import AltFaqAccordion from '@/components/sections/alt/AltFaqAccordion';
+import AltBottomCtaBanner from '@/components/sections/alt/AltBottomCtaBanner';
 import AltFooter from '@/components/layout/AltFooter';
 import LeadFormModal from '@/components/ui/LeadFormModal';
 import JsonLdSchema from '@/components/seo/JsonLdSchema';
@@ -52,22 +52,22 @@ export default function HomeAltClient() {
         {/* Redesigned 3-Phase Architectural Process Roadmap */}
         <AltProcessRoadmap onOpenModal={() => handleOpenModal()} />
 
-        {/* Full-Width Showcase Slider */}
-        <ServiceBannerSlider onOpenModal={handleOpenModal} />
+        {/* Kōzen Curated Signature Spaces Slider */}
+        <AltServiceBannerSlider onOpenModal={handleOpenModal} />
 
-        {/* Verified Customer Testimonials with Google, Yelp & Houzz Logos */}
+        {/* Verified Customer Testimonials with Editorial Header */}
         <div id="reviews" className="scroll-mt-20">
-          <TestimonialsGrid />
+          <AltTestimonialsGrid />
         </div>
 
-        {/* Frequently Asked Questions */}
+        {/* Frequently Asked Questions with Architectural Consultation Card */}
         <div id="faq" className="scroll-mt-20">
-          <FaqAccordion faqs={generalFaqs} />
+          <AltFaqAccordion faqs={generalFaqs} />
         </div>
 
-        {/* Closing Consultation & Estimate Banner */}
+        {/* Closing Atelier Consultation & Estimate Studio */}
         <div id="contact">
-          <BottomCtaBanner onOpenModal={() => handleOpenModal()} />
+          <AltBottomCtaBanner onOpenModal={() => handleOpenModal()} />
         </div>
       </main>
 

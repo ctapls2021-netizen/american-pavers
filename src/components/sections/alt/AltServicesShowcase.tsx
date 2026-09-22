@@ -69,83 +69,82 @@ const servicesCatalog: ServiceCardData[] = [
 
 export default function AltServicesShowcase({ onOpenModal }: AltServicesShowcaseProps) {
   return (
-    <section id="services" className="py-20 sm:py-28 bg-white text-stone-900 scroll-mt-20 border-y border-stone-200/80">
+    <section id="services" className="py-24 sm:py-32 bg-[#FAF9F6] text-stone-900 scroll-mt-20 border-y border-stone-200/70">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Section Header (White background theme) */}
-        <div className="max-w-3xl mb-12 sm:mb-16 text-left">
-          <span className="text-xs font-semibold uppercase tracking-[0.2em] text-[#48a24c] block mb-2">
-            LOS ANGELES · SERVICES
+        {/* Section Header (Kōzen Editorial Minimalism) */}
+        <div className="max-w-3xl mb-14 sm:mb-20 text-left">
+          <span className="text-[11px] font-semibold uppercase tracking-[0.25em] text-[#019934] block mb-3">
+            01 — LOS ANGELES · SERVICES
           </span>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-serif font-normal text-[#1A292C] tracking-tight">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-serif font-normal text-[#1A292C] tracking-tight leading-tight">
             Master Hardscape &amp; Turf Services
           </h2>
-          <p className="mt-3 text-stone-600 text-base sm:text-lg font-normal">
+          <p className="mt-4 text-stone-600 text-base sm:text-lg font-normal leading-relaxed">
             Commercial-grade foundation engineering, physical stone curation, and photorealistic 3D architectural renders included with every project.
           </p>
         </div>
 
-        {/* Services Grid (Full-bleed image cards, no bg/border on subtitle, zero emojis, zero icons) */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-7">
+        {/* Services Grid (Kōzen Collection Card Layout) */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {servicesCatalog.map((service) => (
-            <div
+            <article
               key={service.id}
               onClick={() => onOpenModal(service.title)}
-              className="relative aspect-[4/3] sm:aspect-[16/11] rounded-2xl overflow-hidden group shadow-md hover:shadow-2xl cursor-pointer border border-stone-200/70 hover:border-stone-300 transition-all duration-300"
+              className="group cursor-pointer flex flex-col justify-between bg-white border border-stone-200/80 hover:border-stone-400 hover:shadow-xl transition-all duration-500 overflow-hidden"
             >
-              {/* Full Bleed Photography Background */}
-              <Image
-                src={service.image}
-                alt={service.title}
-                fill
-                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                className="object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out"
-              />
+              {/* Architectural Image Container */}
+              <div className="relative aspect-[4/3] w-full overflow-hidden bg-stone-100">
+                <Image
+                  src={service.image}
+                  alt={service.title}
+                  fill
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                  className="object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out"
+                />
 
-              {/* Dark Gradient Overlay for Crisp Text Legibility */}
-              <div className="absolute inset-0 bg-gradient-to-t from-stone-950 via-stone-950/40 to-stone-950/20 group-hover:from-stone-950/95 transition-all duration-300" />
-
-              {/* Top-Left Subtitle (Clean text: NO background, NO border, no icons, no emojis) */}
-              <div className="absolute top-4 left-4 z-10">
-                <span className="text-xs sm:text-sm font-semibold tracking-wider uppercase text-white/95 drop-shadow-[0_2px_4px_rgba(0,0,0,0.9)]">
-                  {service.tag}
-                </span>
+                {/* Top-Left Category Tag */}
+                <div className="absolute top-4 left-4 z-10">
+                  <span className="text-[10px] sm:text-[11px] font-semibold tracking-[0.2em] uppercase text-stone-700 bg-white/95 backdrop-blur-sm px-3 py-1 border border-stone-200/80 shadow-xs">
+                    {service.tag}
+                  </span>
+                </div>
               </div>
 
-              {/* Bottom Card Content */}
-              <div className="absolute inset-x-0 bottom-0 z-10 p-5 sm:p-6 flex flex-col items-start justify-end">
-                <h3 className="text-xl sm:text-2xl font-bold text-white tracking-tight leading-snug">
-                  {service.title}
-                </h3>
-                <p className="text-stone-300 text-xs sm:text-sm mt-1.5 leading-relaxed font-normal max-w-sm">
-                  {service.description}
-                </p>
+              {/* Card Details (Editorial Kōzen Typography) */}
+              <div className="p-6 sm:p-7 flex flex-col justify-between flex-1">
+                <div>
+                  <h3 className="text-xl sm:text-2xl font-serif text-[#1A292C] group-hover:text-[#019934] transition-colors tracking-tight">
+                    {service.title}
+                  </h3>
+                  <p className="text-stone-600 text-xs sm:text-sm mt-2 leading-relaxed font-normal">
+                    {service.description}
+                  </p>
+                </div>
 
-                {/* Action Button (Clean button, no emojis, no icons) */}
-                <button
-                  type="button"
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    onOpenModal(service.title);
-                  }}
-                  className="mt-4 px-5 py-2.5 bg-white hover:bg-stone-100 active:scale-98 text-stone-900 font-bold text-xs sm:text-sm rounded-lg shadow-md transition-all whitespace-nowrap cursor-pointer"
-                >
-                  {service.buttonText}
-                </button>
+                {/* Action Link Footer */}
+                <div className="mt-6 pt-4 border-t border-stone-100 flex items-center justify-between">
+                  <span className="text-xs font-bold uppercase tracking-widest text-[#019934] group-hover:translate-x-1 transition-transform inline-flex items-center gap-1.5">
+                    {service.buttonText} &rarr;
+                  </span>
+                  <span className="text-[11px] text-stone-400 font-medium">
+                    3D Simulation
+                  </span>
+                </div>
               </div>
-            </div>
+            </article>
           ))}
         </div>
 
-        {/* Bottom Multi-Service Bundle Banner (No emojis, no icons) */}
-        <div className="mt-14 p-7 sm:p-9 bg-stone-950 text-white rounded-2xl flex flex-col md:flex-row items-center justify-between gap-6 shadow-xl border border-stone-800">
+        {/* Bottom Multi-Service Bundle Banner (Kōzen Architectural Note) */}
+        <div className="mt-16 p-8 sm:p-12 bg-[#1A292C] text-white flex flex-col md:flex-row items-center justify-between gap-8 border border-stone-800 shadow-xl">
           <div className="max-w-2xl text-left">
-            <span className="text-xs font-semibold text-[#48a24c] uppercase tracking-widest block mb-1">
+            <span className="text-[10px] sm:text-xs font-semibold text-[#42e078] uppercase tracking-[0.25em] block mb-2">
               MULTI-SERVICE PACKAGE
             </span>
-            <h4 className="text-xl sm:text-2xl font-serif font-normal text-white">
+            <h4 className="text-2xl sm:text-3xl font-serif font-normal text-white tracking-tight">
               Need Multiple Services Combined Into One Master Project?
             </h4>
-            <p className="text-stone-400 text-xs sm:text-sm mt-1.5 leading-relaxed">
+            <p className="text-stone-300 text-xs sm:text-sm mt-2 leading-relaxed font-normal">
               Save up to $2,500 when bundling Pavers + Synthetic Turf + Built-In Outdoor Living with a single master crew and lifetime guarantee.
             </p>
           </div>
@@ -153,7 +152,7 @@ export default function AltServicesShowcase({ onOpenModal }: AltServicesShowcase
           <button
             type="button"
             onClick={() => onOpenModal('Full Yard Transformation')}
-            className="px-6 py-3.5 bg-[#48a24c] hover:bg-[#3ea748] active:scale-98 text-white font-bold text-xs sm:text-sm uppercase tracking-wider rounded-lg transition-all cursor-pointer shrink-0 shadow-lg whitespace-nowrap"
+            className="px-7 py-4 bg-[#019934] hover:bg-[#01802b] active:scale-98 text-white font-bold text-xs sm:text-sm uppercase tracking-wider transition-all cursor-pointer shrink-0 shadow-lg whitespace-nowrap"
           >
             Claim Multi-Service Discount
           </button>

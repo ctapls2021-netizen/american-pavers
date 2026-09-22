@@ -109,23 +109,23 @@ export default function BeforeAfterSlider({
   };
 
   return (
-    <section className="py-20 bg-white text-stone-900 border-b border-stone-200 overflow-hidden">
+    <section className="py-24 sm:py-32 bg-white text-stone-900 border-b border-stone-200/70 overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-10">
-          <span className="text-xs font-bold uppercase tracking-widest text-[#019934] block">
-            Real Transformations
+        {/* Section Header (Kōzen Editorial Minimalism) */}
+        <div className="text-center max-w-3xl mx-auto mb-12 sm:mb-16">
+          <span className="text-[11px] font-semibold uppercase tracking-[0.25em] text-[#019934] block mb-3">
+            02 — REAL TRANSFORMATIONS
           </span>
-          <h2 className="text-3xl sm:text-4xl font-extrabold text-[#1A292C] tracking-tight font-serif-brand mt-3">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-serif font-normal text-[#1A292C] tracking-tight leading-tight">
             {title}
           </h2>
-          <p className="text-base text-stone-600 mt-2">
+          <p className="text-base sm:text-lg text-stone-600 mt-4 leading-relaxed font-normal max-w-2xl mx-auto">
             {subtitle}
           </p>
 
-          {/* Project Selector Tabs */}
+          {/* Project Selector Tabs (Kōzen Minimalist Underline Tabs) */}
           {!hideTabs && (
-            <div className="flex flex-wrap items-center justify-center gap-2 mt-6">
+            <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-6 mt-8 border-b border-stone-200/60 pb-3">
               {transformations.map((t, idx) => (
                 <button
                   key={t.id}
@@ -134,26 +134,26 @@ export default function BeforeAfterSlider({
                     setSelectedIdx(idx);
                     setSliderPosition(50);
                   }}
-                  className={`px-4 py-2.5 rounded-none text-xs font-bold transition-all cursor-pointer ${
+                  className={`pb-2.5 px-2 text-xs sm:text-sm font-semibold tracking-wider uppercase transition-all cursor-pointer border-b-2 -mb-[13px] ${
                     selectedIdx === idx
-                      ? 'bg-[#019934] text-white shadow-md'
-                      : 'bg-stone-100 hover:bg-stone-200 text-stone-700'
+                      ? 'border-[#019934] text-[#1A292C]'
+                      : 'border-transparent text-stone-500 hover:text-stone-900'
                   }`}
                 >
-                  {t.category} ({t.location})
+                  {t.category}
                 </button>
               ))}
             </div>
           )}
         </div>
 
-        {/* Interactive Comparison Container (Reduced height, clean no text/icons over image) */}
+        {/* Interactive Comparison Container (Kōzen Clean Architectural Frame) */}
         <div className="max-w-5xl mx-auto">
           <div
             ref={containerRef}
             onMouseMove={handleMouseMove}
             onTouchMove={handleTouchMove}
-            className="relative aspect-[16/9] sm:aspect-[21/9] max-h-[440px] rounded-none overflow-hidden shadow-xl select-none cursor-ew-resize border border-stone-200 bg-stone-100"
+            className="relative aspect-[16/9] sm:aspect-[21/9] max-h-[460px] overflow-hidden shadow-xl select-none cursor-ew-resize border border-stone-200/90 bg-stone-100"
           >
             {/* After Image (Background) */}
             <img
@@ -178,12 +178,12 @@ export default function BeforeAfterSlider({
               />
             </div>
 
-            {/* Vertical Divider Handle with clean horizontal arrows */}
+            {/* Vertical Divider Handle with clean minimal styling */}
             <div
-              className="absolute top-0 bottom-0 w-0.5 bg-white shadow-2xl pointer-events-none z-20 flex items-center justify-center"
+              className="absolute top-0 bottom-0 w-0.5 bg-white/90 shadow-2xl pointer-events-none z-20 flex items-center justify-center"
               style={{ left: `${sliderPosition}%` }}
             >
-              <div className="w-9 h-9 bg-white text-stone-800 rounded-full shadow-xl flex items-center justify-center border border-stone-300">
+              <div className="w-10 h-10 bg-white/95 backdrop-blur-sm text-stone-800 rounded-full shadow-xl flex items-center justify-center border border-stone-200/90">
                 <svg
                   className="w-4 h-4 text-stone-800"
                   viewBox="0 0 24 24"
@@ -202,15 +202,15 @@ export default function BeforeAfterSlider({
           </div>
 
           {/* Project Details & CTA */}
-          <div className="mt-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 p-6 rounded-none border border-stone-200 bg-transparent">
+          <div className="mt-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6 p-6 sm:p-8 border border-stone-200/80 bg-[#FAF9F6]">
             <div>
-              <div className="text-xs font-bold text-[#019934] uppercase tracking-wider">
+              <div className="text-[11px] font-semibold text-[#019934] uppercase tracking-[0.2em]">
                 {currentProject.location} • {currentProject.category}
               </div>
-              <h3 className="text-lg sm:text-xl font-extrabold text-[#1A292C] mt-0.5">
+              <h3 className="text-xl sm:text-2xl font-serif text-[#1A292C] mt-1 font-normal tracking-tight">
                 {currentProject.title}
               </h3>
-              <p className="text-xs sm:text-sm text-stone-600 mt-1 max-w-2xl">
+              <p className="text-xs sm:text-sm text-stone-600 mt-2 max-w-2xl leading-relaxed font-normal">
                 {currentProject.description}
               </p>
             </div>
@@ -219,7 +219,7 @@ export default function BeforeAfterSlider({
               <button
                 type="button"
                 onClick={() => onOpenModal(currentProject.category)}
-                className="shrink-0 bg-[#019934] hover:bg-[#01802b] text-white font-bold text-xs sm:text-sm px-5 py-3 rounded-none shadow-md flex items-center gap-2 cursor-pointer transition-colors"
+                className="shrink-0 bg-[#019934] hover:bg-[#01802b] active:scale-98 text-white font-bold text-xs sm:text-sm px-6 py-3.5 shadow-md flex items-center gap-2 cursor-pointer transition-all uppercase tracking-wider whitespace-nowrap"
               >
                 <span>Get a Similar 3D Design</span>
                 <ChevronRight className="w-4 h-4" />
