@@ -23,14 +23,14 @@ export default function HomeAltClient() {
   };
 
   return (
-    <div id="top" className="flex flex-col min-h-screen bg-white text-stone-900 selection:bg-[#019934] selection:text-white">
+    <div id="top" className="flex flex-col min-h-screen w-full max-w-full overflow-x-clip bg-white text-stone-900 selection:bg-[#019934] selection:text-white">
       {/* Rich SEO Structured Data */}
       <JsonLdSchema />
 
       {/* Top Utility Bar & Official Header */}
       <Home2Header onOpenQuote={handleScrollToQuote} />
 
-      <main className="flex-1 w-full">
+      <main className="flex-1 w-full max-w-full overflow-x-clip">
         {/* Hero Section with Scrim, Value Proposition & Key Metrics */}
         <Home2Hero />
 

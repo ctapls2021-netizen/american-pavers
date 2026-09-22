@@ -9,7 +9,7 @@ export default function Home2CTABand() {
   };
 
   return (
-    <section className="relative overflow-hidden bg-[#1A292C]">
+    <section className="relative overflow-hidden bg-[#1A292C] w-full max-w-full">
       {/* Background Image with Authentic Scrim Gradient */}
       <div className="absolute inset-0 z-0">
         <Image
@@ -46,11 +46,11 @@ export default function Home2CTABand() {
         </div>
 
         {/* Right: Action Buttons Side by Side */}
-        <div className="flex items-center gap-3.5 flex-wrap shrink-0">
+        <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3.5 shrink-0 w-full md:w-auto">
           <button
             type="button"
             onClick={() => scrollTo('quote-section')}
-            className="px-7 py-4 bg-[#019934] hover:bg-[#017026] text-white font-semibold text-base sm:text-lg rounded-md transition-colors flex items-center gap-2.5 cursor-pointer shadow-sm active:scale-98"
+            className="w-full sm:w-auto justify-center px-7 py-4 bg-[#019934] hover:bg-[#017026] text-white font-semibold text-base sm:text-lg rounded-md transition-colors flex items-center gap-2.5 cursor-pointer shadow-sm active:scale-98"
           >
             <span>Get a free quote</span>
             <ArrowRight className="w-5 h-5 stroke-[1.75]" />
@@ -59,7 +59,7 @@ export default function Home2CTABand() {
           <button
             type="button"
             onClick={() => scrollTo('work')}
-            className="px-7 py-4 bg-transparent hover:bg-white/10 text-white font-semibold text-base sm:text-lg rounded-md border border-white/20 hover:border-white/40 transition-colors flex items-center cursor-pointer active:scale-98"
+            className="w-full sm:w-auto justify-center px-7 py-4 bg-transparent hover:bg-white/10 text-white font-semibold text-base sm:text-lg rounded-md border border-white/20 hover:border-white/40 transition-colors flex items-center cursor-pointer active:scale-98"
           >
             <span>See our work</span>
           </button>

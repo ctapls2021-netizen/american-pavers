@@ -49,11 +49,11 @@ const TESTIMONIALS = [
 
 export default function Home2Reviews() {
   return (
-    <section id="reviews" className="py-20 sm:py-28 bg-[#1A292C] text-white border-b border-stone-800 scroll-mt-20">
+    <section id="reviews" className="py-16 sm:py-24 lg:py-28 bg-[#1A292C] text-white border-b border-stone-800 scroll-mt-20 w-full max-w-full overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
-        <div className="max-w-3xl mb-12 sm:mb-16 text-left">
-          <span className="text-xs font-bold uppercase tracking-[0.22em] text-[#4CC66E] block mb-3">
+        <div className="max-w-3xl mb-10 sm:mb-16 text-left">
+          <span className="text-xs font-bold uppercase tracking-[0.22em] text-[#4CC66E] block mb-2 sm:mb-3">
             REVIEWS
           </span>
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-serif font-normal text-white tracking-tight leading-tight">
@@ -62,7 +62,7 @@ export default function Home2Reviews() {
         </div>
 
         {/* Platform Strip (Google, Yelp, Houzz) */}
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6">
           {PLATFORMS.map((p) => (
             <div
               key={p.name}

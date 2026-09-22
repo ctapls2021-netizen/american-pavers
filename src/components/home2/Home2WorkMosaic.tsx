@@ -70,7 +70,7 @@ export default function Home2WorkMosaic() {
   };
 
   return (
-    <section id="work" className="py-16 sm:py-20 lg:py-28 bg-white text-stone-900 border-b border-stone-200 scroll-mt-20">
+    <section id="work" className="py-16 sm:py-20 lg:py-28 bg-white text-stone-900 border-b border-stone-200 scroll-mt-20 w-full max-w-full overflow-hidden">
       {/* Full-bleed container: fills viewport width, fluid gutter padding */}
       <div className="w-full px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16">
         {/* Section Header */}

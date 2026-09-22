@@ -54,7 +54,7 @@ export default function Home2Services() {
   };
 
   return (
-    <section id="services" className="py-20 sm:py-28 bg-white text-stone-900 border-b border-stone-200 scroll-mt-20">
+    <section id="services" className="py-20 sm:py-28 bg-white text-stone-900 border-b border-stone-200 scroll-mt-20 w-full max-w-full overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="max-w-3xl mb-12 sm:mb-16 text-left">

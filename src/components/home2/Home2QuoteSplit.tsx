@@ -63,9 +63,9 @@ export default function Home2QuoteSplit() {
   };
 
   return (
-    <section id="quote-section" className="grid grid-cols-1 lg:grid-cols-2 scroll-mt-20 border-b border-stone-200">
+    <section id="quote-section" className="grid grid-cols-1 lg:grid-cols-2 scroll-mt-20 border-b border-stone-200 w-full max-w-full overflow-hidden">
       {/* Left Column: Photograph under translucent wash, content pushed right toward center seam */}
-      <div className="relative min-h-[560px] flex items-center bg-[#0E1719] text-white overflow-hidden py-16 sm:py-20 lg:py-24 px-6 sm:px-10 lg:px-16">
+      <div className="relative min-h-[520px] sm:min-h-[560px] flex items-center bg-[#0E1719] text-white overflow-hidden py-14 sm:py-20 lg:py-24 px-4 sm:px-10 lg:px-16">
         <Image
           src="/assets/brand/photo-crew-installer-closeup.png"
           alt="Installer hand-setting a paver"
@@ -123,7 +123,7 @@ export default function Home2QuoteSplit() {
       </div>
 
       {/* Right Column: Pure white background, form pushed left toward center seam */}
-      <div className="bg-white text-stone-900 flex items-center py-16 sm:py-20 lg:py-24 px-6 sm:px-10 lg:px-16">
+      <div className="bg-white text-stone-900 flex items-center py-14 sm:py-20 lg:py-24 px-4 sm:px-10 lg:px-16">
         <div className="w-full max-w-[560px] mx-auto lg:mr-auto lg:ml-0 text-left">
           {status === 'success' ? (
             <div className="py-12 text-center space-y-4">

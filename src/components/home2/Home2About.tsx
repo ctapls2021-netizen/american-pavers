@@ -32,7 +32,7 @@ export default function Home2About() {
   };
 
   return (
-    <section id="about" className="relative bg-[#0E1719] text-white overflow-hidden scroll-mt-20">
+    <section id="about" className="relative bg-[#0E1719] text-white overflow-hidden scroll-mt-20 w-full max-w-full">
       {/* Background Image */}
       <div className="absolute inset-0 z-0">
         <Image
@@ -102,7 +102,7 @@ export default function Home2About() {
             <button
               type="button"
               onClick={() => scrollTo('quote-section')}
-              className="px-7 py-3 bg-transparent hover:bg-white hover:text-[#019934] text-white font-bold text-xs uppercase tracking-wider rounded border-2 border-white transition-all duration-300 flex items-center gap-2 shrink-0 cursor-pointer active:scale-98"
+              className="w-full sm:w-auto justify-center px-7 py-3 bg-transparent hover:bg-white hover:text-[#019934] text-white font-bold text-xs uppercase tracking-wider rounded border-2 border-white transition-all duration-300 flex items-center gap-2 shrink-0 cursor-pointer active:scale-98"
             >
               <span>Meet the crew</span>
               <ArrowRight className="w-4 h-4" />
