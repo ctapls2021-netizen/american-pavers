@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import Image from 'next/image';
-import { MapPin, Clock, Phone, ArrowRight, Check, Loader2 } from 'lucide-react';
+import { MapPin, Clock, Phone, ArrowRight, Check, ChevronDown, Loader2 } from 'lucide-react';
 import { companyData } from '@/data/company';
 
 const SERVICES = [
@@ -18,9 +18,8 @@ export default function Home2QuoteSplit() {
   const [formData, setFormData] = useState({
     name: '',
     phone: '',
-    zipCode: '',
-    service: 'Paver driveway',
-    notes: '',
+    addressOrZip: '',
+    service: '',
     consent: true,
   });
 
@@ -46,9 +45,9 @@ export default function Home2QuoteSplit() {
           firstName,
           lastName,
           phone: formData.phone,
-          zipCode: formData.zipCode || 'Los Angeles',
-          serviceInterest: formData.service,
-          notes: `${formData.notes ? formData.notes + ' | ' : ''}SMS Consent: ${formData.consent ? 'Yes' : 'No'}`,
+          zipCode: formData.addressOrZip || 'Los Angeles',
+          serviceInterest: formData.service || 'Paver driveway',
+          notes: `SMS Consent: ${formData.consent ? 'Yes' : 'No'}`,
           timeframe: 'Immediate',
         }),
       });
@@ -64,67 +63,74 @@ export default function Home2QuoteSplit() {
   };
 
   return (
-    <section id="quote-section" className="grid grid-cols-1 lg:grid-cols-12 min-h-[580px] scroll-mt-20 border-b border-stone-200">
-      {/* Left Column: Photo & Company Info */}
-      <div className="lg:col-span-6 relative flex items-center bg-[#0E1719] text-white overflow-hidden py-16 sm:py-20 px-6 sm:px-12 lg:px-16">
+    <section id="quote-section" className="grid grid-cols-1 lg:grid-cols-2 scroll-mt-20 border-b border-stone-200">
+      {/* Left Column: Photograph under translucent wash, content pushed right toward center seam */}
+      <div className="relative min-h-[520px] flex items-center bg-[#0E1719] text-white overflow-hidden py-16 sm:py-20 px-6 sm:px-10 lg:px-16">
         <Image
           src="/assets/brand/photo-crew-installer-closeup.png"
-          alt="Installer hand-setting an interlocking paver"
+          alt="Installer hand-setting a paver"
           fill
           sizes="(max-width: 1024px) 100vw, 50vw"
           className="object-cover object-center"
         />
+        {/* Exact 80% opacity dark wash */}
         <div className="absolute inset-0 bg-[#0E1719]/80" />
 
-        <div className="relative z-10 max-w-lg text-left">
-          <span className="text-xs font-bold uppercase tracking-[0.22em] text-[#4CC66E] block mb-3">
+        <div className="relative z-10 w-full max-w-[560px] ml-auto mr-0 text-left">
+          <span className="text-xs font-bold uppercase tracking-[0.22em] text-[#4CC66E] block mb-2.5">
             FREE ESTIMATE
           </span>
 
-          <h2 className="text-3xl sm:text-4xl font-serif font-normal text-white tracking-tight leading-tight">
+          <h2 className="text-2xl sm:text-3xl lg:text-[28px] font-serif font-normal text-white tracking-tight leading-tight">
             Tell us about the project.
           </h2>
 
-          <p className="mt-4 text-stone-300 text-sm sm:text-base leading-relaxed font-normal">
+          {/* Green accent rule (56px x 3px) */}
+          <div className="w-14 h-[3px] bg-[#019934] mt-3.5 mb-5" />
+
+          <p className="text-stone-300 text-sm sm:text-base lg:text-[17px] leading-relaxed font-normal">
             We reply within one business day and book the site visit at a time you are home.
           </p>
 
-          <div className="mt-8 space-y-4 pt-6 border-t border-white/15">
+          <div className="mt-8 space-y-3.5">
             <div className="flex items-center gap-3 text-stone-200 text-xs sm:text-sm">
-              <span className="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center shrink-0 text-[#4CC66E]">
-                <MapPin className="w-4 h-4" />
+              <span className="text-[#4CC66E] flex items-center shrink-0">
+                <MapPin className="w-4 h-4 stroke-[1.5]" />
               </span>
               <span>Serving Los Angeles County — Valley to the South Bay</span>
             </div>
 
             <div className="flex items-center gap-3 text-stone-200 text-xs sm:text-sm">
-              <span className="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center shrink-0 text-[#4CC66E]">
-                <Clock className="w-4 h-4" />
+              <span className="text-[#4CC66E] flex items-center shrink-0">
+                <Clock className="w-4 h-4 stroke-[1.5]" />
               </span>
               <span>Mon–Sat, 7am–6pm</span>
             </div>
 
             <div className="flex items-center gap-3 text-stone-200 text-xs sm:text-sm">
-              <span className="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center shrink-0 text-[#4CC66E]">
-                <Phone className="w-4 h-4" />
+              <span className="text-[#4CC66E] flex items-center shrink-0">
+                <Phone className="w-4 h-4 stroke-[1.5]" />
               </span>
-              <a href={`tel:${companyData.phone}`} className="font-semibold text-white hover:text-[#4CC66E] transition-colors">
-                {companyData.formattedPhone}
+              <a
+                href={`tel:${companyData.phone}`}
+                className="hover:text-[#4CC66E] transition-colors"
+              >
+                {companyData.formattedPhone} — placeholder number
               </a>
             </div>
           </div>
         </div>
       </div>
 
-      {/* Right Column: Quote Form */}
-      <div className="lg:col-span-6 bg-white text-stone-900 flex items-center py-16 sm:py-20 px-6 sm:px-12 lg:px-16">
-        <div className="w-full max-w-lg mx-auto text-left">
+      {/* Right Column: Pure white background, form pushed left toward center seam */}
+      <div className="bg-white text-stone-900 flex items-center py-16 sm:py-20 px-6 sm:px-10 lg:px-16">
+        <div className="w-full max-w-[560px] mr-auto ml-0 text-left">
           {status === 'success' ? (
             <div className="py-12 text-center space-y-4">
-              <div className="w-16 h-16 bg-[#019934]/15 rounded-full flex items-center justify-center mx-auto text-[#019934]">
-                <Check className="w-8 h-8 stroke-[2.5]" />
+              <div className="w-14 h-14 bg-[#019934]/15 rounded-full flex items-center justify-center mx-auto text-[#019934]">
+                <Check className="w-7 h-7 stroke-[2.5]" />
               </div>
-              <h3 className="font-serif text-2xl sm:text-3xl text-[#1A292C]">
+              <h3 className="font-serif text-2xl text-[#1A292C]">
                 Request received
               </h3>
               <p className="text-stone-600 text-sm max-w-sm mx-auto leading-relaxed">
@@ -137,13 +143,12 @@ export default function Home2QuoteSplit() {
                   setFormData({
                     name: '',
                     phone: '',
-                    zipCode: '',
-                    service: 'Paver driveway',
-                    notes: '',
+                    addressOrZip: '',
+                    service: '',
                     consent: true,
                   });
                 }}
-                className="mt-4 px-6 py-2.5 bg-[#1A292C] text-white text-xs font-bold uppercase tracking-wider rounded hover:bg-stone-800 transition-colors"
+                className="mt-4 px-6 py-2.5 bg-[#019934] text-white text-xs font-semibold rounded hover:bg-[#017026] transition-colors"
               >
                 Submit another request
               </button>
@@ -151,16 +156,20 @@ export default function Home2QuoteSplit() {
           ) : (
             <form onSubmit={handleSubmit} className="space-y-4">
               <div>
-                <h3 className="font-serif text-2xl sm:text-3xl text-[#1A292C] font-normal leading-tight">
+                <h3 className="font-serif text-2xl sm:text-[26px] text-[#1A292C] font-normal leading-tight">
                   Get a free on-site estimate
                 </h3>
-                <div className="w-14 h-[3px] bg-[#019934] mt-3 mb-5" />
+                {/* Green accent rule (56px x 3px) */}
+                <div className="w-14 h-[3px] bg-[#019934] mt-3.5 mb-6" />
               </div>
 
               {/* Name */}
-              <div>
-                <label htmlFor="quote-name" className="block text-xs font-bold uppercase tracking-wider text-[#1A292C] mb-1.5">
-                  Name *
+              <div className="flex flex-col gap-1.5">
+                <label
+                  htmlFor="quote-name"
+                  className="text-[13px] font-semibold tracking-[0.08em] uppercase text-stone-500"
+                >
+                  Name <span className="text-[#019934]">*</span>
                 </label>
                 <input
                   id="quote-name"
@@ -169,16 +178,22 @@ export default function Home2QuoteSplit() {
                   placeholder="Jordan Ellis"
                   value={formData.name}
                   onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                  className="w-full h-12 bg-stone-50 border border-stone-300 rounded px-3.5 text-base text-[#1A292C] focus:bg-white focus:outline-none focus:border-[#019934] focus:ring-1 focus:ring-[#019934] transition-all"
+                  className="w-full bg-white text-[#1A292C] placeholder:text-stone-400 text-base py-3 px-3.5 border border-stone-200 rounded-[6px] focus:outline-none focus:border-[#019934] focus:ring-2 focus:ring-[#019934]/30 transition-all"
                 />
               </div>
 
-              {/* Phone & ZIP */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <div>
-                  <label htmlFor="quote-phone" className="block text-xs font-bold uppercase tracking-wider text-[#1A292C] mb-1.5">
-                    Phone *
-                  </label>
+              {/* Phone with icon */}
+              <div className="flex flex-col gap-1.5">
+                <label
+                  htmlFor="quote-phone"
+                  className="text-[13px] font-semibold tracking-[0.08em] uppercase text-stone-500"
+                >
+                  Phone <span className="text-[#019934]">*</span>
+                </label>
+                <div className="relative flex items-center">
+                  <span className="absolute left-3.5 text-stone-400 pointer-events-none flex">
+                    <Phone className="w-[18px] h-[18px] stroke-[1.5]" />
+                  </span>
                   <input
                     id="quote-phone"
                     type="tel"
@@ -186,78 +201,93 @@ export default function Home2QuoteSplit() {
                     placeholder="(323) 555-0100"
                     value={formData.phone}
                     onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                    className="w-full h-12 bg-stone-50 border border-stone-300 rounded px-3.5 text-base text-[#1A292C] focus:bg-white focus:outline-none focus:border-[#019934] focus:ring-1 focus:ring-[#019934] transition-all"
+                    className="w-full bg-white text-[#1A292C] placeholder:text-stone-400 text-base py-3 pl-11 pr-3.5 border border-stone-200 rounded-[6px] focus:outline-none focus:border-[#019934] focus:ring-2 focus:ring-[#019934]/30 transition-all"
                   />
                 </div>
+              </div>
 
-                <div>
-                  <label htmlFor="quote-zip" className="block text-xs font-bold uppercase tracking-wider text-[#1A292C] mb-1.5">
-                    Address or ZIP
-                  </label>
+              {/* Address or ZIP with icon */}
+              <div className="flex flex-col gap-1.5">
+                <label
+                  htmlFor="quote-zip"
+                  className="text-[13px] font-semibold tracking-[0.08em] uppercase text-stone-500"
+                >
+                  Address or ZIP
+                </label>
+                <div className="relative flex items-center">
+                  <span className="absolute left-3.5 text-stone-400 pointer-events-none flex">
+                    <MapPin className="w-[18px] h-[18px] stroke-[1.5]" />
+                  </span>
                   <input
                     id="quote-zip"
                     type="text"
                     placeholder="Sherman Oaks, 91403"
-                    value={formData.zipCode}
-                    onChange={(e) => setFormData({ ...formData, zipCode: e.target.value })}
-                    className="w-full h-12 bg-stone-50 border border-stone-300 rounded px-3.5 text-base text-[#1A292C] focus:bg-white focus:outline-none focus:border-[#019934] focus:ring-1 focus:ring-[#019934] transition-all"
+                    value={formData.addressOrZip}
+                    onChange={(e) => setFormData({ ...formData, addressOrZip: e.target.value })}
+                    className="w-full bg-white text-[#1A292C] placeholder:text-stone-400 text-base py-3 pl-11 pr-3.5 border border-stone-200 rounded-[6px] focus:outline-none focus:border-[#019934] focus:ring-2 focus:ring-[#019934]/30 transition-all"
                   />
                 </div>
               </div>
 
-              {/* Service */}
-              <div>
-                <label htmlFor="quote-service" className="block text-xs font-bold uppercase tracking-wider text-[#1A292C] mb-1.5">
-                  Service *
-                </label>
-                <select
-                  id="quote-service"
-                  value={formData.service}
-                  onChange={(e) => setFormData({ ...formData, service: e.target.value })}
-                  className="w-full h-12 bg-stone-50 border border-stone-300 rounded px-3.5 text-base text-[#1A292C] focus:bg-white focus:outline-none focus:border-[#019934] focus:ring-1 focus:ring-[#019934] transition-all"
+              {/* Service with chevron icon */}
+              <div className="flex flex-col gap-1.5">
+                <label
+                  htmlFor="quote-service"
+                  className="text-[13px] font-semibold tracking-[0.08em] uppercase text-stone-500"
                 >
-                  {SERVICES.map((s) => (
-                    <option key={s} value={s}>
-                      {s}
-                    </option>
-                  ))}
-                </select>
-              </div>
-
-              {/* Project details */}
-              <div>
-                <label htmlFor="quote-notes" className="block text-xs font-bold uppercase tracking-wider text-[#1A292C] mb-1.5">
-                  Project details
+                  Service <span className="text-[#019934]">*</span>
                 </label>
-                <textarea
-                  id="quote-notes"
-                  rows={2}
-                  placeholder="Approximate square footage, timeline, anything else."
-                  value={formData.notes}
-                  onChange={(e) => setFormData({ ...formData, notes: e.target.value })}
-                  className="w-full bg-stone-50 border border-stone-300 rounded p-3 text-sm text-[#1A292C] focus:bg-white focus:outline-none focus:border-[#019934] focus:ring-1 focus:ring-[#019934] transition-all resize-y"
-                />
+                <div className="relative flex items-center">
+                  <select
+                    id="quote-service"
+                    required
+                    value={formData.service}
+                    onChange={(e) => setFormData({ ...formData, service: e.target.value })}
+                    className="w-full bg-white text-[#1A292C] text-base py-3 pl-3.5 pr-11 border border-stone-200 rounded-[6px] appearance-none cursor-pointer focus:outline-none focus:border-[#019934] focus:ring-2 focus:ring-[#019934]/30 transition-all"
+                  >
+                    <option value="">Choose a service</option>
+                    {SERVICES.map((s) => (
+                      <option key={s} value={s}>
+                        {s}
+                      </option>
+                    ))}
+                  </select>
+                  <span className="absolute right-3.5 text-stone-400 pointer-events-none flex">
+                    <ChevronDown className="w-[18px] h-[18px] stroke-[1.5]" />
+                  </span>
+                </div>
               </div>
 
-              {/* Consent checkbox */}
-              <label className="flex items-start gap-2.5 cursor-pointer pt-1">
-                <input
-                  type="checkbox"
-                  checked={formData.consent}
-                  onChange={(e) => setFormData({ ...formData, consent: e.target.checked })}
-                  className="mt-0.5 w-4 h-4 rounded text-[#019934] focus:ring-[#019934] border-stone-300 cursor-pointer"
-                />
-                <span className="text-xs text-stone-600 leading-snug">
-                  Text me photos of similar installs in my neighborhood.
-                </span>
-              </label>
+              {/* Consent Checkbox */}
+              <div className="pt-2">
+                <label className="flex items-start gap-3 cursor-pointer select-none">
+                  <input
+                    type="checkbox"
+                    checked={formData.consent}
+                    onChange={(e) => setFormData({ ...formData, consent: e.target.checked })}
+                    className="sr-only"
+                  />
+                  <span
+                    className={`w-5 h-5 rounded-[4px] mt-0.5 flex items-center justify-center transition-colors border ${
+                      formData.consent
+                        ? 'bg-[#019934] border-[#019934] text-white'
+                        : 'bg-white border-stone-300'
+                    }`}
+                  >
+                    {formData.consent && <Check className="w-3.5 h-3.5 stroke-[2.5]" />}
+                  </span>
+                  <span className="text-sm text-stone-700 leading-normal">
+                    Text me photos of similar installs in my neighborhood.
+                  </span>
+                </label>
+              </div>
 
               {/* Submit Button */}
-              <div className="pt-2">
+              <div className="pt-3">
                 <button
                   type="submit"
                   disabled={status === 'submitting'}
-                  className="w-full h-14 bg-[#019934] hover:bg-[#017026] active:scale-98 text-white font-bold text-sm sm:text-base uppercase tracking-wider rounded shadow transition-all flex items-center justify-center gap-2 cursor-pointer"
+                  className="w-full py-4 px-6 bg-[#019934] hover:bg-[#017026] active:scale-[0.99] text-white font-semibold text-base sm:text-lg rounded-[6px] transition-colors flex items-center justify-center gap-2.5 cursor-pointer shadow-sm disabled:opacity-70"
                 >
                   {status === 'submitting' ? (
                     <>
@@ -267,13 +297,14 @@ export default function Home2QuoteSplit() {
                   ) : (
                     <>
                       <span>Request my estimate</span>
-                      <ArrowRight className="w-4 h-4" />
+                      <ArrowRight className="w-5 h-5 stroke-[1.75]" />
                     </>
                   )}
                 </button>
               </div>
 
-              <p className="text-[11px] sm:text-xs text-stone-500 text-center pt-1">
+              {/* Microcopy note */}
+              <p className="text-xs text-stone-400 text-center pt-1">
                 We reply within one business day. No pressure, no subcontractors.
               </p>
             </form>
