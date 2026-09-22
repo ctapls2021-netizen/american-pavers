@@ -100,8 +100,8 @@ export default function Home2Header({ onOpenQuote }: Home2HeaderProps) {
         </div>
       </div>
 
-      {/* Main Navigation Bar (84px height) */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-[84px] flex items-center justify-between gap-6">
+      {/* Main Navigation Bar (72px mobile, 84px desktop) */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-[72px] sm:h-[84px] flex items-center justify-between gap-3 sm:gap-6">
         {/* Logo (Horizontal White) */}
         <a
           href="#top"
@@ -109,7 +109,7 @@ export default function Home2Header({ onOpenQuote }: Home2HeaderProps) {
             e.preventDefault();
             scrollTo('top');
           }}
-          className="relative w-48 sm:w-56 h-[42px] shrink-0 flex items-center"
+          className="relative w-40 sm:w-56 h-[36px] sm:h-[42px] shrink-0 flex items-center"
         >
           <Image
             src="/assets/brand/logo-horizontal-white.png"
@@ -162,7 +162,7 @@ export default function Home2Header({ onOpenQuote }: Home2HeaderProps) {
         </nav>
 
         {/* Right CTA Actions */}
-        <div className="flex items-center gap-4 shrink-0">
+        <div className="flex items-center gap-2.5 sm:gap-4 shrink-0">
           {/* Direct Phone Link */}
           <a
             href={`tel:${companyData.phone}`}
@@ -176,7 +176,7 @@ export default function Home2Header({ onOpenQuote }: Home2HeaderProps) {
           <button
             type="button"
             onClick={handleQuoteClick}
-            className="px-5 py-2.5 bg-[#019934] hover:bg-[#017026] text-white text-sm font-semibold rounded-[6px] shadow-sm transition-colors cursor-pointer active:scale-98"
+            className="px-3.5 sm:px-5 py-2 sm:py-2.5 bg-[#019934] hover:bg-[#017026] text-white text-xs sm:text-sm font-semibold rounded-[6px] shadow-sm transition-colors cursor-pointer active:scale-98"
           >
             Get a free quote
           </button>

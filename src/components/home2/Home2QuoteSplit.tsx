@@ -76,7 +76,7 @@ export default function Home2QuoteSplit() {
         {/* Exact 80% opacity dark wash */}
         <div className="absolute inset-0 bg-[#0E1719]/80" />
 
-        <div className="relative z-10 w-full max-w-[560px] ml-auto mr-0 text-left">
+        <div className="relative z-10 w-full max-w-[560px] mx-auto lg:ml-auto lg:mr-0 text-left">
           <span className="text-xs sm:text-sm font-bold uppercase tracking-[0.22em] text-[#4CC66E] block mb-3">
             FREE ESTIMATE
           </span>
@@ -124,7 +124,7 @@ export default function Home2QuoteSplit() {
 
       {/* Right Column: Pure white background, form pushed left toward center seam */}
       <div className="bg-white text-stone-900 flex items-center py-16 sm:py-20 lg:py-24 px-6 sm:px-10 lg:px-16">
-        <div className="w-full max-w-[560px] mr-auto ml-0 text-left">
+        <div className="w-full max-w-[560px] mx-auto lg:mr-auto lg:ml-0 text-left">
           {status === 'success' ? (
             <div className="py-12 text-center space-y-4">
               <div className="w-14 h-14 bg-[#019934]/15 rounded-full flex items-center justify-center mx-auto text-[#019934]">

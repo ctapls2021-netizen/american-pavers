@@ -1,3 +1,5 @@
+'use client';
+
 import React from 'react';
 import Image from 'next/image';
 import { Hammer, Calendar, ShieldCheck, Star, ArrowRight } from 'lucide-react';
@@ -16,7 +18,7 @@ export default function Home2Hero() {
   };
 
   return (
-    <section id="hero" className="relative min-h-[760px] flex items-center bg-[#0E1719] text-white overflow-hidden">
+    <section id="hero" className="relative min-h-[640px] sm:min-h-[720px] lg:min-h-[760px] flex items-center bg-[#0E1719] text-white overflow-hidden">
       {/* Background Image */}
       <div className="absolute inset-0 z-0">
         <Image
@@ -27,12 +29,12 @@ export default function Home2Hero() {
           sizes="100vw"
           className="object-cover object-[center_right] sm:object-center"
         />
-        {/* Scrim Overlays identical to original CSS */}
-        <div className="absolute inset-0 bg-gradient-to-r from-[#0E1719]/90 via-[#0E1719]/65 to-[#0E1719]/25 sm:w-[75%]" />
+        {/* Scrim Overlays */}
+        <div className="absolute inset-0 bg-gradient-to-r from-[#0E1719]/95 via-[#0E1719]/75 to-[#0E1719]/30 lg:w-[75%]" />
         <div className="absolute inset-0 bg-gradient-to-t from-[#0E1719]/80 via-transparent to-transparent" />
       </div>
 
-      <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 sm:py-24">
+      <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20 lg:py-24">
         {/* Copy Container */}
         <div className="max-w-2xl text-left">
           <span className="text-xs sm:text-sm font-bold uppercase tracking-[0.22em] text-[#4CC66E] block mb-3">
@@ -43,15 +45,15 @@ export default function Home2Hero() {
             Luxury remodeling designed around your lifestyle.
           </h1>
 
-          <p className="mt-5 text-stone-300 text-base sm:text-lg lg:text-xl font-normal leading-relaxed max-w-xl">
+          <p className="mt-4 sm:mt-5 text-stone-300 text-base sm:text-lg lg:text-xl font-normal leading-relaxed max-w-xl">
             We design and install paver driveways, patios and artificial turf lawns across Los Angeles County. One crew, one warranty, and the base work done properly underneath.
           </p>
 
-          <div className="mt-8 flex flex-wrap items-center gap-3.5">
+          <div className="mt-7 sm:mt-8 flex flex-col sm:flex-row items-stretch sm:items-center gap-3.5 sm:gap-4">
             <button
               type="button"
               onClick={() => scrollTo('quote-section')}
-              className="px-8 py-4 bg-[#019934] hover:bg-[#017026] text-white font-bold text-xs sm:text-sm uppercase tracking-wider rounded shadow-lg transition-all flex items-center gap-2 cursor-pointer active:scale-98"
+              className="w-full sm:w-auto px-7 sm:px-8 py-3.5 sm:py-4 bg-[#019934] hover:bg-[#017026] text-white font-bold text-xs sm:text-sm uppercase tracking-wider rounded shadow-lg transition-all flex items-center justify-center gap-2 cursor-pointer active:scale-98"
             >
               <span>Get a free quote</span>
               <ArrowRight className="w-4 h-4" />
@@ -60,27 +62,31 @@ export default function Home2Hero() {
             <button
               type="button"
               onClick={() => scrollTo('work')}
-              className="px-8 py-4 bg-white/10 hover:bg-white/20 text-white font-semibold text-xs sm:text-sm uppercase tracking-wider rounded border border-white/20 backdrop-blur-sm transition-all cursor-pointer"
+              className="w-full sm:w-auto px-7 sm:px-8 py-3.5 sm:py-4 bg-white/10 hover:bg-white/20 text-white font-semibold text-xs sm:text-sm uppercase tracking-wider rounded border border-white/20 backdrop-blur-sm transition-all flex items-center justify-center cursor-pointer"
             >
               See our work
             </button>
           </div>
         </div>
 
-        {/* Integrated StatRow Overlay */}
-        <div className="mt-16 sm:mt-20 pt-8 border-t border-white/15">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 sm:gap-8">
+        {/* Integrated StatRow Overlay: 2 columns under 1200px, 4 columns at 1200px and above */}
+        <div className="mt-12 sm:mt-16 lg:mt-20 pt-8 border-t border-white/15">
+          <div className="grid grid-cols-2 min-[1200px]:grid-cols-4 gap-6 sm:gap-8">
             {STATS.map((s, i) => {
               const IconComp = s.icon;
+              const isEvenIn2Col = i % 2 === 1;
+
               return (
                 <div
                   key={s.label}
-                  className={`flex items-start gap-4 ${
-                    i > 0 ? 'md:border-l md:border-white/15 md:pl-6' : ''
+                  className={`flex items-start gap-3.5 sm:gap-4 ${
+                    isEvenIn2Col ? 'max-[1199px]:border-l max-[1199px]:border-white/15 max-[1199px]:pl-5 sm:max-[1199px]:pl-6' : ''
+                  } ${
+                    i > 0 ? 'min-[1200px]:border-l min-[1200px]:border-white/15 min-[1200px]:pl-6' : ''
                   }`}
                 >
-                  <span className="text-[#4CC66E] shrink-0 mt-1">
-                    <IconComp className="w-5 h-5" />
+                  <span className="text-[#4CC66E] shrink-0 mt-0.5 sm:mt-1">
+                    <IconComp className="w-4 h-4 sm:w-5 sm:h-5" />
                   </span>
                   <div>
                     <div className="font-serif text-2xl sm:text-3xl lg:text-4xl text-white font-normal leading-none">

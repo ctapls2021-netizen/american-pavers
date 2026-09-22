@@ -22,9 +22,10 @@ export default function Home2Footer() {
   return (
     <footer className="bg-[#0E1719] text-stone-400 border-t border-stone-800">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 lg:gap-12">
-          {/* Col 1: Brand Info (5 cols) */}
-          <div className="lg:col-span-5 text-left">
+        {/* 4 columns at >=1200px, 2 columns under 1200px, 1 column on mobile */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 min-[1200px]:grid-cols-4 gap-10 lg:gap-12 text-left">
+          {/* Col 1: Brand Info */}
+          <div>
             <div className="relative w-52 h-10 mb-5">
               <Image
                 src="/assets/brand/logo-horizontal-white.png"
@@ -62,26 +63,24 @@ export default function Home2Footer() {
             </div>
           </div>
 
-          {/* Col 2, 3, 4: Link Groups (7 cols) */}
-          <div className="lg:col-span-7 grid grid-cols-2 sm:grid-cols-3 gap-8 text-left">
-            {COLS.map((col) => (
-              <div key={col.title}>
-                <span className="text-xs font-bold uppercase tracking-[0.22em] text-[#4CC66E] block mb-4">
-                  {col.title}
-                </span>
+          {/* Col 2, 3, 4: Link Columns */}
+          {COLS.map((col) => (
+            <div key={col.title}>
+              <span className="text-xs font-bold uppercase tracking-[0.22em] text-[#4CC66E] block mb-4">
+                {col.title}
+              </span>
 
-                <ul className="space-y-2.5 text-sm text-stone-300">
-                  {col.links.map((link) => (
-                    <li key={link}>
-                      <a href="#services" className="hover:text-white transition-colors">
-                        {link}
-                      </a>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            ))}
-          </div>
+              <ul className="space-y-2.5 text-sm text-stone-300">
+                {col.links.map((link) => (
+                  <li key={link}>
+                    <a href="#services" className="hover:text-white transition-colors">
+                      {link}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
         </div>
       </div>
 
