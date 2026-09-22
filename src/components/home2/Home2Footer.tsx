@@ -23,7 +23,7 @@ export default function Home2Footer() {
     <footer className="bg-[#0E1719] text-stone-400 border-t border-stone-800 w-full max-w-full overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20">
         {/* 4 columns at >=1200px, 2 columns under 1200px, 1 column on mobile */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 min-[1200px]:grid-cols-4 gap-10 lg:gap-12 text-left">
+        <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-10 lg:gap-12 text-left">
           {/* Col 1: Brand Info */}
           <div>
             <div className="relative w-52 h-10 mb-5">

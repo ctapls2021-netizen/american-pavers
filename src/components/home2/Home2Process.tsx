@@ -94,12 +94,12 @@ export default function Home2Process() {
         {/* Process Timeline Rail Container: CSS-based responsive layout (zero horizontal overflow) */}
         <ol
           ref={railRef}
-          className="relative list-none mx-auto max-w-[1060px] pl-14 sm:pl-20 min-[900px]:pl-0"
+          className="relative list-none mx-auto max-w-[1060px] pl-14 sm:pl-20 lg:pl-0"
         >
           {/* Background Rail */}
           <span
             aria-hidden="true"
-            className="absolute top-2.5 bottom-2.5 w-[2px] bg-stone-200 left-[23px] sm:left-[31px] min-[900px]:left-1/2 min-[900px]:-translate-x-1/2"
+            className="absolute top-2.5 bottom-2.5 w-[2px] bg-stone-200 left-[23px] sm:left-[31px] lg:left-1/2 lg:-translate-x-1/2"
           />
 
           {/* Animated Filled Green Rail */}
@@ -108,7 +108,7 @@ export default function Home2Process() {
             style={{
               height: `calc((100% - 20px) * ${progress})`,
             }}
-            className="absolute top-2.5 w-[2px] bg-[#019934] left-[23px] sm:left-[31px] min-[900px]:left-1/2 min-[900px]:-translate-x-1/2 transition-[height] duration-200 linear"
+            className="absolute top-2.5 w-[2px] bg-[#019934] left-[23px] sm:left-[31px] lg:left-1/2 lg:-translate-x-1/2 transition-[height] duration-200 linear"
           />
 
           {PROCESS_STEPS.map((step, i) => {
@@ -128,11 +128,11 @@ export default function Home2Process() {
                   transform: on ? 'none' : 'translateY(12px)',
                 }}
                 className={`relative transition-all duration-500 ease-out ${
-                  isLast ? 'pb-0' : 'pb-12 sm:pb-18 min-[900px]:pb-24'
+                  isLast ? 'pb-0' : 'pb-12 sm:pb-18 lg:pb-24'
                 }`}
               >
-                {/* Desktop Alternating View (min-[900px]:grid) */}
-                <div className="hidden min-[900px]:grid grid-cols-[1fr_128px_1fr] items-start">
+                {/* Desktop Alternating View (lg:grid) */}
+                <div className="hidden lg:grid grid-cols-[1fr_128px_1fr] items-start">
                   {/* Left Column */}
                   <div>
                     {!isRight && (
@@ -194,7 +194,7 @@ export default function Home2Process() {
                 </div>
 
                 {/* Mobile & Tablet View (<900px: clean single column) */}
-                <div className="min-[900px]:hidden text-left relative">
+                <div className="lg:hidden text-left relative">
                   {/* Left Node Icon */}
                   <span
                     className={`absolute top-0 -left-14 sm:-left-20 w-12 h-12 sm:w-16 sm:h-16 rounded-full flex items-center justify-center transition-all duration-300 z-10 border-2 ${

@@ -71,7 +71,7 @@ export default function Home2Hero() {
 
         {/* Integrated StatRow Overlay: 2 columns under 1200px, 4 columns at >=1200px */}
         <div className="mt-10 sm:mt-16 lg:mt-20 pt-6 sm:pt-8 border-t border-white/15">
-          <div className="grid grid-cols-2 min-[1200px]:grid-cols-4 gap-4 sm:gap-6 lg:gap-8">
+          <div className="grid grid-cols-2 xl:grid-cols-4 gap-4 sm:gap-6 lg:gap-8">
             {STATS.map((s, i) => {
               const IconComp = s.icon;
               const hasLeftBorder = i === 1 || i === 3;
@@ -84,7 +84,7 @@ export default function Home2Hero() {
                     hasLeftBorder
                       ? 'border-l border-white/15 pl-4 sm:pl-6'
                       : hasDesktopOnlyBorder
-                      ? 'min-[1200px]:border-l min-[1200px]:border-white/15 min-[1200px]:pl-6'
+                      ? 'xl:border-l xl:border-white/15 xl:pl-6'
                       : ''
                   }`}
                 >

@@ -1,6 +1,12 @@
-import type { Metadata } from 'next';
+import type { Metadata, Viewport } from 'next';
 import './globals.css';
 import LiveVisualEditing from '@/components/sanity/LiveVisualEditing';
+
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  maximumScale: 5,
+};
 
 export const metadata: Metadata = {
   title: 'American Pavers & Turf | Luxury Pavers, Artificial Turf & Outdoor Living',

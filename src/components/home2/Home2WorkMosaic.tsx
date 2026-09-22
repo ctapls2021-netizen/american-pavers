@@ -10,56 +10,56 @@ const WORK_ITEMS = [
     tag: 'Driveway',
     title: 'Herringbone driveway, 2,400 sq ft',
     location: 'Sherman Oaks',
-    spanClass: 'col-span-1 sm:col-span-2 sm:row-span-2 min-[1200px]:col-span-2 min-[1200px]:row-span-2',
+    spanClass: 'col-span-1 sm:col-span-2 sm:row-span-2 xl:col-span-2 xl:row-span-2',
   },
   {
     image: '/assets/brand/photo-cobble-walkway.png',
     tag: 'Steps',
     title: 'Stepped entry, 42 risers',
     location: 'Silver Lake',
-    spanClass: 'col-span-1 sm:col-span-1 sm:row-span-2 min-[1200px]:col-span-1 min-[1200px]:row-span-2',
+    spanClass: 'col-span-1 sm:col-span-1 sm:row-span-2 xl:col-span-1 xl:row-span-2',
   },
   {
     image: '/assets/brand/photo-bluestone-slabs.png',
     tag: 'Patio',
     title: 'Bluestone patio',
     location: 'Pasadena',
-    spanClass: 'col-span-1 sm:col-span-1 sm:row-span-1 min-[1200px]:col-span-1 min-[1200px]:row-span-1',
+    spanClass: 'col-span-1 sm:col-span-1 sm:row-span-1 xl:col-span-1 xl:row-span-1',
   },
   {
     image: '/assets/brand/photo-cobble-walkway.png',
     tag: 'Walkway',
     title: 'Charcoal cobble path',
     location: 'Glendale',
-    spanClass: 'col-span-1 sm:col-span-1 sm:row-span-1 min-[1200px]:col-span-1 min-[1200px]:row-span-1',
+    spanClass: 'col-span-1 sm:col-span-1 sm:row-span-1 xl:col-span-1 xl:row-span-1',
   },
   {
     image: '/assets/brand/photo-bluestone-slabs.png',
     tag: 'Pool deck',
     title: 'Porcelain pool deck',
     location: 'Studio City',
-    spanClass: 'col-span-1 sm:col-span-1 sm:row-span-1 min-[1200px]:col-span-1 min-[1200px]:row-span-1',
+    spanClass: 'col-span-1 sm:col-span-1 sm:row-span-1 xl:col-span-1 xl:row-span-1',
   },
   {
     image: '/assets/brand/photo-driveway-herringbone.png',
     tag: 'Driveway',
     title: 'Twin-band apron',
     location: 'Encino',
-    spanClass: 'col-span-1 sm:col-span-1 sm:row-span-1 min-[1200px]:col-span-1 min-[1200px]:row-span-1',
+    spanClass: 'col-span-1 sm:col-span-1 sm:row-span-1 xl:col-span-1 xl:row-span-1',
   },
   {
     image: '/assets/brand/photo-driveway-herringbone.png',
     tag: 'Turf',
     title: 'Front lawn replacement',
     location: 'Culver City',
-    spanClass: 'col-span-1 sm:col-span-1 sm:row-span-1 min-[1200px]:col-span-1 min-[1200px]:row-span-1',
+    spanClass: 'col-span-1 sm:col-span-1 sm:row-span-1 xl:col-span-1 xl:row-span-1',
   },
   {
     image: '/assets/brand/photo-bluestone-slabs.png',
     tag: 'Pool deck',
     title: 'Porcelain coping run',
     location: 'Woodland Hills',
-    spanClass: 'col-span-1 sm:col-span-1 sm:row-span-1 min-[1200px]:col-span-1 min-[1200px]:row-span-1',
+    spanClass: 'col-span-1 sm:col-span-1 sm:row-span-1 xl:col-span-1 xl:row-span-1',
   },
 ];
 
@@ -95,7 +95,7 @@ export default function Home2WorkMosaic() {
         </div>
 
         {/* Mosaic Grid: 1 col (<640px), 2 cols (<1200px), 4 cols (>=1200px) */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 min-[1200px]:grid-cols-4 gap-4 sm:gap-6 auto-rows-[240px] sm:auto-rows-[clamp(220px,18vw,300px)]">
+        <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4 sm:gap-6 auto-rows-[240px] sm:auto-rows-[clamp(220px,18vw,300px)]">
           {WORK_ITEMS.map((item, idx) => (
             <div
               key={idx}

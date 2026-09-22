@@ -70,7 +70,7 @@ export default function Home2Services() {
         </div>
 
         {/* 6 Service Cards Grid (3 columns >=1200px, 2 columns <1200px, 1 column mobile) */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 min-[1200px]:grid-cols-3 gap-6 sm:gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6 sm:gap-8">
           {SERVICES.map((s, idx) => {
             const IconComp = s.icon;
             return (
