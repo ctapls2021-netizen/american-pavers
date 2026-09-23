@@ -16,6 +16,7 @@ import DrivewayFeatureSplit from '@/components/sections/services/DrivewayFeature
 import PaversVsConcrete, { ComparisonItem } from '@/components/sections/services/PaversVsConcrete';
 import DrivewayCarouselSection from '@/components/sections/services/DrivewayCarouselSection';
 import TestimonialsGrid from '@/components/sections/TestimonialsGrid';
+import TurfProductTiers from '@/components/sections/services/TurfProductTiers';
 import { CheckCircle2, ShieldCheck, ChevronRight, Layers } from 'lucide-react';
 
 const turfComparisonData: ComparisonItem[] = [
@@ -399,7 +400,10 @@ export default function ServicePageClient({ service }: ServicePageClientProps) {
               onOpenModal={handleOpenModal}
             />
 
-            {/* 3. Turf vs Natural Grass Comparison */}
+            {/* 3. Turf Product Options: Standard, Pro & Premium */}
+            <TurfProductTiers onOpenModal={handleOpenModal} />
+
+            {/* 4. Turf vs Natural Grass Comparison */}
             <PaversVsConcrete
               overline="Lawn Performance Comparison"
               title="Why Synthetic Turf Beats High-Water Natural California Grass"
