@@ -1,6 +1,7 @@
 'use client';
 
 import React from 'react';
+import Image from 'next/image';
 import { Check, X, ShieldAlert, Sparkles, ShieldCheck, ChevronRight } from 'lucide-react';
 
 export interface ComparisonItem {
@@ -11,7 +12,17 @@ export interface ComparisonItem {
   detail: string;
 }
 
+export interface ComparativeImagesData {
+  primaryImage: string;
+  primaryLabel: string;
+  primaryBadge?: string;
+  secondaryImage: string;
+  secondaryLabel: string;
+  secondaryBadge?: string;
+}
+
 interface PaversVsConcreteProps {
+  serviceSlug?: string;
   onOpenModal?: () => void;
   overline?: string;
   title?: string;
@@ -21,6 +32,7 @@ interface PaversVsConcreteProps {
   items?: ComparisonItem[];
   footerText?: string;
   buttonText?: string;
+  comparativeImages?: ComparativeImagesData;
 }
 
 const comparisonData: ComparisonItem[] = [
@@ -69,6 +81,7 @@ const comparisonData: ComparisonItem[] = [
 ];
 
 export default function PaversVsConcrete({
+  serviceSlug,
   onOpenModal,
   overline = 'Engineering Comparison',
   title = 'Why Interlocking Pavers Outlast Conventional Concrete',
@@ -78,12 +91,144 @@ export default function PaversVsConcrete({
   items = comparisonData,
   footerText = 'Over 1,200+ California Transformations Completed. Backed by our 25-Year transferable structural guarantee.',
   buttonText = 'Calculate Your Project Cost',
+  comparativeImages,
 }: PaversVsConcreteProps) {
+  // Smart default comparative images based on section topic
+  const defaultImages: ComparativeImagesData = (() => {
+    // 1. Direct slug detection if provided
+    const slug = (serviceSlug || '').toLowerCase();
+    if (slug.includes('turf')) {
+      return {
+        primaryImage: '/assets/transformations/turf-lawn-after.webp',
+        primaryLabel: 'American Drought-Resistant Synthetic Turf',
+        primaryBadge: '365 Days Emerald Green · Zero Water',
+        secondaryImage: '/assets/transformations/turf-lawn-before.webp',
+        secondaryLabel: 'Natural High-Water California Grass',
+        secondaryBadge: 'Brown Patches, Mud & High Utility Costs',
+      };
+    }
+    if (slug.includes('patio')) {
+      return {
+        primaryImage: '/assets/transformations/patio-after.webp',
+        primaryLabel: 'Custom Interlocking Patio Pavers & Coping',
+        primaryBadge: 'Zero Cracks · 10,000+ PSI Luxury Living',
+        secondaryImage: '/assets/transformations/patio-before.webp',
+        secondaryLabel: 'Aging Poured Backyard Concrete Slab',
+        secondaryBadge: 'Hairline Cracking & Unsealed Concrete',
+      };
+    }
+    if (slug.includes('pool')) {
+      return {
+        primaryImage: '/assets/transformations/pool-deck-after.webp',
+        primaryLabel: 'Slip-Resistant Cool-Touch Pool Pavers & Coping',
+        primaryBadge: 'Barefoot Safe · Chlorine & Salt Resistant',
+        secondaryImage: '/assets/transformations/pool-deck-before.webp',
+        secondaryLabel: 'Conventional Slippery Concrete Pool Deck',
+        secondaryBadge: 'Burning Hot in Summer & Jackhammer Repairs',
+      };
+    }
+    if (slug.includes('kitchen')) {
+      return {
+        primaryImage: '/assets/transformations/fire-pit-after.webp',
+        primaryLabel: 'Custom Welded Steel & Natural Masonry Living',
+        primaryBadge: '304 Marine Stainless & Fully Permitted Utilities',
+        secondaryImage: '/assets/transformations/fire-pit-before.webp',
+        secondaryLabel: 'Prefabricated Modular Kit / Unfinished Space',
+        secondaryBadge: 'Flimsy Framing, Warping & Fire Code Violations',
+      };
+    }
+    if (slug.includes('deck') || slug.includes('pergola')) {
+      return {
+        primaryImage: '/assets/transformations/pergola-after.webp',
+        primaryLabel: 'Capped Composite Decking & Louvered Pergola',
+        primaryBadge: 'Zero Splinters · 25-50 Year Stain Warranty',
+        secondaryImage: '/assets/transformations/pergola-before.webp',
+        secondaryLabel: 'Weathered Natural Wood Deck & Framing',
+        secondaryBadge: 'Splinters, Warping & Annual Restaining',
+      };
+    }
+    if (slug.includes('driveway')) {
+      return {
+        primaryImage: '/assets/transformations/driveway-after.webp',
+        primaryLabel: '10,000+ PSI Interlocking Paver Driveway',
+        primaryBadge: '10,000+ PSI · Disperses Ground Settling',
+        secondaryImage: '/assets/transformations/driveway-before.webp',
+        secondaryLabel: 'Conventional Poured Concrete Driveway Slab',
+        secondaryBadge: 'Rigid Surface Prone to Cracking & Staining',
+      };
+    }
+
+    // 2. Keyword fallback (inspecting title, overline, and secondaryColumnTitle without brand pollution)
+    const t = `${title} ${overline} ${secondaryColumnTitle}`.toLowerCase();
+    if (t.includes('turf') || t.includes('grass') || t.includes('lawn')) {
+      return {
+        primaryImage: '/assets/transformations/turf-lawn-after.webp',
+        primaryLabel: 'American Drought-Resistant Synthetic Turf',
+        primaryBadge: '365 Days Emerald Green · Zero Water',
+        secondaryImage: '/assets/transformations/turf-lawn-before.webp',
+        secondaryLabel: 'Natural High-Water California Grass',
+        secondaryBadge: 'Brown Patches, Mud & High Utility Costs',
+      };
+    }
+    if (t.includes('patio')) {
+      return {
+        primaryImage: '/assets/transformations/patio-after.webp',
+        primaryLabel: 'Custom Interlocking Patio Pavers & Coping',
+        primaryBadge: 'Zero Cracks · 10,000+ PSI Luxury Living',
+        secondaryImage: '/assets/transformations/patio-before.webp',
+        secondaryLabel: 'Aging Poured Backyard Concrete Slab',
+        secondaryBadge: 'Hairline Cracking & Unsealed Concrete',
+      };
+    }
+    if (t.includes('pool')) {
+      return {
+        primaryImage: '/assets/transformations/pool-deck-after.webp',
+        primaryLabel: 'Slip-Resistant Cool-Touch Pool Pavers & Coping',
+        primaryBadge: 'Barefoot Safe · Chlorine & Salt Resistant',
+        secondaryImage: '/assets/transformations/pool-deck-before.webp',
+        secondaryLabel: 'Conventional Slippery Concrete Pool Deck',
+        secondaryBadge: 'Burning Hot in Summer & Jackhammer Repairs',
+      };
+    }
+    if (t.includes('kitchen')) {
+      return {
+        primaryImage: '/assets/transformations/fire-pit-after.webp',
+        primaryLabel: 'Custom Welded Steel & Natural Masonry Living',
+        primaryBadge: '304 Marine Stainless & Fully Permitted Utilities',
+        secondaryImage: '/assets/transformations/fire-pit-before.webp',
+        secondaryLabel: 'Prefabricated Modular Kit / Unfinished Space',
+        secondaryBadge: 'Flimsy Framing, Warping & Fire Code Violations',
+      };
+    }
+    if (t.includes('pergola') || t.includes('deck')) {
+      return {
+        primaryImage: '/assets/transformations/pergola-after.webp',
+        primaryLabel: 'Capped Composite Decking & Louvered Pergola',
+        primaryBadge: 'Zero Splinters · 25-50 Year Stain Warranty',
+        secondaryImage: '/assets/transformations/pergola-before.webp',
+        secondaryLabel: 'Weathered Natural Wood Deck & Framing',
+        secondaryBadge: 'Splinters, Warping & Annual Restaining',
+      };
+    }
+
+    // Default: Driveway / Pavers vs Concrete
+    return {
+      primaryImage: '/assets/transformations/driveway-after.webp',
+      primaryLabel: '10,000+ PSI Interlocking Paver Driveway',
+      primaryBadge: '10,000+ PSI · Disperses Ground Settling',
+      secondaryImage: '/assets/transformations/driveway-before.webp',
+      secondaryLabel: 'Conventional Poured Concrete Driveway Slab',
+      secondaryBadge: 'Rigid Surface Prone to Cracking & Staining',
+    };
+  })();
+
+  const activeImages = comparativeImages || defaultImages;
+
   return (
-    <section className="py-20 md:py-28 bg-white border-t border-stone-200">
+    <section id="engineering-comparison" className="py-20 md:py-28 bg-white border-t border-stone-200 scroll-mt-20">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
-        <div className="text-center max-w-3xl mx-auto mb-16">
+        <div className="text-center max-w-3xl mx-auto mb-10 sm:mb-14">
           <span className="text-xs font-bold uppercase tracking-widest text-[#019934] block mb-3">
             {overline}
           </span>
@@ -93,6 +238,73 @@ export default function PaversVsConcrete({
           <p className="mt-4 text-stone-600 text-sm sm:text-base md:text-lg leading-relaxed">
             {subtitle}
           </p>
+        </div>
+
+        {/* Side-by-Side Comparative Images */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 mb-8 lg:mb-12">
+          {/* Winner / Primary Card */}
+          <div className="relative rounded-2xl overflow-hidden border-2 border-[#019934] shadow-[0_8px_30px_rgba(1,153,52,0.12)] group bg-stone-900">
+            <div className="relative aspect-[16/10] w-full overflow-hidden">
+              <Image
+                src={activeImages.primaryImage}
+                alt={activeImages.primaryLabel}
+                fill
+                sizes="(max-width: 640px) 100vw, 50vw"
+                className="object-cover transition-transform duration-700 group-hover:scale-105"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/25 to-black/10" />
+
+              {/* Top Badge */}
+              <div className="absolute top-3 left-3 sm:top-4 sm:left-4 z-10">
+                <span className="inline-flex items-center gap-1.5 bg-[#019934] text-white text-[11px] sm:text-xs font-bold uppercase tracking-wider px-3 py-1.5 rounded-full shadow-md">
+                  <Check className="w-3.5 h-3.5 stroke-[3]" />
+                  <span>{activeImages.primaryBadge}</span>
+                </span>
+              </div>
+
+              {/* Bottom Info */}
+              <div className="absolute bottom-3 left-3 right-3 sm:bottom-4 sm:left-4 sm:right-4 z-10">
+                <span className="text-[11px] sm:text-xs uppercase tracking-widest text-[#42e078] font-bold block mb-1">
+                  {primaryColumnTitle}
+                </span>
+                <h4 className="text-white font-bold text-base sm:text-lg lg:text-xl leading-tight drop-shadow-sm">
+                  {activeImages.primaryLabel}
+                </h4>
+              </div>
+            </div>
+          </div>
+
+          {/* Alternative / Secondary Card */}
+          <div className="relative rounded-2xl overflow-hidden border border-stone-300 shadow-sm group bg-stone-900">
+            <div className="relative aspect-[16/10] w-full overflow-hidden">
+              <Image
+                src={activeImages.secondaryImage}
+                alt={activeImages.secondaryLabel}
+                fill
+                sizes="(max-width: 640px) 100vw, 50vw"
+                className="object-cover transition-transform duration-700 group-hover:scale-105 opacity-90"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/30 to-black/10" />
+
+              {/* Top Badge */}
+              <div className="absolute top-3 left-3 sm:top-4 sm:left-4 z-10">
+                <span className="inline-flex items-center gap-1.5 bg-stone-900/90 text-stone-200 text-[11px] sm:text-xs font-semibold uppercase tracking-wider px-3 py-1.5 rounded-full border border-stone-600/60 backdrop-blur-sm shadow-md">
+                  <X className="w-3.5 h-3.5 text-rose-400 stroke-[2.5]" />
+                  <span>{activeImages.secondaryBadge}</span>
+                </span>
+              </div>
+
+              {/* Bottom Info */}
+              <div className="absolute bottom-3 left-3 right-3 sm:bottom-4 sm:left-4 sm:right-4 z-10">
+                <span className="text-[11px] sm:text-xs uppercase tracking-widest text-stone-400 font-bold block mb-1">
+                  {secondaryColumnTitle}
+                </span>
+                <h4 className="text-stone-200 font-semibold text-base sm:text-lg lg:text-xl leading-tight drop-shadow-sm">
+                  {activeImages.secondaryLabel}
+                </h4>
+              </div>
+            </div>
+          </div>
         </div>
 
         {/* Comparison Table Grid */}

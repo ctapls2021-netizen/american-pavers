@@ -14,10 +14,102 @@ import LeadFormModal from '@/components/ui/LeadFormModal';
 import ServiceHeroStatic from '@/components/sections/services/ServiceHeroStatic';
 import DrivewayFeatureSplit from '@/components/sections/services/DrivewayFeatureSplit';
 import PaversVsConcrete, { ComparisonItem } from '@/components/sections/services/PaversVsConcrete';
+import PaverInstallationLayers from '@/components/sections/services/PaverInstallationLayers';
+import PaversVsOtherMaterials from '@/components/sections/services/PaversVsOtherMaterials';
 import DrivewayCarouselSection from '@/components/sections/services/DrivewayCarouselSection';
 import TestimonialsGrid from '@/components/sections/TestimonialsGrid';
 import TurfProductTiers from '@/components/sections/services/TurfProductTiers';
 import { CheckCircle2, ShieldCheck, ChevronRight, Layers } from 'lucide-react';
+
+const patioComparisonData: ComparisonItem[] = [
+  {
+    feature: 'Seismic & Ground Settling',
+    pavers: 'Flexible sand joints articulate seamlessly with zero cracking',
+    concrete: 'Rigid slab inevitably fractures as California clay expands and shrinks',
+    winner: 'pavers',
+    detail: 'Southern California soils shift seasonally. Pavers disperse ground tension across joints instead of developing ugly stress cracks.',
+  },
+  {
+    feature: 'Summer Heat & Barefoot Comfort',
+    pavers: 'High-SRI cool-touch pavers reflect intense afternoon sunlight',
+    concrete: 'Dense concrete absorbs heat and becomes uncomfortably hot to walk on',
+    winner: 'pavers',
+    detail: 'Engineered pavers with light-reflective mineral aggregates remain pleasant underfoot even during peak July and August heat.',
+  },
+  {
+    feature: 'Rain Drainage & Standing Puddles',
+    pavers: 'Permeable bedding drains excess rainwater naturally into base',
+    concrete: 'Porous slabs puddle water, breeding mildew, algae, and mosquitoes',
+    winner: 'pavers',
+    detail: 'Water filters through joints into the sub-base, eliminating slippery puddles near patio doors and outdoor furniture.',
+  },
+  {
+    feature: 'BBQ Grease, Wine & Stain Resistance',
+    pavers: 'High-density sealed surface repels food oils, wine, and spills',
+    concrete: 'Porous unsealed concrete permanently absorbs cooking grease',
+    winner: 'pavers',
+    detail: 'Factory-cured pavers resist backyard party spills. Any stubborn spot cleans easily with mild soap and water.',
+  },
+  {
+    feature: 'Tree Roots & Plumbing Repairability',
+    pavers: 'Stones lift in minutes for root trimming or pipe access and reset invisibly',
+    concrete: 'Roots heave and crack slabs, requiring jackhammers and leaving obvious patches',
+    winner: 'pavers',
+    detail: 'If you ever need irrigation repairs or gas line extensions, pavers are reinstalled seamlessly with zero evidence.',
+  },
+  {
+    feature: 'Aesthetic Value & Lifespan',
+    pavers: 'Timeless architectural patterns backed by 25-year structural warranty',
+    concrete: 'Dull gray or fading stamped concrete prone to chipping within 3-5 years',
+    winner: 'pavers',
+    detail: 'Interlocking pavers significantly increase home resale value and maintain their rich color and texture for decades.',
+  },
+];
+
+const poolComparisonData: ComparisonItem[] = [
+  {
+    feature: 'Wet Slip Resistance & Foot Traction',
+    pavers: 'Micro-textured pavers exceed strict commercial ADA wet slip standards',
+    concrete: 'Poured or stamped concrete becomes dangerously slick when splashed',
+    winner: 'pavers',
+    detail: 'Designed specifically for wet poolside feet, preventing dangerous slip-and-fall accidents for children and guests.',
+  },
+  {
+    feature: 'Barefoot Heat Performance',
+    pavers: 'Light-toned high-SRI stone pavers stay cool in the midday California sun',
+    concrete: 'Standard concrete slabs bake under UV rays and scorch tender bare feet',
+    winner: 'pavers',
+    detail: 'Solar-reflective formulas keep deck temperatures noticeably lower than dark concrete or composite wood.',
+  },
+  {
+    feature: 'Chlorine & Saltwater Durability',
+    pavers: 'Impervious factory-cured stone resists saltwater corrosion and chemical pitting',
+    concrete: 'Saltwater and pool sanitizers slowly erode, pit, and flake concrete surfaces',
+    winner: 'pavers',
+    detail: 'High-density paver matrix resists salt crystallization and pool chemical splashes without surface spalling.',
+  },
+  {
+    feature: 'Pool Safety Coping & Bullnose Edges',
+    pavers: 'Smooth rounded bullnose coping stones protect hands, knees, and swimsuits',
+    concrete: 'Rough cantilevered concrete edges chip, scrape skin, and snag bathing suits',
+    winner: 'pavers',
+    detail: 'Custom pool edge coping creates a luxurious, rounded grip for swimmers exiting the water safely.',
+  },
+  {
+    feature: 'Underground Pool Plumbing Access',
+    pavers: 'Lifts cleanly for pipe, skimmer, or LED light repairs and reinstalls invisibly',
+    concrete: 'Requires noisy jackhammering and leaves mismatched, unsightly scar lines',
+    winner: 'pavers',
+    detail: 'Pool equipment lines inevitably need maintenance. Paver systems save thousands in repair and restoration costs.',
+  },
+  {
+    feature: 'Seismic Shock & Pool Shell Protection',
+    pavers: 'Jointed system absorbs ground micro-movements without stressing pool beam',
+    concrete: 'Rigid deck pulls against the pool bond beam, risking structural fractures',
+    winner: 'pavers',
+    detail: 'Independent expansion joints prevent ground settling from transferring structural stress to your pool shell.',
+  },
+];
 
 const turfComparisonData: ComparisonItem[] = [
   {
@@ -189,8 +281,23 @@ export default function ServicePageClient({ service }: ServicePageClientProps) {
             {/* 2. Editorial Split Feature with Real Paver Image, Typography & 2 Buttons */}
             <DrivewayFeatureSplit onOpenModal={handleOpenModal} />
 
-            {/* 3. Interlocking Pavers vs. Poured Concrete Engineering Comparison */}
-            <PaversVsConcrete onOpenModal={handleOpenModal} />
+            {/* 3. Installation You Can Trust (3D Layered Base Engineering) */}
+            <PaverInstallationLayers onOpenModal={handleOpenModal} />
+
+            {/* 4. Pavers vs Other Materials (Split Visual & Performance Points) */}
+            <PaversVsOtherMaterials
+              serviceSlug={service.slug}
+              onOpenModal={handleOpenModal}
+              comparisonAnchorId="engineering-comparison"
+            />
+
+            {/* 5. Interlocking Pavers vs. Poured Concrete Engineering Comparison */}
+            <PaversVsConcrete
+              serviceSlug={service.slug}
+              primaryColumnTitle="American Pavers & Turf Driveway"
+              secondaryColumnTitle="Conventional Poured Concrete"
+              onOpenModal={handleOpenModal}
+            />
 
             {/* 4. 3D Regional Installation Carousel (Aceternity UI adapted to Brand Style) */}
             <DrivewayCarouselSection />
@@ -248,11 +355,27 @@ export default function ServicePageClient({ service }: ServicePageClientProps) {
               onOpenModal={handleOpenModal}
             />
 
-            {/* 3. Pavers vs Concrete Slabs Comparison */}
+            {/* 3. Installation You Can Trust (3D Layered Base Engineering) */}
+            <PaverInstallationLayers onOpenModal={handleOpenModal} />
+
+            {/* 4. Pavers vs Other Materials (Split Visual & Performance Points) */}
+            <PaversVsOtherMaterials
+              serviceSlug={service.slug}
+              onOpenModal={handleOpenModal}
+              comparisonAnchorId="engineering-comparison"
+            />
+
+            {/* 5. Pavers vs Concrete Slabs Comparison */}
             <PaversVsConcrete
+              serviceSlug={service.slug}
               overline="Material Performance"
               title="Why Interlocking Patio Pavers Outlast Concrete Slabs"
               subtitle="Poured concrete backyard slabs inevitably develop hairline fractures, puddle water, and absorb excessive summer heat. Discover how interlocking pavers deliver flexible jointing, natural drainage, and lifetime elegance."
+              primaryColumnTitle="American Pavers & Turf Patio"
+              secondaryColumnTitle="Conventional Concrete Slab"
+              items={patioComparisonData}
+              footerText="Over 800+ California Patio Transformations Completed. Backed by our 25-Year transferable structural guarantee."
+              buttonText="Design Your Custom Patio"
               onOpenModal={handleOpenModal}
             />
 
@@ -324,11 +447,27 @@ export default function ServicePageClient({ service }: ServicePageClientProps) {
               onOpenModal={handleOpenModal}
             />
 
-            {/* 3. Pavers vs Poured Pool Concrete Comparison */}
+            {/* 3. Installation You Can Trust (3D Layered Base Engineering) */}
+            <PaverInstallationLayers onOpenModal={handleOpenModal} />
+
+            {/* 4. Pavers vs Other Materials (Split Visual & Performance Points) */}
+            <PaversVsOtherMaterials
+              serviceSlug={service.slug}
+              onOpenModal={handleOpenModal}
+              comparisonAnchorId="engineering-comparison"
+            />
+
+            {/* 5. Pavers vs Poured Pool Concrete Comparison */}
             <PaversVsConcrete
+              serviceSlug={service.slug}
               overline="Poolside Safety Comparison"
               title="Why Interlocking Pool Pavers Outperform Poured Concrete"
               subtitle="Poured concrete around swimming pools gets burning hot, becomes slippery when wet, and requires expensive jackhammering for plumbing repairs. Interlocking pavers stay cool, grip bare feet, and lift invisibly for pipe maintenance."
+              primaryColumnTitle="American Pavers & Turf Pool Deck"
+              secondaryColumnTitle="Conventional Pool Concrete"
+              items={poolComparisonData}
+              footerText="Exceeds ADA wet slip resistance standards. Backed by our 25-Year transferable structural guarantee."
+              buttonText="Design Your Resort Pool Deck"
               onOpenModal={handleOpenModal}
             />
 
@@ -405,6 +544,7 @@ export default function ServicePageClient({ service }: ServicePageClientProps) {
 
             {/* 4. Turf vs Natural Grass Comparison */}
             <PaversVsConcrete
+              serviceSlug={service.slug}
               overline="Lawn Performance Comparison"
               title="Why Synthetic Turf Beats High-Water Natural California Grass"
               subtitle="Traditional grass in Southern California demands thousands of gallons of costly tiered water, constant mowing, chemical fertilizers, and tracks wet mud inside. Premium synthetic turf eliminates maintenance while maintaining pristine curb appeal."
@@ -486,6 +626,7 @@ export default function ServicePageClient({ service }: ServicePageClientProps) {
 
             {/* 3. Custom Masonry vs Modular Box Kits Comparison */}
             <PaversVsConcrete
+              serviceSlug={service.slug}
               overline="Construction Quality Comparison"
               title="Why Custom Masonry & Steel Kitchens Outlast Modular Kits"
               subtitle="Prefabricated box-store outdoor islands degrade under California heat, warp, and lack proper utility clearances. Discover why commercial-grade welded steel and reinforced masonry provide unmatched longevity."
@@ -567,6 +708,7 @@ export default function ServicePageClient({ service }: ServicePageClientProps) {
 
             {/* 3. Composite & Aluminum vs Wood Comparison */}
             <PaversVsConcrete
+              serviceSlug={service.slug}
               overline="Material Durability Comparison"
               title="Why Capped Composite & Extruded Aluminum Outperform Natural Wood"
               subtitle="Traditional redwood and cedar decks warp, crack, splinter, and rot within 7 to 10 years under relentless Southern California UV rays. Discover the zero-maintenance advantage of engineered composites and powder-coated aluminum."
