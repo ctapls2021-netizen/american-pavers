@@ -96,19 +96,40 @@ export default function PaversVsConcrete({
         </div>
 
         {/* Comparison Table Grid */}
-        <div className="bg-white border border-stone-200 shadow-sm overflow-hidden">
-          {/* Table Header */}
-          <div className="grid grid-cols-12 bg-[#1A292C] text-white p-4 sm:p-6 items-center">
-            <div className="col-span-12 md:col-span-4 font-bold text-sm uppercase tracking-wider text-stone-300">
+        <div className="bg-white border border-stone-200 shadow-sm overflow-hidden rounded-lg">
+          {/* 1. Desktop Table Header (>=md) */}
+          <div className="hidden md:grid grid-cols-12 bg-[#1A292C] text-white p-5 lg:p-6 items-center">
+            <div className="col-span-4 font-bold text-xs sm:text-sm uppercase tracking-wider text-stone-300">
               Feature / Performance
             </div>
-            <div className="col-span-6 md:col-span-4 font-bold text-sm uppercase tracking-wider text-[#42e078] flex items-center gap-2">
-              <ShieldCheck className="w-4 h-4" />
+            <div className="col-span-4 font-bold text-xs sm:text-sm uppercase tracking-wider text-[#42e078] flex items-center gap-2">
+              <ShieldCheck className="w-4 h-4 shrink-0" />
               <span>{primaryColumnTitle}</span>
             </div>
-            <div className="col-span-6 md:col-span-4 font-bold text-sm uppercase tracking-wider text-stone-400 flex items-center gap-2">
-              <ShieldAlert className="w-4 h-4 text-stone-400" />
+            <div className="col-span-4 font-bold text-xs sm:text-sm uppercase tracking-wider text-stone-400 flex items-center gap-2">
+              <ShieldAlert className="w-4 h-4 text-stone-400 shrink-0" />
               <span>{secondaryColumnTitle}</span>
+            </div>
+          </div>
+
+          {/* 2. Mobile Table Header (<md) */}
+          <div className="md:hidden bg-[#1A292C] text-white p-4">
+            <div className="text-[11px] font-bold uppercase tracking-widest text-stone-400 mb-2.5">
+              Feature / Performance Comparison
+            </div>
+            <div className="grid grid-cols-2 gap-2">
+              <div className="bg-[#019934]/20 border border-[#019934]/40 rounded-lg p-2 flex items-center gap-1.5 min-w-0">
+                <ShieldCheck className="w-4 h-4 text-[#42e078] shrink-0" />
+                <span className="text-[11px] font-bold uppercase tracking-wide text-[#42e078] leading-tight break-words">
+                  {primaryColumnTitle}
+                </span>
+              </div>
+              <div className="bg-white/5 border border-white/10 rounded-lg p-2 flex items-center gap-1.5 min-w-0">
+                <ShieldAlert className="w-4 h-4 text-stone-400 shrink-0" />
+                <span className="text-[11px] font-bold uppercase tracking-wide text-stone-300 leading-tight break-words">
+                  {secondaryColumnTitle}
+                </span>
+              </div>
             </div>
           </div>
 
@@ -117,39 +138,62 @@ export default function PaversVsConcrete({
             {items.map((row, idx) => (
               <div
                 key={idx}
-                className="grid grid-cols-12 p-4 sm:p-6 gap-3 items-center hover:bg-stone-50/80 transition-colors"
+                className="p-4 sm:p-5 lg:p-6 hover:bg-stone-50/80 transition-colors"
               >
-                {/* Feature Title & Detail */}
-                <div className="col-span-12 md:col-span-4 pr-2">
+                {/* Mobile Feature Title & Detail (<md) */}
+                <div className="mb-3 md:hidden">
                   <h3 className="font-bold text-stone-900 text-sm sm:text-base">
                     {row.feature}
                   </h3>
-                  <p className="text-stone-500 text-xs mt-1 leading-relaxed hidden sm:block">
-                    {row.detail}
-                  </p>
+                  {row.detail && (
+                    <p className="text-stone-500 text-xs mt-1 leading-relaxed">
+                      {row.detail}
+                    </p>
+                  )}
                 </div>
 
-                {/* Pavers Column */}
-                <div className="col-span-12 sm:col-span-6 md:col-span-4 flex items-start gap-2.5 bg-[#ebf9ee]/40 p-3 sm:p-2 border border-[#019934]/15 sm:border-0">
-                  <div className="w-5 h-5 rounded-full bg-[#019934] text-white flex items-center justify-center shrink-0 mt-0.5">
-                    <Check className="w-3.5 h-3.5 stroke-[3]" />
+                {/* Grid on Desktop (12-cols) vs Mobile (Cards) */}
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-12 gap-2.5 sm:gap-3 items-stretch">
+                  {/* Desktop Feature Title & Detail (>=md) */}
+                  <div className="hidden md:block md:col-span-4 pr-3">
+                    <h3 className="font-bold text-stone-900 text-sm sm:text-base">
+                      {row.feature}
+                    </h3>
+                    {row.detail && (
+                      <p className="text-stone-500 text-xs mt-1 leading-relaxed">
+                        {row.detail}
+                      </p>
+                    )}
                   </div>
-                  <div>
-                    <span className="font-bold text-stone-900 text-xs sm:text-sm">
-                      {row.pavers}
-                    </span>
-                  </div>
-                </div>
 
-                {/* Concrete Column */}
-                <div className="col-span-12 sm:col-span-6 md:col-span-4 flex items-start gap-2.5 p-3 sm:p-2">
-                  <div className="w-5 h-5 rounded-full bg-stone-200 text-stone-500 flex items-center justify-center shrink-0 mt-0.5">
-                    <X className="w-3.5 h-3.5 stroke-[2.5]" />
+                  {/* Primary Option Column */}
+                  <div className="md:col-span-4 flex items-start gap-2.5 bg-[#ebf9ee]/60 p-3 sm:p-3.5 rounded-lg border border-[#019934]/20 md:border-0 md:bg-transparent md:p-0">
+                    <div className="w-5 h-5 rounded-full bg-[#019934] text-white flex items-center justify-center shrink-0 mt-0.5">
+                      <Check className="w-3.5 h-3.5 stroke-[3]" />
+                    </div>
+                    <div className="flex-1">
+                      <span className="text-[10px] font-bold uppercase tracking-wider text-[#017026] block md:hidden mb-0.5">
+                        {primaryColumnTitle}
+                      </span>
+                      <span className="font-bold text-stone-900 text-xs sm:text-sm leading-snug block">
+                        {row.pavers}
+                      </span>
+                    </div>
                   </div>
-                  <div>
-                    <span className="text-stone-600 text-xs sm:text-sm">
-                      {row.concrete}
-                    </span>
+
+                  {/* Secondary Option Column */}
+                  <div className="md:col-span-4 flex items-start gap-2.5 bg-stone-50 p-3 sm:p-3.5 rounded-lg border border-stone-200/80 md:border-0 md:bg-transparent md:p-0">
+                    <div className="w-5 h-5 rounded-full bg-stone-200 text-stone-500 flex items-center justify-center shrink-0 mt-0.5">
+                      <X className="w-3.5 h-3.5 stroke-[2.5]" />
+                    </div>
+                    <div className="flex-1">
+                      <span className="text-[10px] font-bold uppercase tracking-wider text-stone-400 block md:hidden mb-0.5">
+                        {secondaryColumnTitle}
+                      </span>
+                      <span className="text-stone-600 text-xs sm:text-sm leading-snug block">
+                        {row.concrete}
+                      </span>
+                    </div>
                   </div>
                 </div>
               </div>
