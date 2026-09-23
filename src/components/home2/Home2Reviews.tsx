@@ -259,9 +259,6 @@ export default function Home2Reviews() {
           </div>
         </div>
 
-        <p className="mt-8 text-xs text-stone-400 leading-relaxed text-left max-w-2xl">
-          Placeholder quotes and scores — replace with the real review counts and attributed quotes. Platform logos are the official SVGs supplied by the client, rendered in white.
-        </p>
       </div>
     </section>
   );

@@ -115,7 +115,7 @@ export default function Home2QuoteSplit() {
                 href={`tel:${companyData.phone}`}
                 className="hover:text-[#4CC66E] transition-colors"
               >
-                {companyData.formattedPhone} — placeholder number
+                {companyData.formattedPhone}
               </a>
             </div>
           </div>

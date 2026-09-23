@@ -59,9 +59,6 @@ export default function Home2About() {
             <p className="mt-5 text-stone-300 text-base sm:text-lg leading-relaxed max-w-xl">
               We started as a two-man paving crew in the Valley and never moved off the tools. Today we install driveways, patios and turf across the county — still with our own people, still quoting the base work honestly.
             </p>
-            <p className="mt-8 text-xs text-stone-400">
-              Placeholder company history — send the real founding story for this section.
-            </p>
           </div>
 
           {/* Right Column: Values Card */}

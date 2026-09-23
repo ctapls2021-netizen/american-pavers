@@ -211,7 +211,6 @@ export default function Home2Footer() {
           className="flex-col sm:flex-row text-center sm:text-left"
         >
           <span>&copy; {new Date().getFullYear()} American Pavers &amp; Turf</span>
-          <span>CSLB #0000000 — placeholder, awaiting the real licence number</span>
         </div>
       </div>
     </footer>
