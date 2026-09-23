@@ -41,7 +41,7 @@ export default function Home2Hero() {
             Los Angeles · Pavers &amp; turf
           </span>
 
-          <h1 className="font-serif text-2xl sm:text-4xl md:text-5xl lg:text-[56px] font-normal leading-[1.12] sm:leading-[1.08] tracking-tight text-white">
+          <h1 className="font-serif text-3xl sm:text-4xl md:text-5xl lg:text-[56px] font-normal leading-[1.15] sm:leading-[1.08] tracking-tight text-white">
             Luxury remodeling designed around your lifestyle.
           </h1>
 
