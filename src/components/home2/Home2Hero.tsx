@@ -18,20 +18,20 @@ export default function Home2Hero() {
   };
 
   return (
-    <section id="hero" className="relative min-h-[580px] sm:min-h-[680px] lg:min-h-[760px] flex items-center bg-[#0E1719] text-white overflow-hidden w-full max-w-full">
+    <section id="hero" className="relative min-h-[100vh] flex items-center bg-[#0E1719] text-white overflow-hidden w-full max-w-full">
       {/* Background Image */}
       <div className="absolute inset-0 z-0">
         <Image
-          src="/assets/brand/photo-driveway-herringbone.png"
+          src="/assets/banners/americanpavers.webp"
           alt="Luxury Paver Driveway by American Pavers & Turf"
           fill
           priority
           sizes="100vw"
-          className="object-cover object-[center_right] sm:object-center"
+          className="object-cover object-center"
         />
-        {/* Scrim Overlays */}
-        <div className="absolute inset-0 bg-gradient-to-r from-[#0E1719]/95 via-[#0E1719]/80 to-[#0E1719]/35 lg:w-[75%]" />
-        <div className="absolute inset-0 bg-gradient-to-t from-[#0E1719]/85 via-transparent to-transparent" />
+        {/* Scrim Overlays - Smooth seamless gradient without hard cutoff lines */}
+        <div className="absolute inset-0 bg-gradient-to-r from-[#0E1719]/95 via-[#0E1719]/70 to-[#0E1719]/25" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#0E1719]/80 via-transparent to-transparent" />
       </div>
 
       <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14 sm:py-20 lg:py-24">
