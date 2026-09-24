@@ -127,11 +127,11 @@ export default function ProcessSteps({
     const radius = isMobile ? 165 : 285;
     const radian = (angle * Math.PI) / 180;
 
-    const x = radius * Math.cos(radian);
-    const y = radius * Math.sin(radian);
+    const x = Number((radius * Math.cos(radian)).toFixed(2));
+    const y = Number((radius * Math.sin(radian)).toFixed(2));
 
     const zIndex = Math.round(100 + 50 * Math.cos(radian));
-    const opacity = Math.max(0.6, Math.min(1, 0.6 + 0.4 * ((1 + Math.sin(radian)) / 2)));
+    const opacity = Number(Math.max(0.6, Math.min(1, 0.6 + 0.4 * ((1 + Math.sin(radian)) / 2))).toFixed(3));
 
     return { x, y, angle, zIndex, opacity };
   };
