@@ -22,7 +22,7 @@ const servicesCatalog: ServiceCardData[] = [
     title: 'Backyard Patio Pavers',
     tag: 'Patio Pavers',
     description: 'Open-air dining patios and custom fire lounges.',
-    image: '/assets/cards/card-patio.webp',
+    image: '/assets/generated/patio_premium.jpg',
     buttonText: 'Request 3D Plan',
   },
   {
@@ -30,7 +30,7 @@ const servicesCatalog: ServiceCardData[] = [
     title: 'Interlocking Driveways',
     tag: 'Driveways',
     description: 'Engineered for heavy vehicle loads with zero cracking.',
-    image: '/assets/cards/card-driveway.webp',
+    image: '/assets/generated/driveway_premium.jpg',
     buttonText: 'Request 3D Plan',
   },
   {
@@ -38,7 +38,7 @@ const servicesCatalog: ServiceCardData[] = [
     title: 'Pool Deck Remodeling',
     tag: 'Pool Decks',
     description: 'Cool-touch, barefoot-friendly stone surfaces.',
-    image: '/assets/cards/card-pool.webp',
+    image: '/assets/generated/pool_premium.jpg',
     buttonText: 'Request 3D Plan',
   },
   {
@@ -46,7 +46,7 @@ const servicesCatalog: ServiceCardData[] = [
     title: 'Luxury Synthetic Turf',
     tag: 'Artificial Turf',
     description: 'Pet-friendly, zero-maintenance lush green lawn.',
-    image: '/assets/cards/card-turf.webp',
+    image: '/assets/generated/turf_premium.jpg',
     buttonText: 'Request 3D Plan',
   },
   {
@@ -54,7 +54,7 @@ const servicesCatalog: ServiceCardData[] = [
     title: 'Outdoor Kitchens & BBQs',
     tag: 'Outdoor Living',
     description: 'Custom masonry islands with built-in stainless grills.',
-    image: '/assets/cards/card-kitchen.webp',
+    image: '/assets/generated/kitchen_premium.jpg',
     buttonText: 'Request 3D Plan',
   },
   {
@@ -62,7 +62,7 @@ const servicesCatalog: ServiceCardData[] = [
     title: 'Retaining & Seat Walls',
     tag: 'Hardscape Masonry',
     description: 'Architectural stone walls for slope stability and seating.',
-    image: '/assets/cards/card-deck.webp',
+    image: '/assets/generated/pergola_premium.jpg',
     buttonText: 'Request 3D Plan',
   },
 ];

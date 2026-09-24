@@ -31,7 +31,7 @@ const processPhases: ProcessPhase[] = [
     subtitle: 'Touch the Materials First',
     description:
       'We bring physical interlocking stone pavers and turf swatches right to your home so you can match textures in natural sunlight. We handle all city permits and HOA approvals.',
-    image: '/assets/cards/card-patio.webp',
+    image: '/assets/generated/patio_premium.jpg',
   },
   {
     step: '03',
@@ -39,7 +39,7 @@ const processPhases: ProcessPhase[] = [
     subtitle: 'Built to Last Generations',
     description:
       'Certified master craftsmen excavate, compact geotextile aggregate sub-base, precision-lay interlocking stone, and sweep polymeric sand. Complete final walkthrough inspection.',
-    image: '/assets/banners/banner-deck.webp',
+    image: '/assets/generated/pergola_premium.jpg',
   },
 ];
 

@@ -20,7 +20,7 @@ export default function DrivewayFeatureSplit({
   overline = 'Engineered Excellence',
   title = 'Built to Outlast Concrete. Designed to Elevate Your Home.',
   description = 'Replace cracked, sunken concrete with high-performance interlocking pavers. Engineered to withstand heavy vehicular traffic, California seismic shifting, and harsh elements—delivering unmatched 10,000+ PSI durability and immediate curb appeal backed by our 25-year structural warranty.',
-  imageSrc = '/assets/driveway-feature-card.webp',
+  imageSrc = '/assets/real/thumbs/American pavers (3).jpg',
   imageAlt = 'Luxury Interlocking Driveway Pavers Installation',
   primaryBtnText = 'Schedule Free 3D Design',
   secondaryBtnText = `Call ${companyData.formattedPhone}`,

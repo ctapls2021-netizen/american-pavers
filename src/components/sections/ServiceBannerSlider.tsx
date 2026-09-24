@@ -22,7 +22,7 @@ export const serviceSlides: ServiceSlide[] = [
     buttonText: 'EXPLORE DECKS & PERGOLAS',
     serviceName: 'Composite Decks & Pergolas',
     href: '/services/decking-pergolas',
-    image: '/assets/banners/banner-deck.webp',
+    image: '/assets/real/American pavers (22).jpg',
     imageAlt: 'Luxury composite deck with ocean view and Adirondack lounge chairs',
   },
   {
@@ -32,7 +32,7 @@ export const serviceSlides: ServiceSlide[] = [
     buttonText: 'EXPLORE DRIVEWAY PAVERS',
     serviceName: 'Driveway Pavers',
     href: '/services/driveway-pavers',
-    image: '/assets/banners/banner-driveway.webp',
+    image: '/assets/real/American pavers (2).jpg',
     imageAlt: 'High-strength interlocking paver driveway with custom border stones and estate landscaping',
   },
   {
@@ -42,7 +42,7 @@ export const serviceSlides: ServiceSlide[] = [
     buttonText: 'EXPLORE PATIO PAVERS',
     serviceName: 'Patio Pavers',
     href: '/services/patio-pavers',
-    image: '/assets/banners/banner-patio.webp',
+    image: '/assets/real/American pavers (13).jpg',
     imageAlt: 'Spacious curved backyard patio paver installation with fire pit and stone seating',
   },
   {
@@ -52,7 +52,7 @@ export const serviceSlides: ServiceSlide[] = [
     buttonText: 'EXPLORE ARTIFICIAL TURF',
     serviceName: 'Synthetic Turf',
     href: '/services/synthetic-turf',
-    image: '/assets/banners/banner-turf.webp',
+    image: '/assets/real/American pavers (16).jpg',
     imageAlt: 'Lush green drought-tolerant artificial lawn with paver steps and landscape garden',
   },
   {
@@ -62,7 +62,7 @@ export const serviceSlides: ServiceSlide[] = [
     buttonText: 'EXPLORE POOL DECKS',
     serviceName: 'Pool Deck Pavers',
     href: '/services/pool-deck-pavers',
-    image: '/assets/banners/banner-pool.webp',
+    image: '/assets/real/American pavers (24).jpg',
     imageAlt: 'Luxury swimming pool surrounded by cool-touch non-slip stone pavers and natural waterfalls',
   },
   {
@@ -72,7 +72,7 @@ export const serviceSlides: ServiceSlide[] = [
     buttonText: 'EXPLORE OUTDOOR KITCHENS',
     serviceName: 'Outdoor Kitchens',
     href: '/services/outdoor-kitchens',
-    image: '/assets/banners/banner-kitchen.webp',
+    image: '/assets/real/Outdoor_kitchen_and_fire_pit_2K_20260924065657.jpeg',
     imageAlt: 'Custom outdoor kitchen suite with stainless steel grill and illuminated stone bar',
   },
 ];

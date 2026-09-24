@@ -64,7 +64,7 @@ export default function BottomCtaBanner({
       {/* Background Image: Authentic Paver Patio with atmospheric overlay */}
       <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
         <img
-          src="/assets/banners/banner-patio.webp"
+          src="/assets/real/American pavers (17).jpg"
           alt="American Pavers & Turf Background"
           className="w-full h-full object-cover object-center opacity-75 sm:opacity-85 brightness-95 contrast-105"
           loading="lazy"

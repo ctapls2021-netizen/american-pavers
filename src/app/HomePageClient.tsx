@@ -93,7 +93,10 @@ export default function HomePageClient({
           onOpenConsultation={() => handleOpenModal()}
           title={heroHeadline}
           tagline={homePage?.hero?.subheadline}
+          videoSrc="/videos/hero-backyard-pavers.mp4"
         />
+
+
 
         {/* Core Services Catalog (Connected to Sanity with fallback) */}
         <div id="services-grid">

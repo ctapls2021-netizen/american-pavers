@@ -6,27 +6,27 @@ import Carousel, { SlideData } from '@/components/ui/carousel';
 const drivewaySlides: SlideData[] = [
   {
     title: 'Pasadena, CA',
-    src: '/assets/driveways/driveway-real-3.webp',
+    src: '/assets/real/thumbs/American pavers (1).jpg',
   },
   {
     title: 'Beverly Hills, CA',
-    src: '/assets/driveways/driveway-real-1.webp',
+    src: '/assets/real/thumbs/American pavers (10).jpg',
   },
   {
     title: 'Newport Beach, CA',
-    src: '/assets/driveways/driveway-real-8.webp',
+    src: '/assets/real/thumbs/American pavers (21).jpg',
   },
   {
     title: 'San Fernando Valley, CA',
-    src: '/assets/driveways/driveway-real-5.webp',
+    src: '/assets/real/thumbs/American pavers (33).jpg',
   },
   {
     title: 'Irvine, CA',
-    src: '/assets/driveways/driveway-real-2.webp',
+    src: '/assets/real/thumbs/American pavers (25).jpg',
   },
   {
     title: 'Encino, CA',
-    src: '/assets/driveways/driveway-real-4.webp',
+    src: '/assets/real/thumbs/American pavers (7).jpg',
   },
 ];
 

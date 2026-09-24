@@ -24,8 +24,8 @@ const TURF_TIERS: TurfTier[] = [
     pileHeight: '1-5/8 in.',
     faceWeight: '55 oz.',
     usageDescription: 'Great for light to moderate use',
-    imageSrc: '/assets/products/turf-standard.webp',
-    imageAlt: 'SP Turf Standard Artificial Grass Sample',
+    imageSrc: '/assets/products/Close-up_of_artificial_turf_20260924060041.jpeg',
+    imageAlt: 'SP Turf Standard Artificial Grass',
   },
   {
     id: 'pro',
@@ -34,8 +34,8 @@ const TURF_TIERS: TurfTier[] = [
     pileHeight: '1-3/4 in.',
     faceWeight: '70 oz.',
     usageDescription: 'Great for moderate use',
-    imageSrc: '/assets/products/turf-pro.webp',
-    imageAlt: 'SP Turf Pro Artificial Grass Sample',
+    imageSrc: '/assets/products/Artificial_turf_blade_structure_20260924060031.jpeg',
+    imageAlt: 'SP Turf Pro Artificial Grass',
     highlighted: true,
   },
   {
@@ -45,8 +45,8 @@ const TURF_TIERS: TurfTier[] = [
     pileHeight: '2 in.',
     faceWeight: '67 oz.',
     usageDescription: 'Great for moderate to heavy use',
-    imageSrc: '/assets/products/turf-premium.webp',
-    imageAlt: 'SP Turf Premium Artificial Grass Sample',
+    imageSrc: '/assets/products/Artificial_turf_side_view_20260924060100.jpeg',
+    imageAlt: 'SP Turf Premium Artificial Grass',
   },
 ];
 
@@ -105,7 +105,7 @@ export default function TurfProductTiers({
 
   const renderCard = (tier: TurfTier) => (
     <div
-      className={`bg-white rounded-2xl border transition-all duration-300 flex flex-col overflow-hidden h-full ${
+      className={`w-full bg-white rounded-2xl border transition-all duration-300 flex flex-col overflow-hidden h-full ${
         tier.highlighted
           ? 'border-[#019934]/40 shadow-[0_12px_36px_rgba(1,153,52,0.12)] ring-1 ring-[#019934]/20'
           : 'border-stone-200/90 shadow-[0_4px_24px_rgba(0,0,0,0.06)] hover:shadow-[0_12px_32px_rgba(0,0,0,0.09)]'
@@ -185,7 +185,7 @@ export default function TurfProductTiers({
 
   return (
     <section className="py-16 sm:py-24 lg:py-28 bg-[#FAFAFA] border-b border-stone-200 w-full max-w-full overflow-hidden">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="w-full max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-12">
         {/* Section Header */}
         <div className="max-w-3xl mx-auto text-center mb-10 sm:mb-16">
           <span className="text-xs sm:text-sm font-bold uppercase tracking-[0.22em] text-[#019934] block mb-2 sm:mb-3">
@@ -202,9 +202,9 @@ export default function TurfProductTiers({
         </div>
 
         {/* 1. Desktop & Tablet: 3 Cards Static Grid (>=md) */}
-        <div className="hidden md:grid md:grid-cols-3 gap-6 lg:gap-8 max-w-6xl mx-auto items-stretch">
+        <div className="hidden md:grid md:grid-cols-3 gap-2 lg:gap-3 w-full items-stretch">
           {tiers.map((tier) => (
-            <div key={tier.id} className="flex">
+            <div key={tier.id} className="flex w-full">
               {renderCard(tier)}
             </div>
           ))}

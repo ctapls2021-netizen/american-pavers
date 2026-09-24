@@ -17,7 +17,7 @@ export default function DrivewayHeroLamp({ onOpenModal }: DrivewayHeroLampProps)
       {/* 1. Real Authentic Paver Driveway Background Image */}
       <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
         <img
-          src="/assets/banners/banner-driveway.webp"
+          src="/assets/generated/driveway_premium.jpg"
           alt="American Pavers & Turf Luxury Driveway Installation"
           className="w-full h-full object-cover object-center scale-105 brightness-[0.72] contrast-115 opacity-80"
           loading="eager"

@@ -103,7 +103,7 @@ const galleryItems: GalleryItem[] = [
     city: 'Encino, CA',
     category: 'kitchens',
     categoryTitle: 'Outdoor Kitchens',
-    image: '/assets/banners/banner-kitchen.webp',
+    image: '/assets/generated/kitchen_premium.jpg',
     description: 'Marine-grade 304 stainless steel grill, granite counters, and outdoor refrigeration.',
   },
   {
@@ -112,7 +112,7 @@ const galleryItems: GalleryItem[] = [
     city: 'Santa Monica, CA',
     category: 'pools',
     categoryTitle: 'Pool Deck Pavers',
-    image: '/assets/banners/banner-pool.webp',
+    image: '/assets/generated/pool_premium.jpg',
     description: 'High-SRI heat-reflective pavers that stay comfortable under intense summer sunshine.',
   },
   {
@@ -121,7 +121,7 @@ const galleryItems: GalleryItem[] = [
     city: 'Rancho Santa Fe, CA',
     category: 'turf',
     categoryTitle: 'Synthetic Turf',
-    image: '/assets/banners/banner-turf.webp',
+    image: '/assets/generated/turf_premium.jpg',
     description: 'PGA-stimp contoured putting surface with chipping fringe and clean interlocking perimeter.',
   },
   {
@@ -130,7 +130,7 @@ const galleryItems: GalleryItem[] = [
     city: 'Glendale, CA',
     category: 'decks',
     categoryTitle: 'Decks & Pergolas',
-    image: '/assets/banners/banner-deck.webp',
+    image: '/assets/generated/pergola_premium.jpg',
     description: 'Splinter-free, zero-maintenance composite boards with concealed clip fastenings.',
   },
 ];
@@ -340,7 +340,7 @@ export default function GalleryPage({ galleryData, sanityProjects }: GalleryPage
           {/* Static Background Image with zoom */}
           <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
             <img
-              src="/assets/banners/banner-driveway.webp"
+              src="/assets/generated/driveway_premium.jpg"
               alt="American Pavers & Turf Gallery"
               className="w-full h-full object-cover object-center scale-105"
               loading="eager"

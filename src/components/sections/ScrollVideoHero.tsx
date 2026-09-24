@@ -1,8 +1,7 @@
 'use client';
 
 import React, { useEffect, useRef, useState } from 'react';
-import { ChevronDown, ChevronRight, Phone } from 'lucide-react';
-import { companyData } from '@/data/company';
+import { ChevronDown, ChevronRight, ChevronsDown } from 'lucide-react';
 import ReviewLogoMarquee from '@/components/ui/ReviewLogoMarquee';
 
 export interface ScrollVideoHeroProps {
@@ -14,8 +13,7 @@ export interface ScrollVideoHeroProps {
   onOpenConsultation?: () => void;
 }
 
-const DEFAULT_VIDEO = '/videos/hero-entrance.mp4?v=3';
-const FALLBACK_VIDEO = '/videos/Camera_moving_toward_house_entrance_20260918154417.mp4?v=3';
+const DEFAULT_VIDEO = '/videos/hero-american-pavers.mp4';
 
 function clamp(v: number, min: number, max: number) {
   return Math.min(max, Math.max(min, v));
@@ -26,16 +24,17 @@ export default function ScrollVideoHero({
   title = 'AMERICAN PAVERS & TURF',
   tagline = 'Luxury Custom Pavers, Artificial Turf & Outdoor Living',
   scrollHint = 'SCROLL TO ENTER',
-  scrubDistance = 3000,
+  scrubDistance = 4200,
   onOpenConsultation,
 }: ScrollVideoHeroProps) {
   const sectionRef = useRef<HTMLDivElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
   const titleRef = useRef<HTMLDivElement>(null);
   const hintRef = useRef<HTMLDivElement>(null);
-  const taglineRef = useRef<HTMLDivElement>(null);
+  const skipBtnRef = useRef<HTMLButtonElement>(null);
   const progressBarRef = useRef<HTMLDivElement>(null);
 
+  const [ready, setReady] = useState(false);
   const [isUnlocked, setIsUnlocked] = useState(false);
   const [isDesktop, setIsDesktop] = useState(false);
 
@@ -61,79 +60,65 @@ export default function ScrollVideoHero({
     let lockedScrollY = 0;
     let touchStartY = 0;
 
-    // Ensure DOM properties are set for scrub control in all browsers
     video.muted = true;
     video.defaultMuted = true;
     video.playsInline = true;
 
     const onLoadedData = () => {
       duration = video.duration || 0;
-      if (video.currentTime === 0) {
-        video.currentTime = 0.01;
-      }
+      setReady(true);
     };
     video.addEventListener('loadeddata', onLoadedData);
     video.addEventListener('loadedmetadata', onLoadedData);
+    if (video.readyState >= 1) onLoadedData();
 
-    if (video.readyState >= 1) {
-      onLoadedData();
-    }
-
-    // Safely kickstart frame buffer without leaving video playing (desktop only to prevent mobile network starvation)
+    // Kickstart load for mobile and modern browsers
     const kickstartLoad = () => {
-      if (typeof window !== 'undefined' && window.innerWidth < 768) return;
       const p = video.play();
       if (p && typeof p.then === 'function') {
-        p.then(() => {
-          video.pause();
-          video.currentTime = 0.01;
-        }).catch(() => {
-          video.pause();
-          video.currentTime = 0.01;
-        });
+        p.then(() => video.pause()).catch(() => {});
       } else {
         video.pause();
-        video.currentTime = 0.01;
       }
     };
     kickstartLoad();
 
-    let lastSeekTime = -1;
-
     const onSeeked = () => {
       isSeeking = false;
-      if (pendingTime !== null && video) {
+      if (pendingTime !== null && videoRef.current) {
         const t = pendingTime;
         pendingTime = null;
-        seekTo(t);
+        if (Math.abs(t - videoRef.current.currentTime) > 0.005) {
+          isSeeking = true;
+          videoRef.current.currentTime = t;
+        }
       }
     };
     video.addEventListener('seeked', onSeeked);
 
     function seekTo(t: number) {
-      if (!video || video.readyState < 1) return;
       if (isSeeking) {
         pendingTime = t;
         return;
       }
-      if (Math.abs(t - lastSeekTime) < 0.015) {
+      if (videoRef.current && Math.abs(t - videoRef.current.currentTime) <= 0.005) {
         return;
       }
       isSeeking = true;
-      lastSeekTime = t;
-      try {
-        if (typeof (video as any).fastSeek === 'function') {
-          (video as any).fastSeek(t);
-        } else {
-          video.currentTime = t;
-        }
-      } catch {
-        video.currentTime = t;
+      if (videoRef.current) {
+        videoRef.current.currentTime = t;
       }
     }
 
-    function lockScroll() {
+    let unlockedDirection: 'down' | 'up' | null = null;
+    let lastScrollY = typeof window !== 'undefined' ? window.scrollY : 0;
+
+    function engageLock() {
       if (locked || typeof document === 'undefined') return;
+      if (window.innerWidth < 768) {
+        setIsUnlocked(true);
+        return;
+      }
       locked = true;
       setIsUnlocked(false);
       lockedScrollY = window.scrollY;
@@ -147,10 +132,12 @@ export default function ScrollVideoHero({
       b.overscrollBehavior = 'none';
     }
 
-    function unlockScroll() {
+    function releaseLock(direction?: 'down' | 'up') {
       if (!locked || typeof document === 'undefined') return;
       locked = false;
       setIsUnlocked(true);
+      if (direction) unlockedDirection = direction;
+      
       const y = lockedScrollY;
       const b = document.body.style;
       b.position = '';
@@ -160,36 +147,64 @@ export default function ScrollVideoHero({
       b.width = '';
       b.height = '';
       b.overscrollBehavior = '';
-      window.scrollTo(0, y);
+      
+      window.scrollTo({ top: y, behavior: 'instant' });
     }
 
-    // Engage lock on top position (desktop only for smooth scrolling on mobile)
-    if (window.scrollY < 20 && (typeof window !== 'undefined' && window.innerWidth >= 768)) {
-      lockScroll();
-    } else {
-      setIsUnlocked(true);
+    // Lock immediately if at top on mount
+    if (window.scrollY <= 5) {
+      engageLock();
     }
 
-    function addDelta(deltaY: number) {
-      if (!locked) {
-        // Re-lock if user scrolls back to the very top
-        if (window.scrollY <= 5 && deltaY < 0) {
-          lockScroll();
+    const onScroll = () => {
+      if (locked) return;
+      const currentScrollY = window.scrollY;
+      const scrollingDown = currentScrollY > lastScrollY;
+      lastScrollY = currentScrollY;
+
+      if (window.innerWidth < 768) return;
+
+      const rect = section.getBoundingClientRect();
+
+      if (scrollingDown && unlockedDirection !== 'down') {
+        if (rect.top <= 20 && rect.top >= -50) {
+          window.scrollTo({ top: currentScrollY + rect.top, behavior: 'instant' });
+          engageLock();
+          targetProgress = 0;
+          currentProgress = 0;
+          unlockedDirection = null;
+        }
+      } else if (!scrollingDown && unlockedDirection !== 'up') {
+        if (rect.bottom >= window.innerHeight - 50 && rect.bottom <= window.innerHeight + 20) {
+          window.scrollTo({ top: currentScrollY + rect.bottom - window.innerHeight, behavior: 'instant' });
+          engageLock();
           targetProgress = 1;
           currentProgress = 1;
-          return true;
+          unlockedDirection = null;
         }
-        return false;
       }
+
+      // Reset unlock memory once scrolled far enough away
+      if (unlockedDirection === 'down' && rect.top < -150) unlockedDirection = null;
+      if (unlockedDirection === 'up' && rect.bottom > window.innerHeight + 150) unlockedDirection = null;
+    };
+
+    function addDelta(deltaY: number) {
+      if (!locked) return false;
 
       const next = clamp(targetProgress + deltaY / scrubDistance, 0, 1);
       targetProgress = next;
+
       if (targetProgress > 0.001) hasStartedScrolling = true;
 
-      // When the scrub finishes and user continues scrolling, unlock smoothly
-      if (targetProgress >= 0.99 && deltaY > 0) {
-        unlockScroll();
+      if (targetProgress >= 0.999 && deltaY > 0) {
+        releaseLock('down');
         window.scrollBy({ top: 120, behavior: 'smooth' });
+      } else if (targetProgress <= 0.001 && deltaY < 0) {
+        if (lockedScrollY > 5) {
+          releaseLock('up');
+          window.scrollBy({ top: -120, behavior: 'smooth' });
+        }
       }
 
       return true;
@@ -197,9 +212,6 @@ export default function ScrollVideoHero({
 
     const onWheel = (e: WheelEvent) => {
       if (locked) {
-        addDelta(e.deltaY);
-        e.preventDefault();
-      } else if (window.scrollY <= 5 && e.deltaY < -10) {
         addDelta(e.deltaY);
         e.preventDefault();
       }
@@ -210,26 +222,25 @@ export default function ScrollVideoHero({
     };
 
     const onTouchMove = (e: TouchEvent) => {
-      if (!locked && window.scrollY > 5) return;
-      const y = e.touches[0]?.clientY ?? touchStartY;
-      const deltaY = touchStartY - y;
-      touchStartY = y;
-      const handled = addDelta(deltaY);
-      if (handled && locked) {
+      if (locked) {
+        const y = e.touches[0]?.clientY ?? touchStartY;
+        const deltaY = touchStartY - y;
+        touchStartY = y;
+        addDelta(deltaY);
         e.preventDefault();
       }
     };
 
+    window.addEventListener('scroll', onScroll, { passive: true });
     window.addEventListener('wheel', onWheel, { passive: false });
     window.addEventListener('touchstart', onTouchStart, { passive: true });
     window.addEventListener('touchmove', onTouchMove, { passive: false });
     section.addEventListener('touchstart', onTouchStart, { passive: true, capture: true });
     section.addEventListener('touchmove', onTouchMove, { passive: false, capture: true });
 
-    // Animation frame loop driven purely by scroll progress
     function frame() {
-      currentProgress += (targetProgress - currentProgress) * 0.25;
-      if (Math.abs(targetProgress - currentProgress) < 0.0003) {
+      currentProgress += (targetProgress - currentProgress) * 0.28;
+      if (Math.abs(targetProgress - currentProgress) < 0.0002) {
         currentProgress = targetProgress;
       }
 
@@ -243,21 +254,49 @@ export default function ScrollVideoHero({
       }
 
       if (titleRef.current) {
-        const t = 1 - clamp(currentProgress / 0.30, 0, 1);
-        titleRef.current.style.opacity = String(t);
-        titleRef.current.style.transform = `translateY(${(1 - t) * -25}px)`;
-        titleRef.current.style.pointerEvents = t > 0.5 ? 'auto' : 'none';
+        let opacity = 0;
+        let translateY = 0;
+        let scale = 1;
+        let blur = 0;
+
+        if (currentProgress <= 0.35) {
+          const t = 1 - currentProgress / 0.35;
+          opacity = t;
+          translateY = (1 - t) * -20;
+          scale = 0.97 + t * 0.03;
+          blur = (1 - t) * 6;
+        } else if (currentProgress >= 0.70) {
+          const t = (currentProgress - 0.70) / 0.30;
+          opacity = t;
+          translateY = (1 - t) * 20;
+          scale = 0.97 + t * 0.03;
+          blur = (1 - t) * 6;
+        }
+
+        titleRef.current.style.opacity = String(opacity);
+        titleRef.current.style.transform = `translateY(${translateY}px) scale(${scale})`;
+        titleRef.current.style.filter = blur > 0.1 ? `blur(${blur}px)` : 'none';
+        titleRef.current.style.pointerEvents = opacity > 0.4 ? 'auto' : 'none';
       }
 
       if (hintRef.current) {
         hintRef.current.style.opacity = hasStartedScrolling ? '0' : '1';
       }
 
-      if (taglineRef.current) {
-        const t = clamp((currentProgress - 0.70) / 0.25, 0, 1);
-        taglineRef.current.style.opacity = String(t);
-        taglineRef.current.style.transform = `translateY(${(1 - t) * 20}px)`;
-        taglineRef.current.style.pointerEvents = t > 0.5 ? 'auto' : 'none';
+      if (skipBtnRef.current) {
+        let skipOpacity = 0;
+        if (currentProgress > 0.28 && currentProgress < 0.72) {
+          if (currentProgress <= 0.38) {
+            skipOpacity = (currentProgress - 0.28) / 0.10;
+          } else if (currentProgress >= 0.62) {
+            skipOpacity = 1 - (currentProgress - 0.62) / 0.10;
+          } else {
+            skipOpacity = 1;
+          }
+        }
+        skipBtnRef.current.style.opacity = String(skipOpacity);
+        skipBtnRef.current.style.pointerEvents = skipOpacity > 0.3 ? 'auto' : 'none';
+        skipBtnRef.current.style.transform = `translate(-50%, ${(1 - skipOpacity) * 8}px)`;
       }
 
       if (progressBarRef.current) {
@@ -273,13 +312,14 @@ export default function ScrollVideoHero({
       video.removeEventListener('loadeddata', onLoadedData);
       video.removeEventListener('loadedmetadata', onLoadedData);
       video.removeEventListener('seeked', onSeeked);
+      window.removeEventListener('scroll', onScroll);
       window.removeEventListener('wheel', onWheel);
       window.removeEventListener('touchstart', onTouchStart);
       window.removeEventListener('touchmove', onTouchMove);
       section.removeEventListener('touchstart', onTouchStart, true);
       section.removeEventListener('touchmove', onTouchMove, true);
       cancelAnimationFrame(rafId);
-      unlockScroll();
+      releaseLock();
     };
   }, [scrubDistance, isDesktop]);
 
@@ -304,11 +344,11 @@ export default function ScrollVideoHero({
       ref={sectionRef}
       className="relative w-full h-[100dvh] overflow-hidden select-none bg-stone-950 md:touch-none"
     >
-      {/* Instant LCP Responsive Poster Image (37KB on mobile vs full-res on desktop) */}
-      <picture className="absolute inset-0 w-full h-full pointer-events-none">
+      {/* Mobile poster */}
+      <picture className="absolute inset-0 w-full h-full pointer-events-none md:hidden">
         <source
           media="(min-width: 769px)"
-          srcSet="/assets/banners/banner-driveway.webp"
+          srcSet="/assets/generated/driveway_premium.jpg"
           type="image/webp"
         />
         <img
@@ -321,24 +361,21 @@ export default function ScrollVideoHero({
         />
       </picture>
 
-      {/* Background Scrubbed Video — Rendered ONLY on desktop to eliminate 4MB mobile data download */}
-      {isDesktop && (
-        <video
-          ref={videoRef}
-          muted
-          playsInline
-          preload="metadata"
-          poster="/assets/banners/banner-driveway.webp"
-          className="hidden md:block absolute inset-0 w-full h-full object-cover pointer-events-none"
-          style={{
-            transformOrigin: 'center center',
-            willChange: 'transform',
-          }}
-        >
-          <source src={videoSrc} type="video/mp4" />
-          <source src={FALLBACK_VIDEO} type="video/mp4" />
-        </video>
-      )}
+      {/* Background Scrubbed Video */}
+      <video
+        ref={videoRef}
+        src={videoSrc}
+        muted
+        playsInline
+        preload="auto"
+        className="hidden md:block absolute inset-0 w-full h-full object-cover pointer-events-none"
+        style={{
+          opacity: ready ? 1 : 0,
+          transformOrigin: 'center center',
+          willChange: 'transform',
+          transition: 'opacity 0.6s ease',
+        }}
+      />
 
       {/* Atmospheric Contrast Overlays */}
       <div className="absolute inset-0 bg-gradient-to-b from-stone-950/60 via-stone-950/20 to-stone-950/75 pointer-events-none" />
@@ -347,89 +384,47 @@ export default function ScrollVideoHero({
       {/* Initial Hero Title (Visible on load) */}
       <div
         ref={titleRef}
-        className="absolute inset-0 flex flex-col items-center justify-center text-center px-6 z-10"
-        style={{ pointerEvents: 'auto' }}
+        className="absolute inset-0 flex flex-col items-center justify-center text-center px-6 z-10 mt-12 sm:mt-8"
+        style={{ pointerEvents: 'auto', willChange: 'transform, filter, opacity' }}
       >
+        <span className="text-[#4CC66E] font-bold text-[10px] sm:text-xs uppercase tracking-[0.2em] mb-4 sm:mb-5 drop-shadow-md">
+          Los Angeles · Pavers & turf
+        </span>
         <h1
-          className="text-white font-extrabold tracking-tight drop-shadow-2xl max-w-5xl"
+          className="text-white font-serif font-normal tracking-tight drop-shadow-2xl max-w-4xl"
           style={{
-            fontSize: 'clamp(2.5rem, 7vw, 5.5rem)',
-            lineHeight: 1.05,
-            letterSpacing: '-0.02em',
+            fontSize: 'clamp(2.25rem, 5vw, 4.5rem)',
+            lineHeight: 1.1,
           }}
         >
-          {title}
+          Luxury remodeling designed around your lifestyle.
         </h1>
-        <p className="mt-4 text-white/90 font-medium text-base sm:text-lg max-w-xl drop-shadow-md">
-          Transforming residential architecture with custom interlocking pavers and lush synthetic turf.
+        <p className="mt-5 text-stone-200 font-medium text-base sm:text-lg max-w-2xl drop-shadow-md">
+          We design and install paver driveways, patios and artificial turf lawns across Los Angeles County. One crew, one warranty, and the base work done properly underneath.
         </p>
 
         {/* Action Buttons on Initial Load */}
-        <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-3.5 w-full max-w-md sm:max-w-none pointer-events-auto">
+        <div className="mt-8 sm:mt-10 flex flex-col sm:flex-row items-center justify-center gap-3.5 w-full max-w-md sm:max-w-none pointer-events-auto">
           <button
             onClick={onOpenConsultation || handleSkipToContent}
             type="button"
-            className="w-full sm:w-auto px-7 py-3.5 rounded-none bg-[#019934] hover:bg-[#01802b] text-white font-bold text-sm sm:text-base shadow-xl hover:shadow-2xl transition-colors duration-200 flex items-center justify-center gap-2 cursor-pointer"
+            className="w-full sm:w-auto px-7 py-3.5 rounded-none bg-[#019934] hover:bg-[#01802b] text-white font-bold text-sm sm:text-base shadow-xl hover:shadow-2xl transition-colors duration-200 flex items-center justify-center gap-2 cursor-pointer uppercase"
           >
-            <span>Get Free 3D Design & Consultation</span>
-            <ChevronRight className="w-5 h-5" />
+            <span>GET A FREE QUOTE</span>
+            <ChevronRight className="w-4 h-4 sm:w-5 sm:h-5" />
           </button>
           <button
             onClick={handleSkipToContent}
             type="button"
-            className="w-full sm:w-auto px-7 py-3.5 rounded-none bg-stone-900/80 hover:bg-stone-900 border border-white/30 hover:border-white/60 text-white font-semibold text-sm sm:text-base shadow-xl transition-colors duration-200 flex items-center justify-center gap-2 cursor-pointer"
+            className="w-full sm:w-auto px-7 py-3.5 rounded-none bg-stone-900/80 hover:bg-stone-900 border border-white/30 hover:border-white/60 text-white font-semibold text-sm sm:text-base shadow-xl transition-colors duration-200 flex items-center justify-center gap-2 cursor-pointer uppercase"
           >
-            <span>Explore All Services</span>
-            <ChevronRight className="w-5 h-5" />
+            <span>SEE OUR WORK</span>
           </button>
         </div>
 
         {/* Verified Review Platforms Marquee: Google, Yelp, BuildZoom, Houzz */}
-        <div className="mt-8 sm:mt-10 w-full max-w-4xl mx-auto pointer-events-auto">
+        <div className="mt-10 sm:mt-14 w-full max-w-4xl mx-auto pointer-events-auto">
           <ReviewLogoMarquee />
-        </div>
-      </div>
-
-      {/* Secondary Tagline (Reveals smoothly during scroll) */}
-      <div
-        ref={taglineRef}
-        className="absolute inset-0 flex flex-col items-center justify-center text-center px-8 opacity-0 z-10"
-        style={{ pointerEvents: 'none' }}
-      >
-        <span className="text-[#42e078] font-bold text-xs sm:text-sm uppercase tracking-widest mb-3 drop-shadow">
-          Elevate Your Lifestyle
-        </span>
-        <h2
-          className="text-white font-extrabold drop-shadow-2xl max-w-4xl"
-          style={{
-            fontSize: 'clamp(1.75rem, 4.5vw, 3.25rem)',
-            lineHeight: 1.2,
-          }}
-        >
-          {tagline}
-        </h2>
-        <p className="mt-3 text-stone-200 text-sm sm:text-base max-w-2xl font-normal drop-shadow">
-          Engineered for enduring strength, water conservation, and curb appeal.
-        </p>
-
-        {/* Action Buttons at Door Entrance */}
-        <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-3.5 w-full max-w-md sm:max-w-none pointer-events-auto">
-          <button
-            onClick={onOpenConsultation || handleSkipToContent}
-            type="button"
-            className="w-full sm:w-auto px-7 py-3.5 rounded-none bg-[#019934] hover:bg-[#01802b] text-white font-bold text-sm sm:text-base shadow-xl hover:shadow-2xl transition-colors duration-200 flex items-center justify-center gap-2 cursor-pointer"
-          >
-            <span>Get Free 3D Design & Consultation</span>
-            <ChevronRight className="w-5 h-5" />
-          </button>
-          <button
-            onClick={handleSkipToContent}
-            type="button"
-            className="w-full sm:w-auto px-7 py-3.5 rounded-none bg-stone-900/80 hover:bg-stone-900 border border-white/30 hover:border-white/60 text-white font-semibold text-sm sm:text-base shadow-xl transition-colors duration-200 flex items-center justify-center gap-2 cursor-pointer"
-          >
-            <span>Explore All Services</span>
-            <ChevronRight className="w-5 h-5" />
-          </button>
         </div>
       </div>
 
@@ -443,13 +438,25 @@ export default function ScrollVideoHero({
         <ChevronDown className="w-5 h-5 text-[#42e078] animate-bounce" />
       </div>
 
+      {/* Floating Skip Video Button (Appears only during video playback when texts are hidden) */}
+      <button
+        ref={skipBtnRef}
+        onClick={handleSkipToContent}
+        type="button"
+        className="absolute left-1/2 bottom-9 -translate-x-1/2 z-30 px-5 py-2.5 rounded-full bg-stone-900/85 hover:bg-stone-900 border border-white/25 hover:border-[#42e078]/80 text-white font-semibold text-xs tracking-wider uppercase backdrop-blur-md shadow-2xl transition-all flex items-center gap-2 cursor-pointer opacity-0 pointer-events-none group"
+      >
+        <span>Skip video</span>
+        <ChevronsDown className="w-4 h-4 text-[#42e078] group-hover:translate-y-0.5 transition-transform" />
+      </button>
+
       {/* Scrubbing Progress Bar */}
       <div className="absolute left-0 right-0 bottom-0 h-1.5 bg-white/10 z-30">
         <div
           ref={progressBarRef}
-          className="h-full w-full bg-gradient-to-r from-[#019934] to-[#42e078] origin-left scale-x-0 transition-transform duration-75"
+          className="h-full w-full bg-gradient-to-r from-[#019934] to-[#42e078] origin-left scale-x-0"
         />
       </div>
     </div>
   );
 }
+

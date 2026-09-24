@@ -37,9 +37,17 @@ export default function ServicesGrid({ onOpenModal, customServices, customHeader
         {/* Services Cards Grid — replica minimalist card-grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
           {list.map((service) => {
-            const imgSrc = service.heroImage?.asset
+            const localMap: Record<string, string> = {
+              'driveway-pavers': '/assets/generated/driveway_premium.jpg',
+              'patio-pavers': '/assets/generated/patio_premium.jpg',
+              'pool-deck-pavers': '/assets/generated/pool_premium.jpg',
+              'synthetic-turf': '/assets/generated/turf_premium.jpg',
+              'outdoor-kitchens': '/assets/generated/kitchen_premium.jpg',
+              'decking-pergolas': '/assets/generated/pergola_premium.jpg'
+            };
+            const imgSrc = localMap[service.slug] || (service.heroImage?.asset
               ? urlForImage(service.heroImage).width(400).height(250).url()
-              : (typeof service.heroImage === 'string' ? service.heroImage : '/assets/cards/card-driveway.webp');
+              : (typeof service.heroImage === 'string' ? service.heroImage : '/assets/generated/driveway_premium.jpg'));
 
             return (
             <div

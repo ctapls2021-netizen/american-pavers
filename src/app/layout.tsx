@@ -38,7 +38,7 @@ export default function RootLayout({
         <link
           rel="preload"
           as="image"
-          href="/assets/banners/banner-driveway.webp"
+          href="/assets/generated/driveway_premium.jpg"
           type="image/webp"
           media="(min-width: 769px)"
           // @ts-ignore
@@ -47,16 +47,7 @@ export default function RootLayout({
         <link
           href="https://fonts.googleapis.com/css2?family=Fustat:wght@300;400;500;600;700;800&family=Source+Serif+4:ital,opsz,wght@0,8..60,400..800;1,8..60,400..800&display=swap"
           rel="stylesheet"
-          media="print"
-          // @ts-ignore
-          onLoad="this.media='all'"
         />
-        <noscript>
-          <link
-            href="https://fonts.googleapis.com/css2?family=Fustat:wght@300;400;500;600;700;800&family=Source+Serif+4:ital,opsz,wght@0,8..60,400..800;1,8..60,400..800&display=swap"
-            rel="stylesheet"
-          />
-        </noscript>
       </head>
       <body className="antialiased selection:bg-[#019934] selection:text-white">
         <LiveVisualEditing />

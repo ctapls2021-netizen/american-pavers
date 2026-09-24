@@ -9,6 +9,7 @@ interface ServiceHeroStaticProps {
   title?: string;
   tagline?: string;
   imageSrc?: string;
+  imagePosition?: string;
   serviceName?: string;
   onOpenModal?: () => void;
 }
@@ -16,7 +17,8 @@ interface ServiceHeroStaticProps {
 export default function ServiceHeroStatic({
   title = 'Engineered Driveway Pavers',
   tagline = 'Transforming California residential driveways with 10,000+ PSI interlocking pavers guaranteed for a lifetime.',
-  imageSrc = '/assets/banners/banner-driveway.webp',
+  imageSrc = '/assets/generated/driveway_premium.jpg',
+  imagePosition = 'object-center',
   serviceName = 'Driveway Pavers',
   onOpenModal,
 }: ServiceHeroStaticProps) {
@@ -27,7 +29,7 @@ export default function ServiceHeroStatic({
         <img
           src={imageSrc}
           alt={title}
-          className="w-full h-full object-cover object-center scale-105"
+          className={`w-full h-full object-cover ${imagePosition} scale-105`}
           loading="eager"
         />
       </div>

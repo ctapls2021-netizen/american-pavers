@@ -273,7 +273,7 @@ export default function ServicePageClient({ service }: ServicePageClientProps) {
             <ServiceHeroStatic
               title="Engineered Driveway Pavers"
               tagline="Transforming California residential driveways with 10,000+ PSI interlocking pavers guaranteed for a lifetime."
-              imageSrc="/assets/banners/banner-driveway.webp"
+              imageSrc="/assets/real/American pavers (2).jpg"
               serviceName={service.shortTitle}
               onOpenModal={handleOpenModal}
             />
@@ -339,7 +339,7 @@ export default function ServicePageClient({ service }: ServicePageClientProps) {
             <ServiceHeroStatic
               title="Luxury Backyard Patio Pavers"
               tagline="Transforming Southern California backyards into resort-inspired outdoor living spaces with custom interlocking pavers and stone artistry."
-              imageSrc="/assets/banners/banner-patio.webp"
+              imageSrc="/assets/real/American pavers (13).jpg"
               serviceName={service.shortTitle}
               onOpenModal={handleOpenModal}
             />
@@ -349,7 +349,7 @@ export default function ServicePageClient({ service }: ServicePageClientProps) {
               overline="Backyard Architecture & Living"
               title="Designed for California Sunshine. Built to Last Generations."
               description="Say goodbye to cramped, sun-baked concrete slabs and decaying wood decks. Our custom interlocking patio paver systems are engineered with high-SRI cool-touch finishes, flexible earthquake-resistant aggregate bases, and seamless integration for outdoor kitchens, fire pits, and shaded dining pavilions."
-              imageSrc="/assets/transformations/patio-after.webp"
+              imageSrc="/assets/real/thumbs/American pavers (14).jpg"
               imageAlt="Luxury Backyard Patio Paver Installation in Newport Beach, CA"
               primaryBtnText="Schedule Free 3D Design"
               onOpenModal={handleOpenModal}
@@ -385,12 +385,12 @@ export default function ServicePageClient({ service }: ServicePageClientProps) {
               title="Custom Patio Paver Installations"
               subtitle="Explore authentic outdoor living patios engineered and installed for homeowners across Los Angeles, Orange County, and the Inland Empire."
               slides={[
-                { title: 'Newport Beach, CA', src: '/assets/transformations/patio-after.webp' },
-                { title: 'Beverly Hills, CA', src: '/assets/banners/banner-patio.webp' },
-                { title: 'Irvine, CA', src: '/assets/transformations/fire-pit-after.webp' },
-                { title: 'Pasadena, CA', src: '/assets/transformations/pergola-after.webp' },
-                { title: 'San Diego, CA', src: '/assets/banners/banner-turf.webp' },
-                { title: 'Encino, CA', src: '/assets/banners/banner-kitchen.webp' },
+                { title: 'Newport Beach, CA', src: '/assets/generated/patio_premium.jpg' },
+                { title: 'Beverly Hills, CA', src: '/assets/real/thumbs/American pavers (23).jpg' },
+                { title: 'Irvine, CA', src: '/assets/real/thumbs/American pavers (24).jpg' },
+                { title: 'Pasadena, CA', src: '/assets/real/thumbs/American pavers (25).jpg' },
+                { title: 'San Diego, CA', src: '/assets/real/thumbs/American pavers (26).jpg' },
+                { title: 'Encino, CA', src: '/assets/real/thumbs/American pavers (27).jpg' },
               ]}
             />
 
@@ -431,7 +431,8 @@ export default function ServicePageClient({ service }: ServicePageClientProps) {
             <ServiceHeroStatic
               title="Slip-Resistant Pool Deck Pavers"
               tagline="Transforming California pool surrounds and coping with cool-touch, non-slip interlocking pavers guaranteed for a lifetime."
-              imageSrc="/assets/banners/banner-pool.webp"
+              imageSrc="/assets/real/American pavers (24).jpg"
+              imagePosition="object-bottom"
               serviceName={service.shortTitle}
               onOpenModal={handleOpenModal}
             />
@@ -441,7 +442,7 @@ export default function ServicePageClient({ service }: ServicePageClientProps) {
               overline="Resort Pool Living & Safety"
               title="Engineered for Barefoot Comfort, Wet Traction & Resort Elegance."
               description="Upgrade cracked, burning-hot concrete with high-performance interlocking pool deck pavers and custom bullnose safety coping. Engineered with textured non-slip finishes meeting strict ADA slip-resistance standards, high Solar Reflectance Index (SRI) materials that stay cool on summer afternoons, and impervious sealants unaffected by chlorine or saltwater splash."
-              imageSrc="/assets/transformations/pool-deck-after.webp"
+              imageSrc="/assets/real/thumbs/American pavers (23).jpg"
               imageAlt="Luxury Slip-Resistant Pool Deck Pavers and Bullnose Coping"
               primaryBtnText="Schedule Free 3D Design"
               onOpenModal={handleOpenModal}
@@ -477,12 +478,12 @@ export default function ServicePageClient({ service }: ServicePageClientProps) {
               title="Custom Pool Deck & Coping Installations"
               subtitle="Explore authentic resort-inspired pool surrounds, bullnose coping, and integrated spas built across Southern California."
               slides={[
-                { title: 'Palm Springs, CA', src: '/assets/banners/banner-pool.webp' },
-                { title: 'Beverly Hills, CA', src: '/assets/transformations/pool-deck-after.webp' },
-                { title: 'Newport Beach, CA', src: '/assets/transformations/turf-pool-after.webp' },
-                { title: 'Irvine, CA', src: '/assets/banners/banner-patio.webp' },
-                { title: 'Pasadena, CA', src: '/assets/transformations/patio-after.webp' },
-                { title: 'San Diego, CA', src: '/assets/banners/banner-turf.webp' },
+                { title: 'Palm Springs, CA', src: '/assets/generated/pool_premium.jpg' },
+                { title: 'Beverly Hills, CA', src: '/assets/real/thumbs/American pavers (9).jpg' },
+                { title: 'Newport Beach, CA', src: '/assets/real/thumbs/American pavers (10).jpg' },
+                { title: 'Irvine, CA', src: '/assets/real/thumbs/American pavers (11).jpg' },
+                { title: 'Pasadena, CA', src: '/assets/real/thumbs/American pavers (12).jpg' },
+                { title: 'San Diego, CA', src: '/assets/real/thumbs/American pavers (13).jpg' },
               ]}
             />
 
@@ -523,7 +524,7 @@ export default function ServicePageClient({ service }: ServicePageClientProps) {
             <ServiceHeroStatic
               title="Lush Artificial Grass & Putting Greens"
               tagline="Drought-tolerant, pet-friendly, zero-water artificial turf that stays emerald green 365 days a year across Southern California."
-              imageSrc="/assets/banners/banner-turf.webp"
+              imageSrc="/assets/real/American pavers (16).jpg"
               serviceName={service.shortTitle}
               onOpenModal={handleOpenModal}
             />
@@ -533,7 +534,7 @@ export default function ServicePageClient({ service }: ServicePageClientProps) {
               overline="Water Conservation & Pet Performance"
               title="Save Thousands in Water Bills While Enjoying a Flawless, Mud-Free Lawn."
               description="Upgrade dying California grass with American-made synthetic turf featuring Cool-Blade heat dissipation, antimicrobial zeolite pet infill, and 30+ inches/hour drainage. Perfect for active dogs, family play, poolside accents, and custom backyard putting greens with zero mowing, fertilizers, or water waste."
-              imageSrc="/assets/transformations/turf-lawn-after.webp"
+              imageSrc="/assets/real/thumbs/American pavers (11).jpg"
               imageAlt="Luxury Artificial Turf and Putting Green Installation"
               primaryBtnText="Schedule Free 3D Design"
               onOpenModal={handleOpenModal}
@@ -562,12 +563,12 @@ export default function ServicePageClient({ service }: ServicePageClientProps) {
               title="Custom Turf & Putting Green Installations"
               subtitle="Explore authentic lawn replacements, dog runs, and championship putting greens installed across Southern California."
               slides={[
-                { title: 'San Diego, CA', src: '/assets/transformations/turf-lawn-after.webp' },
-                { title: 'Beverly Hills, CA', src: '/assets/banners/banner-turf.webp' },
-                { title: 'Irvine, CA', src: '/assets/banners/banner-patio.webp' },
-                { title: 'Newport Beach, CA', src: '/assets/banners/banner-pool.webp' },
-                { title: 'Pasadena, CA', src: '/assets/transformations/patio-after.webp' },
-                { title: 'Palm Springs, CA', src: '/assets/transformations/fire-pit-after.webp' },
+                { title: 'San Diego, CA', src: '/assets/generated/turf_premium.jpg' },
+                { title: 'Beverly Hills, CA', src: '/assets/real/thumbs/American pavers (31).jpg' },
+                { title: 'Irvine, CA', src: '/assets/real/thumbs/American pavers (32).jpg' },
+                { title: 'Newport Beach, CA', src: '/assets/real/thumbs/American pavers (33).jpg' },
+                { title: 'Pasadena, CA', src: '/assets/real/thumbs/American pavers (34).jpg' },
+                { title: 'Palm Springs, CA', src: '/assets/real/thumbs/American pavers (35).jpg' },
               ]}
             />
 
@@ -608,7 +609,7 @@ export default function ServicePageClient({ service }: ServicePageClientProps) {
             <ServiceHeroStatic
               title="Custom Outdoor Kitchens & Fire Pits"
               tagline="Gourmet stainless steel BBQ islands, outdoor pizza ovens, granite countertops, and cozy gas fire features."
-              imageSrc="/assets/banners/banner-kitchen.webp"
+              imageSrc="/assets/real/American pavers (21).jpg"
               serviceName={service.shortTitle}
               onOpenModal={handleOpenModal}
             />
@@ -618,7 +619,7 @@ export default function ServicePageClient({ service }: ServicePageClientProps) {
               overline="Gourmet Outdoor Living & Culinary Craft"
               title="Architectural Outdoor Kitchens & Warm Gas Fire Pit Lounges."
               description="Transform your backyard into an outdoor culinary paradise. We custom engineer heavy-duty galvanized steel framing or structural masonry block suites equipped with 304 marine-grade stainless steel BBQ grills, beverage coolers, granite counters, and push-button electronic gas fire pits plumbed directly to your residential gas line."
-              imageSrc="/assets/transformations/fire-pit-after.webp"
+              imageSrc="/assets/real/thumbs/American pavers (13).jpg"
               imageAlt="Luxury Custom Outdoor Kitchen and Gas Fire Pit Lounge"
               primaryBtnText="Schedule Free 3D Design"
               onOpenModal={handleOpenModal}
@@ -644,12 +645,12 @@ export default function ServicePageClient({ service }: ServicePageClientProps) {
               title="Custom Kitchens & Fire Pit Installations"
               subtitle="Browse authentic outdoor BBQ suites, swim-up bars, and fireside seating areas built across Southern California."
               slides={[
-                { title: 'Irvine, CA', src: '/assets/banners/banner-kitchen.webp' },
-                { title: 'Newport Beach, CA', src: '/assets/transformations/fire-pit-after.webp' },
-                { title: 'Beverly Hills, CA', src: '/assets/banners/banner-patio.webp' },
-                { title: 'Palm Springs, CA', src: '/assets/banners/banner-pool.webp' },
-                { title: 'Pasadena, CA', src: '/assets/transformations/patio-after.webp' },
-                { title: 'San Diego, CA', src: '/assets/banners/banner-turf.webp' },
+                { title: 'Irvine, CA', src: '/assets/generated/kitchen_premium.jpg' },
+                { title: 'Newport Beach, CA', src: '/assets/real/thumbs/American pavers (18).jpg' },
+                { title: 'Beverly Hills, CA', src: '/assets/real/thumbs/American pavers (17).jpg' },
+                { title: 'Palm Springs, CA', src: '/assets/real/thumbs/American pavers (16).jpg' },
+                { title: 'Pasadena, CA', src: '/assets/real/thumbs/American pavers (5).jpg' },
+                { title: 'San Diego, CA', src: '/assets/real/thumbs/American pavers (6).jpg' },
               ]}
             />
 
@@ -690,7 +691,8 @@ export default function ServicePageClient({ service }: ServicePageClientProps) {
             <ServiceHeroStatic
               title="Composite Decks & Louvered Pergolas"
               tagline="Modern composite decking and motorized pergolas engineered for sun protection and modern outdoor living."
-              imageSrc="/assets/banners/banner-deck.webp"
+              imageSrc="/assets/real/American pavers (22).jpg"
+              imagePosition="object-[center_20%]"
               serviceName={service.shortTitle}
               onOpenModal={handleOpenModal}
             />
@@ -700,7 +702,7 @@ export default function ServicePageClient({ service }: ServicePageClientProps) {
               overline="Architectural Shade & Splinter-Free Decking"
               title="Motorized Louvered Shade Systems & Low-Maintenance Composite Living."
               description="Enjoy your California backyard in any weather. Our motorized dual-walled aluminum pergolas feature 180-degree rotating louvers and automatic optical rain sensors that seal shut instantly when showers begin. Paired with splinter-free capped composite decking (Trex / TimberTech) that never rots, warps, or requires staining."
-              imageSrc="/assets/transformations/pergola-after.webp"
+              imageSrc="/assets/real/thumbs/American pavers (23).jpg"
               imageAlt="Modern Louvered Aluminum Pergola and Composite Decking"
               primaryBtnText="Schedule Free 3D Design"
               onOpenModal={handleOpenModal}
@@ -726,12 +728,12 @@ export default function ServicePageClient({ service }: ServicePageClientProps) {
               title="Custom Decks & Motorized Pergolas"
               subtitle="Explore motorized aluminum pergolas, multi-level composite decks, and integrated privacy screens built across Southern California."
               slides={[
-                { title: 'Los Angeles, CA', src: '/assets/banners/banner-deck.webp' },
-                { title: 'Pasadena, CA', src: '/assets/transformations/pergola-after.webp' },
-                { title: 'Newport Beach, CA', src: '/assets/banners/banner-patio.webp' },
-                { title: 'Beverly Hills, CA', src: '/assets/banners/banner-kitchen.webp' },
-                { title: 'San Diego, CA', src: '/assets/banners/banner-turf.webp' },
-                { title: 'Palm Springs, CA', src: '/assets/banners/banner-pool.webp' },
+                { title: 'Los Angeles, CA', src: '/assets/generated/pergola_premium.jpg' },
+                { title: 'Pasadena, CA', src: '/assets/real/thumbs/American pavers (2).jpg' },
+                { title: 'Newport Beach, CA', src: '/assets/real/thumbs/American pavers (3).jpg' },
+                { title: 'Beverly Hills, CA', src: '/assets/real/thumbs/American pavers (4).jpg' },
+                { title: 'San Diego, CA', src: '/assets/real/thumbs/American pavers (14).jpg' },
+                { title: 'Palm Springs, CA', src: '/assets/real/thumbs/American pavers (28).jpg' },
               ]}
             />
 

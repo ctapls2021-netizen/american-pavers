@@ -117,7 +117,7 @@ export default function ContactPageClient({ contactData }: ContactPageClientProp
           {/* Static Background Image with zoom */}
           <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
             <img
-              src="/assets/banners/banner-driveway.webp"
+              src="/assets/generated/driveway_premium.jpg"
               alt="Contact American Pavers & Turf"
               className="w-full h-full object-cover object-center scale-105"
               loading="eager"
