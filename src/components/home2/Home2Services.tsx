@@ -4,35 +4,35 @@ import { Layers, Ruler, Sprout, Hammer, Droplets, ArrowRight } from 'lucide-reac
 
 const SERVICES = [
   {
-    icon: Layers,
+    iconSrc: '/assets/icons/pavers.png',
     image: '/assets/real/thumbs/American pavers (2).jpg',
     title: 'Paver driveways',
     description: 'Sand-set over six inches of compacted base, edge-restrained on all four sides.',
     linkLabel: 'See driveways',
   },
   {
-    icon: Ruler,
+    iconSrc: '/assets/icons/pool.png',
     image: '/assets/real/thumbs/American pavers (13).jpg',
     title: 'Patios & pool decks',
     description: 'Large-format bluestone and porcelain, laid to fall so water leaves the house.',
     linkLabel: 'See patios',
   },
   {
-    icon: Sprout,
+    iconSrc: '/assets/icons/turf.png',
     image: '/assets/real/thumbs/American pavers (16).jpg',
     title: 'Artificial turf',
     description: 'Pet-rated and putting-green blades over a drainage base that does not hold odor.',
     linkLabel: 'See turf',
   },
   {
-    icon: Hammer,
+    iconSrc: '/assets/icons/steps.png',
     image: '/assets/real/thumbs/walkways_and_steps_gen.jpg',
     title: 'Walkways & steps',
     description: 'Front paths, side yards and stepped entries cut to the grade of the lot.',
     linkLabel: 'See walkways',
   },
   {
-    icon: Layers,
+    iconSrc: '/assets/icons/wall.png',
     image: '/assets/real/thumbs/retaining_walls_gen.jpg',
     title: 'Retaining walls',
     description: 'Engineered block walls with drainage behind, permitted where required.',
@@ -94,7 +94,11 @@ export default function Home2Services() {
                 {/* Top-Left Icon */}
                 <div className="absolute top-2.5 left-2.5 sm:top-5 sm:left-5 text-white z-10">
                   <span className="w-7 h-7 sm:w-10 sm:h-10 rounded-md bg-white/10 backdrop-blur-md border border-white/15 flex items-center justify-center">
-                    <IconComp className="w-3.5 h-3.5 sm:w-5 sm:h-5 text-white" />
+                    {s.iconSrc ? (
+                      <Image src={s.iconSrc} alt="" width={24} height={24} className="w-4 h-4 sm:w-6 sm:h-6 object-contain" />
+                    ) : (
+                      IconComp && <IconComp className="w-3.5 h-3.5 sm:w-5 sm:h-5 text-white" />
+                    )}
                   </span>
                 </div>
 
