@@ -19,8 +19,8 @@ const transformations: BeforeAfterPair[] = [
     title: 'Aged Concrete to Interlocking Paver Driveway',
     location: 'Pasadena, CA',
     category: 'Driveway Pavers',
-    beforeImg: '/assets/transformations/driveway-before.webp',
-    afterImg: '/assets/transformations/driveway-after.webp',
+    beforeImg: '/assets/transformations/driveway-modern-before.jpg',
+    afterImg: '/assets/transformations/driveway-modern-after.jpg',
     description: 'Excavated 8 inches of compromised soil, leveled with geotextile aggregate, and installed heavy-duty interlocking pavers with custom soldier course borders.',
   },
   {
@@ -28,8 +28,8 @@ const transformations: BeforeAfterPair[] = [
     title: 'Cramped Slab to Outdoor Kitchen & Dining Retreat',
     location: 'Newport Beach, CA',
     category: 'Patio Pavers',
-    beforeImg: '/assets/transformations/patio-before.webp',
-    afterImg: '/assets/transformations/patio-after.webp',
+    beforeImg: '/assets/transformations/patio-modern-before.jpg',
+    afterImg: '/assets/transformations/patio-modern-after.jpg',
     description: 'Replaced a weathered concrete slab with a 3x larger interlocking paver terrace, complete with built-in BBQ island, smoker station, and shaded dining pergola.',
   },
   {
@@ -37,8 +37,8 @@ const transformations: BeforeAfterPair[] = [
     title: 'Excavation to Resort Pool Coping & Architectural Paver Deck',
     location: 'Palm Springs, CA',
     category: 'Pool Deck Pavers',
-    beforeImg: '/assets/transformations/pool-deck-before.webp',
-    afterImg: '/assets/transformations/pool-deck-after.webp',
+    beforeImg: '/assets/transformations/pool-deck-modern-before.jpg',
+    afterImg: '/assets/transformations/pool-deck-modern-after.jpg',
     description: 'Transformed an excavated pool construction site into a luxury resort pool deck with slip-resistant pavers, smooth safety bullnose coping, and palm tree planter retaining wall.',
   },
   {
@@ -46,8 +46,8 @@ const transformations: BeforeAfterPair[] = [
     title: 'Drought-Stricken Brown Lawn to Emerald Synthetic Turf',
     location: 'San Diego, CA',
     category: 'Synthetic Turf',
-    beforeImg: '/assets/transformations/turf-lawn-before.webp',
-    afterImg: '/assets/transformations/turf-lawn-after.webp',
+    beforeImg: '/assets/transformations/turf-modern-before.jpg',
+    afterImg: '/assets/transformations/turf-modern-after.jpg',
     description: 'Replaced dead, water-thirsty dormant grass with high-drainage, pet-friendly Cool-Blade synthetic turf and integrated interlocking paver patio borders.',
   },
   {
