@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState, useEffect, useRef } from 'react';
+import Image from 'next/image';
 
 interface StepItem {
   id: number;
@@ -138,6 +139,18 @@ export default function ProcessSteps({
 
   return (
     <section className="relative pt-16 sm:pt-20 pb-8 sm:pb-12 bg-[#0B1113] text-white border-t border-b border-stone-800 overflow-hidden select-none">
+      {/* Translucent Background Image */}
+      <div className="absolute inset-0 w-full h-full pointer-events-none z-0">
+        <Image
+          src="/assets/real/process-bg.png"
+          alt="American Pavers Process"
+          fill
+          className="object-cover object-center opacity-30"
+        />
+        <div className="absolute inset-0 bg-[#0B1113]/70" />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#0B1113] via-transparent to-[#0B1113]" />
+      </div>
+
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Clean Section Header */}
         <div className="text-center max-w-2xl mx-auto mb-6 sm:mb-8">
