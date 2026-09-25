@@ -396,18 +396,19 @@ export default function ScrollVideoHero({
       />
 
       {/* Atmospheric Contrast Overlays */}
-      <div className="absolute inset-0 bg-gradient-to-b from-stone-950/60 via-stone-950/20 to-stone-950/75 pointer-events-none" />
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_45%,rgba(10,15,18,0.55)_100%)] pointer-events-none" />
+      <div className="absolute inset-0 bg-gradient-to-b from-stone-950/60 via-stone-950/20 to-stone-950/75 pointer-events-none z-[1]" />
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_45%,rgba(10,15,18,0.55)_100%)] pointer-events-none z-[1]" />
       {/* Soft legibility scrim — fades out as user scrolls through video */}
       <div
         ref={overlayRef}
-        className="absolute inset-0 bg-stone-950 pointer-events-none"
+        className="absolute inset-0 bg-black pointer-events-none z-[2]"
         style={{ opacity: 0.45 }}
       />
+
       {/* Initial Hero Title (Visible on load) */}
       <div
         ref={titleRef}
-        className="absolute inset-0 flex flex-col items-center justify-center text-center px-6 z-10 mt-12 sm:mt-8"
+        className="absolute inset-0 flex flex-col items-center justify-center text-center px-6 z-[10] mt-12 sm:mt-8"
         style={{ pointerEvents: 'auto', willChange: 'transform, filter, opacity' }}
       >
         <span className="text-[#4CC66E] font-bold text-[10px] sm:text-xs uppercase tracking-[0.2em] mb-4 sm:mb-5 drop-shadow-md">
@@ -451,13 +452,13 @@ export default function ScrollVideoHero({
         </div>
       </div>
 
-      {/* Scroll Down Indicator */}
+      {/* Scroll Down Indicator — always visible, above everything */}
       <div
         ref={hintRef}
         style={{ opacity: 1 }}
-        className="absolute left-1/2 bottom-8 -translate-x-1/2 flex flex-col items-center justify-center p-3 text-white/80 hover:text-white transition-opacity duration-300 cursor-pointer z-10 drop-shadow-md"
+        className="absolute left-1/2 bottom-8 -translate-x-1/2 flex flex-col items-center justify-center p-3 text-white hover:text-white cursor-pointer z-[50] drop-shadow-md"
       >
-        <ChevronDown className="w-8 h-8 text-[#42e078] animate-bounce" />
+        <ChevronDown className="w-10 h-10 text-[#42e078] animate-bounce drop-shadow-lg" />
       </div>
 
       {/* Floating Skip Video Button (Appears only during video playback when texts are hidden) */}
