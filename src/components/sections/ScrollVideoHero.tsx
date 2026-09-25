@@ -445,6 +445,7 @@ export default function ScrollVideoHero({
       {/* Scroll Down Indicator */}
       <div
         ref={hintRef}
+        style={{ opacity: 1 }}
         className="absolute left-1/2 bottom-8 -translate-x-1/2 flex flex-col items-center justify-center p-3 text-white/80 hover:text-white transition-opacity duration-300 cursor-pointer z-10 drop-shadow-md"
       >
         <ChevronDown className="w-8 h-8 text-[#42e078] animate-bounce" />
