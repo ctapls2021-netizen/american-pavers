@@ -33,13 +33,13 @@ const transformations: BeforeAfterPair[] = [
     description: 'Replaced a weathered concrete slab with a 3x larger interlocking paver terrace, complete with built-in BBQ island, smoker station, and shaded dining pergola.',
   },
   {
-    id: 'pool-deck',
-    title: 'Excavation to Resort Pool Coping & Architectural Paver Deck',
+    id: 'pergola',
+    title: 'Backyard to Modern Pergola & Outdoor Kitchen Lounge',
     location: 'Palm Springs, CA',
-    category: 'Pool Deck Pavers',
+    category: 'Decks & Pergolas',
     beforeImg: '/assets/transformations/real/Cover 01.png',
     afterImg: '/assets/transformations/real/Cover 02.jpg',
-    description: 'Transformed an excavated pool construction site into a luxury resort pool deck with slip-resistant pavers, smooth safety bullnose coping, and palm tree planter retaining wall.',
+    description: 'Transformed an open backyard into a shaded outdoor living space with a modern louvered pergola, built-in kitchen, and elegant large-format pavers.',
   },
   {
     id: 'turf',
