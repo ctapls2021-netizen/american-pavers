@@ -116,9 +116,7 @@ export default function Home2Services() {
           })}
         </div>
 
-        <p className="mt-6 text-xs text-stone-400 text-left">
-          Photography repeats across the six cards — only three brand images exist. Turf, retaining walls and drainage need their own shots.
-        </p>
+
       </div>
     </section>
   );
