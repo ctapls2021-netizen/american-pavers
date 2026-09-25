@@ -5,7 +5,7 @@ import { Layers, Ruler, Sprout, Hammer, Droplets, ArrowRight } from 'lucide-reac
 const SERVICES = [
   {
     iconSrc: '/assets/icons/pavers.png',
-    image: '/assets/real/thumbs/driveway.jpg',
+    image: '/assets/real/thumbs/American pavers (2).jpg',
     title: 'Paver driveways',
     description: 'Sand-set over six inches of compacted base, edge-restrained on all four sides.',
     linkLabel: 'See driveways',
@@ -40,7 +40,7 @@ const SERVICES = [
   },
   {
     iconSrc: '/assets/icons/drainage.png',
-    image: '/assets/real/thumbs/Drainage.jpg',
+    image: '/assets/real/thumbs/drainage_and_grading_gen.jpg',
     title: 'Drainage & grading',
     description: 'French drains and re-grading, quoted openly rather than buried in the paver price.',
     linkLabel: 'See drainage',
