@@ -39,7 +39,7 @@ const SERVICES = [
     linkLabel: 'See walls',
   },
   {
-    iconSrc: '/assets/icons/drainage.svg',
+    iconSrc: '/assets/icons/drainage.png',
     image: '/assets/real/thumbs/drainage_and_grading_gen.jpg',
     title: 'Drainage & grading',
     description: 'French drains and re-grading, quoted openly rather than buried in the paver price.',
@@ -91,12 +91,10 @@ export default function Home2Services() {
                 <div className="absolute inset-0 bg-gradient-to-t from-[#0E1719]/95 via-[#0E1719]/50 to-[#0E1719]/30 pointer-events-none" />
 
                 {/* Top-Left Icon */}
-                <div className="absolute top-2.5 left-2.5 sm:top-5 sm:left-5 text-white z-10">
-                  <span className="w-7 h-7 sm:w-10 sm:h-10 rounded-md bg-white/10 backdrop-blur-md border border-white/15 flex items-center justify-center">
-                    {s.iconSrc && (
-                      <Image src={s.iconSrc} alt="" width={32} height={32} className="w-5 h-5 sm:w-7 sm:h-7 object-contain" />
-                    )}
-                  </span>
+                <div className="absolute top-3 left-3 sm:top-5 sm:left-5 text-white z-10 flex items-center justify-center">
+                  {s.iconSrc && (
+                    <Image src={s.iconSrc} alt="" width={64} height={64} className="w-10 h-10 sm:w-16 sm:h-16 object-contain opacity-95 drop-shadow-md" />
+                  )}
                 </div>
 
                 {/* Bottom Details */}
