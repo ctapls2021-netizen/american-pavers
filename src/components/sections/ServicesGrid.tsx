@@ -38,7 +38,6 @@ export default function ServicesGrid({ onOpenModal, customServices, customHeader
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
           {list.map((service) => {
             const localMap: Record<string, string> = {
-              'driveway-pavers': '/assets/generated/driveway_premium.jpg',
               'patio-pavers': '/assets/generated/patio_premium.jpg',
               'pool-deck-pavers': '/assets/generated/pool_premium.jpg',
               'synthetic-turf': '/assets/generated/turf_premium.jpg',
@@ -46,7 +45,7 @@ export default function ServicesGrid({ onOpenModal, customServices, customHeader
               'decking-pergolas': '/assets/generated/pergola_premium.jpg'
             };
             const imgSrc = localMap[service.slug] || (service.heroImage?.asset
-              ? urlForImage(service.heroImage).width(400).height(250).url()
+              ? urlForImage(service.heroImage).width(1000).height(625).url()
               : (typeof service.heroImage === 'string' ? service.heroImage : '/assets/generated/driveway_premium.jpg'));
 
             return (
@@ -64,7 +63,7 @@ export default function ServicesGrid({ onOpenModal, customServices, customHeader
                   loading="lazy"
                   decoding="async"
                   fetchPriority="low"
-                  className={`w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ${service.slug === 'driveway-pavers' ? 'object-[center_35%]' : 'object-center'}`}
+                  className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500"
                 />
               </div>
 
