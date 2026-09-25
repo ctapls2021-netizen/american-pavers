@@ -166,7 +166,7 @@ export default function Navbar({ onOpenModal, disabledNav }: NavbarProps) {
     <header
       className={cn(
         'sticky top-0 z-40 w-full transition-all duration-200 border-b',
-        scrolled && !openMobile
+        scrolled
           ? 'bg-white/95 supports-[backdrop-filter]:bg-white/90 border-stone-200/80 backdrop-blur-md shadow-xs'
           : 'bg-white border-stone-200/70'
       )}
@@ -416,8 +416,8 @@ export default function Navbar({ onOpenModal, disabledNav }: NavbarProps) {
         </div>
       </nav>
 
-      {/* Mobile Drawer Navigation */}
-      {openMobile && (
+      {/* Mobile Drawer Navigation (Rendered in Portal to prevent iOS sticky/fixed bugs) */}
+      {openMobile && typeof document !== 'undefined' && createPortal(
         <div className="lg:hidden fixed inset-x-0 top-20 bottom-0 z-50 bg-black/40 backdrop-blur-xs flex flex-col justify-start">
           <div className="bg-white border-b border-stone-200 max-h-[85vh] overflow-y-auto px-5 py-6 space-y-6 shadow-2xl animate-in slide-in-from-top-2 duration-200">
             {/* Services Category */}
@@ -546,7 +546,8 @@ export default function Navbar({ onOpenModal, disabledNav }: NavbarProps) {
               </button>
             </div>
           </div>
-        </div>
+        </div>,
+        document.body
       )}
     </header>
   );
