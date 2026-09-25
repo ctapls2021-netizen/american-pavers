@@ -27,7 +27,7 @@ export default function Home2Hero() {
           fill
           priority
           sizes="100vw"
-          className="object-cover object-center"
+          className="object-cover object-[65%_center] sm:object-center"
         />
         {/* Scrim Overlays - Smooth seamless gradient without hard cutoff lines */}
         <div className="absolute inset-0 bg-gradient-to-r from-[#0E1719]/95 via-[#0E1719]/70 to-[#0E1719]/25" />
