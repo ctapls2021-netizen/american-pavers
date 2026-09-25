@@ -33,6 +33,7 @@ export default function ScrollVideoHero({
   const hintRef = useRef<HTMLDivElement>(null);
   const skipBtnRef = useRef<HTMLButtonElement>(null);
   const progressBarRef = useRef<HTMLDivElement>(null);
+  const overlayRef = useRef<HTMLDivElement>(null);
 
   const [ready, setReady] = useState(false);
   const [isUnlocked, setIsUnlocked] = useState(false);
@@ -279,9 +280,7 @@ export default function ScrollVideoHero({
         titleRef.current.style.pointerEvents = opacity > 0.4 ? 'auto' : 'none';
       }
 
-      if (hintRef.current) {
-        hintRef.current.style.opacity = hasStartedScrolling ? '0' : '1';
-      }
+      // Hint chevron stays always visible — no opacity control here
 
       if (skipBtnRef.current) {
         let skipOpacity = 0;
@@ -297,6 +296,11 @@ export default function ScrollVideoHero({
         skipBtnRef.current.style.opacity = String(skipOpacity);
         skipBtnRef.current.style.pointerEvents = skipOpacity > 0.3 ? 'auto' : 'none';
         skipBtnRef.current.style.transform = `translate(-50%, ${(1 - skipOpacity) * 8}px)`;
+      }
+
+      // Soft scrim overlay fades from 0.45 → 0 as video progresses
+      if (overlayRef.current) {
+        overlayRef.current.style.opacity = String(0.45 * (1 - currentProgress));
       }
 
       if (progressBarRef.current) {
@@ -394,7 +398,12 @@ export default function ScrollVideoHero({
       {/* Atmospheric Contrast Overlays */}
       <div className="absolute inset-0 bg-gradient-to-b from-stone-950/60 via-stone-950/20 to-stone-950/75 pointer-events-none" />
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_45%,rgba(10,15,18,0.55)_100%)] pointer-events-none" />
-
+      {/* Soft legibility scrim — fades out as user scrolls through video */}
+      <div
+        ref={overlayRef}
+        className="absolute inset-0 bg-stone-950 pointer-events-none"
+        style={{ opacity: 0.45 }}
+      />
       {/* Initial Hero Title (Visible on load) */}
       <div
         ref={titleRef}
