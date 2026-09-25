@@ -55,8 +55,8 @@ const transformations: BeforeAfterPair[] = [
     title: 'Overgrown Weed Yard to Modern Fire Pit & BBQ Lounge',
     location: 'Irvine, CA',
     category: 'Outdoor Kitchens & Fire Pits',
-    beforeImg: '/assets/transformations/patio-modern-before.jpg',
-    afterImg: '/assets/transformations/patio-modern-after.jpg',
+    beforeImg: '/assets/transformations/fire-pit-before.webp',
+    afterImg: '/assets/transformations/fire-pit-after.webp',
     description: 'Installed architectural large-format pavers, custom gas fire pit, black Adirondack lounge seating, and low-maintenance river rock landscape borders.',
   },
   {
@@ -64,8 +64,8 @@ const transformations: BeforeAfterPair[] = [
     title: 'Demolition Rubble to Louvered Pergola Living Deck',
     location: 'Los Angeles, CA',
     category: 'Decks & Pergolas',
-    beforeImg: '/assets/transformations/pool-deck-modern-before.jpg',
-    afterImg: '/assets/transformations/pool-deck-modern-after.jpg',
+    beforeImg: '/assets/transformations/pergola-before.webp',
+    afterImg: '/assets/transformations/pergola-after.webp',
     description: 'Cleared demolition concrete rubble to construct a motorized aluminum louvered pergola over two-tone herringbone pavers with a built-in outdoor grill island.',
   }
 ];

@@ -39,7 +39,7 @@ const SERVICES = [
     linkLabel: 'See walls',
   },
   {
-    icon: Droplets,
+    iconSrc: '/assets/icons/drainage.svg',
     image: '/assets/real/thumbs/drainage_and_grading_gen.jpg',
     title: 'Drainage & grading',
     description: 'French drains and re-grading, quoted openly rather than buried in the paver price.',
@@ -72,7 +72,6 @@ export default function Home2Services() {
         {/* 6 Service Cards Grid (3 columns >=1200px, 2 columns on mobile and tablet) */}
         <div className="grid grid-cols-2 xl:grid-cols-3 gap-3 sm:gap-6 xl:gap-8">
           {SERVICES.map((s, idx) => {
-            const IconComp = s.icon;
             return (
               <div
                 key={idx}
@@ -93,11 +92,9 @@ export default function Home2Services() {
 
                 {/* Top-Left Icon */}
                 <div className="absolute top-2.5 left-2.5 sm:top-5 sm:left-5 text-white z-10">
-                  <span className="w-7 h-7 sm:w-10 sm:h-10 rounded-md bg-white/10 backdrop-blur-md border border-white/15 flex items-center justify-center">
-                    {s.iconSrc ? (
-                      <Image src={s.iconSrc} alt="" width={24} height={24} className="w-4 h-4 sm:w-6 sm:h-6 object-contain" />
-                    ) : (
-                      IconComp && <IconComp className="w-3.5 h-3.5 sm:w-5 sm:h-5 text-white" />
+                  <span className="w-10 h-10 sm:w-14 sm:h-14 rounded-lg bg-white/10 backdrop-blur-md border border-white/15 flex items-center justify-center shadow-sm">
+                    {s.iconSrc && (
+                      <Image src={s.iconSrc} alt="" width={32} height={32} className="w-6 h-6 sm:w-8 sm:h-8 object-contain" />
                     )}
                   </span>
                 </div>
