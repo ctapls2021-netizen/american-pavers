@@ -166,7 +166,7 @@ export default function Navbar({ onOpenModal, disabledNav }: NavbarProps) {
     <header
       className={cn(
         'sticky top-0 z-40 w-full transition-all duration-200 border-b',
-        scrolled
+        scrolled && !openMobile
           ? 'bg-white/95 supports-[backdrop-filter]:bg-white/90 border-stone-200/80 backdrop-blur-md shadow-xs'
           : 'bg-white border-stone-200/70'
       )}
