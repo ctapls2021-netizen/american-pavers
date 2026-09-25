@@ -308,6 +308,21 @@ export default function ScrollVideoHero({
 
     rafId = requestAnimationFrame(frame);
 
+    const skipHandler = () => {
+      const nextSection = document.getElementById('services-grid');
+      if (nextSection) {
+        releaseLock('down');
+        nextSection.scrollIntoView({ behavior: 'smooth' });
+      }
+    };
+
+    const hintEl = hintRef.current;
+    const skipBtnEl = skipBtnRef.current;
+    
+    if (hintEl) hintEl.addEventListener('click', skipHandler);
+    if (skipBtnEl) skipBtnEl.addEventListener('click', skipHandler);
+    window.addEventListener('hero-skip', skipHandler);
+
     return () => {
       video.removeEventListener('loadeddata', onLoadedData);
       video.removeEventListener('loadedmetadata', onLoadedData);
@@ -316,26 +331,25 @@ export default function ScrollVideoHero({
       window.removeEventListener('wheel', onWheel);
       window.removeEventListener('touchstart', onTouchStart);
       window.removeEventListener('touchmove', onTouchMove);
+      window.removeEventListener('hero-skip', skipHandler);
       section.removeEventListener('touchstart', onTouchStart, true);
       section.removeEventListener('touchmove', onTouchMove, true);
+      if (hintEl) hintEl.removeEventListener('click', skipHandler);
+      if (skipBtnEl) skipBtnEl.removeEventListener('click', skipHandler);
       cancelAnimationFrame(rafId);
       releaseLock();
     };
   }, [scrubDistance, isDesktop]);
 
-  const handleSkipToContent = () => {
+  const triggerSkip = () => {
     const nextSection = document.getElementById('services-grid');
     if (nextSection) {
-      const b = document.body.style;
-      b.position = '';
-      b.top = '';
-      b.left = '';
-      b.right = '';
-      b.width = '';
-      b.height = '';
-      b.overscrollBehavior = '';
-      setIsUnlocked(true);
+      // Allow regular smooth scrolling
       nextSection.scrollIntoView({ behavior: 'smooth' });
+      // Dispatch an event so the internal lock logic can clean up
+      if (typeof window !== 'undefined') {
+        window.dispatchEvent(new CustomEvent('hero-skip'));
+      }
     }
   };
 
@@ -406,7 +420,7 @@ export default function ScrollVideoHero({
         {/* Action Buttons on Initial Load */}
         <div className="mt-8 sm:mt-10 flex flex-col sm:flex-row items-center justify-center gap-3.5 w-full max-w-md sm:max-w-none pointer-events-auto">
           <button
-            onClick={onOpenConsultation || handleSkipToContent}
+            onClick={onOpenConsultation || triggerSkip}
             type="button"
             className="w-full sm:w-auto px-7 py-3.5 rounded-none bg-[#019934] hover:bg-[#01802b] text-white font-bold text-sm sm:text-base shadow-xl hover:shadow-2xl transition-colors duration-200 flex items-center justify-center gap-2 cursor-pointer uppercase"
           >
@@ -414,7 +428,7 @@ export default function ScrollVideoHero({
             <ChevronRight className="w-4 h-4 sm:w-5 sm:h-5" />
           </button>
           <button
-            onClick={handleSkipToContent}
+            onClick={triggerSkip}
             type="button"
             className="w-full sm:w-auto px-7 py-3.5 rounded-none bg-stone-900/80 hover:bg-stone-900 border border-white/30 hover:border-white/60 text-white font-semibold text-sm sm:text-base shadow-xl transition-colors duration-200 flex items-center justify-center gap-2 cursor-pointer uppercase"
           >
@@ -431,22 +445,19 @@ export default function ScrollVideoHero({
       {/* Scroll Down Indicator */}
       <div
         ref={hintRef}
-        onClick={handleSkipToContent}
-        className="absolute left-1/2 bottom-8 -translate-x-1/2 flex flex-col items-center gap-2 text-white/80 hover:text-white transition-opacity duration-300 cursor-pointer z-10 text-[11px] font-bold tracking-[0.25em] drop-shadow-md"
+        className="absolute left-1/2 bottom-8 -translate-x-1/2 flex flex-col items-center justify-center p-3 text-white/80 hover:text-white transition-opacity duration-300 cursor-pointer z-10 drop-shadow-md"
       >
-        <span>{scrollHint}</span>
-        <ChevronDown className="w-5 h-5 text-[#42e078] animate-bounce" />
+        <ChevronDown className="w-8 h-8 text-[#42e078] animate-bounce" />
       </div>
 
       {/* Floating Skip Video Button (Appears only during video playback when texts are hidden) */}
       <button
         ref={skipBtnRef}
-        onClick={handleSkipToContent}
         type="button"
-        className="absolute left-1/2 bottom-9 -translate-x-1/2 z-30 px-5 py-2.5 rounded-full bg-stone-900/85 hover:bg-stone-900 border border-white/25 hover:border-[#42e078]/80 text-white font-semibold text-xs tracking-wider uppercase backdrop-blur-md shadow-2xl transition-all flex items-center gap-2 cursor-pointer opacity-0 pointer-events-none group"
+        className="absolute left-1/2 bottom-9 -translate-x-1/2 z-30 p-3 rounded-full bg-stone-900/85 hover:bg-stone-900 border border-white/25 hover:border-[#42e078]/80 text-white shadow-2xl transition-all flex items-center justify-center cursor-pointer opacity-0 pointer-events-none group"
+        aria-label="Skip video"
       >
-        <span>Skip video</span>
-        <ChevronsDown className="w-4 h-4 text-[#42e078] group-hover:translate-y-0.5 transition-transform" />
+        <ChevronsDown className="w-6 h-6 text-[#42e078] group-hover:translate-y-0.5 transition-transform" />
       </button>
 
       {/* Scrubbing Progress Bar */}
