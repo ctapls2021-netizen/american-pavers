@@ -64,7 +64,7 @@ export default function ServicesGrid({ onOpenModal, customServices, customHeader
                   loading="lazy"
                   decoding="async"
                   fetchPriority="low"
-                  className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500"
+                  className={`w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ${service.slug === 'driveway-pavers' ? 'object-[center_35%]' : 'object-center'}`}
                 />
               </div>
 
