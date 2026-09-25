@@ -90,11 +90,8 @@ export default function Home2Services() {
                 {/* Dark Scrim */}
                 <div className="absolute inset-0 bg-gradient-to-t from-[#0E1719]/95 via-[#0E1719]/50 to-[#0E1719]/30 pointer-events-none" />
                 
-                {/* Top-Left Corner Gradient for Icon Visibility */}
-                <div className="absolute top-0 left-0 w-24 h-24 sm:w-40 sm:h-40 bg-gradient-to-br from-[#0E1719]/90 via-[#0E1719]/40 to-transparent pointer-events-none z-10" />
-
                 {/* Top-Left Icon */}
-                <div className="absolute top-3 left-3 sm:top-5 sm:left-5 text-white z-20 flex items-center justify-center">
+                <div className="absolute top-3 left-3 sm:top-5 sm:left-5 text-white z-20 flex items-center justify-center bg-black/40 backdrop-blur-sm rounded-lg p-2 sm:p-2.5">
                   {s.iconSrc && (
                     <Image src={s.iconSrc} alt="" width={64} height={64} className="w-10 h-10 sm:w-16 sm:h-16 object-contain opacity-100 drop-shadow-lg" />
                   )}
