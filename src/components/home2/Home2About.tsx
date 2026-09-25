@@ -86,7 +86,7 @@ export default function Home2About() {
 
         {/* Lower Full-Width Green Action Bar */}
         <div className="bg-[#019934] text-white py-8 px-4 sm:px-6 lg:px-8">
-          <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6 text-center md:text-left">
+          <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-center gap-6 md:gap-8 text-center md:text-left">
             <div className="flex items-center gap-4">
               <span className="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center shrink-0">
                 <Users className="w-5 h-5 text-white" />
