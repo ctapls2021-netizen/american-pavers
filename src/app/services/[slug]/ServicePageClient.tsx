@@ -273,7 +273,7 @@ export default function ServicePageClient({ service }: ServicePageClientProps) {
             <ServiceHeroStatic
               title="Engineered Driveway Pavers"
               tagline="Transforming California residential driveways with 10,000+ PSI interlocking pavers guaranteed for a lifetime."
-              imageSrc="/assets/real/American pavers (2).jpg"
+              imageSrc="/assets/generated/driveway_hero.webp"
               serviceName={service.shortTitle}
               onOpenModal={handleOpenModal}
             />
