@@ -51,6 +51,15 @@ const transformations: BeforeAfterPair[] = [
     description: 'Replaced dead, water-thirsty dormant grass with high-drainage, pet-friendly Cool-Blade synthetic turf and integrated interlocking paver patio borders.',
   },
   {
+    id: 'outdoor-kitchen',
+    title: 'Overgrown Yard to Modern Outdoor Kitchen',
+    location: 'Irvine, CA',
+    category: 'Outdoor Kitchens',
+    beforeImg: '/assets/transformations/real/kitchen 01.png',
+    afterImg: '/assets/transformations/real/kitchen 02.png',
+    description: 'Installed architectural large-format pavers and a custom built-in BBQ island for a complete outdoor entertaining experience.',
+  },
+  {
     id: 'walkways',
     title: 'Dirt Path to Elegant Paver Walkway',
     location: 'Los Angeles, CA',
