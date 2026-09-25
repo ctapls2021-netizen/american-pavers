@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useEffect, useRef, useState } from 'react';
-import { ChevronDown, ChevronRight, ChevronsDown } from 'lucide-react';
+import { ChevronDown, ChevronRight } from 'lucide-react';
 import ReviewLogoMarquee from '@/components/ui/ReviewLogoMarquee';
 
 export interface ScrollVideoHeroProps {
@@ -31,7 +31,6 @@ export default function ScrollVideoHero({
   const videoRef = useRef<HTMLVideoElement>(null);
   const titleRef = useRef<HTMLDivElement>(null);
   const hintRef = useRef<HTMLDivElement>(null);
-  const skipBtnRef = useRef<HTMLButtonElement>(null);
   const progressBarRef = useRef<HTMLDivElement>(null);
   const overlayRef = useRef<HTMLDivElement>(null);
 
@@ -157,38 +156,7 @@ export default function ScrollVideoHero({
       engageLock();
     }
 
-    const onScroll = () => {
-      if (locked) return;
-      const currentScrollY = window.scrollY;
-      const scrollingDown = currentScrollY > lastScrollY;
-      lastScrollY = currentScrollY;
 
-      if (window.innerWidth < 768) return;
-
-      const rect = section.getBoundingClientRect();
-
-      if (scrollingDown && unlockedDirection !== 'down') {
-        if (rect.top <= 20 && rect.top >= -50) {
-          window.scrollTo({ top: currentScrollY + rect.top, behavior: 'instant' });
-          engageLock();
-          targetProgress = 0;
-          currentProgress = 0;
-          unlockedDirection = null;
-        }
-      } else if (!scrollingDown && unlockedDirection !== 'up') {
-        if (rect.bottom >= window.innerHeight - 50 && rect.bottom <= window.innerHeight + 20) {
-          window.scrollTo({ top: currentScrollY + rect.bottom - window.innerHeight, behavior: 'instant' });
-          engageLock();
-          targetProgress = 1;
-          currentProgress = 1;
-          unlockedDirection = null;
-        }
-      }
-
-      // Reset unlock memory once scrolled far enough away
-      if (unlockedDirection === 'down' && rect.top < -150) unlockedDirection = null;
-      if (unlockedDirection === 'up' && rect.bottom > window.innerHeight + 150) unlockedDirection = null;
-    };
 
     function addDelta(deltaY: number) {
       if (!locked) return false;
@@ -232,7 +200,6 @@ export default function ScrollVideoHero({
       }
     };
 
-    window.addEventListener('scroll', onScroll, { passive: true });
     window.addEventListener('wheel', onWheel, { passive: false });
     window.addEventListener('touchstart', onTouchStart, { passive: true });
     window.addEventListener('touchmove', onTouchMove, { passive: false });
@@ -282,22 +249,6 @@ export default function ScrollVideoHero({
 
       // Hint chevron stays always visible — no opacity control here
 
-      if (skipBtnRef.current) {
-        let skipOpacity = 0;
-        if (currentProgress > 0.28 && currentProgress < 0.72) {
-          if (currentProgress <= 0.38) {
-            skipOpacity = (currentProgress - 0.28) / 0.10;
-          } else if (currentProgress >= 0.62) {
-            skipOpacity = 1 - (currentProgress - 0.62) / 0.10;
-          } else {
-            skipOpacity = 1;
-          }
-        }
-        skipBtnRef.current.style.opacity = String(skipOpacity);
-        skipBtnRef.current.style.pointerEvents = skipOpacity > 0.3 ? 'auto' : 'none';
-        skipBtnRef.current.style.transform = `translate(-50%, ${(1 - skipOpacity) * 8}px)`;
-      }
-
       // Soft scrim overlay fades from 0.45 → 0 as video progresses
       if (overlayRef.current) {
         overlayRef.current.style.opacity = String(0.45 * (1 - currentProgress));
@@ -321,17 +272,14 @@ export default function ScrollVideoHero({
     };
 
     const hintEl = hintRef.current;
-    const skipBtnEl = skipBtnRef.current;
-    
+
     if (hintEl) hintEl.addEventListener('click', skipHandler);
-    if (skipBtnEl) skipBtnEl.addEventListener('click', skipHandler);
     window.addEventListener('hero-skip', skipHandler);
 
     return () => {
       video.removeEventListener('loadeddata', onLoadedData);
       video.removeEventListener('loadedmetadata', onLoadedData);
       video.removeEventListener('seeked', onSeeked);
-      window.removeEventListener('scroll', onScroll);
       window.removeEventListener('wheel', onWheel);
       window.removeEventListener('touchstart', onTouchStart);
       window.removeEventListener('touchmove', onTouchMove);
@@ -339,7 +287,6 @@ export default function ScrollVideoHero({
       section.removeEventListener('touchstart', onTouchStart, true);
       section.removeEventListener('touchmove', onTouchMove, true);
       if (hintEl) hintEl.removeEventListener('click', skipHandler);
-      if (skipBtnEl) skipBtnEl.removeEventListener('click', skipHandler);
       cancelAnimationFrame(rafId);
       releaseLock();
     };
@@ -461,16 +408,7 @@ export default function ScrollVideoHero({
         <ChevronDown className="w-10 h-10 text-[#42e078] animate-bounce drop-shadow-lg" />
       </div>
 
-      {/* Floating Skip Video Button (Appears only during video playback when texts are hidden) */}
-      <button
-        ref={skipBtnRef}
-        type="button"
-        className="absolute left-1/2 bottom-9 -translate-x-1/2 z-30 p-3 rounded-full bg-stone-900/85 hover:bg-stone-900 border border-white/25 hover:border-[#42e078]/80 text-white shadow-2xl transition-all flex items-center justify-center cursor-pointer opacity-0 pointer-events-none group"
-        aria-label="Skip video"
-      >
-        <ChevronsDown className="w-6 h-6 text-[#42e078] group-hover:translate-y-0.5 transition-transform" />
-      </button>
-
+      
       {/* Scrubbing Progress Bar */}
       <div className="absolute left-0 right-0 bottom-0 h-1.5 bg-white/10 z-30">
         <div
