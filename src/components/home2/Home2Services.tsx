@@ -92,9 +92,9 @@ export default function Home2Services() {
 
                 {/* Top-Left Icon */}
                 <div className="absolute top-2.5 left-2.5 sm:top-5 sm:left-5 text-white z-10">
-                  <span className="w-10 h-10 sm:w-14 sm:h-14 rounded-lg bg-white/10 backdrop-blur-md border border-white/15 flex items-center justify-center shadow-sm">
+                  <span className="w-7 h-7 sm:w-10 sm:h-10 rounded-md bg-white/10 backdrop-blur-md border border-white/15 flex items-center justify-center">
                     {s.iconSrc && (
-                      <Image src={s.iconSrc} alt="" width={32} height={32} className="w-6 h-6 sm:w-8 sm:h-8 object-contain" />
+                      <Image src={s.iconSrc} alt="" width={32} height={32} className="w-5 h-5 sm:w-7 sm:h-7 object-contain" />
                     )}
                   </span>
                 </div>
