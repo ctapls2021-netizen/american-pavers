@@ -156,15 +156,10 @@ export default function Navbar({ onOpenModal, disabledNav }: NavbarProps) {
   const isGalleryActive = pathname === '/gallery';
   const isContactActive = pathname === '/contact';
 
+  // Removed body overflow hidden to prevent iOS Safari from jumping to the top of the page when opening the mobile menu.
   useEffect(() => {
-    if (openMobile) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = '';
-    }
-    return () => {
-      document.body.style.overflow = '';
-    };
+    // If we wanted to lock body scroll without jump on iOS, we would need to use window.scrollY and position fixed.
+    // For now, allowing background scroll is safer than jumping.
   }, [openMobile]);
 
   return (

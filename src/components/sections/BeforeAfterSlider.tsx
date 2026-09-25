@@ -125,7 +125,7 @@ export default function BeforeAfterSlider({
 
           {/* Project Selector Tabs (Kōzen Minimalist Underline Tabs) */}
           {!hideTabs && (
-            <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-6 mt-8 border-b border-stone-200/60 pb-3">
+            <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-4 mt-8 pb-3">
               {transformations.map((t, idx) => (
                 <button
                   key={t.id}
@@ -134,10 +134,10 @@ export default function BeforeAfterSlider({
                     setSelectedIdx(idx);
                     setSliderPosition(50);
                   }}
-                  className={`pb-2.5 px-2 text-xs sm:text-sm font-semibold tracking-wider uppercase transition-all cursor-pointer border-b-2 -mb-[13px] ${
+                  className={`pb-2 px-1 text-xs sm:text-sm font-semibold tracking-wider uppercase transition-all cursor-pointer border-b-2 ${
                     selectedIdx === idx
                       ? 'border-[#019934] text-[#1A292C]'
-                      : 'border-transparent text-stone-500 hover:text-stone-900'
+                      : 'border-transparent text-stone-500 hover:text-stone-900 hover:border-stone-300'
                   }`}
                 >
                   {t.category}
