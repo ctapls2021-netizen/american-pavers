@@ -249,9 +249,11 @@ export default function ScrollVideoHero({
 
       // Hint chevron stays always visible — no opacity control here
 
-      // Soft scrim overlay fades from 0.45 → 0 as video progresses
+      // Soft scrim overlay fades from 0.45 → 0 with a smooth quadratic curve
       if (overlayRef.current) {
-        overlayRef.current.style.opacity = String(0.45 * (1 - currentProgress));
+        // (1 - x)^2 creates a smoother drop-off than linear (1 - x)
+        const smoothFade = Math.pow(1 - currentProgress, 2);
+        overlayRef.current.style.opacity = String(0.45 * smoothFade);
       }
 
       if (progressBarRef.current) {
@@ -345,11 +347,11 @@ export default function ScrollVideoHero({
       {/* Atmospheric Contrast Overlays */}
       <div className="absolute inset-0 bg-gradient-to-b from-stone-950/60 via-stone-950/20 to-stone-950/75 pointer-events-none z-[1]" />
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_45%,rgba(10,15,18,0.55)_100%)] pointer-events-none z-[1]" />
-      {/* Soft legibility scrim — fades out as user scrolls through video */}
+      {/* Soft legibility scrim — fades out progressively as user scrolls */}
       <div
         ref={overlayRef}
         className="absolute inset-0 bg-black pointer-events-none z-[2]"
-        style={{ opacity: 0.45 }}
+        style={{ opacity: 0.45, transition: 'opacity 0.5s ease-out', willChange: 'opacity' }}
       />
 
       {/* Initial Hero Title (Visible on load) */}
