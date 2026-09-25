@@ -21,13 +21,23 @@ export default function Home2Hero() {
     <section id="hero" className="relative min-h-[100vh] flex items-center bg-[#0E1719] text-white overflow-hidden w-full max-w-full">
       {/* Background Image */}
       <div className="absolute inset-0 z-0">
+        {/* Mobile Background Image */}
+        <Image
+          src="/assets/banners/pavers-02-mobile.jpg"
+          alt="Luxury Paver Driveway by American Pavers & Turf"
+          fill
+          priority
+          sizes="100vw"
+          className="object-cover object-center block sm:hidden"
+        />
+        {/* Desktop Background Image */}
         <Image
           src="/assets/banners/americanpavers.webp"
           alt="Luxury Paver Driveway by American Pavers & Turf"
           fill
           priority
           sizes="100vw"
-          className="object-cover object-[65%_center] sm:object-center"
+          className="object-cover object-center hidden sm:block"
         />
         {/* Scrim Overlays - Smooth seamless gradient without hard cutoff lines */}
         <div className="absolute inset-0 bg-gradient-to-r from-[#0E1719]/95 via-[#0E1719]/70 to-[#0E1719]/25" />
