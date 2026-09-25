@@ -309,7 +309,7 @@ export default function ScrollVideoHero({
   return (
     <div
       ref={sectionRef}
-      className="relative w-full h-[100dvh] overflow-hidden select-none bg-stone-950 md:touch-none"
+      className="relative w-full h-[calc(100dvh-5rem)] overflow-hidden select-none bg-stone-950 md:touch-none"
     >
       {/* Mobile poster */}
       <picture className="absolute inset-0 w-full h-full pointer-events-none md:hidden">
