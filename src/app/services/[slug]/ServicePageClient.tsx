@@ -9,7 +9,9 @@ import Footer from '@/components/layout/Footer';
 import Home2Header from '@/components/home2/Home2Header';
 import Home2Footer from '@/components/home2/Home2Footer';
 import Home2QuoteSplit from '@/components/home2/Home2QuoteSplit';
-import FaqAccordion from '@/components/sections/FaqAccordion';
+import Home2FAQ from '@/components/home2/Home2FAQ';
+import Home2Reviews from '@/components/home2/Home2Reviews';
+import Home2CTABand from '@/components/home2/Home2CTABand';
 import TrustBar from '@/components/sections/TrustBar';
 import BottomCtaBanner from '@/components/sections/BottomCtaBanner';
 import BeforeAfterSlider from '@/components/sections/BeforeAfterSlider';
@@ -20,7 +22,6 @@ import PaversVsConcrete, { ComparisonItem } from '@/components/sections/services
 import PaverInstallationLayers from '@/components/sections/services/PaverInstallationLayers';
 import PaversVsOtherMaterials from '@/components/sections/services/PaversVsOtherMaterials';
 import DrivewayCarouselSection from '@/components/sections/services/DrivewayCarouselSection';
-import TestimonialsGrid from '@/components/sections/TestimonialsGrid';
 import TurfProductTiers from '@/components/sections/services/TurfProductTiers';
 import { CheckCircle2, ShieldCheck, ChevronRight, Layers } from 'lucide-react';
 
@@ -271,10 +272,18 @@ export default function ServicePageClient({ service, basePath }: ServicePageClie
   };
 
   const renderBottomCta = (title?: string, subtitle?: string) => {
-    if (basePath) {
-      return <Home2QuoteSplit />;
-    }
-    return <BottomCtaBanner onOpenModal={handleOpenModal} title={title} subtitle={subtitle} />;
+    return (
+      <>
+        {/* Home 2 CTA Band on All Services */}
+        <Home2CTABand basePath={basePath} onOpenQuote={handleOpenQuote} />
+
+        {basePath ? (
+          <Home2QuoteSplit />
+        ) : (
+          <BottomCtaBanner onOpenModal={handleOpenModal} title={title} subtitle={subtitle} />
+        )}
+      </>
+    );
   };
 
   const isDriveway = service.slug === 'driveway-pavers';
@@ -337,11 +346,11 @@ export default function ServicePageClient({ service, basePath }: ServicePageClie
             />
 
             {/* 6. Customer Testimonials */}
-            <TestimonialsGrid />
+            <Home2Reviews />
 
             {/* 7. Driveway Specific FAQs */}
             {service.faqs && service.faqs.length > 0 && (
-              <FaqAccordion
+              <Home2FAQ
                 faqs={service.faqs.map((f) => ({ ...f, category: 'Driveway Pavers' }))}
                 title="Driveway Pavers Frequently Asked Questions"
                 subtitle="Get honest, contractor-direct answers about driveway permits, slopes, weight capacities, and pricing across Southern California."
@@ -429,11 +438,11 @@ export default function ServicePageClient({ service, basePath }: ServicePageClie
             />
 
             {/* 6. Customer Testimonials */}
-            <TestimonialsGrid />
+            <Home2Reviews />
 
             {/* 7. Patio Specific FAQs */}
             {service.faqs && service.faqs.length > 0 && (
-              <FaqAccordion
+              <Home2FAQ
                 faqs={service.faqs.map((f) => ({ ...f, category: 'Patio Pavers' }))}
                 title="Patio Pavers Frequently Asked Questions"
                 subtitle="Get honest, contractor-direct answers about patio drainage, heat absorption, design flexibility, and cost estimates across Southern California."
@@ -522,11 +531,11 @@ export default function ServicePageClient({ service, basePath }: ServicePageClie
             />
 
             {/* 6. Customer Testimonials */}
-            <TestimonialsGrid />
+            <Home2Reviews />
 
             {/* 7. Pool Deck Specific FAQs */}
             {service.faqs && service.faqs.length > 0 && (
-              <FaqAccordion
+              <Home2FAQ
                 faqs={service.faqs.map((f) => ({ ...f, category: 'Pool Deck Pavers' }))}
                 title="Pool Deck Pavers Frequently Asked Questions"
                 subtitle="Get honest, contractor-direct answers about pool coping options, wet slip resistance, saltwater compatibility, and underground plumbing access across Southern California."
@@ -607,11 +616,11 @@ export default function ServicePageClient({ service, basePath }: ServicePageClie
             />
 
             {/* 6. Customer Testimonials */}
-            <TestimonialsGrid />
+            <Home2Reviews />
 
             {/* 7. Turf Specific FAQs */}
             {service.faqs && service.faqs.length > 0 && (
-              <FaqAccordion
+              <Home2FAQ
                 faqs={service.faqs.map((f) => ({ ...f, category: 'Synthetic Turf' }))}
                 title="Synthetic Turf Frequently Asked Questions"
                 subtitle="Get honest, contractor-direct answers about pet turf drainage, turf removal rebates, heat reduction, putting greens, and long-term durability across Southern California."
@@ -689,11 +698,11 @@ export default function ServicePageClient({ service, basePath }: ServicePageClie
             />
 
             {/* 6. Customer Testimonials */}
-            <TestimonialsGrid />
+            <Home2Reviews />
 
             {/* 7. Outdoor Kitchen Specific FAQs */}
             {service.faqs && service.faqs.length > 0 && (
-              <FaqAccordion
+              <Home2FAQ
                 faqs={service.faqs.map((f) => ({ ...f, category: 'Outdoor Kitchens & Fire Pits' }))}
                 title="Outdoor Kitchens & Fire Pits Frequently Asked Questions"
                 subtitle="Get honest, contractor-direct answers about natural gas plumbing, city permits, countertop materials, appliance warranties, and custom design options across Southern California."
@@ -772,11 +781,11 @@ export default function ServicePageClient({ service, basePath }: ServicePageClie
             />
 
             {/* 6. Customer Testimonials */}
-            <TestimonialsGrid />
+            <Home2Reviews />
 
             {/* 7. Decks & Pergolas Specific FAQs */}
             {service.faqs && service.faqs.length > 0 && (
-              <FaqAccordion
+              <Home2FAQ
                 faqs={service.faqs.map((f) => ({ ...f, category: 'Decks & Pergolas' }))}
                 title="Decks & Pergolas Frequently Asked Questions"
                 subtitle="Get honest, contractor-direct answers about motorized rain sensors, wind ratings, composite stain resistance, municipal permits, and custom lighting across Southern California."
@@ -932,10 +941,10 @@ export default function ServicePageClient({ service, basePath }: ServicePageClie
             </section>
 
             {/* Customer Testimonials from Home */}
-            <TestimonialsGrid />
+            <Home2Reviews />
 
             {service.faqs && service.faqs.length > 0 && (
-              <FaqAccordion
+              <Home2FAQ
                 faqs={service.faqs.map((f) => ({ ...f, category: service.shortTitle }))}
                 title={`Frequently Asked Questions About ${service.shortTitle}`}
                 subtitle="Get honest answers to common homeowner questions about permits, preparation, and costs."

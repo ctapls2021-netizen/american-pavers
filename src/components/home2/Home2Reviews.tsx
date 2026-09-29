@@ -31,7 +31,23 @@ const PLATFORMS = [
   },
 ];
 
-const TESTIMONIALS = [
+export interface ReviewItem {
+  quote: string;
+  name?: string;
+  author?: string;
+  detail?: string;
+  city?: string;
+  projectType?: string;
+}
+
+export interface Home2ReviewsProps {
+  testimonials?: ReviewItem[];
+  title?: string;
+  tag?: string;
+  className?: string;
+}
+
+const DEFAULT_TESTIMONIALS = [
   {
     quote: 'They re-graded the whole slope before a single paver went down. Two winters later, still dry.',
     name: 'M. Alvarez',
@@ -49,17 +65,35 @@ const TESTIMONIALS = [
   },
 ];
 
-export default function Home2Reviews() {
+export default function Home2Reviews({
+  testimonials,
+  title = 'What homeowners say.',
+  tag = 'REVIEWS',
+  className = '',
+}: Home2ReviewsProps = {}) {
+  const list =
+    testimonials && testimonials.length > 0
+      ? testimonials.map((t) => ({
+          quote: t.quote,
+          name: t.name || t.author || 'Verified Client',
+          detail:
+            t.detail ||
+            [t.projectType, t.city].filter(Boolean).join(' · ') ||
+            'Southern California',
+        }))
+      : DEFAULT_TESTIMONIALS;
+
   const [activeSlide, setActiveSlide] = useState(0);
   const touchStartX = useRef<number | null>(null);
 
   // Auto-rotate testimonials on mobile
   useEffect(() => {
+    if (list.length <= 1) return;
     const timer = setInterval(() => {
-      setActiveSlide((prev) => (prev + 1) % TESTIMONIALS.length);
+      setActiveSlide((prev) => (prev + 1) % list.length);
     }, 4500);
     return () => clearInterval(timer);
-  }, []);
+  }, [list.length]);
 
   const handleTouchStart = (e: React.TouchEvent) => {
     touchStartX.current = e.touches[0].clientX;
@@ -69,22 +103,26 @@ export default function Home2Reviews() {
     if (touchStartX.current === null) return;
     const diff = touchStartX.current - e.changedTouches[0].clientX;
     if (diff > 40) {
-      setActiveSlide((prev) => (prev + 1) % TESTIMONIALS.length);
+      setActiveSlide((prev) => (prev + 1) % list.length);
     } else if (diff < -40) {
-      setActiveSlide((prev) => (prev - 1 + TESTIMONIALS.length) % TESTIMONIALS.length);
+      setActiveSlide((prev) => (prev - 1 + list.length) % list.length);
     }
     touchStartX.current = null;
   };
+
   return (
-    <section id="reviews" className="py-16 sm:py-24 lg:py-28 bg-[#1A292C] text-white border-b border-stone-800 scroll-mt-20 w-full max-w-full overflow-hidden">
+    <section
+      id="reviews"
+      className={`py-16 sm:py-24 lg:py-28 bg-[#1A292C] text-white border-b border-stone-800 scroll-mt-20 w-full max-w-full overflow-hidden ${className}`}
+    >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="max-w-3xl mb-10 sm:mb-16 text-left">
           <span className="text-xs font-bold uppercase tracking-[0.22em] text-[#4CC66E] block mb-2 sm:mb-3">
-            REVIEWS
+            {tag}
           </span>
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-serif font-normal text-white tracking-tight leading-tight">
-            What homeowners say.
+            {title}
           </h2>
         </div>
 
@@ -172,7 +210,7 @@ export default function Home2Reviews() {
 
         {/* 2. Testimonials on Desktop / Tablet (>=md: 3-column static grid) */}
         <div className="hidden md:grid md:grid-cols-3 gap-6 sm:gap-8 mt-10 sm:mt-12">
-          {TESTIMONIALS.map((t, idx) => (
+          {list.slice(0, 3).map((t, idx) => (
             <div
               key={idx}
               className="bg-white/5 border border-white/10 rounded-lg p-7 sm:p-8 flex flex-col justify-between"
@@ -212,7 +250,7 @@ export default function Home2Reviews() {
               className="flex transition-transform duration-500 ease-out"
               style={{ transform: `translateX(-${activeSlide * 100}%)` }}
             >
-              {TESTIMONIALS.map((t, idx) => (
+              {list.map((t, idx) => (
                 <div key={idx} className="w-full shrink-0">
                   <div className="bg-white/5 border border-white/10 rounded-lg p-5 sm:p-6 flex flex-col justify-between min-h-[200px]">
                     <div>
@@ -243,7 +281,7 @@ export default function Home2Reviews() {
 
           {/* Dots de navegación en móvil */}
           <div className="flex items-center justify-center gap-2 mt-4">
-            {TESTIMONIALS.map((_, i) => (
+            {list.map((_, i) => (
               <button
                 key={i}
                 type="button"

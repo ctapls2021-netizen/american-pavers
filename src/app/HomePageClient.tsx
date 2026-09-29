@@ -7,8 +7,8 @@ import ServicesGrid from '@/components/sections/ServicesGrid';
 import BeforeAfterSlider from '@/components/sections/BeforeAfterSlider';
 import ProcessSteps from '@/components/sections/ProcessSteps';
 import ServiceBannerSlider from '@/components/sections/ServiceBannerSlider';
-import TestimonialsGrid from '@/components/sections/TestimonialsGrid';
-import FaqAccordion from '@/components/sections/FaqAccordion';
+import Home2Reviews from '@/components/home2/Home2Reviews';
+import Home2FAQ from '@/components/home2/Home2FAQ';
 import BottomCtaBanner from '@/components/sections/BottomCtaBanner';
 import Footer from '@/components/layout/Footer';
 import LeadFormModal from '@/components/ui/LeadFormModal';
@@ -125,10 +125,10 @@ export default function HomePageClient({
         <ServiceBannerSlider onOpenModal={handleOpenModal} />
 
         {/* Real Customer Testimonials */}
-        <TestimonialsGrid />
+        <Home2Reviews />
 
         {/* Frequently Asked Questions */}
-        <FaqAccordion
+        <Home2FAQ
           faqs={generalFaqs}
           tag={homePage?.faqSection?.badge}
           title={homePage?.faqSection?.heading}

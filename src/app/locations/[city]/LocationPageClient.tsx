@@ -10,7 +10,8 @@ import HeroWithForm from '@/components/sections/HeroWithForm';
 import TrustBar from '@/components/sections/TrustBar';
 import ServicesGrid from '@/components/sections/ServicesGrid';
 import BeforeAfterSlider from '@/components/sections/BeforeAfterSlider';
-import FaqAccordion from '@/components/sections/FaqAccordion';
+import Home2FAQ from '@/components/home2/Home2FAQ';
+import Home2Reviews from '@/components/home2/Home2Reviews';
 import BottomCtaBanner from '@/components/sections/BottomCtaBanner';
 import LeadFormModal from '@/components/ui/LeadFormModal';
 import { generalFaqs } from '@/data/faqs';
@@ -156,8 +157,11 @@ export default function LocationPageClient({ location }: LocationPageClientProps
         {/* Before / After */}
         <BeforeAfterSlider onOpenModal={handleOpenModal} />
 
+        {/* Customer Reviews from Home 2 */}
+        <Home2Reviews />
+
         {/* Localized FAQs */}
-        <FaqAccordion
+        <Home2FAQ
           faqs={generalFaqs}
           title={`Common Questions from ${location.name} Homeowners`}
           subtitle={`Everything you need to know about outdoor remodeling and pavers in ${location.county}.`}

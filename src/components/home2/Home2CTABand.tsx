@@ -1,11 +1,47 @@
+'use client';
+
 import React from 'react';
 import Image from 'next/image';
 import { ArrowRight } from 'lucide-react';
 
-export default function Home2CTABand() {
-  const scrollTo = (id: string) => {
-    const el = document.getElementById(id);
-    if (el) el.scrollIntoView({ behavior: 'smooth' });
+export interface Home2CTABandProps {
+  basePath?: string;
+  onOpenQuote?: () => void;
+  title?: string;
+  subtitle?: string;
+  badge?: string;
+  primaryBtnText?: string;
+  secondaryBtnText?: string;
+}
+
+export default function Home2CTABand({
+  basePath = '',
+  onOpenQuote,
+  title = 'Book a site visit this week.',
+  subtitle = 'No pressure, no subcontractors, no moving prices.',
+  badge = 'FREE ESTIMATE',
+  primaryBtnText = 'Get a free quote',
+  secondaryBtnText = 'See our work',
+}: Home2CTABandProps) {
+  const handlePrimaryClick = () => {
+    if (onOpenQuote) {
+      onOpenQuote();
+      return;
+    }
+    const el = document.getElementById('quote-section');
+    if (el) {
+      el.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
+  const handleSecondaryClick = () => {
+    const el = document.getElementById('work');
+    if (el) {
+      el.scrollIntoView({ behavior: 'smooth' });
+    } else {
+      const target = basePath ? `${basePath}/gallery` : '/gallery';
+      window.location.href = target;
+    }
   };
 
   return (
@@ -33,15 +69,15 @@ export default function Home2CTABand() {
         {/* Left: Text Content */}
         <div className="max-w-[620px] text-left">
           <span className="text-xs font-bold uppercase tracking-[0.22em] text-[#4CC66E] block mb-3">
-            FREE ESTIMATE
+            {badge}
           </span>
 
           <h2 className="font-serif font-normal text-2xl sm:text-3xl lg:text-[35px] leading-[1.12] text-white">
-            Book a site visit this week.
+            {title}
           </h2>
 
           <p className="mt-4 text-base sm:text-lg lg:text-[21px] leading-[1.5] text-stone-300">
-            No pressure, no subcontractors, no moving prices.
+            {subtitle}
           </p>
         </div>
 
@@ -49,19 +85,19 @@ export default function Home2CTABand() {
         <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3.5 shrink-0 w-full md:w-auto">
           <button
             type="button"
-            onClick={() => scrollTo('quote-section')}
+            onClick={handlePrimaryClick}
             className="w-full sm:w-auto justify-center px-7 py-4 bg-[#019934] hover:bg-[#017026] text-white font-semibold text-base sm:text-lg rounded-md transition-colors flex items-center gap-2.5 cursor-pointer shadow-sm active:scale-98"
           >
-            <span>Get a free quote</span>
+            <span>{primaryBtnText}</span>
             <ArrowRight className="w-5 h-5 stroke-[1.75]" />
           </button>
 
           <button
             type="button"
-            onClick={() => scrollTo('work')}
+            onClick={handleSecondaryClick}
             className="w-full sm:w-auto justify-center px-7 py-4 bg-transparent hover:bg-white/10 text-white font-semibold text-base sm:text-lg rounded-md border border-white/20 hover:border-white/40 transition-colors flex items-center cursor-pointer active:scale-98"
           >
-            <span>See our work</span>
+            <span>{secondaryBtnText}</span>
           </button>
         </div>
       </div>

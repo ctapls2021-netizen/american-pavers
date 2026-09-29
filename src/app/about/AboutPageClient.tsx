@@ -5,8 +5,8 @@ import Link from 'next/link';
 import Navbar from '@/components/layout/Navbar';
 import Footer from '@/components/layout/Footer';
 import BottomCtaBanner from '@/components/sections/BottomCtaBanner';
-import TestimonialsGrid from '@/components/sections/TestimonialsGrid';
-import FaqAccordion from '@/components/sections/FaqAccordion';
+import Home2Reviews from '@/components/home2/Home2Reviews';
+import Home2FAQ from '@/components/home2/Home2FAQ';
 import LeadFormModal from '@/components/ui/LeadFormModal';
 import { companyData } from '@/data/company';
 import { servicesData } from '@/data/services';
@@ -253,15 +253,14 @@ export default function AboutPageClient({ aboutData }: AboutPageClientProps) {
         </section>
 
         {/* TESTIMONIALS */}
-        <TestimonialsGrid />
+        <Home2Reviews />
 
         {/* FAQS */}
-        <FaqAccordion
+        <Home2FAQ
           faqs={generalFaqs}
           tag="Common Inquiries"
           title="Frequently Asked Questions About Us"
           subtitle="Everything you need to know about our outdoor living process, 10,000 PSI pavers, California permits, and American Pavers & Turf 25-year warranty."
-          imageSrc="/assets/faq-pavers.webp"
         />
 
         {/* BOTTOM CTA */}

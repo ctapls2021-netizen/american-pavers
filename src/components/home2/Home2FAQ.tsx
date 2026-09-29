@@ -4,7 +4,23 @@ import React, { useState } from 'react';
 import { Phone, ChevronDown } from 'lucide-react';
 import { companyData } from '@/data/company';
 
-const FAQS = [
+export interface FAQItem {
+  question?: string;
+  q?: string;
+  answer?: string;
+  a?: string;
+  category?: string;
+}
+
+export interface Home2FAQProps {
+  faqs?: FAQItem[];
+  title?: string;
+  subtitle?: string;
+  tag?: string;
+  className?: string;
+}
+
+const DEFAULT_FAQS = [
   {
     q: 'How long does a driveway take?',
     a: 'Most driveways are demolished, based and laid in five to seven working days. Weather and permit timing are the usual variables.',
@@ -27,24 +43,47 @@ const FAQS = [
   },
 ];
 
-export default function Home2FAQ() {
+export default function Home2FAQ({
+  faqs,
+  title = 'Before you call.',
+  subtitle,
+  tag = 'QUESTIONS',
+  className = '',
+}: Home2FAQProps) {
   const [openIdx, setOpenIdx] = useState<number | null>(0);
+
+  const displayFaqs =
+    faqs && faqs.length > 0
+      ? faqs.map((f) => ({
+          q: f.q || f.question || '',
+          a: f.a || f.answer || '',
+        }))
+      : DEFAULT_FAQS;
 
   const toggle = (idx: number) => {
     setOpenIdx(openIdx === idx ? null : idx);
   };
 
   return (
-    <section id="faq" className="py-20 sm:py-28 bg-white text-stone-900 border-b border-stone-200 scroll-mt-20 w-full max-w-full overflow-hidden">
+    <section
+      id="faq"
+      className={`py-20 sm:py-28 bg-white text-stone-900 border-b border-stone-200 scroll-mt-20 w-full max-w-full overflow-hidden ${className}`}
+    >
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="text-center mb-12 sm:mb-16">
           <span className="text-xs font-bold uppercase tracking-[0.22em] text-[#019934] block mb-3">
-            QUESTIONS
+            {tag}
           </span>
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-serif font-normal text-[#1A292C] tracking-tight leading-tight">
-            Before you call.
+            {title}
           </h2>
+
+          {subtitle && (
+            <p className="mt-3.5 text-stone-600 text-sm sm:text-base max-w-2xl mx-auto font-normal leading-relaxed">
+              {subtitle}
+            </p>
+          )}
 
           <a
             href={`tel:${companyData.phone}`}
@@ -57,7 +96,7 @@ export default function Home2FAQ() {
 
         {/* FAQ Accordion List */}
         <div className="divide-y divide-stone-200 border-y border-stone-200">
-          {FAQS.map((faq, idx) => {
+          {displayFaqs.map((faq, idx) => {
             const isOpen = openIdx === idx;
             return (
               <div key={idx} className="py-5 sm:py-6">

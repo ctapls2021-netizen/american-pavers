@@ -6,6 +6,7 @@ import Home2Header from '@/components/home2/Home2Header';
 import Home2Footer from '@/components/home2/Home2Footer';
 import Home2QuoteSplit from '@/components/home2/Home2QuoteSplit';
 import Home2FAQ from '@/components/home2/Home2FAQ';
+import Home2Reviews from '@/components/home2/Home2Reviews';
 import { Phone, Mail, Clock, MapPin, ShieldCheck, ChevronRight } from 'lucide-react';
 import { companyData } from '@/data/company';
 
@@ -148,6 +149,9 @@ export default function ContactPageClientV2() {
             </div>
           </div>
         </section>
+
+        {/* Home 2 Reviews */}
+        <Home2Reviews />
 
         {/* Home 2 Split Quote Studio */}
         <Home2QuoteSplit />

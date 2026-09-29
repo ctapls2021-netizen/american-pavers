@@ -5,8 +5,8 @@ import Link from 'next/link';
 import Navbar from '@/components/layout/Navbar';
 import Footer from '@/components/layout/Footer';
 import BottomCtaBanner from '@/components/sections/BottomCtaBanner';
-import TestimonialsGrid from '@/components/sections/TestimonialsGrid';
-import FaqAccordion from '@/components/sections/FaqAccordion';
+import Home2Reviews from '@/components/home2/Home2Reviews';
+import Home2FAQ from '@/components/home2/Home2FAQ';
 import LeadFormModal from '@/components/ui/LeadFormModal';
 import { companyData } from '@/data/company';
 import { servicesData } from '@/data/services';
@@ -564,17 +564,16 @@ export default function ContactPageClient({ contactData }: ContactPageClientProp
         {/* ==================================================================== */}
         {/* 4. HOMEOWNER TESTIMONIALS                                            */}
         {/* ==================================================================== */}
-        <TestimonialsGrid />
+        <Home2Reviews />
 
         {/* ==================================================================== */}
         {/* 5. FREQUENTLY ASKED QUESTIONS ABOUT ESTIMATES                         */}
         {/* ==================================================================== */}
-        <FaqAccordion
+        <Home2FAQ
           faqs={contactFaqs}
           tag="Homeowner Questions"
           title="Consultation & Estimate FAQs"
           subtitle="Straightforward answers to the most common questions before scheduling your complimentary in-home 3D consultation."
-          imageSrc="/assets/faq-patio.webp"
         />
 
         {/* ==================================================================== */}

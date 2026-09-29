@@ -7,9 +7,11 @@ import Home2Footer from '@/components/home2/Home2Footer';
 import Home2About from '@/components/home2/Home2About';
 import Home2Process from '@/components/home2/Home2Process';
 import Home2Reviews from '@/components/home2/Home2Reviews';
+import Home2FAQ from '@/components/home2/Home2FAQ';
 import Home2QuoteSplit from '@/components/home2/Home2QuoteSplit';
 import { ChevronRight, Phone } from 'lucide-react';
 import { companyData } from '@/data/company';
+import { generalFaqs } from '@/data/faqs';
 
 export default function AboutPageClientV2() {
   const handleScrollToQuote = () => {
@@ -100,6 +102,13 @@ export default function AboutPageClientV2() {
 
         {/* Customer Reviews from Home 2 */}
         <Home2Reviews />
+
+        {/* Frequently Asked Questions from Home 2 */}
+        <Home2FAQ
+          faqs={generalFaqs}
+          title="Frequently Asked Questions About Us"
+          subtitle="Everything you need to know about our outdoor living process, 10,000 PSI pavers, California permits, and American Pavers & Turf 25-year warranty."
+        />
 
         {/* Split Quote Studio connected to /api/lead */}
         <Home2QuoteSplit />
