@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import Link from 'next/link';
 import Home2Header from '@/components/home2/Home2Header';
 import Home2Footer from '@/components/home2/Home2Footer';
-import BottomCtaBanner from '@/components/sections/BottomCtaBanner';
+import Home2BottomCtaBanner from '@/components/home2/Home2BottomCtaBanner';
 import Home2Reviews from '@/components/home2/Home2Reviews';
 import Home2FAQ from '@/components/home2/Home2FAQ';
 import Home2CTABand from '@/components/home2/Home2CTABand';
@@ -165,7 +165,7 @@ export default function ContactPageClientV2({ contactData }: ContactPageClientV2
             <div className="mt-6 flex flex-col sm:flex-row items-center justify-center gap-3.5 w-full max-w-xl">
               <a
                 href="#quote-form"
-                className="w-full sm:w-auto px-7 py-3.5 rounded-none bg-[#019934] hover:bg-[#01802b] text-white font-bold text-sm sm:text-base shadow-xl hover:shadow-2xl transition-all flex items-center justify-center gap-2 cursor-pointer whitespace-nowrap"
+                className="w-full sm:w-auto px-7 py-3.5 rounded-none bg-[#4CC66E] hover:bg-[#42e078] text-[#1A292C] font-semibold text-sm sm:text-base transition-all flex items-center justify-center gap-2 cursor-pointer whitespace-nowrap"
               >
                 <span className="whitespace-nowrap">Schedule Free 3D Estimate</span>
                 <ChevronRight className="w-4 h-4 shrink-0" />
@@ -478,7 +478,7 @@ export default function ContactPageClientV2({ contactData }: ContactPageClientV2
                       <button
                         type="submit"
                         disabled={isSubmitting}
-                        className="w-full bg-[#019934] hover:bg-[#01802b] text-white font-extrabold text-sm sm:text-base py-4 rounded-none shadow-md hover:shadow-lg transition-all transform active:scale-98 flex items-center justify-center gap-2 cursor-pointer disabled:opacity-60"
+                        className="w-full bg-[#4CC66E] hover:bg-[#42e078] text-[#1A292C] font-semibold text-sm sm:text-base py-4 rounded-none transition-all transform active:scale-98 flex items-center justify-center gap-2 cursor-pointer disabled:opacity-60"
                       >
                         {isSubmitting ? (
                           <span>Submitting Request...</span>
@@ -583,7 +583,7 @@ export default function ContactPageClientV2({ contactData }: ContactPageClientV2
         {/* ==================================================================== */}
         {/* 6. BOTTOM CTA BANNER                                                 */}
         {/* ==================================================================== */}
-        <BottomCtaBanner
+        <Home2BottomCtaBanner
           onOpenModal={() => setModalOpen(true)}
           title="Ready to Build Your Custom Hardscape Sanctuary?"
           subtitle="Speak with our California design team today. Call direct or book your free in-home 3D consultation with American Pavers & Turf."

@@ -10,7 +10,7 @@ import {
 } from 'lucide-react';
 import Home2Header from '@/components/home2/Home2Header';
 import Home2Footer from '@/components/home2/Home2Footer';
-import BottomCtaBanner from '@/components/sections/BottomCtaBanner';
+import Home2BottomCtaBanner from '@/components/home2/Home2BottomCtaBanner';
 import LeadFormModal from '@/components/ui/LeadFormModal';
 import { companyData } from '@/data/company';
 
@@ -340,7 +340,7 @@ export default function GalleryPageV2({ galleryData, sanityProjects }: GalleryPa
           {/* Static Background Image with zoom */}
           <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
             <img
-              src="/assets/generated/driveway_premium.jpg"
+              src="/assets/generated/driveway_premium.webp"
               alt="American Pavers & Turf Gallery"
               className="w-full h-full object-cover object-center scale-105"
               loading="eager"
@@ -389,7 +389,7 @@ export default function GalleryPageV2({ galleryData, sanityProjects }: GalleryPa
               <button
                 onClick={() => handleOpenModal()}
                 type="button"
-                className="w-full sm:w-auto px-7 py-3.5 rounded-none bg-[#019934] hover:bg-[#01802b] text-white font-bold text-sm sm:text-base shadow-xl hover:shadow-2xl transition-all flex items-center justify-center gap-2 cursor-pointer whitespace-nowrap"
+                className="w-full sm:w-auto px-7 py-3.5 rounded-none bg-[#4CC66E] hover:bg-[#42e078] text-[#1A292C] font-semibold text-sm sm:text-base transition-all flex items-center justify-center gap-2 cursor-pointer whitespace-nowrap"
               >
                 <span className="whitespace-nowrap">Schedule Free 3D Design</span>
                 <ChevronRight className="w-4 h-4 shrink-0" />
@@ -469,7 +469,7 @@ export default function GalleryPageV2({ galleryData, sanityProjects }: GalleryPa
         {/* ==================================================================== */}
         {/* 3. BOTTOM CTA BANNER                                                 */}
         {/* ==================================================================== */}
-        <BottomCtaBanner
+        <Home2BottomCtaBanner
           onOpenModal={() => handleOpenModal()}
           title="Inspired by Our Work? Let’s Design Your Outdoor Sanctuary."
           subtitle="Schedule your complimentary in-home 3D design consultation. Our senior hardscape architects will measure your space, bring physical stone samples, and provide a guaranteed, transparent 3D estimate."
