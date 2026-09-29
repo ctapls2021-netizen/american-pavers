@@ -131,6 +131,48 @@ export default function Home2Header({ onOpenQuote, basePath }: Home2HeaderProps)
 
         {/* Desktop Navigation Links */}
         <nav className="hidden lg:flex items-center gap-2">
+          {/* Home */}
+          {basePath ? (
+            <Link
+              href={basePath}
+              className="flex items-center h-[38px] px-3.5 rounded-[6px] text-sm font-semibold tracking-[0.02em] text-white hover:text-[#4CC66E] hover:bg-white/5 transition-colors"
+            >
+              Home
+            </Link>
+          ) : (
+            <a
+              href="#top"
+              onClick={(e) => {
+                e.preventDefault();
+                scrollTo('top');
+              }}
+              className="flex items-center h-[38px] px-3.5 rounded-[6px] text-sm font-semibold tracking-[0.02em] text-white hover:text-[#4CC66E] hover:bg-white/5 transition-colors"
+            >
+              Home
+            </a>
+          )}
+
+          {/* About Us */}
+          {basePath ? (
+            <Link
+              href={`${basePath}/about`}
+              className="flex items-center h-[38px] px-3.5 rounded-[6px] text-sm font-semibold tracking-[0.02em] text-white hover:text-[#4CC66E] hover:bg-white/5 transition-colors"
+            >
+              About Us
+            </Link>
+          ) : (
+            <a
+              href="#about"
+              onClick={(e) => {
+                e.preventDefault();
+                scrollTo('about'); // Assuming there's an about section
+              }}
+              className="flex items-center h-[38px] px-3.5 rounded-[6px] text-sm font-semibold tracking-[0.02em] text-white hover:text-[#4CC66E] hover:bg-white/5 transition-colors"
+            >
+              About Us
+            </a>
+          )}
+
           {/* Services with Mega Menu */}
           <div
             className="relative"
@@ -235,66 +277,46 @@ export default function Home2Header({ onOpenQuote, basePath }: Home2HeaderProps)
             )}
           </div>
 
+          {/* Gallery */}
           {basePath ? (
-            <>
-              <Link
-                href={`${basePath}/gallery`}
-                className="flex items-center h-[38px] px-3.5 rounded-[6px] text-sm font-semibold tracking-[0.02em] text-white hover:text-[#4CC66E] hover:bg-white/5 transition-colors"
-              >
-                Our work
-              </Link>
-              <Link
-                href={`${basePath}#process`}
-                className="flex items-center h-[38px] px-3.5 rounded-[6px] text-sm font-semibold tracking-[0.02em] text-white hover:text-[#4CC66E] hover:bg-white/5 transition-colors"
-              >
-                Process
-              </Link>
-              <Link
-                href={`${basePath}/about`}
-                className="flex items-center h-[38px] px-3.5 rounded-[6px] text-sm font-semibold tracking-[0.02em] text-white hover:text-[#4CC66E] hover:bg-white/5 transition-colors"
-              >
-                About Us
-              </Link>
-              <Link
-                href={`${basePath}/contact`}
-                className="flex items-center h-[38px] px-3.5 rounded-[6px] text-sm font-semibold tracking-[0.02em] text-white hover:text-[#4CC66E] hover:bg-white/5 transition-colors"
-              >
-                Contact
-              </Link>
-            </>
+            <Link
+              href={`${basePath}/gallery`}
+              className="flex items-center h-[38px] px-3.5 rounded-[6px] text-sm font-semibold tracking-[0.02em] text-white hover:text-[#4CC66E] hover:bg-white/5 transition-colors"
+            >
+              Gallery
+            </Link>
           ) : (
-            <>
-              <a
-                href="#work"
-                onClick={(e) => {
-                  e.preventDefault();
-                  scrollTo('work');
-                }}
-                className="flex items-center h-[38px] px-3.5 rounded-[6px] text-sm font-semibold tracking-[0.02em] text-white hover:text-[#4CC66E] hover:bg-white/5 transition-colors"
-              >
-                Our work
-              </a>
-              <a
-                href="#process"
-                onClick={(e) => {
-                  e.preventDefault();
-                  scrollTo('process');
-                }}
-                className="flex items-center h-[38px] px-3.5 rounded-[6px] text-sm font-semibold tracking-[0.02em] text-white hover:text-[#4CC66E] hover:bg-white/5 transition-colors"
-              >
-                Process
-              </a>
-              <a
-                href="#quote-section"
-                onClick={(e) => {
-                  e.preventDefault();
-                  scrollTo('quote-section');
-                }}
-                className="flex items-center h-[38px] px-3.5 rounded-[6px] text-sm font-semibold tracking-[0.02em] text-white hover:text-[#4CC66E] hover:bg-white/5 transition-colors"
-              >
-                Contact
-              </a>
-            </>
+            <a
+              href="#work"
+              onClick={(e) => {
+                e.preventDefault();
+                scrollTo('work');
+              }}
+              className="flex items-center h-[38px] px-3.5 rounded-[6px] text-sm font-semibold tracking-[0.02em] text-white hover:text-[#4CC66E] hover:bg-white/5 transition-colors"
+            >
+              Gallery
+            </a>
+          )}
+
+          {/* Contact Us */}
+          {basePath ? (
+            <Link
+              href={`${basePath}/contact`}
+              className="flex items-center h-[38px] px-3.5 rounded-[6px] text-sm font-semibold tracking-[0.02em] text-white hover:text-[#4CC66E] hover:bg-white/5 transition-colors"
+            >
+              Contact Us
+            </Link>
+          ) : (
+            <a
+              href="#quote-section"
+              onClick={(e) => {
+                e.preventDefault();
+                scrollTo('quote-section');
+              }}
+              className="flex items-center h-[38px] px-3.5 rounded-[6px] text-sm font-semibold tracking-[0.02em] text-white hover:text-[#4CC66E] hover:bg-white/5 transition-colors"
+            >
+              Contact Us
+            </a>
           )}
         </nav>
 
@@ -338,7 +360,23 @@ export default function Home2Header({ onOpenQuote, basePath }: Home2HeaderProps)
           <nav className="flex flex-col space-y-2">
             {basePath ? (
               <>
-                <span className="text-xs font-bold uppercase tracking-widest text-[#4CC66E] py-1">
+                <Link
+                  href={basePath}
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="py-2 text-base font-semibold text-white hover:text-[#4CC66E]"
+                >
+                  Home
+                </Link>
+
+                <Link
+                  href={`${basePath}/about`}
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="py-2 text-base font-semibold text-white hover:text-[#4CC66E]"
+                >
+                  About Us
+                </Link>
+
+                <span className="text-xs font-bold uppercase tracking-widest text-[#4CC66E] py-1 mt-2">
                   Services
                 </span>
                 <div className="pl-2 grid grid-cols-1 gap-1 pb-3 border-b border-white/10">
@@ -358,25 +396,9 @@ export default function Home2Header({ onOpenQuote, basePath }: Home2HeaderProps)
                 <Link
                   href={`${basePath}/gallery`}
                   onClick={() => setMobileMenuOpen(false)}
-                  className="py-2 text-base font-semibold text-white hover:text-[#4CC66E]"
+                  className="py-2 text-base font-semibold text-white hover:text-[#4CC66E] mt-2"
                 >
-                  Our work
-                </Link>
-
-                <Link
-                  href={`${basePath}#process`}
-                  onClick={() => setMobileMenuOpen(false)}
-                  className="py-2 text-base font-semibold text-white hover:text-[#4CC66E]"
-                >
-                  Process
-                </Link>
-
-                <Link
-                  href={`${basePath}/about`}
-                  onClick={() => setMobileMenuOpen(false)}
-                  className="py-2 text-base font-semibold text-white hover:text-[#4CC66E]"
-                >
-                  About Us
+                  Gallery
                 </Link>
 
                 <Link
@@ -384,22 +406,44 @@ export default function Home2Header({ onOpenQuote, basePath }: Home2HeaderProps)
                   onClick={() => setMobileMenuOpen(false)}
                   className="py-2 text-base font-semibold text-white hover:text-[#4CC66E]"
                 >
-                  Contact
+                  Contact Us
                 </Link>
               </>
             ) : (
               <>
+                <a
+                  href="#top"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    scrollTo('top');
+                  }}
+                  className="py-2 text-base font-semibold text-white hover:text-[#4CC66E]"
+                >
+                  Home
+                </a>
+
+                <a
+                  href="#about"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    scrollTo('about');
+                  }}
+                  className="py-2 text-base font-semibold text-white hover:text-[#4CC66E]"
+                >
+                  About Us
+                </a>
+
                 <a
                   href="#services"
                   onClick={(e) => {
                     e.preventDefault();
                     scrollTo('services');
                   }}
-                  className="py-2 text-base font-semibold text-white hover:text-[#4CC66E]"
+                  className="py-2 text-base font-semibold text-[#4CC66E] mt-2"
                 >
                   Services
                 </a>
-                <div className="pl-4 space-y-1.5 pb-2">
+                <div className="pl-4 space-y-1.5 pb-2 border-b border-white/10">
                   {servicesData.slice(0, 4).map((link) => (
                     <a
                       key={link.slug}
@@ -421,20 +465,9 @@ export default function Home2Header({ onOpenQuote, basePath }: Home2HeaderProps)
                     e.preventDefault();
                     scrollTo('work');
                   }}
-                  className="py-2 text-base font-semibold text-white hover:text-[#4CC66E]"
+                  className="py-2 text-base font-semibold text-white hover:text-[#4CC66E] mt-2"
                 >
-                  Our work
-                </a>
-
-                <a
-                  href="#process"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    scrollTo('process');
-                  }}
-                  className="py-2 text-base font-semibold text-white hover:text-[#4CC66E]"
-                >
-                  Process
+                  Gallery
                 </a>
 
                 <a
@@ -445,7 +478,7 @@ export default function Home2Header({ onOpenQuote, basePath }: Home2HeaderProps)
                   }}
                   className="py-2 text-base font-semibold text-white hover:text-[#4CC66E]"
                 >
-                  Contact
+                  Contact Us
                 </a>
               </>
             )}
