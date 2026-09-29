@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import Link from 'next/link';
 import Home2Header from '@/components/home2/Home2Header';
 import Home2Footer from '@/components/home2/Home2Footer';
-import Home2BottomCtaBanner from '@/components/home2/Home2BottomCtaBanner';
+import Home2QuoteSplit from '@/components/home2/Home2QuoteSplit';
 import Home2Reviews from '@/components/home2/Home2Reviews';
 import Home2FAQ from '@/components/home2/Home2FAQ';
 import Home2CTABand from '@/components/home2/Home2CTABand';
@@ -581,13 +581,9 @@ export default function ContactPageClientV2({ contactData }: ContactPageClientV2
         />
 
         {/* ==================================================================== */}
-        {/* 6. BOTTOM CTA BANNER                                                 */}
+        {/* 6. HOME 2 SPLIT QUOTE FORM                                           */}
         {/* ==================================================================== */}
-        <Home2BottomCtaBanner
-          onOpenModal={() => setModalOpen(true)}
-          title="Ready to Build Your Custom Hardscape Sanctuary?"
-          subtitle="Speak with our California design team today. Call direct or book your free in-home 3D consultation with American Pavers & Turf."
-        />
+        <Home2QuoteSplit />
       </main>
 
       <Home2Footer basePath="/v2" />

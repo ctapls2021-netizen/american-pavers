@@ -10,7 +10,7 @@ import {
 } from 'lucide-react';
 import Home2Header from '@/components/home2/Home2Header';
 import Home2Footer from '@/components/home2/Home2Footer';
-import Home2BottomCtaBanner from '@/components/home2/Home2BottomCtaBanner';
+import Home2QuoteSplit from '@/components/home2/Home2QuoteSplit';
 import LeadFormModal from '@/components/ui/LeadFormModal';
 import { companyData } from '@/data/company';
 
@@ -467,13 +467,9 @@ export default function GalleryPageV2({ galleryData, sanityProjects }: GalleryPa
         </section>
 
         {/* ==================================================================== */}
-        {/* 3. BOTTOM CTA BANNER                                                 */}
+        {/* 3. HOME 2 SPLIT QUOTE FORM                                           */}
         {/* ==================================================================== */}
-        <Home2BottomCtaBanner
-          onOpenModal={() => handleOpenModal()}
-          title="Inspired by Our Work? Let’s Design Your Outdoor Sanctuary."
-          subtitle="Schedule your complimentary in-home 3D design consultation. Our senior hardscape architects will measure your space, bring physical stone samples, and provide a guaranteed, transparent 3D estimate."
-        />
+        <Home2QuoteSplit />
       </main>
 
       <Home2Footer basePath="/v2" />
