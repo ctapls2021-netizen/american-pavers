@@ -39,14 +39,7 @@ const serviceIcons: Record<string, any> = {
   'decking-pergolas': Trees,
 };
 
-const SERVICES_CATALOG = [
-  { name: 'Driveway Pavers', slug: 'driveway-pavers', category: 'pavers' },
-  { name: 'Patio Pavers', slug: 'patio-pavers', category: 'pavers' },
-  { name: 'Pool Deck Pavers', slug: 'pool-deck-pavers', category: 'pavers' },
-  { name: 'Synthetic Turf', slug: 'synthetic-turf', category: 'turf' },
-  { name: 'Outdoor Kitchens', slug: 'outdoor-kitchens', category: 'turf' },
-  { name: 'Decks & Pergolas', slug: 'decking-pergolas', category: 'pavers' },
-];
+
 
 export default function Home2Header({ onOpenQuote, basePath }: Home2HeaderProps) {
   const [megaOpen, setMegaOpen] = useState(false);
@@ -349,14 +342,14 @@ export default function Home2Header({ onOpenQuote, basePath }: Home2HeaderProps)
                   Services
                 </span>
                 <div className="pl-2 grid grid-cols-1 gap-1 pb-3 border-b border-white/10">
-                  {SERVICES_CATALOG.map((item) => (
+                  {servicesData.map((item) => (
                     <Link
                       key={item.slug}
                       href={`${basePath}/services/${item.slug}`}
                       onClick={() => setMobileMenuOpen(false)}
                       className="py-1.5 text-sm font-medium text-stone-300 hover:text-white flex items-center justify-between"
                     >
-                      <span>{item.name}</span>
+                      <span>{item.shortTitle}</span>
                       <ArrowRight className="w-3.5 h-3.5 text-stone-500" />
                     </Link>
                   ))}
@@ -407,7 +400,7 @@ export default function Home2Header({ onOpenQuote, basePath }: Home2HeaderProps)
                   Services
                 </a>
                 <div className="pl-4 space-y-1.5 pb-2">
-                  {SERVICES_CATALOG.slice(0, 4).map((link) => (
+                  {servicesData.slice(0, 4).map((link) => (
                     <a
                       key={link.slug}
                       href="#services"
@@ -417,7 +410,7 @@ export default function Home2Header({ onOpenQuote, basePath }: Home2HeaderProps)
                       }}
                       className="block text-sm text-stone-300 hover:text-white"
                     >
-                      {link.name}
+                      {link.shortTitle}
                     </a>
                   ))}
                 </div>

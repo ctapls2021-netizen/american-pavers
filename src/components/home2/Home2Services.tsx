@@ -3,56 +3,25 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { Layers, Ruler, Sprout, Hammer, Droplets, ArrowRight } from 'lucide-react';
 
-const SERVICES = [
-  {
-    slug: 'driveway-pavers',
-    iconSrc: '/assets/icons/new/icon (2).png',
-    image: '/assets/generated/driveway_premium.webp',
-    title: 'Driveway Pavers',
-    description: 'Transform your home’s curb appeal with cracked-free, engineered driveway pavers.',
-    linkLabel: 'See Driveway Pavers',
-  },
-  {
-    slug: 'patio-pavers',
-    iconSrc: '/assets/icons/new/icon (7).png',
-    image: '/assets/generated/patio_premium.jpg',
-    title: 'Patio Pavers',
-    description: 'Create your private resort with custom patio pavers designed for outdoor living.',
-    linkLabel: 'See Patio Pavers',
-  },
-  {
-    slug: 'pool-deck-pavers',
-    iconSrc: '/assets/icons/new/icon (1).png',
-    image: '/assets/generated/pool_premium.jpg',
-    title: 'Pool Deck Pavers',
-    description: 'Slip-resistant, heat-reflective pavers engineered for California swimming pools.',
-    linkLabel: 'See Pool Deck Pavers',
-  },
-  {
-    slug: 'synthetic-turf',
-    iconSrc: '/assets/icons/new/icon (4).png',
-    image: '/assets/generated/turf_premium.jpg',
-    title: 'Synthetic Turf',
-    description: 'Drought-proof, pet-friendly artificial turf that stays green all year.',
-    linkLabel: 'See Synthetic Turf',
-  },
-  {
-    slug: 'outdoor-kitchens',
-    iconSrc: '/assets/icons/new/icon (8).png',
-    image: '/assets/generated/kitchen_premium.jpg',
-    title: 'Outdoor Kitchens',
-    description: 'Custom BBQ islands and fire pits for the ultimate backyard entertaining experience.',
-    linkLabel: 'See Outdoor Kitchens',
-  },
-  {
-    slug: 'decking-pergolas',
-    iconSrc: '/assets/icons/new/icon (3).png',
-    image: '/assets/generated/pergola_premium.jpg',
-    title: 'Decks & Pergolas',
-    description: 'Modern composite decking and motorized pergolas for luxury sun protection.',
-    linkLabel: 'See Decks & Pergolas',
-  },
-];
+import { servicesData } from '@/data/services';
+
+const SERVICE_ASSETS: Record<string, { iconSrc: string, image: string }> = {
+  'driveway-pavers': { iconSrc: '/assets/icons/new/icon (2).png', image: '/assets/generated/driveway_premium.webp' },
+  'patio-pavers': { iconSrc: '/assets/icons/new/icon (7).png', image: '/assets/generated/patio_premium.jpg' },
+  'pool-deck-pavers': { iconSrc: '/assets/icons/new/icon (1).png', image: '/assets/generated/pool_premium.jpg' },
+  'synthetic-turf': { iconSrc: '/assets/icons/new/icon (4).png', image: '/assets/generated/turf_premium.jpg' },
+  'outdoor-kitchens': { iconSrc: '/assets/icons/new/icon (8).png', image: '/assets/generated/kitchen_premium.jpg' },
+  'decking-pergolas': { iconSrc: '/assets/icons/new/icon (3).png', image: '/assets/generated/pergola_premium.jpg' },
+};
+
+const SERVICES = servicesData.map(s => ({
+  slug: s.slug,
+  iconSrc: SERVICE_ASSETS[s.slug]?.iconSrc || '/assets/icons/new/icon (2).png',
+  image: SERVICE_ASSETS[s.slug]?.image || (typeof s.heroImage === 'string' ? s.heroImage : '/assets/generated/driveway_premium.jpg'),
+  title: s.shortTitle || s.title,
+  description: s.tagline || s.description,
+  linkLabel: `See ${s.shortTitle || s.title}`,
+}));
 
 interface Home2ServicesProps {
   basePath?: string;
