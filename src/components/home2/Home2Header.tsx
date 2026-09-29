@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
 import {
   ShieldCheck,
   CheckCircle2,
@@ -17,38 +18,19 @@ import { companyData } from '@/data/company';
 
 interface Home2HeaderProps {
   onOpenQuote?: () => void;
+  basePath?: string;
 }
 
-const NAV_ITEMS = [
-  {
-    label: 'Services',
-    href: '#services',
-    hasMegaMenu: true,
-  },
-  { label: 'Our work', href: '#work' },
-  { label: 'Process', href: '#process' },
-  { label: 'Contact', href: '#quote-section' },
+const SERVICES_CATALOG = [
+  { name: 'Driveway Pavers', slug: 'driveway-pavers', category: 'pavers' },
+  { name: 'Patio Pavers', slug: 'patio-pavers', category: 'pavers' },
+  { name: 'Pool Deck Pavers', slug: 'pool-deck-pavers', category: 'pavers' },
+  { name: 'Synthetic Turf', slug: 'synthetic-turf', category: 'turf' },
+  { name: 'Outdoor Kitchens', slug: 'outdoor-kitchens', category: 'turf' },
+  { name: 'Decks & Pergolas', slug: 'decking-pergolas', category: 'pavers' },
 ];
 
-const PAVER_LINKS = [
-  'All pavers',
-  'Driveway pavers',
-  'Patio pavers',
-  'Pool deck pavers',
-  'Walkway pavers',
-  'Retaining walls',
-];
-
-const TURF_LINKS = [
-  'All turf',
-  'Front lawns',
-  'Backyards',
-  'Pet turf',
-  'Putting greens',
-  'Drainage & grading',
-];
-
-export default function Home2Header({ onOpenQuote }: Home2HeaderProps) {
+export default function Home2Header({ onOpenQuote, basePath }: Home2HeaderProps) {
   const [megaOpen, setMegaOpen] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
@@ -103,62 +85,119 @@ export default function Home2Header({ onOpenQuote }: Home2HeaderProps) {
       {/* Main Navigation Bar (72px mobile, 84px desktop) */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-[72px] sm:h-[84px] flex items-center justify-between gap-3 sm:gap-6">
         {/* Logo (Horizontal White) */}
-        <a
-          href="#top"
-          onClick={(e) => {
-            e.preventDefault();
-            scrollTo('top');
-          }}
-          className="relative w-36 sm:w-56 h-[32px] sm:h-[42px] shrink-0 flex items-center"
-        >
-          <Image
-            src="/assets/brand/logo-horizontal-white.png"
-            alt="American Pavers & Turf"
-            fill
-            className="object-contain object-left"
-            priority
-          />
-        </a>
+        {basePath ? (
+          <Link
+            href={basePath}
+            className="relative w-36 sm:w-56 h-[32px] sm:h-[42px] shrink-0 flex items-center"
+          >
+            <Image
+              src="/assets/brand/logo-horizontal-white.png"
+              alt="American Pavers & Turf"
+              fill
+              className="object-contain object-left"
+              priority
+            />
+          </Link>
+        ) : (
+          <a
+            href="#top"
+            onClick={(e) => {
+              e.preventDefault();
+              scrollTo('top');
+            }}
+            className="relative w-36 sm:w-56 h-[32px] sm:h-[42px] shrink-0 flex items-center"
+          >
+            <Image
+              src="/assets/brand/logo-horizontal-white.png"
+              alt="American Pavers & Turf"
+              fill
+              className="object-contain object-left"
+              priority
+            />
+          </a>
+        )}
 
         {/* Desktop Navigation Links */}
         <nav className="hidden lg:flex items-center gap-2">
-          {NAV_ITEMS.map((item) => {
-            if (item.hasMegaMenu) {
-              return (
-                <button
-                  key={item.label}
-                  type="button"
-                  onClick={() => setMegaOpen(!megaOpen)}
-                  className={`flex items-center gap-1.5 h-[38px] px-3.5 rounded-[6px] text-sm font-semibold tracking-[0.02em] transition-colors cursor-pointer ${
-                    megaOpen
-                      ? 'bg-white/10 text-[#4CC66E]'
-                      : 'text-white hover:text-[#4CC66E] hover:bg-white/5'
-                  }`}
-                >
-                  <span>{item.label}</span>
-                  <ChevronDown
-                    className={`w-3.5 h-3.5 transition-transform duration-200 stroke-[2] ${
-                      megaOpen ? 'rotate-180' : ''
-                    }`}
-                  />
-                </button>
-              );
-            }
+          {/* Services with Mega Menu */}
+          <button
+            type="button"
+            onClick={() => setMegaOpen(!megaOpen)}
+            className={`flex items-center gap-1.5 h-[38px] px-3.5 rounded-[6px] text-sm font-semibold tracking-[0.02em] transition-colors cursor-pointer ${
+              megaOpen
+                ? 'bg-white/10 text-[#4CC66E]'
+                : 'text-white hover:text-[#4CC66E] hover:bg-white/5'
+            }`}
+          >
+            <span>Services</span>
+            <ChevronDown
+              className={`w-3.5 h-3.5 transition-transform duration-200 stroke-[2] ${
+                megaOpen ? 'rotate-180' : ''
+              }`}
+            />
+          </button>
 
-            return (
+          {basePath ? (
+            <>
+              <Link
+                href={`${basePath}/gallery`}
+                className="flex items-center h-[38px] px-3.5 rounded-[6px] text-sm font-semibold tracking-[0.02em] text-white hover:text-[#4CC66E] hover:bg-white/5 transition-colors"
+              >
+                Our work
+              </Link>
+              <Link
+                href={`${basePath}#process`}
+                className="flex items-center h-[38px] px-3.5 rounded-[6px] text-sm font-semibold tracking-[0.02em] text-white hover:text-[#4CC66E] hover:bg-white/5 transition-colors"
+              >
+                Process
+              </Link>
+              <Link
+                href={`${basePath}/about`}
+                className="flex items-center h-[38px] px-3.5 rounded-[6px] text-sm font-semibold tracking-[0.02em] text-white hover:text-[#4CC66E] hover:bg-white/5 transition-colors"
+              >
+                About Us
+              </Link>
+              <Link
+                href={`${basePath}/contact`}
+                className="flex items-center h-[38px] px-3.5 rounded-[6px] text-sm font-semibold tracking-[0.02em] text-white hover:text-[#4CC66E] hover:bg-white/5 transition-colors"
+              >
+                Contact
+              </Link>
+            </>
+          ) : (
+            <>
               <a
-                key={item.label}
-                href={item.href}
+                href="#work"
                 onClick={(e) => {
                   e.preventDefault();
-                  scrollTo(item.href);
+                  scrollTo('work');
                 }}
                 className="flex items-center h-[38px] px-3.5 rounded-[6px] text-sm font-semibold tracking-[0.02em] text-white hover:text-[#4CC66E] hover:bg-white/5 transition-colors"
               >
-                {item.label}
+                Our work
               </a>
-            );
-          })}
+              <a
+                href="#process"
+                onClick={(e) => {
+                  e.preventDefault();
+                  scrollTo('process');
+                }}
+                className="flex items-center h-[38px] px-3.5 rounded-[6px] text-sm font-semibold tracking-[0.02em] text-white hover:text-[#4CC66E] hover:bg-white/5 transition-colors"
+              >
+                Process
+              </a>
+              <a
+                href="#quote-section"
+                onClick={(e) => {
+                  e.preventDefault();
+                  scrollTo('quote-section');
+                }}
+                className="flex items-center h-[38px] px-3.5 rounded-[6px] text-sm font-semibold tracking-[0.02em] text-white hover:text-[#4CC66E] hover:bg-white/5 transition-colors"
+              >
+                Contact
+              </a>
+            </>
+          )}
         </nav>
 
         {/* Right CTA Actions */}
@@ -204,41 +243,73 @@ export default function Home2Header({ onOpenQuote }: Home2HeaderProps) {
                   Pavers
                 </h3>
                 <ul className="space-y-3">
-                  {PAVER_LINKS.map((link) => (
-                    <li key={link}>
-                      <a
-                        href="#services"
-                        onClick={(e) => {
-                          e.preventDefault();
-                          scrollTo('services');
-                        }}
-                        className="text-stone-300 hover:text-[#4CC66E] text-base transition-colors"
-                      >
-                        {link}
-                      </a>
+                  {[
+                    { name: 'Driveway Pavers', slug: 'driveway-pavers' },
+                    { name: 'Patio Pavers', slug: 'patio-pavers' },
+                    { name: 'Pool Deck Pavers', slug: 'pool-deck-pavers' },
+                    { name: 'Decks & Pergolas', slug: 'decking-pergolas' },
+                  ].map((item) => (
+                    <li key={item.slug}>
+                      {basePath ? (
+                        <Link
+                          href={`${basePath}/services/${item.slug}`}
+                          onClick={() => setMegaOpen(false)}
+                          className="text-stone-300 hover:text-[#4CC66E] text-base transition-colors"
+                        >
+                          {item.name}
+                        </Link>
+                      ) : (
+                        <a
+                          href="#services"
+                          onClick={(e) => {
+                            e.preventDefault();
+                            scrollTo('services');
+                          }}
+                          className="text-stone-300 hover:text-[#4CC66E] text-base transition-colors"
+                        >
+                          {item.name}
+                        </a>
+                      )}
                     </li>
                   ))}
                 </ul>
               </div>
 
-              {/* Group 2: Turf & Drainage */}
+              {/* Group 2: Turf & Outdoor Living */}
               <div className="col-span-4">
                 <h3 className="font-serif text-xl text-white font-normal mb-5">
-                  Turf &amp; drainage
+                  Turf &amp; Outdoor Living
                 </h3>
                 <ul className="grid grid-cols-2 gap-x-6 gap-y-3">
-                  {TURF_LINKS.map((link) => (
-                    <li key={link}>
-                      <a
-                        href="#services"
-                        onClick={(e) => {
-                          e.preventDefault();
-                          scrollTo('services');
-                        }}
-                        className="text-stone-300 hover:text-[#4CC66E] text-base transition-colors"
-                      >
-                        {link}
-                      </a>
+                  {[
+                    { name: 'Synthetic Turf', slug: 'synthetic-turf' },
+                    { name: 'Outdoor Kitchens', slug: 'outdoor-kitchens' },
+                    { name: 'Front Lawns', slug: 'synthetic-turf' },
+                    { name: 'Putting Greens', slug: 'synthetic-turf' },
+                    { name: 'Pet Turf', slug: 'synthetic-turf' },
+                    { name: 'Drainage & Grading', slug: 'driveway-pavers' },
+                  ].map((item, idx) => (
+                    <li key={idx}>
+                      {basePath ? (
+                        <Link
+                          href={`${basePath}/services/${item.slug}`}
+                          onClick={() => setMegaOpen(false)}
+                          className="text-stone-300 hover:text-[#4CC66E] text-base transition-colors"
+                        >
+                          {item.name}
+                        </Link>
+                      ) : (
+                        <a
+                          href="#services"
+                          onClick={(e) => {
+                            e.preventDefault();
+                            scrollTo('services');
+                          }}
+                          className="text-stone-300 hover:text-[#4CC66E] text-base transition-colors"
+                        >
+                          {item.name}
+                        </a>
+                      )}
                     </li>
                   ))}
                 </ul>
@@ -246,31 +317,56 @@ export default function Home2Header({ onOpenQuote }: Home2HeaderProps) {
 
               {/* Group 3: Featured Card */}
               <div className="col-span-4">
-                <a
-                  href="#services"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    scrollTo('services');
-                  }}
-                  className="group relative block aspect-[4/3] rounded-[6px] overflow-hidden bg-stone-800 shadow-md border border-white/10"
-                >
-                  <Image
-                    src="/assets/brand/photo-bluestone-slabs.png"
-                    alt="Featured turf & outdoor design"
-                    fill
-                    className="object-cover object-center group-hover:scale-105 transition-transform duration-500"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#0E1719]/90 via-[#0E1719]/40 to-transparent" />
-                  <div className="absolute left-5 right-5 bottom-5">
-                    <span className="text-[11px] font-semibold tracking-[0.22em] uppercase text-[#4CC66E] block mb-1">
-                      Featured
-                    </span>
-                    <div className="flex items-center gap-2 font-serif text-lg text-white">
-                      <span>Explore turf &amp; outdoor design</span>
-                      <ArrowRight className="w-4 h-4 text-[#4CC66E] group-hover:translate-x-1 transition-transform" />
+                {basePath ? (
+                  <Link
+                    href={`${basePath}/gallery`}
+                    onClick={() => setMegaOpen(false)}
+                    className="group relative block aspect-[4/3] rounded-[6px] overflow-hidden bg-stone-800 shadow-md border border-white/10"
+                  >
+                    <Image
+                      src="/assets/brand/photo-bluestone-slabs.png"
+                      alt="Featured turf & outdoor design"
+                      fill
+                      className="object-cover object-center group-hover:scale-105 transition-transform duration-500"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#0E1719]/90 via-[#0E1719]/40 to-transparent" />
+                    <div className="absolute left-5 right-5 bottom-5">
+                      <span className="text-[11px] font-semibold tracking-[0.22em] uppercase text-[#4CC66E] block mb-1">
+                        Featured Portfolio
+                      </span>
+                      <div className="flex items-center gap-2 font-serif text-lg text-white">
+                        <span>Explore full project gallery</span>
+                        <ArrowRight className="w-4 h-4 text-[#4CC66E] group-hover:translate-x-1 transition-transform" />
+                      </div>
                     </div>
-                  </div>
-                </a>
+                  </Link>
+                ) : (
+                  <a
+                    href="#services"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      scrollTo('services');
+                    }}
+                    className="group relative block aspect-[4/3] rounded-[6px] overflow-hidden bg-stone-800 shadow-md border border-white/10"
+                  >
+                    <Image
+                      src="/assets/brand/photo-bluestone-slabs.png"
+                      alt="Featured turf & outdoor design"
+                      fill
+                      className="object-cover object-center group-hover:scale-105 transition-transform duration-500"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#0E1719]/90 via-[#0E1719]/40 to-transparent" />
+                    <div className="absolute left-5 right-5 bottom-5">
+                      <span className="text-[11px] font-semibold tracking-[0.22em] uppercase text-[#4CC66E] block mb-1">
+                        Featured
+                      </span>
+                      <div className="flex items-center gap-2 font-serif text-lg text-white">
+                        <span>Explore turf &amp; outdoor design</span>
+                        <ArrowRight className="w-4 h-4 text-[#4CC66E] group-hover:translate-x-1 transition-transform" />
+                      </div>
+                    </div>
+                  </a>
+                )}
               </div>
             </div>
 
@@ -305,64 +401,119 @@ export default function Home2Header({ onOpenQuote }: Home2HeaderProps) {
       {mobileMenuOpen && (
         <div className="lg:hidden bg-[#1A292C] border-t border-white/10 px-4 py-6 space-y-4">
           <nav className="flex flex-col space-y-2">
-            <a
-              href="#services"
-              onClick={(e) => {
-                e.preventDefault();
-                scrollTo('services');
-              }}
-              className="py-2 text-base font-semibold text-white hover:text-[#4CC66E]"
-            >
-              Services
-            </a>
-            <div className="pl-4 space-y-1.5 pb-2">
-              {PAVER_LINKS.slice(0, 4).map((link) => (
+            {basePath ? (
+              <>
+                <span className="text-xs font-bold uppercase tracking-widest text-[#4CC66E] py-1">
+                  Services
+                </span>
+                <div className="pl-2 grid grid-cols-1 gap-1 pb-3 border-b border-white/10">
+                  {SERVICES_CATALOG.map((item) => (
+                    <Link
+                      key={item.slug}
+                      href={`${basePath}/services/${item.slug}`}
+                      onClick={() => setMobileMenuOpen(false)}
+                      className="py-1.5 text-sm font-medium text-stone-300 hover:text-white flex items-center justify-between"
+                    >
+                      <span>{item.name}</span>
+                      <ArrowRight className="w-3.5 h-3.5 text-stone-500" />
+                    </Link>
+                  ))}
+                </div>
+
+                <Link
+                  href={`${basePath}/gallery`}
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="py-2 text-base font-semibold text-white hover:text-[#4CC66E]"
+                >
+                  Our work
+                </Link>
+
+                <Link
+                  href={`${basePath}#process`}
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="py-2 text-base font-semibold text-white hover:text-[#4CC66E]"
+                >
+                  Process
+                </Link>
+
+                <Link
+                  href={`${basePath}/about`}
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="py-2 text-base font-semibold text-white hover:text-[#4CC66E]"
+                >
+                  About Us
+                </Link>
+
+                <Link
+                  href={`${basePath}/contact`}
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="py-2 text-base font-semibold text-white hover:text-[#4CC66E]"
+                >
+                  Contact
+                </Link>
+              </>
+            ) : (
+              <>
                 <a
-                  key={link}
                   href="#services"
                   onClick={(e) => {
                     e.preventDefault();
                     scrollTo('services');
                   }}
-                  className="block text-sm text-stone-300 hover:text-white"
+                  className="py-2 text-base font-semibold text-white hover:text-[#4CC66E]"
                 >
-                  {link}
+                  Services
                 </a>
-              ))}
-            </div>
+                <div className="pl-4 space-y-1.5 pb-2">
+                  {SERVICES_CATALOG.slice(0, 4).map((link) => (
+                    <a
+                      key={link.slug}
+                      href="#services"
+                      onClick={(e) => {
+                        e.preventDefault();
+                        scrollTo('services');
+                      }}
+                      className="block text-sm text-stone-300 hover:text-white"
+                    >
+                      {link.name}
+                    </a>
+                  ))}
+                </div>
 
-            <a
-              href="#work"
-              onClick={(e) => {
-                e.preventDefault();
-                scrollTo('work');
-              }}
-              className="py-2 text-base font-semibold text-white hover:text-[#4CC66E]"
-            >
-              Our work
-            </a>
+                <a
+                  href="#work"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    scrollTo('work');
+                  }}
+                  className="py-2 text-base font-semibold text-white hover:text-[#4CC66E]"
+                >
+                  Our work
+                </a>
 
-            <a
-              href="#process"
-              onClick={(e) => {
-                e.preventDefault();
-                scrollTo('process');
-              }}
-              className="py-2 text-base font-semibold text-white hover:text-[#4CC66E]"
-            >
-              Process
-            </a>
+                <a
+                  href="#process"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    scrollTo('process');
+                  }}
+                  className="py-2 text-base font-semibold text-white hover:text-[#4CC66E]"
+                >
+                  Process
+                </a>
 
-            <a
-              href="#quote-section"
-              onClick={(e) => {
-                e.preventDefault();
-                scrollTo('quote-section');
-              }}
-              className="py-2 text-base font-semibold text-white hover:text-[#4CC66E]"
-            >
-              Contact
-            </a>
+                <a
+                  href="#quote-section"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    scrollTo('quote-section');
+                  }}
+                  className="py-2 text-base font-semibold text-white hover:text-[#4CC66E]"
+                >
+                  Contact
+                </a>
+              </>
+            )}
           </nav>
 
           <div className="pt-4 border-t border-white/10 flex flex-col gap-3">

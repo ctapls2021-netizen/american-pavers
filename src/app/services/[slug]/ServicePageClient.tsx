@@ -6,6 +6,9 @@ import { ServiceItem } from '@/types';
 import { companyData } from '@/data/company';
 import Navbar from '@/components/layout/Navbar';
 import Footer from '@/components/layout/Footer';
+import Home2Header from '@/components/home2/Home2Header';
+import Home2Footer from '@/components/home2/Home2Footer';
+import Home2QuoteSplit from '@/components/home2/Home2QuoteSplit';
 import FaqAccordion from '@/components/sections/FaqAccordion';
 import TrustBar from '@/components/sections/TrustBar';
 import BottomCtaBanner from '@/components/sections/BottomCtaBanner';
@@ -248,20 +251,41 @@ const pergolaComparisonData: ComparisonItem[] = [
 
 interface ServicePageClientProps {
   service: ServiceItem;
+  basePath?: string;
 }
 
-export default function ServicePageClient({ service }: ServicePageClientProps) {
+export default function ServicePageClient({ service, basePath }: ServicePageClientProps) {
   const [modalOpen, setModalOpen] = useState(false);
 
   const handleOpenModal = () => {
     setModalOpen(true);
   };
 
+  const handleOpenQuote = () => {
+    const el = document.getElementById('quote-section');
+    if (el) {
+      el.scrollIntoView({ behavior: 'smooth' });
+    } else {
+      handleOpenModal();
+    }
+  };
+
+  const renderBottomCta = (title?: string, subtitle?: string) => {
+    if (basePath) {
+      return <Home2QuoteSplit />;
+    }
+    return <BottomCtaBanner onOpenModal={handleOpenModal} title={title} subtitle={subtitle} />;
+  };
+
   const isDriveway = service.slug === 'driveway-pavers';
 
   return (
     <div className="flex flex-col min-h-screen bg-white">
-      <Navbar onOpenModal={handleOpenModal} />
+      {basePath ? (
+        <Home2Header basePath={basePath} onOpenQuote={handleOpenQuote} />
+      ) : (
+        <Navbar onOpenModal={handleOpenModal} />
+      )}
 
       <main className="flex-1">
         {isDriveway ? (
@@ -276,6 +300,7 @@ export default function ServicePageClient({ service }: ServicePageClientProps) {
               imageSrc="/assets/generated/driveway_hero.webp"
               serviceName={service.shortTitle}
               onOpenModal={handleOpenModal}
+              basePath={basePath}
             />
 
             {/* 2. Editorial Split Feature with Real Paver Image, Typography & 2 Buttons */}
@@ -324,11 +349,10 @@ export default function ServicePageClient({ service }: ServicePageClientProps) {
             )}
 
             {/* 8. Bottom CTA Banner */}
-            <BottomCtaBanner
-              onOpenModal={handleOpenModal}
-              title="Ready to Transform Your Home with a Custom Paver Driveway?"
-              subtitle="Schedule your complimentary in-home design consultation. One of our senior hardscape architects will measure your space, bring physical stone samples, and provide a guaranteed, transparent 3D estimate with American Pavers & Turf."
-            />
+            {renderBottomCta(
+              "Ready to Transform Your Home with a Custom Paver Driveway?",
+              "Schedule your complimentary in-home design consultation. One of our senior hardscape architects will measure your space, bring physical stone samples, and provide a guaranteed, transparent 3D estimate with American Pavers & Turf."
+            )}
           </>
         ) : service.slug === 'patio-pavers' ? (
           /* ==================================================================== */
@@ -342,6 +366,7 @@ export default function ServicePageClient({ service }: ServicePageClientProps) {
               imageSrc="/assets/real/American pavers (13).jpg"
               serviceName={service.shortTitle}
               onOpenModal={handleOpenModal}
+              basePath={basePath}
             />
 
             {/* 2. Editorial Split Feature with Real Photo & 2 Buttons */}
@@ -416,11 +441,10 @@ export default function ServicePageClient({ service }: ServicePageClientProps) {
             )}
 
             {/* 8. Bottom CTA Banner */}
-            <BottomCtaBanner
-              onOpenModal={handleOpenModal}
-              title="Ready to Build Your Dream Backyard Patio?"
-              subtitle="Schedule your complimentary in-home 3D design consultation. Our senior hardscape architects will measure your space, bring physical stone samples, and provide a guaranteed, transparent 3D estimate with American Pavers & Turf."
-            />
+            {renderBottomCta(
+              "Ready to Build Your Dream Backyard Patio?",
+              "Schedule your complimentary in-home 3D design consultation. Our senior hardscape architects will measure your space, bring physical stone samples, and provide a guaranteed, transparent 3D estimate with American Pavers & Turf."
+            )}
           </>
         ) : service.slug === 'pool-deck-pavers' ? (
           /* ==================================================================== */
@@ -435,6 +459,7 @@ export default function ServicePageClient({ service }: ServicePageClientProps) {
               imagePosition="object-bottom"
               serviceName={service.shortTitle}
               onOpenModal={handleOpenModal}
+              basePath={basePath}
             />
 
             {/* 2. Editorial Split Feature with Real Photo & 2 Buttons */}
@@ -509,11 +534,10 @@ export default function ServicePageClient({ service }: ServicePageClientProps) {
             )}
 
             {/* 8. Bottom CTA Banner */}
-            <BottomCtaBanner
-              onOpenModal={handleOpenModal}
-              title="Ready to Build Your Private Resort Pool Deck?"
-              subtitle="Schedule your complimentary in-home 3D design consultation. Our senior pool hardscape specialists will measure your pool surround, bring physical stone samples, and provide a guaranteed, transparent 3D estimate with American Pavers & Turf."
-            />
+            {renderBottomCta(
+              "Ready to Build Your Private Resort Pool Deck?",
+              "Schedule your complimentary in-home 3D design consultation. Our senior pool hardscape specialists will measure your pool surround, bring physical stone samples, and provide a guaranteed, transparent 3D estimate with American Pavers & Turf."
+            )}
           </>
         ) : service.slug === 'synthetic-turf' ? (
           /* ==================================================================== */
@@ -527,6 +551,7 @@ export default function ServicePageClient({ service }: ServicePageClientProps) {
               imageSrc="/assets/real/American pavers (16).jpg"
               serviceName={service.shortTitle}
               onOpenModal={handleOpenModal}
+              basePath={basePath}
             />
 
             {/* 2. Editorial Split Feature with Real Photo & 2 Buttons */}
@@ -594,11 +619,10 @@ export default function ServicePageClient({ service }: ServicePageClientProps) {
             )}
 
             {/* 8. Bottom CTA Banner */}
-            <BottomCtaBanner
-              onOpenModal={handleOpenModal}
-              title="Ready for an Emerald Green Lawn Without the Water Bill?"
-              subtitle="Schedule your complimentary in-home 3D design consultation. Our senior turf specialists will measure your lawn, bring turf samples, calculate local water rebates, and provide an exact, transparent quote with American Pavers & Turf."
-            />
+            {renderBottomCta(
+              "Ready for an Emerald Green Lawn Without the Water Bill?",
+              "Schedule your complimentary in-home 3D design consultation. Our senior turf specialists will measure your lawn, bring turf samples, calculate local water rebates, and provide an exact, transparent quote with American Pavers & Turf."
+            )}
           </>
         ) : service.slug === 'outdoor-kitchens' ? (
           /* ==================================================================== */
@@ -612,6 +636,7 @@ export default function ServicePageClient({ service }: ServicePageClientProps) {
               imageSrc="/assets/real/American pavers (21).jpg"
               serviceName={service.shortTitle}
               onOpenModal={handleOpenModal}
+              basePath={basePath}
             />
 
             {/* 2. Editorial Split Feature with Real Photo & 2 Buttons */}
@@ -676,11 +701,10 @@ export default function ServicePageClient({ service }: ServicePageClientProps) {
             )}
 
             {/* 8. Bottom CTA Banner */}
-            <BottomCtaBanner
-              onOpenModal={handleOpenModal}
-              title="Ready to Build Your Custom Gourmet Outdoor Kitchen?"
-              subtitle="Schedule your complimentary in-home 3D design consultation. Our senior outdoor living architects will measure your space, present 3D layouts, showcase countertop and appliance options, and deliver a guaranteed transparent quote with American Pavers & Turf."
-            />
+            {renderBottomCta(
+              "Ready to Build Your Custom Gourmet Outdoor Kitchen?",
+              "Schedule your complimentary in-home 3D design consultation. Our senior outdoor living architects will measure your space, present 3D layouts, showcase countertop and appliance options, and deliver a guaranteed transparent quote with American Pavers & Turf."
+            )}
           </>
         ) : service.slug === 'decking-pergolas' ? (
           /* ==================================================================== */
@@ -695,6 +719,7 @@ export default function ServicePageClient({ service }: ServicePageClientProps) {
               imagePosition="object-[center_20%]"
               serviceName={service.shortTitle}
               onOpenModal={handleOpenModal}
+              basePath={basePath}
             />
 
             {/* 2. Editorial Split Feature with Real Photo & 2 Buttons */}
@@ -759,11 +784,10 @@ export default function ServicePageClient({ service }: ServicePageClientProps) {
             )}
 
             {/* 8. Bottom CTA Banner */}
-            <BottomCtaBanner
-              onOpenModal={handleOpenModal}
-              title="Ready to Transform Your Backyard with Shade & Modern Decking?"
-              subtitle="Schedule your complimentary in-home 3D design consultation. Our senior outdoor structure architects will measure your space, demonstrate motorized louver samples, and provide a guaranteed, transparent 3D estimate with American Pavers & Turf."
-            />
+            {renderBottomCta(
+              "Ready to Transform Your Backyard with Shade & Modern Decking?",
+              "Schedule your complimentary in-home 3D design consultation. Our senior outdoor structure architects will measure your space, demonstrate motorized louver samples, and provide a guaranteed, transparent 3D estimate with American Pavers & Turf."
+            )}
           </>
         ) : (
           /* ==================================================================== */
@@ -918,12 +942,16 @@ export default function ServicePageClient({ service }: ServicePageClientProps) {
               />
             )}
 
-            <BottomCtaBanner onOpenModal={handleOpenModal} />
+            {renderBottomCta()}
           </>
         )}
       </main>
 
-      <Footer />
+      {basePath ? (
+        <Home2Footer basePath={basePath} />
+      ) : (
+        <Footer />
+      )}
 
       <LeadFormModal
         isOpen={modalOpen}

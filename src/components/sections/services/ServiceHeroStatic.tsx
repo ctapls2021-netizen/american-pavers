@@ -12,6 +12,7 @@ interface ServiceHeroStaticProps {
   imagePosition?: string;
   serviceName?: string;
   onOpenModal?: () => void;
+  basePath?: string;
 }
 
 export default function ServiceHeroStatic({
@@ -21,6 +22,7 @@ export default function ServiceHeroStatic({
   imagePosition = 'object-center',
   serviceName = 'Driveway Pavers',
   onOpenModal,
+  basePath,
 }: ServiceHeroStaticProps) {
   return (
     <section className="relative w-full h-[50vh] min-h-[380px] max-h-[500px] overflow-hidden bg-stone-950 text-white flex flex-col justify-between">
@@ -41,11 +43,13 @@ export default function ServiceHeroStatic({
       {/* 3. Top Navigation / Breadcrumbs Bar */}
       <div className="relative z-20 bg-stone-950/60 border-b border-white/10 py-2.5 px-4 sm:px-6 lg:px-8 text-xs text-stone-300 backdrop-blur-xs">
         <div className="max-w-7xl mx-auto flex items-center gap-2">
-          <Link href="/" className="hover:text-white transition-colors">
+          <Link href={basePath || '/'} className="hover:text-white transition-colors">
             Home
           </Link>
           <ChevronRight className="w-3.5 h-3.5 text-stone-400" />
-          <span className="text-stone-400">Services</span>
+          <Link href={basePath ? `${basePath}#services` : '/#services'} className="text-stone-400 hover:text-white transition-colors">
+            Services
+          </Link>
           <ChevronRight className="w-3.5 h-3.5 text-stone-400" />
           <span className="font-bold text-[#42e078]">{serviceName}</span>
         </div>
@@ -53,15 +57,15 @@ export default function ServiceHeroStatic({
 
       {/* 4. Centered Hero Content (Idéntico a la tipografía y botones del Home) */}
       <div className="relative z-20 flex-1 flex flex-col items-center justify-center text-center px-4 sm:px-6 max-w-5xl mx-auto my-auto">
-        <span className="text-[#42e078] font-bold text-xs uppercase tracking-widest mb-2 drop-shadow">
+        <span className="text-[#4CC66E] font-bold text-xs uppercase tracking-[0.22em] mb-2 drop-shadow">
           Master Installation Series
         </span>
 
         <h1
-          className="text-white font-extrabold tracking-tight drop-shadow-2xl max-w-4xl"
+          className={`${basePath ? 'font-serif font-normal' : 'font-extrabold'} text-white tracking-tight drop-shadow-2xl max-w-4xl`}
           style={{
             fontSize: 'clamp(2rem, 4.5vw, 3.5rem)',
-            lineHeight: 1.1,
+            lineHeight: 1.15,
             letterSpacing: '-0.02em',
           }}
         >

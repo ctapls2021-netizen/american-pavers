@@ -1,9 +1,11 @@
 import React from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
 import { Layers, Ruler, Sprout, Hammer, Droplets, ArrowRight } from 'lucide-react';
 
 const SERVICES = [
   {
+    slug: 'driveway-pavers',
     iconSrc: '/assets/icons/new/icon (2).png',
     image: '/assets/generated/driveway_premium.webp',
     title: 'Driveway Pavers',
@@ -11,6 +13,7 @@ const SERVICES = [
     linkLabel: 'See Driveway Pavers',
   },
   {
+    slug: 'patio-pavers',
     iconSrc: '/assets/icons/new/icon (7).png',
     image: '/assets/generated/patio_premium.jpg',
     title: 'Patio Pavers',
@@ -18,6 +21,7 @@ const SERVICES = [
     linkLabel: 'See Patio Pavers',
   },
   {
+    slug: 'pool-deck-pavers',
     iconSrc: '/assets/icons/new/icon (1).png',
     image: '/assets/generated/pool_premium.jpg',
     title: 'Pool Deck Pavers',
@@ -25,6 +29,7 @@ const SERVICES = [
     linkLabel: 'See Pool Deck Pavers',
   },
   {
+    slug: 'synthetic-turf',
     iconSrc: '/assets/icons/new/icon (4).png',
     image: '/assets/generated/turf_premium.jpg',
     title: 'Synthetic Turf',
@@ -32,6 +37,7 @@ const SERVICES = [
     linkLabel: 'See Synthetic Turf',
   },
   {
+    slug: 'outdoor-kitchens',
     iconSrc: '/assets/icons/new/icon (8).png',
     image: '/assets/generated/kitchen_premium.jpg',
     title: 'Outdoor Kitchens',
@@ -39,6 +45,7 @@ const SERVICES = [
     linkLabel: 'See Outdoor Kitchens',
   },
   {
+    slug: 'decking-pergolas',
     iconSrc: '/assets/icons/new/icon (3).png',
     image: '/assets/generated/pergola_premium.jpg',
     title: 'Decks & Pergolas',
@@ -47,7 +54,11 @@ const SERVICES = [
   },
 ];
 
-export default function Home2Services() {
+interface Home2ServicesProps {
+  basePath?: string;
+}
+
+export default function Home2Services({ basePath }: Home2ServicesProps) {
   const scrollTo = (id: string) => {
     const el = document.getElementById(id);
     if (el) el.scrollIntoView({ behavior: 'smooth' });
@@ -72,12 +83,8 @@ export default function Home2Services() {
         {/* 6 Service Cards Grid (3 columns >=1200px, 2 columns on mobile and tablet) */}
         <div className="grid grid-cols-2 xl:grid-cols-3 gap-3 sm:gap-6 xl:gap-8">
           {SERVICES.map((s, idx) => {
-            return (
-              <div
-                key={idx}
-                onClick={() => scrollTo('quote-section')}
-                className="group relative aspect-[4/5] sm:aspect-[3/4] rounded-lg overflow-hidden bg-[#1A292C] shadow-md hover:shadow-xl transition-all duration-300 cursor-pointer border border-stone-200/80"
-              >
+            const cardInner = (
+              <>
                 {/* Background Image */}
                 <Image
                   src={s.image}
@@ -111,12 +118,32 @@ export default function Home2Services() {
                     <ArrowRight className="w-3 h-3 sm:w-3.5 sm:h-3.5 group-hover:translate-x-1 transition-transform" />
                   </span>
                 </div>
+              </>
+            );
+
+            if (basePath) {
+              return (
+                <Link
+                  key={idx}
+                  href={`${basePath}/services/${s.slug}`}
+                  className="group relative aspect-[4/5] sm:aspect-[3/4] rounded-lg overflow-hidden bg-[#1A292C] shadow-md hover:shadow-xl transition-all duration-300 cursor-pointer border border-stone-200/80 block"
+                >
+                  {cardInner}
+                </Link>
+              );
+            }
+
+            return (
+              <div
+                key={idx}
+                onClick={() => scrollTo('quote-section')}
+                className="group relative aspect-[4/5] sm:aspect-[3/4] rounded-lg overflow-hidden bg-[#1A292C] shadow-md hover:shadow-xl transition-all duration-300 cursor-pointer border border-stone-200/80"
+              >
+                {cardInner}
               </div>
             );
           })}
         </div>
-
-
       </div>
     </section>
   );

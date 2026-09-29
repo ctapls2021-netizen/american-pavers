@@ -1,48 +1,43 @@
 import React from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
 import { Phone, Mail, Clock } from 'lucide-react';
+import { companyData } from '@/data/company';
 
-interface LinkItem {
-  name: string;
-  href: string;
+interface Home2FooterProps {
+  basePath?: string;
 }
 
-interface FooterColumn {
-  title: string;
-  links: LinkItem[];
-}
-
-const COLUMNS: FooterColumn[] = [
-  {
-    title: 'PAVERS',
-    links: [
-      { name: 'Driveways', href: '#services' },
-      { name: 'Patios & pool decks', href: '#services' },
-      { name: 'Walkways', href: '#services' },
-      { name: 'Retaining walls', href: '#services' },
-    ],
-  },
-  {
-    title: 'TURF',
-    links: [
-      { name: 'Front lawns', href: '#services' },
-      { name: 'Backyards', href: '#services' },
-      { name: 'Pet turf', href: '#services' },
-      { name: 'Putting greens', href: '#services' },
-    ],
-  },
-  {
-    title: 'COMPANY',
-    links: [
-      { name: 'Our process', href: '#process' },
-      { name: 'Our work', href: '#work' },
-      { name: 'Service areas', href: '#services' },
-      { name: 'Contact', href: '#quote-section' },
-    ],
-  },
-];
-
-export default function Home2Footer() {
+export default function Home2Footer({ basePath }: Home2FooterProps) {
+  const columns = [
+    {
+      title: 'PAVERS',
+      links: [
+        { name: 'Driveways', href: basePath ? `${basePath}/services/driveway-pavers` : '#services' },
+        { name: 'Patio Pavers', href: basePath ? `${basePath}/services/patio-pavers` : '#services' },
+        { name: 'Pool Deck Pavers', href: basePath ? `${basePath}/services/pool-deck-pavers` : '#services' },
+        { name: 'Decks & Pergolas', href: basePath ? `${basePath}/services/decking-pergolas` : '#services' },
+      ],
+    },
+    {
+      title: 'TURF & OUTDOOR',
+      links: [
+        { name: 'Synthetic Turf', href: basePath ? `${basePath}/services/synthetic-turf` : '#services' },
+        { name: 'Outdoor Kitchens', href: basePath ? `${basePath}/services/outdoor-kitchens` : '#services' },
+        { name: 'Front Lawns', href: basePath ? `${basePath}/services/synthetic-turf` : '#services' },
+        { name: 'Putting Greens', href: basePath ? `${basePath}/services/synthetic-turf` : '#services' },
+      ],
+    },
+    {
+      title: 'COMPANY',
+      links: [
+        { name: 'Our Process', href: basePath ? `${basePath}#process` : '#process' },
+        { name: 'Our Work', href: basePath ? `${basePath}/gallery` : '#work' },
+        { name: 'About Us', href: basePath ? `${basePath}/about` : '#about' },
+        { name: 'Contact', href: basePath ? `${basePath}/contact` : '#quote-section' },
+      ],
+    },
+  ];
   return (
     <footer
       style={{
@@ -94,7 +89,7 @@ export default function Home2Footer() {
             }}
           >
             <a
-              href="tel:3235550100"
+              href={`tel:${companyData.phone}`}
               style={{
                 display: 'flex',
                 alignItems: 'center',
@@ -106,12 +101,12 @@ export default function Home2Footer() {
               }}
               className="hover:text-[#4CC66E] transition-colors"
             >
-              <Phone className="w-4 h-4 shrink-0 text-white" />
-              <span>(323) 555-0100</span>
+              <Phone className="w-4 h-4 shrink-0 text-[#4CC66E]" />
+              <span>{companyData.formattedPhone}</span>
             </a>
 
             <a
-              href="mailto:hello@americanpaversturf.com"
+              href="mailto:info@americanpaversturf.com"
               style={{
                 display: 'flex',
                 alignItems: 'center',
@@ -122,8 +117,8 @@ export default function Home2Footer() {
               }}
               className="hover:text-[#4CC66E] transition-colors"
             >
-              <Mail className="w-4 h-4 shrink-0 text-white" />
-              <span>hello@americanpaversturf.com</span>
+              <Mail className="w-4 h-4 shrink-0 text-[#4CC66E]" />
+              <span>info@americanpaversturf.com</span>
             </a>
 
             <span
@@ -135,14 +130,14 @@ export default function Home2Footer() {
                 color: '#B3C2C6',
               }}
             >
-              <Clock className="w-4 h-4 shrink-0 text-[#B3C2C6]" />
+              <Clock className="w-4 h-4 shrink-0 text-[#4CC66E]" />
               <span>Mon–Sat, 7am–6pm</span>
             </span>
           </div>
         </div>
 
         {/* 3 Navigation Columns */}
-        {COLUMNS.map((c, idx) => (
+        {columns.map((c, idx) => (
           <div
             key={c.title}
             className={idx === 2 ? 'col-span-2 sm:col-span-1' : 'col-span-1'}
@@ -171,17 +166,31 @@ export default function Home2Footer() {
             >
               {c.links.map((link) => (
                 <li key={link.name}>
-                  <a
-                    href={link.href}
-                    style={{
-                      fontSize: '0.9375rem',
-                      color: '#B3C2C6',
-                      textDecoration: 'none',
-                    }}
-                    className="hover:text-white transition-colors"
-                  >
-                    {link.name}
-                  </a>
+                  {link.href.startsWith('#') ? (
+                    <a
+                      href={link.href}
+                      style={{
+                        fontSize: '0.9375rem',
+                        color: '#B3C2C6',
+                        textDecoration: 'none',
+                      }}
+                      className="hover:text-white transition-colors"
+                    >
+                      {link.name}
+                    </a>
+                  ) : (
+                    <Link
+                      href={link.href}
+                      style={{
+                        fontSize: '0.9375rem',
+                        color: '#B3C2C6',
+                        textDecoration: 'none',
+                      }}
+                      className="hover:text-white transition-colors"
+                    >
+                      {link.name}
+                    </Link>
+                  )}
                 </li>
               ))}
             </ul>
