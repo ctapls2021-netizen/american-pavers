@@ -1,8 +1,9 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import {
   ShieldCheck,
   CheckCircle2,
@@ -13,13 +14,30 @@ import {
   ArrowRight,
   Menu,
   X,
+  Layers,
+  Sun,
+  Waves,
+  Leaf,
+  Flame,
+  Trees,
+  ChevronRight,
 } from 'lucide-react';
 import { companyData } from '@/data/company';
+import { servicesData } from '@/data/services';
 
 interface Home2HeaderProps {
   onOpenQuote?: () => void;
   basePath?: string;
 }
+
+const serviceIcons: Record<string, any> = {
+  'driveway-pavers': Layers,
+  'patio-pavers': Sun,
+  'pool-deck-pavers': Waves,
+  'synthetic-turf': Leaf,
+  'outdoor-kitchens': Flame,
+  'decking-pergolas': Trees,
+};
 
 const SERVICES_CATALOG = [
   { name: 'Driveway Pavers', slug: 'driveway-pavers', category: 'pavers' },
@@ -33,6 +51,7 @@ const SERVICES_CATALOG = [
 export default function Home2Header({ onOpenQuote, basePath }: Home2HeaderProps) {
   const [megaOpen, setMegaOpen] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const pathname = usePathname();
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -120,22 +139,108 @@ export default function Home2Header({ onOpenQuote, basePath }: Home2HeaderProps)
         {/* Desktop Navigation Links */}
         <nav className="hidden lg:flex items-center gap-2">
           {/* Services with Mega Menu */}
-          <button
-            type="button"
-            onClick={() => setMegaOpen(!megaOpen)}
-            className={`flex items-center gap-1.5 h-[38px] px-3.5 rounded-[6px] text-sm font-semibold tracking-[0.02em] transition-colors cursor-pointer ${
-              megaOpen
-                ? 'bg-white/10 text-[#4CC66E]'
-                : 'text-white hover:text-[#4CC66E] hover:bg-white/5'
-            }`}
+          <div
+            className="relative"
+            onMouseEnter={() => setMegaOpen(true)}
+            onMouseLeave={() => setMegaOpen(false)}
           >
-            <span>Services</span>
-            <ChevronDown
-              className={`w-3.5 h-3.5 transition-transform duration-200 stroke-[2] ${
-                megaOpen ? 'rotate-180' : ''
+            <button
+              type="button"
+              onClick={(e) => {
+                e.preventDefault();
+                setMegaOpen((prev) => !prev);
+              }}
+              className={`flex items-center gap-1.5 h-[38px] px-3.5 rounded-[6px] text-sm font-semibold tracking-[0.02em] transition-colors cursor-pointer ${
+                megaOpen
+                  ? 'bg-white/10 text-[#4CC66E]'
+                  : 'text-white hover:text-[#4CC66E] hover:bg-white/5'
               }`}
-            />
-          </button>
+            >
+              <span>Services</span>
+              <ChevronDown
+                className={`w-3.5 h-3.5 transition-transform duration-200 stroke-[2] ${
+                  megaOpen ? 'rotate-180' : ''
+                }`}
+              />
+            </button>
+
+            {megaOpen && (
+              <div className="absolute left-0 top-full pt-2 w-[640px] z-50 animate-in fade-in slide-in-from-top-2 duration-150">
+                <div className="bg-white rounded-none shadow-2xl border border-stone-200/90 p-4">
+                  <div className="grid grid-cols-2 gap-2">
+                    {servicesData.map((s) => {
+                      const Icon = serviceIcons[s.slug] || Layers;
+                      const serviceHref = basePath ? `${basePath}/services/${s.slug}` : `/services/${s.slug}`;
+                      const isCurrentService = pathname === `/services/${s.slug}` || pathname === `/v2/services/${s.slug}`;
+                      return (
+                        <Link
+                          key={s.slug}
+                          href={serviceHref}
+                          onClick={() => setMegaOpen(false)}
+                          className={`flex items-center gap-3.5 p-3 rounded-none transition-all group border ${
+                            isCurrentService
+                              ? 'bg-[#ebf9ee] border-[#4CC66E]/35 shadow-xs'
+                              : 'border-transparent hover:border-stone-200/60 hover:bg-stone-50'
+                          }`}
+                        >
+                          <div
+                            className={`flex aspect-square size-11 shrink-0 items-center justify-center rounded-none transition-all shadow-xs ${
+                              isCurrentService
+                                ? 'bg-[#4CC66E] text-white'
+                                : 'bg-[#ebf9ee] text-[#4CC66E] group-hover:bg-[#4CC66E] group-hover:text-white'
+                            }`}
+                          >
+                            <Icon className="w-5 h-5 shrink-0" />
+                          </div>
+                          <div className="flex flex-col text-left">
+                            <span
+                              className={`text-sm font-bold tracking-tight transition-colors ${
+                                isCurrentService ? 'text-[#4CC66E]' : 'text-[#1A292C] group-hover:text-[#4CC66E]'
+                              }`}
+                            >
+                              {s.shortTitle}
+                            </span>
+                            {s.tagline && (
+                              <span className="text-stone-500 text-xs line-clamp-1 mt-0.5 leading-snug">
+                                {s.tagline}
+                              </span>
+                            )}
+                          </div>
+                        </Link>
+                      );
+                    })}
+                  </div>
+
+                  {/* Dropdown Footer */}
+                  <div className="mt-3 pt-3 border-t border-stone-100 flex items-center justify-between px-3 text-xs">
+                    <span className="text-stone-500 flex items-center gap-1.5 font-medium">
+                      <ShieldCheck className="w-4 h-4 text-[#4CC66E]" />
+                      25-Year Transferable Craftsmanship Warranty
+                    </span>
+                    <button
+                      type="button"
+                      onClick={() => {
+                        setMegaOpen(false);
+                        if (onOpenQuote) {
+                          onOpenQuote();
+                        } else {
+                          const targetId = 'quote-section';
+                          const el = document.getElementById(targetId);
+                          if (el) {
+                            el.scrollIntoView({ behavior: 'smooth' });
+                          }
+                        }
+                      }}
+                      className="text-[#4CC66E] font-bold hover:underline flex items-center gap-1 cursor-pointer"
+                    >
+                      <span>Free 3D Design Consultation</span>
+                      <ChevronRight className="w-3.5 h-3.5" />
+                    </button>
+                  </div>
+                </div>
+              </div>
+            )}
+          </div>
 
           {basePath ? (
             <>
@@ -232,170 +337,7 @@ export default function Home2Header({ onOpenQuote, basePath }: Home2HeaderProps)
         </div>
       </div>
 
-      {/* Mega Menu Overlay (Services Dropdown) */}
-      {megaOpen && (
-        <div className="hidden lg:block absolute left-0 right-0 top-[100%] bg-[#1A292C] border-t border-b border-white/10 shadow-2xl z-50">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
-            <div className="grid grid-cols-12 gap-10 items-start">
-              {/* Group 1: Pavers */}
-              <div className="col-span-4">
-                <h3 className="font-serif text-xl text-white font-normal mb-5">
-                  Pavers
-                </h3>
-                <ul className="space-y-3">
-                  {[
-                    { name: 'Driveway Pavers', slug: 'driveway-pavers' },
-                    { name: 'Patio Pavers', slug: 'patio-pavers' },
-                    { name: 'Pool Deck Pavers', slug: 'pool-deck-pavers' },
-                    { name: 'Decks & Pergolas', slug: 'decking-pergolas' },
-                  ].map((item) => (
-                    <li key={item.slug}>
-                      {basePath ? (
-                        <Link
-                          href={`${basePath}/services/${item.slug}`}
-                          onClick={() => setMegaOpen(false)}
-                          className="text-stone-300 hover:text-[#4CC66E] text-base transition-colors"
-                        >
-                          {item.name}
-                        </Link>
-                      ) : (
-                        <a
-                          href="#services"
-                          onClick={(e) => {
-                            e.preventDefault();
-                            scrollTo('services');
-                          }}
-                          className="text-stone-300 hover:text-[#4CC66E] text-base transition-colors"
-                        >
-                          {item.name}
-                        </a>
-                      )}
-                    </li>
-                  ))}
-                </ul>
-              </div>
 
-              {/* Group 2: Turf & Outdoor Living */}
-              <div className="col-span-4">
-                <h3 className="font-serif text-xl text-white font-normal mb-5">
-                  Turf &amp; Outdoor Living
-                </h3>
-                <ul className="grid grid-cols-2 gap-x-6 gap-y-3">
-                  {[
-                    { name: 'Synthetic Turf', slug: 'synthetic-turf' },
-                    { name: 'Outdoor Kitchens', slug: 'outdoor-kitchens' },
-                    { name: 'Front Lawns', slug: 'synthetic-turf' },
-                    { name: 'Putting Greens', slug: 'synthetic-turf' },
-                    { name: 'Pet Turf', slug: 'synthetic-turf' },
-                    { name: 'Drainage & Grading', slug: 'driveway-pavers' },
-                  ].map((item, idx) => (
-                    <li key={idx}>
-                      {basePath ? (
-                        <Link
-                          href={`${basePath}/services/${item.slug}`}
-                          onClick={() => setMegaOpen(false)}
-                          className="text-stone-300 hover:text-[#4CC66E] text-base transition-colors"
-                        >
-                          {item.name}
-                        </Link>
-                      ) : (
-                        <a
-                          href="#services"
-                          onClick={(e) => {
-                            e.preventDefault();
-                            scrollTo('services');
-                          }}
-                          className="text-stone-300 hover:text-[#4CC66E] text-base transition-colors"
-                        >
-                          {item.name}
-                        </a>
-                      )}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-
-              {/* Group 3: Featured Card */}
-              <div className="col-span-4">
-                {basePath ? (
-                  <Link
-                    href={`${basePath}/gallery`}
-                    onClick={() => setMegaOpen(false)}
-                    className="group relative block aspect-[4/3] rounded-[6px] overflow-hidden bg-stone-800 shadow-md border border-white/10"
-                  >
-                    <Image
-                      src="/assets/brand/photo-bluestone-slabs.png"
-                      alt="Featured turf & outdoor design"
-                      fill
-                      className="object-cover object-center group-hover:scale-105 transition-transform duration-500"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-[#0E1719]/90 via-[#0E1719]/40 to-transparent" />
-                    <div className="absolute left-5 right-5 bottom-5">
-                      <span className="text-[11px] font-semibold tracking-[0.22em] uppercase text-[#4CC66E] block mb-1">
-                        Featured Portfolio
-                      </span>
-                      <div className="flex items-center gap-2 font-serif text-lg text-white">
-                        <span>Explore full project gallery</span>
-                        <ArrowRight className="w-4 h-4 text-[#4CC66E] group-hover:translate-x-1 transition-transform" />
-                      </div>
-                    </div>
-                  </Link>
-                ) : (
-                  <a
-                    href="#services"
-                    onClick={(e) => {
-                      e.preventDefault();
-                      scrollTo('services');
-                    }}
-                    className="group relative block aspect-[4/3] rounded-[6px] overflow-hidden bg-stone-800 shadow-md border border-white/10"
-                  >
-                    <Image
-                      src="/assets/brand/photo-bluestone-slabs.png"
-                      alt="Featured turf & outdoor design"
-                      fill
-                      className="object-cover object-center group-hover:scale-105 transition-transform duration-500"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-[#0E1719]/90 via-[#0E1719]/40 to-transparent" />
-                    <div className="absolute left-5 right-5 bottom-5">
-                      <span className="text-[11px] font-semibold tracking-[0.22em] uppercase text-[#4CC66E] block mb-1">
-                        Featured
-                      </span>
-                      <div className="flex items-center gap-2 font-serif text-lg text-white">
-                        <span>Explore turf &amp; outdoor design</span>
-                        <ArrowRight className="w-4 h-4 text-[#4CC66E] group-hover:translate-x-1 transition-transform" />
-                      </div>
-                    </div>
-                  </a>
-                )}
-              </div>
-            </div>
-
-            {/* Bottom Info Strip inside Mega Menu */}
-            <div className="mt-8 pt-6 border-t border-white/10 flex flex-wrap items-center justify-between gap-6 text-sm text-stone-300">
-              <a
-                href={`tel:${companyData.phone}`}
-                className="flex items-center gap-2 hover:text-white transition-colors"
-              >
-                <Phone className="w-4 h-4 text-[#4CC66E]" />
-                <span>{companyData.formattedPhone}</span>
-              </a>
-
-              <a
-                href="mailto:info@americanpaversturf.com"
-                className="flex items-center gap-2 hover:text-white transition-colors"
-              >
-                <Mail className="w-4 h-4 text-[#4CC66E]" />
-                <span>info@americanpaversturf.com</span>
-              </a>
-
-              <div className="flex items-center gap-2 ml-auto">
-                <MapPin className="w-4 h-4 text-[#4CC66E]" />
-                <span>Serving Los Angeles County</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      )}
 
       {/* Mobile Drawer Navigation */}
       {mobileMenuOpen && (
