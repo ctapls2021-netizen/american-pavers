@@ -476,7 +476,7 @@ export default function GalleryPageV2({ galleryData, sanityProjects }: GalleryPa
         />
       </main>
 
-      <Footer />
+      <Home2Footer basePath="/v2" />
 
       {/* Global Lead Form Modal */}
       <LeadFormModal
