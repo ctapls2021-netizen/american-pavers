@@ -2,24 +2,29 @@
 
 import React, { useState } from 'react';
 import Link from 'next/link';
-import Image from 'next/image';
+import { motion, useMotionValue, useTransform, useSpring, Variants } from 'framer-motion';
+import {
+  MapPin,
+  Phone,
+  ChevronRight,
+} from 'lucide-react';
 import Home2Header from '@/components/home2/Home2Header';
 import Home2Footer from '@/components/home2/Home2Footer';
-import Home2QuoteSplit from '@/components/home2/Home2QuoteSplit';
-import { MapPin, ChevronRight, Phone } from 'lucide-react';
+import BottomCtaBanner from '@/components/sections/BottomCtaBanner';
+import LeadFormModal from '@/components/ui/LeadFormModal';
 import { companyData } from '@/data/company';
 
 interface GalleryItem {
   id: string;
   title: string;
   city: string;
-  category: 'all' | 'driveways' | 'patios' | 'pools' | 'turf' | 'kitchens' | 'decks';
+  category: 'driveways' | 'patios' | 'pools' | 'turf' | 'kitchens' | 'decks';
   categoryTitle: string;
   image: string;
   description: string;
 }
 
-const GALLERY_ITEMS: GalleryItem[] = [
+const galleryItems: GalleryItem[] = [
   {
     id: 'g1',
     title: 'Modern Circular Driveway with Soldier Course',
@@ -94,229 +99,391 @@ const GALLERY_ITEMS: GalleryItem[] = [
   },
   {
     id: 'g9',
-    title: 'Modern Linear Pool Surround with Bullnose Edge',
+    title: 'Artisan Masonry Outdoor Kitchen with 304 Steel',
     city: 'Encino, CA',
-    category: 'pools',
-    categoryTitle: 'Pool Deck Pavers',
-    image: '/assets/real/American pavers (9).jpg',
-    description: 'Cool-touch pavers engineered to prevent wet slipping and absorb solar heat.',
+    category: 'kitchens',
+    categoryTitle: 'Outdoor Kitchens',
+    image: '/assets/generated/kitchen_premium.jpg',
+    description: 'Marine-grade 304 stainless steel grill, granite counters, and outdoor refrigeration.',
   },
   {
     id: 'g10',
-    title: 'Gourmet Outdoor BBQ Island with Granite Counters',
-    city: 'Rancho Palos Verdes, CA',
-    category: 'kitchens',
-    categoryTitle: 'Outdoor Kitchens',
-    image: '/assets/real/American pavers (18).jpg',
-    description: 'Marine-grade 304 stainless steel grill suite with integrated refrigerator.',
+    title: 'Reflective Oasis Pool Deck with Bullnose Edges',
+    city: 'Santa Monica, CA',
+    category: 'pools',
+    categoryTitle: 'Pool Deck Pavers',
+    image: '/assets/generated/pool_premium.jpg',
+    description: 'High-SRI heat-reflective pavers that stay comfortable under intense summer sunshine.',
   },
   {
     id: 'g11',
-    title: 'Multi-Level Composite Deck with Glass Railings',
-    city: 'Manhattan Beach, CA',
-    category: 'decks',
-    categoryTitle: 'Decks & Pergolas',
-    image: '/assets/real/American pavers (2).jpg',
-    description: 'Splinter-free capped composite boards engineered for coastal marine environments.',
+    title: 'Custom Multi-Hole Practice Putting Green',
+    city: 'Rancho Santa Fe, CA',
+    category: 'turf',
+    categoryTitle: 'Synthetic Turf',
+    image: '/assets/generated/turf_premium.jpg',
+    description: 'PGA-stimp contoured putting surface with chipping fringe and clean interlocking perimeter.',
   },
   {
     id: 'g12',
-    title: 'Herringbone European Cobblestone Motor Court',
-    city: 'Santa Monica, CA',
-    category: 'driveways',
-    categoryTitle: 'Driveway Pavers',
-    image: '/assets/real/American pavers (1).jpg',
-    description: 'Classic European cobblestone pattern with interlocking structural base.',
+    title: 'Capped Composite Decking & Modern Shade Arbor',
+    city: 'Glendale, CA',
+    category: 'decks',
+    categoryTitle: 'Decks & Pergolas',
+    image: '/assets/generated/pergola_premium.jpg',
+    description: 'Splinter-free, zero-maintenance composite boards with concealed clip fastenings.',
   },
 ];
 
-const FILTERS = [
-  { label: 'All Projects', value: 'all' },
-  { label: 'Driveways', value: 'driveways' },
-  { label: 'Patios', value: 'patios' },
-  { label: 'Pool Decks', value: 'pools' },
-  { label: 'Synthetic Turf', value: 'turf' },
-  { label: 'Outdoor Kitchens', value: 'kitchens' },
-  { label: 'Decks & Pergolas', value: 'decks' },
-] as const;
+// Generative Art Canvas Component adapted to brand green guidelines (#019934 / #42e078)
+const GenerativeArtCanvas = ({ isHovered }: { isHovered: boolean }) => {
+  const canvasRef = React.useRef<HTMLCanvasElement>(null);
 
-export default function GalleryPageClientV2() {
-  const [activeFilter, setActiveFilter] = useState<string>('all');
+  React.useEffect(() => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
 
-  const filteredItems =
-    activeFilter === 'all'
-      ? GALLERY_ITEMS
-      : GALLERY_ITEMS.filter((item) => item.category === activeFilter);
+    const ctx = canvas.getContext('2d');
+    if (!ctx) return;
 
-  const handleScrollToQuote = () => {
-    const el = document.getElementById('quote-section');
-    if (el) {
-      el.scrollIntoView({ behavior: 'smooth' });
+    let animationFrameId: number;
+    const numLines = 30;
+
+    class Line {
+      x: number;
+      y: number;
+      speed: number;
+      angle: number;
+      length: number;
+
+      constructor() {
+        this.x = Math.random() * (canvas?.width || 400);
+        this.y = Math.random() * (canvas?.height || 400);
+        this.speed = Math.random() * 0.5 + 0.15;
+        this.angle = Math.random() * Math.PI * 2;
+        this.length = Math.random() * 22 + 6;
+      }
+      update() {
+        this.x += Math.cos(this.angle) * this.speed;
+        this.y += Math.sin(this.angle) * this.speed;
+        if (!canvas) return;
+        if (this.x < 0 || this.x > canvas.width || this.y < 0 || this.y > canvas.height) {
+          this.x = Math.random() * canvas.width;
+          this.y = Math.random() * canvas.height;
+        }
+      }
+      draw() {
+        if (!ctx) return;
+        ctx.beginPath();
+        ctx.moveTo(this.x, this.y);
+        ctx.lineTo(
+          this.x - Math.cos(this.angle) * this.length,
+          this.y - Math.sin(this.angle) * this.length
+        );
+        // Brand green stroke: #42e078 / #019934
+        ctx.strokeStyle = `rgba(66, 224, 120, ${Math.random() * 0.4 + 0.15})`;
+        ctx.lineWidth = 1.5;
+        ctx.stroke();
+      }
     }
+
+    let lines: Line[] = [];
+    const init = () => {
+      lines = [];
+      for (let i = 0; i < numLines; i++) {
+        lines.push(new Line());
+      }
+    };
+
+    const animate = () => {
+      if (isHovered) {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        lines.forEach((line) => {
+          line.update();
+          line.draw();
+        });
+      } else {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+      }
+      animationFrameId = requestAnimationFrame(animate);
+    };
+
+    canvas.width = 400;
+    canvas.height = 400;
+    init();
+    animate();
+
+    return () => cancelAnimationFrame(animationFrameId);
+  }, [isHovered]);
+
+  return (
+    <canvas
+      ref={canvasRef}
+      className="absolute inset-0 w-full h-full opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
+    />
+  );
+};
+
+// Gallery Card Component with 3D tilt effect and Radio Cero
+interface GalleryCardProps {
+  item: GalleryItem;
+  index: number;
+}
+
+const GalleryCard = ({ item, index }: GalleryCardProps) => {
+  const [isHovered, setIsHovered] = React.useState(false);
+  const x = useMotionValue(0);
+  const y = useMotionValue(0);
+
+  const mouseXSpring = useSpring(x, { stiffness: 300, damping: 30 });
+  const mouseYSpring = useSpring(y, { stiffness: 300, damping: 30 });
+
+  const rotateX = useTransform(mouseYSpring, [-0.5, 0.5], ['10deg', '-10deg']);
+  const rotateY = useTransform(mouseXSpring, [-0.5, 0.5], ['-10deg', '10deg']);
+
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    x.set((e.clientX - rect.left) / rect.width - 0.5);
+    y.set((e.clientY - rect.top) / rect.height - 0.5);
+  };
+
+  const handleMouseLeave = () => {
+    x.set(0);
+    y.set(0);
+  };
+
+  const cardVariants: Variants = {
+    offscreen: { y: 35, opacity: 0 },
+    onscreen: {
+      y: 0,
+      opacity: 1,
+      transition: {
+        type: 'spring' as const,
+        bounce: 0.35,
+        duration: 0.7,
+        delay: (index % 3) * 0.1,
+      },
+    },
   };
 
   return (
-    <div id="top" className="flex flex-col min-h-screen bg-white text-stone-900 selection:bg-[#019934] selection:text-white">
-      {/* Home 2 Header */}
-      <Home2Header basePath="/v2" onOpenQuote={handleScrollToQuote} />
+    <motion.div
+      key={item.id}
+      variants={cardVariants}
+      initial="offscreen"
+      whileInView="onscreen"
+      viewport={{ once: true, amount: 0.15 }}
+      onMouseMove={handleMouseMove}
+      onMouseLeave={handleMouseLeave}
+      onHoverStart={() => setIsHovered(true)}
+      onHoverEnd={() => setIsHovered(false)}
+      style={{ rotateX, rotateY, transformStyle: 'preserve-3d' }}
+      className="group relative w-full rounded-none bg-white border border-stone-200/90 hover:border-[#019934] transition-all duration-300 shadow-sm hover:shadow-xl flex flex-col overflow-hidden"
+    >
+      {/* Top Brand Green Bar ("eso en verde") */}
+      <div className="w-full h-2.5 bg-[#019934] shrink-0" />
+
+      {/* 1. Clean Real Image (Sin textos ni badges encima) */}
+      <div className="relative aspect-[16/10] w-full overflow-hidden bg-stone-100 rounded-none border-b border-stone-200">
+        <img
+          src={item.image}
+          alt={item.city}
+          className="w-full h-full object-cover object-center transition-transform duration-500 group-hover:scale-105"
+        />
+
+        {/* Generative Art Canvas in Brand Green */}
+        <GenerativeArtCanvas isHovered={isHovered} />
+      </div>
+
+      {/* 2. White Area with ONLY the City Name */}
+      <div className="py-3.5 px-4 bg-white flex items-center justify-center gap-1.5">
+        <MapPin className="w-4 h-4 text-[#019934] shrink-0" />
+        <span className="text-sm sm:text-base font-serif font-normal text-[#1A292C] tracking-wide">
+          {item.city}
+        </span>
+      </div>
+    </motion.div>
+  );
+};
+
+interface GalleryPageClientProps {
+  galleryData?: any;
+  sanityProjects?: any[];
+}
+
+export default function GalleryPageV2({ galleryData, sanityProjects }: GalleryPageClientProps = {}) {
+  const [modalOpen, setModalOpen] = useState(false);
+  const [selectedService, setSelectedService] = useState('Driveway Pavers');
+  const [activeFilter, setActiveFilter] = useState<
+    'all' | 'driveways' | 'patios' | 'pools' | 'turf' | 'kitchens' | 'decks'
+  >('all');
+
+  const handleOpenModal = (serviceName?: string) => {
+    if (serviceName) setSelectedService(serviceName);
+    setModalOpen(true);
+  };
+
+  const filteredItems =
+    activeFilter === 'all'
+      ? galleryItems
+      : galleryItems.filter((item) => item.category === activeFilter);
+
+  return (
+    <div className="flex flex-col min-h-screen bg-white">
+      <Home2Header basePath="/v2" onOpenQuote={() => handleOpenModal()} />
 
       <main className="flex-1 w-full max-w-full overflow-x-clip">
-        {/* Editorial Hero Banner */}
-        <section className="relative w-full h-[50vh] min-h-[380px] max-h-[500px] overflow-hidden bg-[#1A292C] text-white flex flex-col justify-between">
+        {/* ==================================================================== */}
+        {/* 1. HERO BANNER (SERVICE PAGE FORMAT: 50% HEIGHT & BREADCRUMBS)       */}
+        {/* ==================================================================== */}
+        <section className="relative w-full h-[50vh] min-h-[380px] max-h-[500px] overflow-hidden bg-stone-950 text-white flex flex-col justify-between">
+          {/* Static Background Image with zoom */}
           <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
             <img
-              src="/assets/generated/patio_premium.jpg"
-              alt="Gallery Portfolio"
-              className="w-full h-full object-cover object-center scale-105 opacity-45"
+              src="/assets/generated/driveway_premium.jpg"
+              alt="American Pavers & Turf Gallery"
+              className="w-full h-full object-cover object-center scale-105"
               loading="eager"
             />
           </div>
 
-          <div className="absolute inset-0 bg-gradient-to-b from-[#1A292C]/80 via-[#1A292C]/50 to-[#1A292C] pointer-events-none z-10" />
+          {/* Atmospheric Contrast Overlays */}
+          <div className="absolute inset-0 bg-gradient-to-b from-stone-950/70 via-stone-950/40 to-stone-950/85 pointer-events-none z-10" />
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_35%,rgba(10,15,18,0.7)_100%)] pointer-events-none z-10" />
 
-          {/* Breadcrumbs */}
-          <div className="relative z-20 bg-black/30 border-b border-white/10 py-2.5 px-4 sm:px-6 lg:px-8 text-xs text-stone-300 backdrop-blur-xs">
+          {/* Top Breadcrumbs Bar */}
+          <div className="relative z-20 bg-stone-950/60 border-b border-white/10 py-2.5 px-4 sm:px-6 lg:px-8 text-xs text-stone-300 backdrop-blur-xs">
             <div className="max-w-7xl mx-auto flex items-center gap-2">
               <Link href="/v2" className="hover:text-white transition-colors">
                 Home
               </Link>
               <ChevronRight className="w-3.5 h-3.5 text-stone-400" />
-              <span className="font-bold text-[#4CC66E]">Project Gallery</span>
+              <span className="font-bold text-[#42e078]">Gallery</span>
             </div>
           </div>
 
           {/* Centered Hero Content */}
           <div className="relative z-20 flex-1 flex flex-col items-center justify-center text-center px-4 sm:px-6 max-w-5xl mx-auto my-auto">
-            <span className="text-[#4CC66E] font-bold text-xs uppercase tracking-[0.22em] mb-2 drop-shadow">
-              California Architectural Portfolio
+            <span className="text-[#42e078] font-bold text-xs uppercase tracking-widest mb-2 drop-shadow">
+              {galleryData?.hero?.badge || 'Master Installation Portfolio'}
             </span>
 
             <h1
               className="text-white font-serif font-normal tracking-tight drop-shadow-2xl max-w-4xl"
               style={{
                 fontSize: 'clamp(2rem, 4.5vw, 3.5rem)',
-                lineHeight: 1.15,
+                lineHeight: 1.1,
                 letterSpacing: '-0.02em',
               }}
             >
-              Real Projects. Permanent Craftsmanship.
+              {galleryData?.hero?.heading || 'Real Southern California Transformations Gallery'}
             </h1>
 
-            <p className="mt-3 text-stone-200 font-normal text-sm sm:text-base md:text-lg max-w-2xl drop-shadow-md leading-relaxed">
-              Explore authentic paver driveways, resort patios, slip-resistant pool surrounds, zero-water synthetic turf, and gourmet outdoor kitchens installed across Southern California.
+            <p className="mt-3 text-stone-200 font-medium text-sm sm:text-base md:text-lg max-w-2xl drop-shadow-md leading-relaxed">
+              {galleryData?.hero?.subheading ||
+                'Explore authentic completed installations across Los Angeles, Orange County, San Diego, and Palm Springs—crafted with 10,000+ PSI interlocking stone and backed by our 25-year warranty.'}
             </p>
 
+            {/* Action Buttons in Radio Cero */}
             <div className="mt-6 flex flex-col sm:flex-row items-center justify-center gap-3.5 w-full max-w-xl">
               <button
-                onClick={handleScrollToQuote}
+                onClick={() => handleOpenModal()}
                 type="button"
-                className="w-full sm:w-auto px-7 py-3 rounded-[6px] bg-[#019934] hover:bg-[#017026] text-white font-semibold text-sm shadow-md transition-colors cursor-pointer"
+                className="w-full sm:w-auto px-7 py-3.5 rounded-none bg-[#019934] hover:bg-[#01802b] text-white font-bold text-sm sm:text-base shadow-xl hover:shadow-2xl transition-all flex items-center justify-center gap-2 cursor-pointer whitespace-nowrap"
               >
-                <span>Request Your Free 3D Design</span>
+                <span className="whitespace-nowrap">Schedule Free 3D Design</span>
+                <ChevronRight className="w-4 h-4 shrink-0" />
               </button>
 
               <a
                 href={`tel:${companyData.phone}`}
-                className="w-full sm:w-auto px-6 py-3 rounded-[6px] bg-white/10 hover:bg-white/20 backdrop-blur-md border border-white/20 text-white font-semibold text-sm transition-all cursor-pointer flex items-center justify-center gap-2"
+                className="w-full sm:w-auto px-6 py-3.5 rounded-none bg-white/15 hover:bg-white/25 backdrop-blur-md border border-white/25 text-white font-semibold text-sm sm:text-base transition-all cursor-pointer shadow-lg flex items-center justify-center gap-2 whitespace-nowrap"
               >
-                <Phone className="w-4 h-4 text-[#4CC66E]" />
-                <span>Call {companyData.formattedPhone}</span>
+                <Phone className="w-4 h-4 text-[#42e078] shrink-0" />
+                <span className="whitespace-nowrap">Call {companyData.formattedPhone}</span>
               </a>
             </div>
           </div>
 
+          {/* Bottom Accent Line */}
           <div className="relative z-20 w-full h-1 bg-gradient-to-r from-transparent via-[#019934] to-transparent opacity-80" />
         </section>
 
-        {/* Filter Bar */}
-        <section className="bg-stone-50 border-b border-stone-200 py-6 sticky top-20 z-30 backdrop-blur-md bg-stone-50/95">
+        {/* ==================================================================== */}
+        {/* 2. INTERACTIVE 3D GALLERY WITH CITY LABELS & GENERATIVE LINES        */}
+        {/* ==================================================================== */}
+        <section className="py-16 sm:py-24 bg-stone-100/70 border-b border-stone-200 text-stone-900">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="flex items-center gap-2 overflow-x-auto pb-1 scrollbar-none">
-              {FILTERS.map((f) => {
-                const isActive = activeFilter === f.value;
-                return (
-                  <button
-                    key={f.value}
-                    type="button"
-                    onClick={() => setActiveFilter(f.value)}
-                    className={`px-4 py-2 rounded-[6px] text-xs sm:text-sm font-semibold tracking-wide whitespace-nowrap transition-all cursor-pointer ${
-                      isActive
-                        ? 'bg-[#1A292C] text-white shadow-sm'
-                        : 'bg-white text-stone-700 hover:bg-stone-200/70 border border-stone-200'
-                    }`}
-                  >
-                    {f.label}
-                  </button>
-                );
-              })}
+            {/* Section Header with Green Subtitle */}
+            <div className="text-center max-w-3xl mx-auto mb-10">
+              <span className="text-xs font-bold uppercase tracking-widest text-[#019934] block mb-2">
+                Southern California Portfolio
+              </span>
+              <h2 className="text-3xl sm:text-4xl font-serif font-normal text-[#1A292C] tracking-tight">
+                Featured Hardscape &amp; Outdoor Living Installations
+              </h2>
+              <p className="text-stone-600 text-sm sm:text-base mt-2.5 leading-relaxed">
+                Hover over any project to inspect its 3D architectural perspective. Click any design to request a complimentary in-home 3D estimate.
+              </p>
             </div>
-          </div>
-        </section>
 
-        {/* Gallery Grid */}
-        <section className="py-16 sm:py-24 bg-white">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
-              {filteredItems.map((item) => (
-                <div
-                  key={item.id}
-                  className="group rounded-lg overflow-hidden border border-stone-200 bg-white shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col"
+            {/* Filter Tabs */}
+            <div className="flex flex-wrap items-center justify-center gap-2 mb-12">
+              {[
+                { id: 'all', label: 'All Projects' },
+                { id: 'driveways', label: 'Driveways' },
+                { id: 'patios', label: 'Patios & Living' },
+                { id: 'pools', label: 'Pool Decks' },
+                { id: 'turf', label: 'Synthetic Turf' },
+                { id: 'kitchens', label: 'Outdoor Kitchens' },
+                { id: 'decks', label: 'Decks & Pergolas' },
+              ].map((tab) => (
+                <button
+                  key={tab.id}
+                  type="button"
+                  onClick={() => setActiveFilter(tab.id as any)}
+                  className={`px-4 py-2.5 rounded-none text-xs font-bold uppercase tracking-wider transition-all cursor-pointer ${
+                    activeFilter === tab.id
+                      ? 'bg-[#019934] text-white shadow-md'
+                      : 'bg-white text-stone-700 hover:text-[#019934] hover:bg-stone-50 border border-stone-200'
+                  }`}
                 >
-                  {/* Image container */}
-                  <div className="relative aspect-[16/10] w-full overflow-hidden bg-stone-100">
-                    <Image
-                      src={item.image}
-                      alt={item.title}
-                      fill
-                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                      className="object-cover object-center group-hover:scale-105 transition-transform duration-500 ease-out"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                    
-                    {/* Location Badge */}
-                    <div className="absolute bottom-3 left-3 flex items-center gap-1.5 bg-black/60 backdrop-blur-sm text-white px-2.5 py-1 rounded text-xs font-medium">
-                      <MapPin className="w-3.5 h-3.5 text-[#4CC66E]" />
-                      <span>{item.city}</span>
-                    </div>
-                  </div>
+                  {tab.label}
+                </button>
+              ))}
+            </div>
 
-                  {/* Content details */}
-                  <div className="p-5 flex-1 flex flex-col justify-between">
-                    <div>
-                      <span className="text-[11px] font-bold uppercase tracking-wider text-[#019934] block mb-1">
-                        {item.categoryTitle}
-                      </span>
-                      <h3 className="font-serif text-lg text-[#1A292C] font-normal leading-snug group-hover:text-[#019934] transition-colors">
-                        {item.title}
-                      </h3>
-                      <p className="mt-2 text-stone-600 text-xs sm:text-sm leading-relaxed">
-                        {item.description}
-                      </p>
-                    </div>
-
-                    <div className="mt-4 pt-3 border-t border-stone-100 flex items-center justify-between">
-                      <button
-                        type="button"
-                        onClick={handleScrollToQuote}
-                        className="text-xs font-bold text-[#019934] hover:text-[#017026] flex items-center gap-1 transition-colors"
-                      >
-                        <span>Get Quote for Similar</span>
-                        <ChevronRight className="w-3.5 h-3.5" />
-                      </button>
-                    </div>
-                  </div>
-                </div>
+            {/* 3D Tilt Gallery Grid */}
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {filteredItems.map((item, index) => (
+                <GalleryCard
+                  key={item.id}
+                  item={item}
+                  index={index}
+                />
               ))}
             </div>
           </div>
         </section>
 
-        {/* Split Quote Studio connected to /api/lead */}
-        <Home2QuoteSplit />
+        {/* ==================================================================== */}
+        {/* 3. BOTTOM CTA BANNER                                                 */}
+        {/* ==================================================================== */}
+        <BottomCtaBanner
+          onOpenModal={() => handleOpenModal()}
+          title="Inspired by Our Work? Let’s Design Your Outdoor Sanctuary."
+          subtitle="Schedule your complimentary in-home 3D design consultation. Our senior hardscape architects will measure your space, bring physical stone samples, and provide a guaranteed, transparent 3D estimate."
+        />
       </main>
 
-      {/* Home 2 Footer */}
-      <Home2Footer basePath="/v2" />
+      <Footer />
+
+      {/* Global Lead Form Modal */}
+      <LeadFormModal
+        isOpen={modalOpen}
+        onClose={() => setModalOpen(false)}
+        defaultService={selectedService}
+      />
     </div>
   );
 }
