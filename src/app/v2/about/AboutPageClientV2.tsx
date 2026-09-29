@@ -8,6 +8,7 @@ import Home2About from '@/components/home2/Home2About';
 import Home2Process from '@/components/home2/Home2Process';
 import Home2Reviews from '@/components/home2/Home2Reviews';
 import Home2FAQ from '@/components/home2/Home2FAQ';
+import Home2CTABand from '@/components/home2/Home2CTABand';
 import Home2QuoteSplit from '@/components/home2/Home2QuoteSplit';
 import { ChevronRight, Phone } from 'lucide-react';
 import { companyData } from '@/data/company';
@@ -94,10 +95,13 @@ export default function AboutPageClientV2() {
           <div className="relative z-20 w-full h-1 bg-gradient-to-r from-transparent via-[#019934] to-transparent opacity-80" />
         </section>
 
-        {/* 18 Years & 4 Core Values from Home 2 */}
+        {/* 18 Years & 4 Core Values from Home 2 (Light Background) */}
         <Home2About />
 
-        {/* 4 Visits Process Timeline from Home 2 */}
+        {/* Home 2 Free Estimate CTA Band between light sections */}
+        <Home2CTABand basePath="/v2" onOpenQuote={handleScrollToQuote} />
+
+        {/* 4 Visits Process Timeline from Home 2 (Light Background) */}
         <Home2Process />
 
         {/* Customer Reviews from Home 2 */}

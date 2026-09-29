@@ -7,6 +7,7 @@ import Footer from '@/components/layout/Footer';
 import BottomCtaBanner from '@/components/sections/BottomCtaBanner';
 import Home2Reviews from '@/components/home2/Home2Reviews';
 import Home2FAQ from '@/components/home2/Home2FAQ';
+import Home2CTABand from '@/components/home2/Home2CTABand';
 import LeadFormModal from '@/components/ui/LeadFormModal';
 import { companyData } from '@/data/company';
 import { servicesData } from '@/data/services';
@@ -187,6 +188,9 @@ export default function AboutPageClient({ aboutData }: AboutPageClientProps) {
             </div>
           </div>
         </section>
+
+        {/* Home 2 Free Estimate CTA Band between light sections */}
+        <Home2CTABand onOpenQuote={() => handleOpenModal()} />
 
         {/* SERVICES GRID */}
         <section className="py-20 bg-stone-50 text-stone-900 border-b border-stone-200">

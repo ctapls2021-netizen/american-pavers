@@ -272,18 +272,10 @@ export default function ServicePageClient({ service, basePath }: ServicePageClie
   };
 
   const renderBottomCta = (title?: string, subtitle?: string) => {
-    return (
-      <>
-        {/* Home 2 CTA Band on All Services */}
-        <Home2CTABand basePath={basePath} onOpenQuote={handleOpenQuote} />
-
-        {basePath ? (
-          <Home2QuoteSplit />
-        ) : (
-          <BottomCtaBanner onOpenModal={handleOpenModal} title={title} subtitle={subtitle} />
-        )}
-      </>
-    );
+    if (basePath) {
+      return <Home2QuoteSplit />;
+    }
+    return <BottomCtaBanner onOpenModal={handleOpenModal} title={title} subtitle={subtitle} />;
   };
 
   const isDriveway = service.slug === 'driveway-pavers';
@@ -332,6 +324,9 @@ export default function ServicePageClient({ service, basePath }: ServicePageClie
               secondaryColumnTitle="Conventional Poured Concrete"
               onOpenModal={handleOpenModal}
             />
+
+            {/* Home 2 Free Estimate CTA Band between light sections */}
+            <Home2CTABand basePath={basePath} onOpenQuote={handleOpenQuote} />
 
             {/* 4. 3D Regional Installation Carousel (Aceternity UI adapted to Brand Style) */}
             <DrivewayCarouselSection />
@@ -412,6 +407,9 @@ export default function ServicePageClient({ service, basePath }: ServicePageClie
               buttonText="Design Your Custom Patio"
               onOpenModal={handleOpenModal}
             />
+
+            {/* Home 2 Free Estimate CTA Band between light sections */}
+            <Home2CTABand basePath={basePath} onOpenQuote={handleOpenQuote} />
 
             {/* 4. 3D Regional Installation Carousel */}
             <DrivewayCarouselSection
@@ -506,6 +504,9 @@ export default function ServicePageClient({ service, basePath }: ServicePageClie
               onOpenModal={handleOpenModal}
             />
 
+            {/* Home 2 Free Estimate CTA Band between light sections */}
+            <Home2CTABand basePath={basePath} onOpenQuote={handleOpenQuote} />
+
             {/* 4. 3D Regional Installation Carousel */}
             <DrivewayCarouselSection
               overline="California Pool Portfolio"
@@ -591,6 +592,9 @@ export default function ServicePageClient({ service, basePath }: ServicePageClie
               onOpenModal={handleOpenModal}
             />
 
+            {/* Home 2 Free Estimate CTA Band between light sections */}
+            <Home2CTABand basePath={basePath} onOpenQuote={handleOpenQuote} />
+
             {/* 4. 3D Regional Installation Carousel */}
             <DrivewayCarouselSection
               overline="California Turf Portfolio"
@@ -672,6 +676,9 @@ export default function ServicePageClient({ service, basePath }: ServicePageClie
               buttonText="Design Your Outdoor Kitchen"
               onOpenModal={handleOpenModal}
             />
+
+            {/* Home 2 Free Estimate CTA Band between light sections */}
+            <Home2CTABand basePath={basePath} onOpenQuote={handleOpenQuote} />
 
             {/* 4. 3D Regional Installation Carousel */}
             <DrivewayCarouselSection
@@ -755,6 +762,9 @@ export default function ServicePageClient({ service, basePath }: ServicePageClie
               buttonText="Calculate Your Pergola & Deck Cost"
               onOpenModal={handleOpenModal}
             />
+
+            {/* Home 2 Free Estimate CTA Band between light sections */}
+            <Home2CTABand basePath={basePath} onOpenQuote={handleOpenQuote} />
 
             {/* 4. 3D Regional Installation Carousel */}
             <DrivewayCarouselSection
@@ -939,6 +949,9 @@ export default function ServicePageClient({ service, basePath }: ServicePageClie
                 </div>
               </div>
             </section>
+
+            {/* Home 2 Free Estimate CTA Band between light sections */}
+            <Home2CTABand basePath={basePath} onOpenQuote={handleOpenQuote} />
 
             {/* Customer Testimonials from Home */}
             <Home2Reviews />
