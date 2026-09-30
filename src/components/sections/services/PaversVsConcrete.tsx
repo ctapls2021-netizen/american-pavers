@@ -158,13 +158,12 @@ export default function PaversVsConcrete({
     }
     if (slug.includes('driveway')) {
       return {
-        primaryImage: '/assets/transformations/driveway-after.webp',
+        primaryImage: '/assets/real/American_pavers_9_compressed.jpg',
         primaryLabel: '10,000+ PSI Interlocking Paver Driveway',
         primaryBadge: '10,000+ PSI · Disperses Ground Settling',
         secondaryImage: '/assets/transformations/driveway-before.webp',
         secondaryLabel: 'Conventional Poured Concrete Driveway Slab',
         secondaryBadge: 'Rigid Surface Prone to Cracking & Staining',
-        imagePosition: 'object-[center_90%]',
       };
     }
 
@@ -224,13 +223,12 @@ export default function PaversVsConcrete({
 
     // Default: Driveway / Pavers vs Concrete
     return {
-      primaryImage: '/assets/transformations/driveway-after.webp',
+      primaryImage: '/assets/real/American_pavers_9_compressed.jpg',
       primaryLabel: '10,000+ PSI Interlocking Paver Driveway',
       primaryBadge: '10,000+ PSI · Disperses Ground Settling',
       secondaryImage: '/assets/transformations/driveway-before.webp',
       secondaryLabel: 'Conventional Poured Concrete Driveway Slab',
       secondaryBadge: 'Rigid Surface Prone to Cracking & Staining',
-      imagePosition: 'object-[center_90%]',
     };
   })();
 
