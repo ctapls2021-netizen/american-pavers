@@ -67,7 +67,7 @@ export default function Home2ComparisonHotspots({
             src={bgImage}
             alt="Interactive comparison"
             fill
-            className="object-cover object-[center_90%] rounded-xl"
+            className={`object-cover rounded-xl ${comparativeImages?.imagePosition || 'object-center'}`}
           />
           {/* Dark gradient overlay to make hotspots pop */}
           <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent rounded-xl pointer-events-none" />

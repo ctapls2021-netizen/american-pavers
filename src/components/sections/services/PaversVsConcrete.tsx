@@ -22,6 +22,7 @@ export interface ComparativeImagesData {
   secondaryImage: string;
   secondaryLabel: string;
   secondaryBadge?: string;
+  imagePosition?: string;
 }
 
 interface PaversVsConcreteProps {
@@ -106,7 +107,7 @@ export default function PaversVsConcrete({
     const slug = (serviceSlug || '').toLowerCase();
     if (slug.includes('turf')) {
       return {
-        primaryImage: '/assets/transformations/turf-lawn-after.webp',
+        primaryImage: '/assets/turf_shot_02.jpg',
         primaryLabel: 'American Drought-Resistant Synthetic Turf',
         primaryBadge: '365 Days Emerald Green · Zero Water',
         secondaryImage: '/assets/transformations/turf-lawn-before.webp',
@@ -132,6 +133,7 @@ export default function PaversVsConcrete({
         secondaryImage: '/assets/transformations/pool-deck-before.webp',
         secondaryLabel: 'Conventional Slippery Concrete Pool Deck',
         secondaryBadge: 'Burning Hot in Summer & Jackhammer Repairs',
+        imagePosition: 'object-[center_90%]',
       };
     }
     if (slug.includes('kitchen')) {
@@ -162,6 +164,7 @@ export default function PaversVsConcrete({
         secondaryImage: '/assets/transformations/driveway-before.webp',
         secondaryLabel: 'Conventional Poured Concrete Driveway Slab',
         secondaryBadge: 'Rigid Surface Prone to Cracking & Staining',
+        imagePosition: 'object-[center_90%]',
       };
     }
 
@@ -169,7 +172,7 @@ export default function PaversVsConcrete({
     const t = `${title} ${overline} ${secondaryColumnTitle}`.toLowerCase();
     if (t.includes('turf') || t.includes('grass') || t.includes('lawn')) {
       return {
-        primaryImage: '/assets/transformations/turf-lawn-after.webp',
+        primaryImage: '/assets/turf_shot_02.jpg',
         primaryLabel: 'American Drought-Resistant Synthetic Turf',
         primaryBadge: '365 Days Emerald Green · Zero Water',
         secondaryImage: '/assets/transformations/turf-lawn-before.webp',
@@ -195,6 +198,7 @@ export default function PaversVsConcrete({
         secondaryImage: '/assets/transformations/pool-deck-before.webp',
         secondaryLabel: 'Conventional Slippery Concrete Pool Deck',
         secondaryBadge: 'Burning Hot in Summer & Jackhammer Repairs',
+        imagePosition: 'object-[center_90%]',
       };
     }
     if (t.includes('kitchen')) {
@@ -226,6 +230,7 @@ export default function PaversVsConcrete({
       secondaryImage: '/assets/transformations/driveway-before.webp',
       secondaryLabel: 'Conventional Poured Concrete Driveway Slab',
       secondaryBadge: 'Rigid Surface Prone to Cracking & Staining',
+      imagePosition: 'object-[center_90%]',
     };
   })();
 
