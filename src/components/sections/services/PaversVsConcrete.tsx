@@ -5,6 +5,7 @@ import Image from 'next/image';
 import { Check, X, ShieldAlert, Sparkles, ShieldCheck, ChevronRight } from 'lucide-react';
 import { usePathname } from 'next/navigation';
 import Home2ComparisonAccordion from '@/components/home2/Home2ComparisonAccordion';
+import Home2ComparisonHotspots from '@/components/home2/Home2ComparisonHotspots';
 
 export interface ComparisonItem {
   feature: string;
@@ -97,6 +98,24 @@ export default function PaversVsConcrete({
 }: PaversVsConcreteProps) {
   const pathname = usePathname();
   const isV2 = pathname?.startsWith('/v2');
+
+  if (isV2 && serviceSlug === 'pool-deck-pavers') {
+    return (
+      <Home2ComparisonHotspots
+        serviceSlug={serviceSlug}
+        onOpenModal={onOpenModal}
+        overline={overline}
+        title={title}
+        subtitle={subtitle}
+        primaryColumnTitle={primaryColumnTitle}
+        secondaryColumnTitle={secondaryColumnTitle}
+        items={items}
+        footerText={footerText}
+        buttonText={buttonText}
+        comparativeImages={comparativeImages}
+      />
+    );
+  }
 
   if (isV2) {
     return (
