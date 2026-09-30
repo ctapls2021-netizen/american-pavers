@@ -282,18 +282,18 @@ export default function Home2Header({ onOpenQuote, basePath }: Home2HeaderProps)
           onMouseEnter={() => setMegaOpen(true)}
           onMouseLeave={() => setMegaOpen(false)}
         >
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-            <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.2fr_340px] gap-12 items-start">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+            <div className="grid grid-cols-1 lg:grid-cols-[1fr_1fr_340px] gap-12 items-start">
               {/* Hardscaping / Pavers */}
               <div>
-                <h3 className="m-0 font-serif font-normal text-[26px] leading-snug text-white">Pavers & Hardscaping</h3>
-                <ul className="list-none mt-6 p-0 grid grid-cols-1 gap-x-8 gap-y-4">
+                <h3 className="m-0 font-serif font-normal text-2xl leading-snug text-white">Pavers & Hardscaping</h3>
+                <ul className="list-none mt-6 p-0 grid grid-cols-1 gap-x-8 gap-y-5">
                   {servicesData.slice(0, 3).map((s) => (
                     <li key={s.slug}>
                       <Link
                         href={basePath ? `${basePath}/services/${s.slug}` : `/services/${s.slug}`}
                         onClick={() => setMegaOpen(false)}
-                        className="text-stone-300 hover:text-[#4CC66E] transition-colors text-base font-medium"
+                        className="text-stone-300 hover:text-[#4CC66E] transition-colors text-[15px] font-medium"
                       >
                         {s.shortTitle}
                       </Link>
@@ -304,14 +304,14 @@ export default function Home2Header({ onOpenQuote, basePath }: Home2HeaderProps)
 
               {/* Turf & Outdoor */}
               <div>
-                <h3 className="m-0 font-serif font-normal text-[26px] leading-snug text-white">Turf & Outdoor Living</h3>
-                <ul className="list-none mt-6 p-0 grid grid-cols-2 gap-x-8 gap-y-4">
+                <h3 className="m-0 font-serif font-normal text-2xl leading-snug text-white">Turf & Outdoor Living</h3>
+                <ul className="list-none mt-6 p-0 grid grid-cols-1 gap-x-8 gap-y-5">
                   {servicesData.slice(3).map((s) => (
                     <li key={s.slug}>
                       <Link
                         href={basePath ? `${basePath}/services/${s.slug}` : `/services/${s.slug}`}
                         onClick={() => setMegaOpen(false)}
-                        className="text-stone-300 hover:text-[#4CC66E] transition-colors text-base font-medium"
+                        className="text-stone-300 hover:text-[#4CC66E] transition-colors text-[15px] font-medium"
                       >
                         {s.shortTitle}
                       </Link>
