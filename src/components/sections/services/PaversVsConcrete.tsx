@@ -138,7 +138,7 @@ export default function PaversVsConcrete({
     }
     if (slug.includes('kitchen')) {
       return {
-        primaryImage: '/assets/transformations/fire-pit-after.webp',
+        primaryImage: '/assets/real/Outdoor_kitchen_and_fire_pit_2K_20260924065657.jpeg',
         primaryLabel: 'Custom Welded Steel & Natural Masonry Living',
         primaryBadge: '304 Marine Stainless & Fully Permitted Utilities',
         secondaryImage: '/assets/transformations/fire-pit-before.webp',
@@ -203,7 +203,7 @@ export default function PaversVsConcrete({
     }
     if (t.includes('kitchen')) {
       return {
-        primaryImage: '/assets/transformations/fire-pit-after.webp',
+        primaryImage: '/assets/real/Outdoor_kitchen_and_fire_pit_2K_20260924065657.jpeg',
         primaryLabel: 'Custom Welded Steel & Natural Masonry Living',
         primaryBadge: '304 Marine Stainless & Fully Permitted Utilities',
         secondaryImage: '/assets/transformations/fire-pit-before.webp',
