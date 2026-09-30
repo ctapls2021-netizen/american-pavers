@@ -298,7 +298,7 @@ export default function ServicePageClient({ service, basePath }: ServicePageClie
             <ServiceHeroStatic
               title="Engineered Driveway Pavers"
               tagline="Transforming California residential driveways with 10,000+ PSI interlocking pavers guaranteed for a lifetime."
-              imageSrc="/assets/generated/driveway_hero.webp"
+              imageSrc="/assets/real/driveway-hero-new.webp"
               serviceName={service.shortTitle}
               onOpenModal={handleOpenModal}
               basePath={basePath}
