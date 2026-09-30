@@ -62,15 +62,15 @@ export default function Home2ComparisonHotspots({
         </div>
 
         {/* Hotspot Image Container */}
-        <div className="relative w-full aspect-[4/3] md:aspect-[16/9] lg:aspect-[21/9] rounded-xl overflow-hidden shadow-2xl ring-1 ring-white/10">
+        <div className="relative w-full aspect-[4/3] md:aspect-[16/9] lg:aspect-[21/9] rounded-xl shadow-2xl ring-1 ring-white/10">
           <Image
             src={bgImage}
             alt="Interactive comparison"
             fill
-            className="object-cover"
+            className="object-cover rounded-xl"
           />
           {/* Dark gradient overlay to make hotspots pop */}
-          <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent rounded-xl pointer-events-none" />
 
           {/* Hotspots */}
           {items.slice(0, 6).map((item, idx) => {
@@ -99,7 +99,7 @@ export default function Home2ComparisonHotspots({
 
                 {/* Tooltip Card */}
                 <div
-                  className={`absolute left-1/2 -translate-x-1/2 bottom-full mb-4 w-[280px] sm:w-[320px] bg-white rounded-lg shadow-2xl p-5 transition-all duration-300 pointer-events-none origin-bottom ${
+                  className={`absolute z-[50] left-1/2 -translate-x-1/2 bottom-full mb-4 w-[280px] sm:w-[320px] bg-white rounded-lg shadow-2xl p-5 transition-all duration-300 pointer-events-none origin-bottom ${
                     isActive ? 'opacity-100 scale-100 translate-y-0' : 'opacity-0 scale-95 translate-y-2'
                   }`}
                 >
