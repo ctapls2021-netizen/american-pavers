@@ -21,12 +21,12 @@ interface Home2ComparisonHotspotsProps {
 
 // Hardcoded hotspot coordinates (percentages) for up to 6 items to spread them around the image
 const HOTSPOT_POSITIONS = [
-  { top: '75%', left: '40%' }, // near bottom center (e.g. slip resistance)
-  { top: '55%', left: '75%' }, // mid right (e.g. heat)
-  { top: '65%', left: '20%' }, // mid left (e.g. coping)
-  { top: '40%', left: '35%' }, // upper left
-  { top: '35%', left: '60%' }, // upper right
-  { top: '80%', left: '80%' }, // bottom right
+  { top: '75%', left: '40%', dir: 'top' }, // near bottom center
+  { top: '55%', left: '75%', dir: 'top' }, // mid right
+  { top: '65%', left: '20%', dir: 'top' }, // mid left
+  { top: '40%', left: '35%', dir: 'bottom' }, // upper left -> opens down
+  { top: '35%', left: '60%', dir: 'bottom' }, // upper right -> opens down
+  { top: '80%', left: '80%', dir: 'top' }, // bottom right
 ];
 
 export default function Home2ComparisonHotspots({
@@ -49,7 +49,7 @@ export default function Home2ComparisonHotspots({
     <section className="py-20 lg:py-28 bg-[#1A292C]">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
-        <div className="text-center mb-12 sm:mb-16">
+        <div className="text-center mb-16 lg:mb-24">
           <div className="text-[#4CC66E] font-bold text-xs sm:text-sm uppercase tracking-widest mb-3">
             {overline}
           </div>
@@ -74,13 +74,25 @@ export default function Home2ComparisonHotspots({
 
           {/* Hotspots */}
           {items.slice(0, 6).map((item, idx) => {
-            const pos = HOTSPOT_POSITIONS[idx];
+            const pos = HOTSPOT_POSITIONS[idx] || HOTSPOT_POSITIONS[0];
             const isActive = activeHotspot === idx;
+            
+            // Determine dynamic tooltip positioning based on 'dir'
+            const tooltipPosClasses = pos.dir === 'bottom'
+              ? 'top-full mt-4 origin-top translate-y-2'
+              : 'bottom-full mb-4 origin-bottom -translate-y-2';
+              
+            const activeTranslate = pos.dir === 'bottom' ? 'translate-y-0' : 'translate-y-0';
+            
+            // Triangle pointer placement
+            const triangleClasses = pos.dir === 'bottom'
+              ? 'bottom-full left-1/2 -translate-x-1/2 -mb-1 border-8 border-transparent border-b-white' // Points UP
+              : 'top-full left-1/2 -translate-x-1/2 -mt-1 border-8 border-transparent border-t-white'; // Points DOWN
 
             return (
               <div
                 key={idx}
-                className="absolute z-10"
+                className={`absolute ${isActive ? 'z-[60]' : 'z-10'}`}
                 style={{ top: pos.top, left: pos.left, transform: 'translate(-50%, -50%)' }}
                 onMouseEnter={() => setActiveHotspot(idx)}
                 onMouseLeave={() => setActiveHotspot(null)}
@@ -99,12 +111,12 @@ export default function Home2ComparisonHotspots({
 
                 {/* Tooltip Card */}
                 <div
-                  className={`absolute z-[50] left-1/2 -translate-x-1/2 bottom-full mb-4 w-[280px] sm:w-[320px] bg-white rounded-lg shadow-2xl p-5 transition-all duration-300 pointer-events-none origin-bottom ${
-                    isActive ? 'opacity-100 scale-100 translate-y-0' : 'opacity-0 scale-95 translate-y-2'
+                  className={`absolute left-1/2 -translate-x-1/2 w-[280px] sm:w-[320px] bg-white rounded-lg shadow-2xl p-5 transition-all duration-300 pointer-events-none ${tooltipPosClasses} ${
+                    isActive ? `opacity-100 scale-100 ${activeTranslate}` : 'opacity-0 scale-95'
                   }`}
                 >
                   {/* Triangle pointer */}
-                  <div className="absolute top-full left-1/2 -translate-x-1/2 -mt-1 border-8 border-transparent border-t-white" />
+                  <div className={`absolute ${triangleClasses}`} />
 
                   <h4 className="font-serif text-lg text-[#1A292C] font-bold mb-3 leading-snug">
                     {item.feature}
