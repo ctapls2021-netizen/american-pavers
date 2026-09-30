@@ -38,8 +38,6 @@ export default function Home2ComparisonHotspots({
   items = [],
   comparativeImages,
 }: Home2ComparisonHotspotsProps) {
-  const [activeHotspot, setActiveHotspot] = useState<number | null>(null);
-
   // Fallback image if not provided
   const bgImage = comparativeImages?.primaryImage || '/assets/generated/pool_premium.jpg';
 
@@ -75,15 +73,12 @@ export default function Home2ComparisonHotspots({
           {/* Hotspots */}
           {items.slice(0, 6).map((item, idx) => {
             const pos = HOTSPOT_POSITIONS[idx] || HOTSPOT_POSITIONS[0];
-            const isActive = activeHotspot === idx;
             
             // Determine dynamic tooltip positioning based on 'dir'
             const tooltipPosClasses = pos.dir === 'bottom'
-              ? 'top-full mt-4 origin-top translate-y-2'
-              : 'bottom-full mb-4 origin-bottom -translate-y-2';
+              ? 'top-full mt-4 origin-top translate-y-2 group-hover:translate-y-0'
+              : 'bottom-full mb-4 origin-bottom -translate-y-2 group-hover:translate-y-0';
               
-            const activeTranslate = pos.dir === 'bottom' ? 'translate-y-0' : 'translate-y-0';
-            
             // Triangle pointer placement
             const triangleClasses = pos.dir === 'bottom'
               ? 'bottom-full left-1/2 -translate-x-1/2 -mb-1 border-8 border-transparent border-b-white' // Points UP
@@ -92,28 +87,21 @@ export default function Home2ComparisonHotspots({
             return (
               <div
                 key={idx}
-                className={`absolute ${isActive ? 'z-[60]' : 'z-10'}`}
+                className="absolute z-10 hover:z-[60] group"
                 style={{ top: pos.top, left: pos.left, transform: 'translate(-50%, -50%)' }}
-                onMouseEnter={() => setActiveHotspot(idx)}
-                onMouseLeave={() => setActiveHotspot(null)}
-                onClick={() => setActiveHotspot(isActive ? null : idx)}
               >
                 {/* Hotspot Button */}
                 <button
                   type="button"
-                  className={`relative flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12 rounded-full transition-all duration-300 ${
-                    isActive ? 'bg-[#4CC66E] scale-110 shadow-[0_0_20px_rgba(76,198,110,0.6)]' : 'bg-white hover:bg-[#4CC66E] hover:scale-110 shadow-lg'
-                  }`}
+                  className="relative flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12 rounded-full transition-all duration-300 bg-white group-hover:bg-[#4CC66E] shadow-lg group-hover:scale-110 group-hover:shadow-[0_0_20px_rgba(76,198,110,0.6)] cursor-pointer"
                 >
-                  <span className={`absolute inset-0 rounded-full animate-ping opacity-75 ${isActive ? 'bg-[#4CC66E]' : 'bg-white'}`} style={{ animationDuration: '2s' }} />
-                  <Plus className={`w-5 h-5 sm:w-6 sm:h-6 transition-colors duration-300 ${isActive ? 'text-white rotate-45' : 'text-[#1A292C]'}`} />
+                  <span className="absolute inset-0 rounded-full animate-ping opacity-75 bg-white group-hover:bg-[#4CC66E]" style={{ animationDuration: '2s' }} />
+                  <Plus className="w-5 h-5 sm:w-6 sm:h-6 transition-colors duration-300 text-[#1A292C] group-hover:text-white group-hover:rotate-45" />
                 </button>
 
                 {/* Tooltip Card */}
                 <div
-                  className={`absolute left-1/2 -translate-x-1/2 w-[280px] sm:w-[320px] bg-white rounded-lg shadow-2xl p-5 transition-all duration-300 pointer-events-none ${tooltipPosClasses} ${
-                    isActive ? `opacity-100 scale-100 ${activeTranslate}` : 'opacity-0 scale-95'
-                  }`}
+                  className={`absolute left-1/2 -translate-x-1/2 w-[280px] sm:w-[320px] bg-white rounded-lg shadow-2xl p-5 transition-all duration-300 pointer-events-none ${tooltipPosClasses} opacity-0 scale-95 group-hover:opacity-100 group-hover:scale-100`}
                 >
                   {/* Triangle pointer */}
                   <div className={`absolute ${triangleClasses}`} />
