@@ -353,7 +353,7 @@ export default function Home2Header({ onOpenQuote, basePath }: Home2HeaderProps)
                 <Mail className="w-[18px] h-[18px] stroke-[1.5]" />{companyData.email}
               </a>
               <span className="flex items-center gap-2 ml-auto">
-                <MapPin className="w-[18px] h-[18px] stroke-[1.5]" />{companyData.address}
+                <MapPin className="w-[18px] h-[18px] stroke-[1.5]" />{companyData.primaryServiceArea}
               </span>
             </div>
           </div>
