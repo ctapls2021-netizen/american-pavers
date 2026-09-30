@@ -127,13 +127,12 @@ export default function PaversVsConcrete({
     }
     if (slug.includes('pool')) {
       return {
-        primaryImage: '/assets/transformations/pool-deck-after.webp',
+        primaryImage: '/assets/real/American_pavers_22_compressed.jpg',
         primaryLabel: 'Slip-Resistant Cool-Touch Pool Pavers & Coping',
         primaryBadge: 'Barefoot Safe · Chlorine & Salt Resistant',
         secondaryImage: '/assets/transformations/pool-deck-before.webp',
         secondaryLabel: 'Conventional Slippery Concrete Pool Deck',
         secondaryBadge: 'Burning Hot in Summer & Jackhammer Repairs',
-        imagePosition: 'object-[center_90%]',
       };
     }
     if (slug.includes('kitchen')) {
@@ -191,13 +190,12 @@ export default function PaversVsConcrete({
     }
     if (t.includes('pool')) {
       return {
-        primaryImage: '/assets/transformations/pool-deck-after.webp',
+        primaryImage: '/assets/real/American_pavers_22_compressed.jpg',
         primaryLabel: 'Slip-Resistant Cool-Touch Pool Pavers & Coping',
         primaryBadge: 'Barefoot Safe · Chlorine & Salt Resistant',
         secondaryImage: '/assets/transformations/pool-deck-before.webp',
         secondaryLabel: 'Conventional Slippery Concrete Pool Deck',
         secondaryBadge: 'Burning Hot in Summer & Jackhammer Repairs',
-        imagePosition: 'object-[center_90%]',
       };
     }
     if (t.includes('kitchen')) {
