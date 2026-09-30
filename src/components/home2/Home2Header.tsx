@@ -45,6 +45,18 @@ export default function Home2Header({ onOpenQuote, basePath }: Home2HeaderProps)
   const [megaOpen, setMegaOpen] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const pathname = usePathname();
+  const timeoutRef = useRef<NodeJS.Timeout | null>(null);
+
+  const handleMouseEnter = () => {
+    if (timeoutRef.current) clearTimeout(timeoutRef.current);
+    setMegaOpen(true);
+  };
+
+  const handleMouseLeave = () => {
+    timeoutRef.current = setTimeout(() => {
+      setMegaOpen(false);
+    }, 150);
+  };
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -176,14 +188,18 @@ export default function Home2Header({ onOpenQuote, basePath }: Home2HeaderProps)
           {/* Services with Mega Menu */}
           <div
             className="relative"
-            onMouseEnter={() => setMegaOpen(true)}
-            onMouseLeave={() => setMegaOpen(false)}
+            onMouseEnter={handleMouseEnter}
+            onMouseLeave={handleMouseLeave}
           >
             <button
               type="button"
               onClick={(e) => {
                 e.preventDefault();
-                setMegaOpen((prev) => !prev);
+                if (megaOpen) {
+                   setMegaOpen(false);
+                } else {
+                   handleMouseEnter();
+                }
               }}
               className={`flex items-center gap-1.5 h-[38px] px-3.5 rounded-[6px] text-sm font-semibold tracking-[0.02em] transition-colors cursor-pointer ${
                 megaOpen
@@ -279,8 +295,8 @@ export default function Home2Header({ onOpenQuote, basePath }: Home2HeaderProps)
       {megaOpen && (
         <div 
           className="absolute left-0 right-0 top-full bg-[#1A292C] border-y border-white/10 shadow-2xl animate-in fade-in slide-in-from-top-2 duration-150 cursor-default hidden lg:block"
-          onMouseEnter={() => setMegaOpen(true)}
-          onMouseLeave={() => setMegaOpen(false)}
+          onMouseEnter={handleMouseEnter}
+          onMouseLeave={handleMouseLeave}
         >
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
             <div className="grid grid-cols-1 lg:grid-cols-[1fr_1fr_340px] gap-12 items-start">
