@@ -19,25 +19,27 @@ interface Home2ComparisonHotspotsProps {
   comparativeImages?: ComparativeImagesData;
 }
 
-// Hardcoded hotspot coordinates (percentages) for up to 6 items to spread them around the image
+// Smart positioning to prevent screen overflow and text overlap
 const HOTSPOT_POSITIONS = [
-  { top: '75%', left: '40%', dir: 'top' }, // near bottom center
-  { top: '55%', left: '75%', dir: 'top' }, // mid right
-  { top: '65%', left: '20%', dir: 'top' }, // mid left
-  { top: '40%', left: '35%', dir: 'bottom' }, // upper left -> opens down
-  { top: '35%', left: '60%', dir: 'bottom' }, // upper right -> opens down
-  { top: '80%', left: '80%', dir: 'top' }, // bottom right
+  { top: '75%', left: '35%', dir: 'top', align: 'center' }, // Bottom center-left
+  { top: '65%', left: '75%', dir: 'top', align: 'right' },  // Bottom right (prevents right overflow)
+  { top: '40%', left: '20%', dir: 'bottom', align: 'left' }, // Top left (opens down, prevents left overflow)
+  { top: '35%', left: '80%', dir: 'bottom', align: 'right' },// Top right (opens down, prevents right overflow)
+  { top: '55%', left: '50%', dir: 'top', align: 'center' },  // Dead center
+  { top: '80%', left: '60%', dir: 'top', align: 'center' },  // Bottom center-right
 ];
 
 export default function Home2ComparisonHotspots({
   overline = 'Interactive Comparison',
   title = 'Explore the American Pavers Difference',
-  subtitle = 'Tap or hover over the flashing hotspots below to see why high-density pavers outperform conventional concrete in every category.',
+  subtitle = 'Tap the flashing hotspots below to see why high-density pavers outperform conventional concrete in every category.',
   primaryColumnTitle = 'American Pavers',
   secondaryColumnTitle = 'Conventional',
   items = [],
   comparativeImages,
 }: Home2ComparisonHotspotsProps) {
+  const [activeHotspot, setActiveHotspot] = useState<number | null>(null);
+
   // Fallback image if not provided
   const bgImage = comparativeImages?.primaryImage || '/assets/generated/pool_premium.jpg';
 
@@ -73,38 +75,66 @@ export default function Home2ComparisonHotspots({
           {/* Hotspots */}
           {items.slice(0, 6).map((item, idx) => {
             const pos = HOTSPOT_POSITIONS[idx] || HOTSPOT_POSITIONS[0];
+            const isActive = activeHotspot === idx;
             
-            // Determine dynamic tooltip positioning based on 'dir'
-            const tooltipPosClasses = pos.dir === 'bottom'
-              ? 'top-full mt-4 origin-top translate-y-2 group-hover:translate-y-0'
-              : 'bottom-full mb-4 origin-bottom -translate-y-2 group-hover:translate-y-0';
-              
-            // Triangle pointer placement
-            const triangleClasses = pos.dir === 'bottom'
-              ? 'bottom-full left-1/2 -translate-x-1/2 -mb-1 border-8 border-transparent border-b-white' // Points UP
-              : 'top-full left-1/2 -translate-x-1/2 -mt-1 border-8 border-transparent border-t-white'; // Points DOWN
+            // Tooltip vertical direction
+            const isBottomDir = pos.dir === 'bottom';
+            const verticalClasses = isBottomDir ? 'top-full mt-4 origin-top' : 'bottom-full mb-4 origin-bottom';
+            const activeTranslateY = isBottomDir ? 'translate-y-0' : 'translate-y-0';
+            const inactiveTranslateY = isBottomDir ? '-translate-y-2' : 'translate-y-2';
+
+            // Tooltip horizontal alignment
+            let horizontalClasses = '';
+            let triangleHorizontalClasses = '';
+
+            if (pos.align === 'left') {
+              // Align left edge of tooltip to left side
+              horizontalClasses = 'left-0 translate-x-[-20px]';
+              triangleHorizontalClasses = 'left-[30px]';
+            } else if (pos.align === 'right') {
+              // Align right edge of tooltip to right side
+              horizontalClasses = 'right-0 translate-x-[20px]';
+              triangleHorizontalClasses = 'right-[30px]';
+            } else {
+              // Center alignment
+              horizontalClasses = 'left-1/2 -translate-x-1/2';
+              triangleHorizontalClasses = 'left-1/2 -translate-x-1/2';
+            }
+
+            // Triangle placement (up or down)
+            const triangleVerticalClasses = isBottomDir
+              ? 'bottom-full -mb-1 border-8 border-transparent border-b-white' // Points UP
+              : 'top-full -mt-1 border-8 border-transparent border-t-white'; // Points DOWN
 
             return (
               <div
                 key={idx}
-                className="absolute z-10 hover:z-[60] group"
+                className={`absolute ${isActive ? 'z-[60]' : 'z-10'}`}
                 style={{ top: pos.top, left: pos.left, transform: 'translate(-50%, -50%)' }}
               >
                 {/* Hotspot Button */}
                 <button
                   type="button"
-                  className="relative flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12 rounded-full transition-all duration-300 bg-white group-hover:bg-[#4CC66E] shadow-lg group-hover:scale-110 group-hover:shadow-[0_0_20px_rgba(76,198,110,0.6)] cursor-pointer"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    setActiveHotspot(isActive ? null : idx);
+                  }}
+                  className={`relative flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12 rounded-full transition-all duration-300 shadow-lg cursor-pointer ${
+                    isActive ? 'bg-[#4CC66E] scale-110 shadow-[0_0_20px_rgba(76,198,110,0.6)]' : 'bg-white hover:bg-[#4CC66E] hover:scale-110'
+                  }`}
                 >
-                  <span className="absolute inset-0 rounded-full animate-ping opacity-75 bg-white group-hover:bg-[#4CC66E]" style={{ animationDuration: '2s' }} />
-                  <Plus className="w-5 h-5 sm:w-6 sm:h-6 transition-colors duration-300 text-[#1A292C] group-hover:text-white group-hover:rotate-45" />
+                  <span className={`absolute inset-0 rounded-full animate-ping opacity-75 ${isActive ? 'bg-[#4CC66E]' : 'bg-white'}`} style={{ animationDuration: '2s' }} />
+                  <Plus className={`w-5 h-5 sm:w-6 sm:h-6 transition-colors duration-300 ${isActive ? 'text-white rotate-45' : 'text-[#1A292C]'}`} />
                 </button>
 
                 {/* Tooltip Card */}
                 <div
-                  className={`absolute left-1/2 -translate-x-1/2 w-[280px] sm:w-[320px] bg-white rounded-lg shadow-2xl p-5 transition-all duration-300 pointer-events-none ${tooltipPosClasses} opacity-0 scale-95 group-hover:opacity-100 group-hover:scale-100`}
+                  className={`absolute w-[280px] sm:w-[320px] bg-white rounded-lg shadow-2xl p-5 transition-all duration-300 pointer-events-none ${verticalClasses} ${horizontalClasses} ${
+                    isActive ? `opacity-100 scale-100 ${activeTranslateY}` : `opacity-0 scale-95 ${inactiveTranslateY}`
+                  }`}
                 >
                   {/* Triangle pointer */}
-                  <div className={`absolute ${triangleClasses}`} />
+                  <div className={`absolute ${triangleVerticalClasses} ${triangleHorizontalClasses}`} />
 
                   <h4 className="font-serif text-lg text-[#1A292C] font-bold mb-3 leading-snug">
                     {item.feature}
