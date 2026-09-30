@@ -99,41 +99,6 @@ export default function PaversVsConcrete({
   const pathname = usePathname();
   const isV2 = pathname?.startsWith('/v2');
 
-  if (isV2 && serviceSlug === 'pool-deck-pavers') {
-    return (
-      <Home2ComparisonHotspots
-        serviceSlug={serviceSlug}
-        onOpenModal={onOpenModal}
-        overline={overline}
-        title={title}
-        subtitle={subtitle}
-        primaryColumnTitle={primaryColumnTitle}
-        secondaryColumnTitle={secondaryColumnTitle}
-        items={items}
-        footerText={footerText}
-        buttonText={buttonText}
-        comparativeImages={comparativeImages}
-      />
-    );
-  }
-
-  if (isV2) {
-    return (
-      <Home2ComparisonAccordion
-        serviceSlug={serviceSlug}
-        onOpenModal={onOpenModal}
-        overline={overline}
-        title={title}
-        subtitle={subtitle}
-        primaryColumnTitle={primaryColumnTitle}
-        secondaryColumnTitle={secondaryColumnTitle}
-        items={items}
-        footerText={footerText}
-        buttonText={buttonText}
-        comparativeImages={comparativeImages}
-      />
-    );
-  }
 
   // Smart default comparative images based on section topic
   const defaultImages: ComparativeImagesData = (() => {
@@ -265,6 +230,36 @@ export default function PaversVsConcrete({
   })();
 
   const activeImages = comparativeImages || defaultImages;
+
+  // V2 Alternative: Image Hotspots for all services
+  if (isV2) {
+    return (
+      <Home2ComparisonHotspots
+        serviceSlug={serviceSlug}
+        onOpenModal={onOpenModal}
+        overline={overline}
+        title={title}
+        subtitle={subtitle}
+        primaryColumnTitle={primaryColumnTitle}
+        secondaryColumnTitle={secondaryColumnTitle}
+        items={items}
+        footerText={footerText}
+        buttonText={buttonText}
+        comparativeImages={activeImages}
+      />
+    );
+  }
+
+  /*
+  // ORIGINAL ACCORDION OPTION - HIDDEN BUT NOT DELETED
+  if (isV2) {
+    return (
+      <Home2ComparisonAccordion
+        ...
+      />
+    );
+  }
+  */
 
   return (
     <section id="engineering-comparison" className="py-20 md:py-28 bg-white border-t border-stone-200 scroll-mt-20">
