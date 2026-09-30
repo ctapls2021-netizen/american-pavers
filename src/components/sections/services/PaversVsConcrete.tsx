@@ -148,7 +148,7 @@ export default function PaversVsConcrete({
     }
     if (slug.includes('deck') || slug.includes('pergola')) {
       return {
-        primaryImage: '/assets/real/American pavers (26).jpg',
+        primaryImage: '/assets/generated/pergola_premium.jpg',
         primaryLabel: 'Capped Composite Decking & Louvered Pergola',
         primaryBadge: 'Zero Splinters · 25-50 Year Stain Warranty',
         secondaryImage: '/assets/transformations/pergola-before.webp',
@@ -213,7 +213,7 @@ export default function PaversVsConcrete({
     }
     if (t.includes('pergola') || t.includes('deck')) {
       return {
-        primaryImage: '/assets/real/American pavers (26).jpg',
+        primaryImage: '/assets/generated/pergola_premium.jpg',
         primaryLabel: 'Capped Composite Decking & Louvered Pergola',
         primaryBadge: 'Zero Splinters · 25-50 Year Stain Warranty',
         secondaryImage: '/assets/transformations/pergola-before.webp',
