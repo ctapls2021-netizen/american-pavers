@@ -198,83 +198,6 @@ export default function Home2Header({ onOpenQuote, basePath }: Home2HeaderProps)
                 }`}
               />
             </button>
-
-            {megaOpen && (
-              <div className="absolute left-0 top-full pt-2 w-[640px] z-50 animate-in fade-in slide-in-from-top-2 duration-150">
-                <div className="bg-white rounded-none shadow-2xl border border-stone-200/90 p-4">
-                  <div className="grid grid-cols-2 gap-2">
-                    {servicesData.map((s) => {
-                      const Icon = serviceIcons[s.slug] || Layers;
-                      const serviceHref = basePath ? `${basePath}/services/${s.slug}` : `/services/${s.slug}`;
-                      const isCurrentService = pathname === `/services/${s.slug}` || pathname === `/v2/services/${s.slug}`;
-                      return (
-                        <Link
-                          key={s.slug}
-                          href={serviceHref}
-                          onClick={() => setMegaOpen(false)}
-                          className={`flex items-center gap-3.5 p-3 rounded-none transition-all group border ${
-                            isCurrentService
-                              ? 'bg-[#ebf9ee] border-[#4CC66E]/35 shadow-xs'
-                              : 'border-transparent hover:border-stone-200/60 hover:bg-stone-50'
-                          }`}
-                        >
-                          <div
-                            className={`flex aspect-square size-11 shrink-0 items-center justify-center rounded-none transition-all shadow-xs ${
-                              isCurrentService
-                                ? 'bg-[#4CC66E] text-white'
-                                : 'bg-[#ebf9ee] text-[#4CC66E] group-hover:bg-[#4CC66E] group-hover:text-white'
-                            }`}
-                          >
-                            <Icon className="w-5 h-5 shrink-0" />
-                          </div>
-                          <div className="flex flex-col text-left">
-                            <span
-                              className={`text-sm font-bold tracking-tight transition-colors ${
-                                isCurrentService ? 'text-[#4CC66E]' : 'text-[#1A292C] group-hover:text-[#4CC66E]'
-                              }`}
-                            >
-                              {s.shortTitle}
-                            </span>
-                            {s.tagline && (
-                              <span className="text-stone-500 text-xs line-clamp-1 mt-0.5 leading-snug">
-                                {s.tagline}
-                              </span>
-                            )}
-                          </div>
-                        </Link>
-                      );
-                    })}
-                  </div>
-
-                  {/* Dropdown Footer */}
-                  <div className="mt-3 pt-3 border-t border-stone-100 flex items-center justify-between px-3 text-xs">
-                    <span className="text-stone-500 flex items-center gap-1.5 font-medium">
-                      <ShieldCheck className="w-4 h-4 text-[#4CC66E]" />
-                      25-Year Transferable Craftsmanship Warranty
-                    </span>
-                    <button
-                      type="button"
-                      onClick={() => {
-                        setMegaOpen(false);
-                        if (onOpenQuote) {
-                          onOpenQuote();
-                        } else {
-                          const targetId = 'quote-section';
-                          const el = document.getElementById(targetId);
-                          if (el) {
-                            el.scrollIntoView({ behavior: 'smooth' });
-                          }
-                        }
-                      }}
-                      className="text-[#4CC66E] font-bold hover:underline flex items-center gap-1 cursor-pointer"
-                    >
-                      <span>Free 3D Design Consultation</span>
-                      <ChevronRight className="w-3.5 h-3.5" />
-                    </button>
-                  </div>
-                </div>
-              </div>
-            )}
           </div>
 
           {/* Gallery */}
@@ -352,7 +275,90 @@ export default function Home2Header({ onOpenQuote, basePath }: Home2HeaderProps)
         </div>
       </div>
 
+      {/* THE NATIVE HOME 2 MEGA MENU PANEL */}
+      {megaOpen && (
+        <div 
+          className="absolute left-0 right-0 top-full bg-[#1A292C] border-y border-white/10 shadow-2xl animate-in fade-in slide-in-from-top-2 duration-150 cursor-default hidden lg:block"
+          onMouseEnter={() => setMegaOpen(true)}
+          onMouseLeave={() => setMegaOpen(false)}
+        >
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+            <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.2fr_340px] gap-12 items-start">
+              {/* Hardscaping / Pavers */}
+              <div>
+                <h3 className="m-0 font-serif font-normal text-[26px] leading-snug text-white">Pavers & Hardscaping</h3>
+                <ul className="list-none mt-6 p-0 grid grid-cols-1 gap-x-8 gap-y-4">
+                  {servicesData.slice(0, 3).map((s) => (
+                    <li key={s.slug}>
+                      <Link
+                        href={basePath ? `${basePath}/services/${s.slug}` : `/services/${s.slug}`}
+                        onClick={() => setMegaOpen(false)}
+                        className="text-stone-300 hover:text-[#4CC66E] transition-colors text-base font-medium"
+                      >
+                        {s.shortTitle}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </div>
 
+              {/* Turf & Outdoor */}
+              <div>
+                <h3 className="m-0 font-serif font-normal text-[26px] leading-snug text-white">Turf & Outdoor Living</h3>
+                <ul className="list-none mt-6 p-0 grid grid-cols-2 gap-x-8 gap-y-4">
+                  {servicesData.slice(3).map((s) => (
+                    <li key={s.slug}>
+                      <Link
+                        href={basePath ? `${basePath}/services/${s.slug}` : `/services/${s.slug}`}
+                        onClick={() => setMegaOpen(false)}
+                        className="text-stone-300 hover:text-[#4CC66E] transition-colors text-base font-medium"
+                      >
+                        {s.shortTitle}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              {/* Featured Image Block */}
+              <Link
+                href={basePath ? `${basePath}/gallery` : '#work'}
+                onClick={() => setMegaOpen(false)}
+                className="relative block aspect-[4/3] overflow-hidden rounded-[6px] no-underline bg-stone-800 group shadow-md"
+              >
+                <Image
+                  src="/assets/real/American pavers (17).jpg"
+                  alt="Featured Outdoor Design"
+                  fill
+                  className="object-cover transition-transform duration-700 group-hover:scale-105"
+                />
+                <div className="absolute inset-0 bg-[#1A292C]/40 group-hover:bg-[#1A292C]/20 transition-colors" />
+                <div className="absolute left-5 right-5 bottom-5">
+                  <div className="text-[11px] font-semibold tracking-[0.06em] uppercase text-[#4CC66E]">
+                    Featured
+                  </div>
+                  <div className="flex items-center gap-2 mt-2 font-serif font-normal text-[22px] leading-snug text-white">
+                    Explore outdoor design <ArrowRight className="w-[18px] h-[18px] stroke-[2]" />
+                  </div>
+                </div>
+              </Link>
+            </div>
+
+            {/* Bottom Utility Bar */}
+            <div className="mt-10 pt-6 border-t border-white/10 flex flex-wrap items-center gap-8 text-sm text-stone-300">
+              <a href={`tel:${companyData.phone}`} className="flex items-center gap-2 text-stone-300 hover:text-[#4CC66E] transition-colors">
+                <Phone className="w-[18px] h-[18px] stroke-[1.5]" />{companyData.formattedPhone}
+              </a>
+              <a href={`mailto:${companyData.email}`} className="flex items-center gap-2 text-stone-300 hover:text-[#4CC66E] transition-colors">
+                <Mail className="w-[18px] h-[18px] stroke-[1.5]" />{companyData.email}
+              </a>
+              <span className="flex items-center gap-2 ml-auto">
+                <MapPin className="w-[18px] h-[18px] stroke-[1.5]" />{companyData.address}
+              </span>
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* Mobile Drawer Navigation */}
       {mobileMenuOpen && (
