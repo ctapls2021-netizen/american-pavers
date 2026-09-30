@@ -55,7 +55,7 @@ export default function Home2Header({ onOpenQuote, basePath }: Home2HeaderProps)
   const handleMouseLeave = () => {
     timeoutRef.current = setTimeout(() => {
       setMegaOpen(false);
-    }, 150);
+    }, 300);
   };
 
   useEffect(() => {
@@ -187,10 +187,12 @@ export default function Home2Header({ onOpenQuote, basePath }: Home2HeaderProps)
 
           {/* Services with Mega Menu */}
           <div
-            className="relative"
+            className="relative group flex items-center h-full"
             onMouseEnter={handleMouseEnter}
             onMouseLeave={handleMouseLeave}
           >
+            {/* Invisible hover bridge to prevent gap drop-off */}
+            <div className="absolute top-full left-0 right-0 h-6 bg-transparent" />
             <button
               type="button"
               onClick={(e) => {
