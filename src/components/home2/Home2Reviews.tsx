@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
+import { motion } from 'framer-motion';
 import { Star, ExternalLink } from 'lucide-react';
 
 const PLATFORMS = [
@@ -64,6 +65,23 @@ const DEFAULT_TESTIMONIALS = [
     detail: 'Pet turf · Culver City',
   },
 ];
+const headerVariants: any = {
+  hidden: { opacity: 0, y: 30 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeOut" } }
+};
+
+const containerVariants: any = {
+  hidden: { opacity: 0 },
+  visible: { 
+    opacity: 1, 
+    transition: { staggerChildren: 0.1 }
+  }
+};
+
+const itemVariants: any = {
+  hidden: { opacity: 0, scale: 0.95 },
+  visible: { opacity: 1, scale: 1, transition: { duration: 0.6, ease: "easeOut" } }
+};
 
 export default function Home2Reviews({
   testimonials,
@@ -78,7 +96,7 @@ export default function Home2Reviews({
           name: t.name || t.author || 'Verified Client',
           detail:
             t.detail ||
-            [t.projectType, t.city].filter(Boolean).join(' · ') ||
+            [t.projectType, t.city].filter(Boolean).join(' — ') ||
             'Southern California',
         }))
       : DEFAULT_TESTIMONIALS;
@@ -116,21 +134,34 @@ export default function Home2Reviews({
       className={`py-16 sm:py-24 lg:py-28 bg-[#1A292C] text-white border-b border-stone-800 scroll-mt-20 w-full max-w-full overflow-hidden ${className}`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Section Header */}
-        <div className="max-w-3xl mb-10 sm:mb-16 text-left">
+        {/* Animated Section Header */}
+        <motion.div 
+          className="max-w-3xl mb-10 sm:mb-16 text-left"
+          variants={headerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-100px" }}
+        >
           <span className="text-xs font-bold uppercase tracking-[0.22em] text-[#019934] block mb-2 sm:mb-3">
             {tag}
           </span>
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-serif font-normal text-white tracking-tight leading-tight">
             {title}
           </h2>
-        </div>
+        </motion.div>
 
-        {/* 1. Platform Strip on Desktop / Tablet (>=md: 3-column static grid) */}
-        <div className="hidden md:grid md:grid-cols-3 gap-4 sm:gap-6">
+        {/* Animated Platform Strip on Desktop / Tablet (>=md: 3-column static grid) */}
+        <motion.div 
+          className="hidden md:grid md:grid-cols-3 gap-4 sm:gap-6"
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-100px" }}
+        >
           {PLATFORMS.map((p) => (
-            <div
+            <motion.div
               key={p.name}
+              variants={itemVariants}
               className="flex items-center justify-between p-5 sm:p-6 rounded-lg bg-white/5 border border-white/10 hover:border-white/25 transition-all"
             >
               <div className="flex items-center gap-4">
@@ -162,9 +193,9 @@ export default function Home2Reviews({
               </div>
 
               <ExternalLink className="w-4 h-4 text-stone-400 shrink-0" />
-            </div>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
 
         {/* 1. Platform Strip on Mobile (<md: carrusel continuo infinito loop sin puntos de navegación, automático) */}
         <div className="md:hidden overflow-hidden w-full relative -mx-4 px-4 py-1">
@@ -208,11 +239,18 @@ export default function Home2Reviews({
           </div>
         </div>
 
-        {/* 2. Testimonials on Desktop / Tablet (>=md: 3-column static grid) */}
-        <div className="hidden md:grid md:grid-cols-3 gap-6 sm:gap-8 mt-10 sm:mt-12">
+        {/* Animated Testimonials on Desktop / Tablet (>=md: 3-column static grid) */}
+        <motion.div 
+          className="hidden md:grid md:grid-cols-3 gap-6 sm:gap-8 mt-10 sm:mt-12"
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-100px" }}
+        >
           {list.slice(0, 3).map((t, idx) => (
-            <div
+            <motion.div
               key={idx}
+              variants={itemVariants}
               className="bg-white/5 border border-white/10 rounded-lg p-7 sm:p-8 flex flex-col justify-between"
             >
               <div>
@@ -235,9 +273,9 @@ export default function Home2Reviews({
                   {t.detail}
                 </span>
               </div>
-            </div>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
 
         {/* 2. Testimonials on Mobile (<md: carrusel con puntos de navegación, automático) */}
         <div className="md:hidden mt-8">
