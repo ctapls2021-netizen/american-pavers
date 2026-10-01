@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from 'next';
 import './globals.css';
 import LiveVisualEditing from '@/components/sanity/LiveVisualEditing';
+import ScrollToTop from '@/components/ui/ScrollToTop';
 
 export const viewport: Viewport = {
   width: 'device-width',
@@ -50,6 +51,7 @@ export default function RootLayout({
         />
       </head>
       <body className="antialiased selection:bg-[#019934] selection:text-white">
+        <ScrollToTop />
         <LiveVisualEditing />
         {children}
       </body>
