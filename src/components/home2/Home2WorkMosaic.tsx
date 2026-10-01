@@ -64,12 +64,12 @@ const WORK_ITEMS = [
   },
 ];
 
-const headerVariants = {
+const headerVariants: any = {
   hidden: { opacity: 0, y: 30 },
   visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeOut" } }
 };
 
-const containerVariants = {
+const containerVariants: any = {
   hidden: { opacity: 0 },
   visible: { 
     opacity: 1, 
@@ -77,7 +77,7 @@ const containerVariants = {
   }
 };
 
-const itemVariants = {
+const itemVariants: any = {
   hidden: { opacity: 0, scale: 0.95 },
   visible: { opacity: 1, scale: 1, transition: { duration: 0.6, ease: "easeOut" } }
 };

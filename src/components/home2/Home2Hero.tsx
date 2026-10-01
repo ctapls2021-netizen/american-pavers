@@ -13,7 +13,7 @@ const STATS = [
 ];
 
 // Animation variants for staggered entrance
-const containerVariants = {
+const containerVariants: any = {
   hidden: { opacity: 0 },
   show: {
     opacity: 1,
@@ -21,7 +21,7 @@ const containerVariants = {
   }
 };
 
-const itemVariants = {
+const itemVariants: any = {
   hidden: { opacity: 0, y: 20 },
   show: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeOut" } } // Elegant custom easing
 };
