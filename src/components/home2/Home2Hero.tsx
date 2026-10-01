@@ -2,6 +2,7 @@
 
 import React from 'react';
 import Image from 'next/image';
+import { motion } from 'framer-motion';
 import { Hammer, Calendar, ShieldCheck, Star, ArrowRight } from 'lucide-react';
 
 const STATS = [
@@ -11,6 +12,20 @@ const STATS = [
   { icon: Star, value: '4.9', suffix: '', label: 'Average review' },
 ];
 
+// Animation variants for staggered entrance
+const containerVariants = {
+  hidden: { opacity: 0 },
+  show: {
+    opacity: 1,
+    transition: { staggerChildren: 0.2, delayChildren: 0.1 }
+  }
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 20 },
+  show: { opacity: 1, y: 0, transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] } } // Elegant custom easing
+};
+
 export default function Home2Hero() {
   const scrollTo = (id: string) => {
     const el = document.getElementById(id);
@@ -19,8 +34,13 @@ export default function Home2Hero() {
 
   return (
     <section id="hero" className="relative min-h-[100vh] flex items-center bg-[#0E1719] text-white overflow-hidden w-full max-w-full">
-      {/* Background Image */}
-      <div className="absolute inset-0 z-0">
+      {/* Background Image with slow "Ken Burns" pan */}
+      <motion.div 
+        className="absolute inset-0 z-0"
+        initial={{ scale: 1 }}
+        animate={{ scale: 1.05 }}
+        transition={{ duration: 25, ease: "linear", repeat: Infinity, repeatType: "reverse" }}
+      >
         {/* Mobile Background Image */}
         <Image
           src="/assets/banners/pavers-02-mobile.jpg"
@@ -39,27 +59,33 @@ export default function Home2Hero() {
           sizes="100vw"
           className="object-cover object-center hidden sm:block"
         />
-        {/* Scrim Overlays - Smooth seamless gradient without hard cutoff lines */}
-        <div className="absolute inset-0 bg-gradient-to-r from-[#0E1719]/95 via-[#0E1719]/70 to-[#0E1719]/25" />
-        <div className="absolute inset-0 bg-gradient-to-t from-[#0E1719]/80 via-transparent to-transparent" />
-      </div>
+      </motion.div>
+      
+      {/* Static Scrim Overlays - Placed outside the scaling div so gradients stay fixed */}
+      <div className="absolute inset-0 z-0 pointer-events-none bg-gradient-to-r from-[#0E1719]/95 via-[#0E1719]/70 to-[#0E1719]/25" />
+      <div className="absolute inset-0 z-0 pointer-events-none bg-gradient-to-t from-[#0E1719]/80 via-transparent to-transparent" />
 
       <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14 sm:py-20 lg:py-24">
-        {/* Copy Container */}
-        <div className="max-w-2xl text-left">
-          <span className="text-xs sm:text-sm font-bold uppercase tracking-[0.22em] text-[#019934] block mb-2 sm:mb-3">
-            Los Angeles · Pavers &amp; turf
-          </span>
+        {/* Animated Copy Container */}
+        <motion.div 
+          className="max-w-2xl text-left"
+          variants={containerVariants}
+          initial="hidden"
+          animate="show"
+        >
+          <motion.span variants={itemVariants} className="text-xs sm:text-sm font-bold uppercase tracking-[0.22em] text-[#019934] block mb-2 sm:mb-3">
+            Los Angeles  Pavers &amp; turf
+          </motion.span>
 
-          <h1 className="font-serif text-3xl sm:text-4xl md:text-5xl lg:text-[56px] font-normal leading-[1.15] sm:leading-[1.08] tracking-tight text-white">
+          <motion.h1 variants={itemVariants} className="font-serif text-3xl sm:text-4xl md:text-5xl lg:text-[56px] font-normal leading-[1.15] sm:leading-[1.08] tracking-tight text-white">
             Luxury remodeling designed around your lifestyle.
-          </h1>
+          </motion.h1>
 
-          <p className="mt-3.5 sm:mt-5 text-stone-300 text-sm sm:text-base lg:text-xl font-normal leading-relaxed max-w-xl">
+          <motion.p variants={itemVariants} className="mt-3.5 sm:mt-5 text-stone-300 text-sm sm:text-base lg:text-xl font-normal leading-relaxed max-w-xl">
             We design and install paver driveways, patios and artificial turf lawns across Los Angeles County. One crew, one warranty, and the base work done properly underneath.
-          </p>
+          </motion.p>
 
-          <div className="mt-6 sm:mt-8 flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4">
+          <motion.div variants={itemVariants} className="mt-6 sm:mt-8 flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4">
             <button
               type="button"
               onClick={() => scrollTo('quote-section')}
@@ -76,11 +102,16 @@ export default function Home2Hero() {
             >
               See our work
             </button>
-          </div>
-        </div>
+          </motion.div>
+        </motion.div>
 
-        {/* Integrated StatRow Overlay: 2 columns under 1200px, 4 columns at >=1200px */}
-        <div className="mt-10 sm:mt-16 lg:mt-20 pt-6 sm:pt-8 border-t border-white/15">
+        {/* Animated StatRow Overlay */}
+        <motion.div 
+          className="mt-10 sm:mt-16 lg:mt-20 pt-6 sm:pt-8 border-t border-white/15"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.8, ease: [0.16, 1, 0.3, 1] }}
+        >
           <div className="grid grid-cols-2 xl:grid-cols-4 gap-4 sm:gap-6 lg:gap-8">
             {STATS.map((s, i) => {
               const IconComp = s.icon;
@@ -119,7 +150,7 @@ export default function Home2Hero() {
             })}
           </div>
 
-        </div>
+        </motion.div>
       </div>
     </section>
   );

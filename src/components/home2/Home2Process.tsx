@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useRef, useState, useEffect } from 'react';
+import { motion } from 'framer-motion';
 import { Ruler, FileText, Hammer, ShieldCheck } from 'lucide-react';
 
 const PROCESS_STEPS = [
@@ -38,6 +39,7 @@ export default function Home2Process() {
 
   useEffect(() => {
     const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
     if (reduceMotion) {
       setProgress(1);
       setReached(PROCESS_STEPS.length);
@@ -81,15 +83,21 @@ export default function Home2Process() {
       className="py-16 sm:py-24 bg-[#FAFAFA] text-stone-900 border-b border-stone-200 scroll-mt-20 w-full max-w-full overflow-hidden"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Section Heading */}
-        <div className="text-center max-w-3xl mx-auto mb-12 sm:mb-16">
+        {/* Animated Section Heading */}
+        <motion.div 
+          className="text-center max-w-3xl mx-auto mb-12 sm:mb-16"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
+        >
           <span className="text-xs font-bold uppercase tracking-[0.22em] text-[#019934] block mb-2.5 sm:mb-3">
             HOW IT WORKS
           </span>
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-serif font-normal text-[#1A292C] tracking-tight leading-tight">
             Four visits, no surprises.
           </h2>
-        </div>
+        </motion.div>
 
         {/* Process Timeline Rail Container: CSS-based responsive layout (zero horizontal overflow) */}
         <ol

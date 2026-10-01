@@ -1,6 +1,9 @@
+'use client';
+
 import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import { motion } from 'framer-motion';
 import { Layers, Ruler, Sprout, Hammer, Droplets, ArrowRight } from 'lucide-react';
 
 import { servicesData } from '@/data/services';
@@ -27,6 +30,24 @@ interface Home2ServicesProps {
   basePath?: string;
 }
 
+const headerVariants = {
+  hidden: { opacity: 0, y: 30 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeOut" } }
+};
+
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: { 
+    opacity: 1, 
+    transition: { staggerChildren: 0.15 }
+  }
+};
+
+const cardVariants = {
+  hidden: { opacity: 0, y: 40 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.16, 1, 0.3, 1] } }
+};
+
 export default function Home2Services({ basePath }: Home2ServicesProps) {
   const scrollTo = (id: string) => {
     const el = document.getElementById(id);
@@ -36,8 +57,14 @@ export default function Home2Services({ basePath }: Home2ServicesProps) {
   return (
     <section id="services" className="py-20 sm:py-28 bg-white text-stone-900 border-b border-stone-200 scroll-mt-20 w-full max-w-full overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Section Header */}
-        <div className="max-w-3xl mb-12 sm:mb-16 text-left">
+        {/* Animated Section Header */}
+        <motion.div 
+          className="max-w-3xl mb-12 sm:mb-16 text-left"
+          variants={headerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-100px" }}
+        >
           <span className="text-xs font-bold uppercase tracking-[0.22em] text-[#019934] block mb-3">
             What we install
           </span>
@@ -47,10 +74,16 @@ export default function Home2Services({ basePath }: Home2ServicesProps) {
           <p className="mt-4 text-stone-600 text-base sm:text-lg leading-relaxed">
             Hardscape and turf are quoted, based and installed together — so nothing gets blamed on the other guy.
           </p>
-        </div>
+        </motion.div>
 
-        {/* 6 Service Cards Grid (3 columns >=1200px, 2 columns on mobile and tablet) */}
-        <div className="grid grid-cols-2 xl:grid-cols-3 gap-3 sm:gap-6 xl:gap-8">
+        {/* Animated 6 Service Cards Grid */}
+        <motion.div 
+          className="grid grid-cols-2 xl:grid-cols-3 gap-3 sm:gap-6 xl:gap-8"
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-100px" }}
+        >
           {SERVICES.map((s, idx) => {
             const cardInner = (
               <>
@@ -90,29 +123,27 @@ export default function Home2Services({ basePath }: Home2ServicesProps) {
               </>
             );
 
-            if (basePath) {
-              return (
-                <Link
-                  key={idx}
-                  href={`${basePath}/services/${s.slug}`}
-                  className="group relative aspect-[4/5] sm:aspect-[3/4] rounded-lg overflow-hidden bg-[#1A292C] shadow-md hover:shadow-xl transition-all duration-300 cursor-pointer border border-stone-200/80 block"
-                >
-                  {cardInner}
-                </Link>
-              );
-            }
-
             return (
-              <div
-                key={idx}
-                onClick={() => scrollTo('quote-section')}
-                className="group relative aspect-[4/5] sm:aspect-[3/4] rounded-lg overflow-hidden bg-[#1A292C] shadow-md hover:shadow-xl transition-all duration-300 cursor-pointer border border-stone-200/80"
-              >
-                {cardInner}
-              </div>
+              <motion.div key={s.slug || idx} variants={cardVariants}>
+                {basePath ? (
+                  <Link
+                    href={`${basePath}/services/${s.slug}`}
+                    className="group relative aspect-[4/5] sm:aspect-[3/4] rounded-lg overflow-hidden bg-[#1A292C] shadow-md hover:shadow-xl transition-all duration-300 cursor-pointer border border-stone-200/80 block"
+                  >
+                    {cardInner}
+                  </Link>
+                ) : (
+                  <div
+                    onClick={() => scrollTo('quote-section')}
+                    className="group relative aspect-[4/5] sm:aspect-[3/4] rounded-lg overflow-hidden bg-[#1A292C] shadow-md hover:shadow-xl transition-all duration-300 cursor-pointer border border-stone-200/80"
+                  >
+                    {cardInner}
+                  </div>
+                )}
+              </motion.div>
             );
           })}
-        </div>
+        </motion.div>
       </div>
     </section>
   );

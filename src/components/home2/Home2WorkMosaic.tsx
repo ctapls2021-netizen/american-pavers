@@ -63,6 +63,24 @@ const WORK_ITEMS = [
   },
 ];
 
+const headerVariants = {
+  hidden: { opacity: 0, y: 30 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeOut" } }
+};
+
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: { 
+    opacity: 1, 
+    transition: { staggerChildren: 0.1 }
+  }
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, scale: 0.95 },
+  visible: { opacity: 1, scale: 1, transition: { duration: 0.6, ease: [0.16, 1, 0.3, 1] } }
+};
+
 export default function Home2WorkMosaic() {
   const scrollTo = (id: string) => {
     const el = document.getElementById(id);
@@ -73,8 +91,14 @@ export default function Home2WorkMosaic() {
     <section id="work" className="py-16 sm:py-20 lg:py-28 bg-white text-stone-900 border-b border-stone-200 scroll-mt-20 w-full max-w-full overflow-hidden">
       {/* Full-bleed container: fills viewport width, fluid gutter padding */}
       <div className="w-full px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16">
-        {/* Section Header */}
-        <div className="flex flex-col sm:flex-row items-start sm:items-end justify-between gap-6 mb-8 sm:mb-12">
+        {/* Animated Section Header */}
+        <motion.div 
+          className="flex flex-col sm:flex-row items-start sm:items-end justify-between gap-6 mb-8 sm:mb-12"
+          variants={headerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-100px" }}
+        >
           <div className="text-left">
             <span className="text-xs font-bold uppercase tracking-[0.22em] text-[#019934] block mb-2 sm:mb-3">
               OUR WORK
@@ -92,13 +116,20 @@ export default function Home2WorkMosaic() {
             <span>View the full gallery</span>
             <ArrowRight className="w-4 h-4" />
           </button>
-        </div>
+        </motion.div>
 
-        {/* Mosaic Grid: 2 cols on mobile and tablet (<1200px), 4 cols (>=1200px) */}
-        <div className="grid grid-cols-2 xl:grid-cols-4 gap-3 sm:gap-6 auto-rows-[140px] sm:auto-rows-[clamp(220px,18vw,300px)]">
+        {/* Animated Mosaic Grid */}
+        <motion.div 
+          className="grid grid-cols-2 xl:grid-cols-4 gap-3 sm:gap-6 auto-rows-[140px] sm:auto-rows-[clamp(220px,18vw,300px)]"
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-100px" }}
+        >
           {WORK_ITEMS.map((item, idx) => (
-            <div
+            <motion.div
               key={idx}
+              variants={itemVariants}
               className={`group relative rounded-lg overflow-hidden bg-stone-900 shadow-md border border-stone-200 cursor-pointer ${item.spanClass}`}
               onClick={() => scrollTo('quote-section')}
             >
@@ -107,11 +138,11 @@ export default function Home2WorkMosaic() {
                 alt={item.title}
                 fill
                 sizes="(max-width: 640px) 50vw, (max-width: 1199px) 50vw, 25vw"
-                className="object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out"
+                className="object-cover object-center group-hover:scale-110 transition-transform duration-[1.5s] ease-[cubic-bezier(0.16,1,0.3,1)]"
               />
 
               {/* Scrim Overlay */}
-              <div className="absolute inset-0 bg-gradient-to-t from-[#0E1719]/90 via-[#0E1719]/35 to-transparent pointer-events-none" />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#0E1719]/95 via-[#0E1719]/40 to-transparent opacity-80 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
 
               {/* Tag */}
               <div className="absolute top-2.5 left-2.5 sm:top-4 sm:left-4 z-10">
@@ -120,8 +151,8 @@ export default function Home2WorkMosaic() {
                 </span>
               </div>
 
-              {/* Title & Location */}
-              <div className="absolute bottom-2.5 sm:bottom-5 left-2.5 sm:left-5 right-2.5 sm:right-5 text-left z-10">
+              {/* Title & Location (Magnetic slide up on hover) */}
+              <div className="absolute bottom-2.5 sm:bottom-5 left-2.5 sm:left-5 right-2.5 sm:right-5 text-left z-10 translate-y-2 group-hover:translate-y-0 transition-transform duration-500">
                 <h3 className="text-white text-xs sm:text-lg lg:text-xl font-bold leading-snug line-clamp-2">
                   {item.title}
                 </h3>
@@ -130,9 +161,9 @@ export default function Home2WorkMosaic() {
                   <span>{item.location}</span>
                 </div>
               </div>
-            </div>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   );
