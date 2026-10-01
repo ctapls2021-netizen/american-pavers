@@ -145,3 +145,12 @@ input[type="submit"] {
   animation: marquee-loop 14s linear infinite;
 }
 
+/* Fix browser autocomplete background color (removes the default yellow/gray background) */
+input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus, 
+input:-webkit-autofill:active {
+  -webkit-box-shadow: 0 0 0 50px white inset !important;
+  -webkit-text-fill-color: #1A292C !important;
+}
+
