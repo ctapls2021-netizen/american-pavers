@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
+import { motion } from 'framer-motion';
 import { Phone, ChevronDown } from 'lucide-react';
 import { companyData } from '@/data/company';
 
@@ -43,6 +44,24 @@ const DEFAULT_FAQS = [
   },
 ];
 
+const headerVariants: any = {
+  hidden: { opacity: 0, y: 30 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeOut" } }
+};
+
+const containerVariants: any = {
+  hidden: { opacity: 0 },
+  visible: { 
+    opacity: 1, 
+    transition: { staggerChildren: 0.1 }
+  }
+};
+
+const itemVariants: any = {
+  hidden: { opacity: 0, y: 20 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" } }
+};
+
 export default function Home2FAQ({
   faqs,
   title = 'Before you call.',
@@ -70,8 +89,14 @@ export default function Home2FAQ({
       className={`py-20 sm:py-28 bg-white text-stone-900 border-b border-stone-200 scroll-mt-20 w-full max-w-full overflow-hidden ${className}`}
     >
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Header */}
-        <div className="text-center mb-12 sm:mb-16">
+        {/* Animated Header */}
+        <motion.div 
+          className="text-center mb-12 sm:mb-16"
+          variants={headerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-50px" }}
+        >
           <span className="text-xs font-bold uppercase tracking-[0.22em] text-[#019934] block mb-3">
             {tag}
           </span>
@@ -92,14 +117,21 @@ export default function Home2FAQ({
             <Phone className="w-4 h-4 text-[#019934]" />
             <span>Still unsure? Call {companyData.formattedPhone} and ask.</span>
           </a>
-        </div>
+        </motion.div>
 
-        {/* FAQ Accordion List */}
-        <div className="divide-y divide-stone-200 border-y border-stone-200">
+        {/* Animated FAQ Accordion List */}
+        <motion.div 
+          className="divide-y divide-stone-200 border-y border-stone-200"
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-50px" }}
+        >
           {displayFaqs.map((faq, idx) => {
             const isOpen = openIdx === idx;
+
             return (
-              <div key={idx} className="py-5 sm:py-6">
+              <motion.div key={idx} variants={itemVariants} className="py-5 sm:py-6">
                 <button
                   type="button"
                   onClick={() => toggle(idx)}
@@ -125,16 +157,22 @@ export default function Home2FAQ({
                 </button>
 
                 {isOpen && (
-                  <div className="mt-3.5 pr-8">
+                  <motion.div 
+                    className="mt-3.5 pr-8"
+                    initial={{ opacity: 0, height: 0 }}
+                    animate={{ opacity: 1, height: 'auto' }}
+                    exit={{ opacity: 0, height: 0 }}
+                    transition={{ duration: 0.3 }}
+                  >
                     <p className="text-sm sm:text-base text-stone-600 leading-relaxed font-normal">
                       {faq.a}
                     </p>
-                  </div>
+                  </motion.div>
                 )}
-              </div>
+              </motion.div>
             );
           })}
-        </div>
+        </motion.div>
       </div>
     </section>
   );

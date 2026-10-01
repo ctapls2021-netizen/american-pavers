@@ -1,6 +1,9 @@
+'use client';
+
 import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import { motion } from 'framer-motion';
 import { Phone, Mail, Clock } from 'lucide-react';
 import { companyData } from '@/data/company';
 
@@ -47,13 +50,17 @@ export default function Home2Footer({ basePath }: Home2FooterProps) {
       className="w-full max-w-full overflow-hidden"
     >
       {/* Main Footer Grid */}
-      <div
+      <motion.div
         style={{
           maxWidth: '1280px',
           margin: '0 auto',
           padding: 'clamp(56px, 6vw, 80px) clamp(20px, 5vw, 64px) 40px',
         }}
         className="grid grid-cols-2 xl:grid-cols-[1.4fr_1fr_1fr_1fr] gap-x-8 sm:gap-x-10 gap-y-10"
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-50px" }}
+        transition={{ duration: 0.8, ease: "easeOut" }}
       >
         {/* Brand Column */}
         <div className="col-span-2 xl:col-span-1">
@@ -196,7 +203,7 @@ export default function Home2Footer({ basePath }: Home2FooterProps) {
             </ul>
           </div>
         ))}
-      </div>
+      </motion.div>
 
       {/* Bottom Legal Line */}
       <div

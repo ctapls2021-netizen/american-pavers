@@ -1,5 +1,8 @@
+'use client';
+
 import React from 'react';
 import Image from 'next/image';
+import { motion } from 'framer-motion';
 import { Users, Ruler, FileText, ShieldCheck, ArrowRight } from 'lucide-react';
 
 const VALUES = [
@@ -24,6 +27,19 @@ const VALUES = [
     description: 'Bonded, insured, and permitted where the city requires it.',
   },
 ];
+
+const containerVariants: any = {
+  hidden: { opacity: 0 },
+  visible: { 
+    opacity: 1, 
+    transition: { staggerChildren: 0.15 }
+  }
+};
+
+const itemVariants: any = {
+  hidden: { opacity: 0, y: 30 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeOut" } }
+};
 
 interface Home2AboutProps {
   transparentBg?: boolean;
@@ -53,9 +69,15 @@ export default function Home2About({ transparentBg }: Home2AboutProps = {}) {
 
       <div className="relative z-10">
         {/* Upper 2-Column Content */}
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 sm:py-28 grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
+        <motion.div 
+          className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 sm:py-28 grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start"
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-100px" }}
+        >
           {/* Left Column */}
-          <div className="lg:col-span-6 text-left">
+          <motion.div variants={itemVariants} className="lg:col-span-6 text-left">
             <span className="text-xs font-bold uppercase tracking-[0.22em] text-[#019934] block mb-3">
               ABOUT US
             </span>
@@ -65,10 +87,10 @@ export default function Home2About({ transparentBg }: Home2AboutProps = {}) {
             <p className="mt-5 text-stone-300 text-base sm:text-lg leading-relaxed max-w-xl">
               We started as a two-man paving crew in the Valley and never moved off the tools. Today we install driveways, patios and turf across the county — still with our own people, still quoting the base work honestly.
             </p>
-          </div>
+          </motion.div>
 
           {/* Right Column: Values Card */}
-          <div className="lg:col-span-6 bg-[#0E1719]/75 backdrop-blur-md border border-white/15 rounded-lg p-6 sm:p-8">
+          <motion.div variants={itemVariants} className="lg:col-span-6 bg-[#0E1719]/75 backdrop-blur-md border border-white/15 rounded-lg p-6 sm:p-8">
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
               {VALUES.map((v) => {
                 const IconComp = v.icon;
@@ -87,11 +109,17 @@ export default function Home2About({ transparentBg }: Home2AboutProps = {}) {
                 );
               })}
             </div>
-          </div>
-        </div>
+          </motion.div>
+        </motion.div>
 
         {/* Lower Full-Width Green Action Bar */}
-        <div className="bg-[#019934] text-white py-8 px-4 sm:px-6 lg:px-8">
+        <motion.div 
+          className="bg-[#019934] text-white py-8 px-4 sm:px-6 lg:px-8"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-50px" }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
+        >
           <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-center gap-6 md:gap-8 text-center md:text-left">
             <div className="flex items-center gap-4">
               <span className="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center shrink-0">
@@ -111,7 +139,7 @@ export default function Home2About({ transparentBg }: Home2AboutProps = {}) {
               <ArrowRight className="w-4 h-4" />
             </button>
           </div>
-        </div>
+        </motion.div>
       </div>
     </section>
   );

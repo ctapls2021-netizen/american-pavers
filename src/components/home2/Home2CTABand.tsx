@@ -2,6 +2,7 @@
 
 import React from 'react';
 import Image from 'next/image';
+import { motion } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
 
 export interface Home2CTABandProps {
@@ -65,7 +66,13 @@ export default function Home2CTABand({
         />
       </div>
 
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16 md:py-20 flex flex-col md:flex-row md:items-center justify-between gap-8">
+      <motion.div 
+        className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16 md:py-20 flex flex-col md:flex-row md:items-center justify-between gap-8"
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-50px" }}
+        transition={{ duration: 0.8, ease: "easeOut" }}
+      >
         {/* Left: Text Content */}
         <div className="max-w-[620px] text-left">
           <span className="text-xs font-bold uppercase tracking-[0.22em] text-[#019934] block mb-3">
@@ -100,7 +107,7 @@ export default function Home2CTABand({
             <span>{secondaryBtnText}</span>
           </button>
         </div>
-      </div>
+      </motion.div>
     </section>
   );
 }
