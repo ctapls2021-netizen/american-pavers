@@ -2,6 +2,7 @@
 
 import React from 'react';
 import Image from 'next/image';
+import { motion } from 'framer-motion';
 import { MapPin, ArrowRight } from 'lucide-react';
 
 const WORK_ITEMS = [
@@ -78,7 +79,7 @@ const containerVariants = {
 
 const itemVariants = {
   hidden: { opacity: 0, scale: 0.95 },
-  visible: { opacity: 1, scale: 1, transition: { duration: 0.6, ease: [0.16, 1, 0.3, 1] } }
+  visible: { opacity: 1, scale: 1, transition: { duration: 0.6, ease: "easeOut" } }
 };
 
 export default function Home2WorkMosaic() {

@@ -23,7 +23,7 @@ const containerVariants = {
 
 const itemVariants = {
   hidden: { opacity: 0, y: 20 },
-  show: { opacity: 1, y: 0, transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] } } // Elegant custom easing
+  show: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeOut" } } // Elegant custom easing
 };
 
 export default function Home2Hero() {
@@ -110,7 +110,7 @@ export default function Home2Hero() {
           className="mt-10 sm:mt-16 lg:mt-20 pt-6 sm:pt-8 border-t border-white/15"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.8, ease: [0.16, 1, 0.3, 1] }}
+          transition={{ duration: 0.8, delay: 0.8, ease: "easeOut" }}
         >
           <div className="grid grid-cols-2 xl:grid-cols-4 gap-4 sm:gap-6 lg:gap-8">
             {STATS.map((s, i) => {
