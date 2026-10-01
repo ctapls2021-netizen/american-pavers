@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
 import { MapPin, Clock, Phone, ArrowRight, Check, ChevronDown, Loader2 } from 'lucide-react';
@@ -25,11 +25,27 @@ export default function Home2QuoteSplit() {
   });
 
   const [status, setStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle');
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const dropdownRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+        setIsDropdownOpen(false);
+      }
+    };
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!formData.name || !formData.phone) {
       alert('Please enter your name and phone number.');
+      return;
+    }
+    if (!formData.service) {
+      alert('Please select a service.');
       return;
     }
 
@@ -250,24 +266,48 @@ export default function Home2QuoteSplit() {
                 >
                   Service <span className="text-[#019934]">*</span>
                 </label>
-                <div className="relative flex items-center">
-                  <select
-                    id="quote-service"
-                    required
-                    value={formData.service}
-                    onChange={(e) => setFormData({ ...formData, service: e.target.value })}
-                    className="w-full bg-white text-[#1A292C] text-base py-3 pl-3.5 pr-11 border border-stone-200 rounded-[6px] appearance-none cursor-pointer focus:outline-none focus:border-[#019934] focus:ring-2 focus:ring-[#019934]/30 transition-all"
+                <div className="relative flex items-center" ref={dropdownRef}>
+                  {/* Fake input for required validation */}
+                  <input type="hidden" value={formData.service} />
+                  <button
+                    type="button"
+                    onClick={() => setIsDropdownOpen(!isDropdownOpen)}
+                    className={`w-full bg-white text-left text-base py-3 pl-3.5 pr-11 border rounded-[6px] appearance-none cursor-pointer focus:outline-none transition-all ${
+                      isDropdownOpen 
+                        ? 'border-[#019934] ring-2 ring-[#019934]/30' 
+                        : 'border-stone-200 focus:border-[#019934] focus:ring-2 focus:ring-[#019934]/30'
+                    }`}
                   >
-                    <option value="">Choose a service</option>
-                    {SERVICES.map((s) => (
-                      <option key={s} value={s}>
-                        {s}
-                      </option>
-                    ))}
-                  </select>
-                  <span className="absolute right-3.5 text-stone-400 pointer-events-none flex">
-                    <ChevronDown className="w-[18px] h-[18px] stroke-[1.5]" />
-                  </span>
+                    <span className={formData.service ? 'text-[#1A292C]' : 'text-stone-500'}>
+                      {formData.service || 'Choose a service'}
+                    </span>
+                    <span className="absolute right-3.5 top-1/2 -translate-y-1/2 text-stone-400 pointer-events-none flex">
+                      <ChevronDown className={`w-[18px] h-[18px] stroke-[1.5] transition-transform duration-200 ${isDropdownOpen ? 'rotate-180' : ''}`} />
+                    </span>
+                  </button>
+                  
+                  {isDropdownOpen && (
+                    <div className="absolute z-50 top-full mt-1 w-full bg-white border border-stone-200 rounded-[6px] shadow-lg overflow-hidden">
+                      <ul className="max-h-60 overflow-y-auto py-1">
+                        {SERVICES.map((s) => (
+                          <li
+                            key={s}
+                            onClick={() => {
+                              setFormData({ ...formData, service: s });
+                              setIsDropdownOpen(false);
+                            }}
+                            className={`px-3.5 py-2.5 text-base cursor-pointer transition-colors ${
+                              formData.service === s 
+                                ? 'bg-[#019934] text-white font-medium' 
+                                : 'text-[#1A292C] hover:bg-[#019934] hover:text-white'
+                            }`}
+                          >
+                            {s}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
                 </div>
               </div>
 
