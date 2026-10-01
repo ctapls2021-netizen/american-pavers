@@ -10,6 +10,7 @@ import Home2Reviews from '@/components/home2/Home2Reviews';
 import Home2FAQ from '@/components/home2/Home2FAQ';
 import Home2CTABand from '@/components/home2/Home2CTABand';
 import Home2QuoteSplit from '@/components/home2/Home2QuoteSplit';
+import { motion } from 'framer-motion';
 import { ChevronRight, Phone } from 'lucide-react';
 import { companyData } from '@/data/company';
 import { generalFaqs } from '@/data/faqs';
@@ -32,10 +33,13 @@ export default function AboutPageClientV2() {
         <div className="relative w-full">
           {/* Shared Background Image (Worker) */}
           <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
-            <img
+            <motion.img
+              initial={{ scale: 1.0 }}
+              animate={{ scale: 1.05 }}
+              transition={{ duration: 25, ease: 'linear', repeat: Infinity, repeatType: 'reverse' }}
               src="/assets/brand/photo-crew-laying-pavers.png"
               alt="American Pavers & Turf crew"
-              className="w-full h-full object-cover object-center scale-105"
+              className="w-full h-full object-cover object-center"
               loading="eager"
             />
             <div className="absolute inset-0 bg-[#0E1719]/85" />
@@ -55,7 +59,12 @@ export default function AboutPageClientV2() {
             </div>
 
             {/* Centered Hero Content */}
-            <div className="relative z-20 flex-1 flex flex-col items-center justify-center text-center px-4 sm:px-6 max-w-5xl mx-auto my-auto">
+            <motion.div 
+              className="relative z-20 flex-1 flex flex-col items-center justify-center text-center px-4 sm:px-6 max-w-5xl mx-auto my-auto"
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
+            >
               <span className="text-[#019934] font-bold text-xs uppercase tracking-[0.22em] mb-2 drop-shadow">
                 28 Years of Hardscape Excellence
               </span>
@@ -92,7 +101,7 @@ export default function AboutPageClientV2() {
                   <span>Call {companyData.formattedPhone}</span>
                 </a>
               </div>
-            </div>
+            </motion.div>
 
             {/* <div className="relative z-20 w-full h-1 bg-gradient-to-r from-transparent via-[#019934] to-transparent opacity-80" /> */}
           </section>

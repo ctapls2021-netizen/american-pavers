@@ -9,6 +9,7 @@ import Home2Reviews from '@/components/home2/Home2Reviews';
 import Home2FAQ from '@/components/home2/Home2FAQ';
 import Home2CTABand from '@/components/home2/Home2CTABand';
 import LeadFormModal from '@/components/ui/LeadFormModal';
+import { motion } from 'framer-motion';
 import { companyData } from '@/data/company';
 import { servicesData } from '@/data/services';
 import { locationsData } from '@/data/locations';
@@ -117,10 +118,13 @@ export default function ContactPageClientV2({ contactData }: ContactPageClientV2
         <section className="relative w-full h-[50vh] min-h-[380px] max-h-[500px] overflow-hidden bg-stone-950 text-white flex flex-col justify-between">
           {/* Static Background Image with zoom */}
           <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
-            <img
+            <motion.img
+              initial={{ scale: 1.0 }}
+              animate={{ scale: 1.05 }}
+              transition={{ duration: 25, ease: 'linear', repeat: Infinity, repeatType: 'reverse' }}
               src="/assets/real/American_pavers_35.webp"
               alt="Contact American Pavers & Turf"
-              className="w-full h-full object-cover object-center scale-105"
+              className="w-full h-full object-cover object-center"
               loading="eager"
             />
           </div>
@@ -141,7 +145,12 @@ export default function ContactPageClientV2({ contactData }: ContactPageClientV2
           </div>
 
           {/* Centered Hero Content */}
-          <div className="relative z-20 flex-1 flex flex-col items-center justify-center text-center px-4 sm:px-6 max-w-5xl mx-auto my-auto">
+          <motion.div 
+            className="relative z-20 flex-1 flex flex-col items-center justify-center text-center px-4 sm:px-6 max-w-5xl mx-auto my-auto"
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
+          >
             <span className="text-[#019934] font-bold text-xs uppercase tracking-widest mb-2 drop-shadow">
               Direct Contractor Communication
             </span>
@@ -179,7 +188,7 @@ export default function ContactPageClientV2({ contactData }: ContactPageClientV2
                 <span className="whitespace-nowrap">Call {companyData.formattedPhone}</span>
               </a>
             </div>
-          </div>
+          </motion.div>
 
           {/* Bottom Accent Line */}
           <div className="relative z-20 w-full h-1 bg-gradient-to-r from-transparent via-[#019934] to-transparent opacity-80" />

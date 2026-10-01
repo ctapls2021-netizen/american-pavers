@@ -2,6 +2,7 @@
 
 import React from 'react';
 import Link from 'next/link';
+import { motion } from 'framer-motion';
 import { ChevronRight, Phone } from 'lucide-react';
 import { companyData } from '@/data/company';
 
@@ -28,10 +29,13 @@ export default function ServiceHeroStatic({
     <section className="relative w-full h-[50vh] min-h-[380px] max-h-[500px] overflow-hidden bg-stone-950 text-white flex flex-col justify-between">
       {/* 1. Static Service Background Image (Replica del Home con imagen estática) */}
       <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
-        <img
+        <motion.img
+          initial={{ scale: 1.0 }}
+          animate={{ scale: 1.05 }}
+          transition={{ duration: 25, ease: 'linear', repeat: Infinity, repeatType: 'reverse' }}
           src={imageSrc}
           alt={title}
-          className={`w-full h-full object-cover ${imagePosition} scale-105`}
+          className={`w-full h-full object-cover ${imagePosition}`}
           loading="eager"
         />
       </div>
@@ -56,7 +60,12 @@ export default function ServiceHeroStatic({
       </div>
 
       {/* 4. Centered Hero Content (Idéntico a la tipografía y botones del Home) */}
-      <div className="relative z-20 flex-1 flex flex-col items-center justify-center text-center px-4 sm:px-6 max-w-5xl mx-auto my-auto">
+      <motion.div 
+        className="relative z-20 flex-1 flex flex-col items-center justify-center text-center px-4 sm:px-6 max-w-5xl mx-auto my-auto"
+        initial={{ opacity: 0, y: 30 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
+      >
         <span className="text-[#019934] font-bold text-xs uppercase tracking-[0.22em] mb-2 drop-shadow">
           Master Installation Series
         </span>
@@ -97,7 +106,7 @@ export default function ServiceHeroStatic({
             <span className="whitespace-nowrap">Call {companyData.formattedPhone}</span>
           </a>
         </div>
-      </div>
+      </motion.div>
 
       {/* 5. Bottom Brand Line Accent */}
       <div className="relative z-20 w-full h-1 bg-gradient-to-r from-transparent via-[#019934] to-transparent opacity-80" />
