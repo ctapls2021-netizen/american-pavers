@@ -341,8 +341,8 @@ export default function GalleryPageV2({ galleryData, sanityProjects }: GalleryPa
           <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
             <motion.img
               initial={{ scale: 1.0 }}
-              animate={{ scale: 1.05 }}
-              transition={{ duration: 25, ease: 'linear', repeat: Infinity, repeatType: 'reverse' }}
+              animate={{ scale: 1.1 }}
+              transition={{ duration: 20, ease: 'linear', repeat: Infinity, repeatType: 'reverse' }}
               src="/assets/generated/driveway_premium.webp"
               alt="American Pavers & Turf Gallery"
               className="w-full h-full object-cover object-center"
@@ -364,7 +364,8 @@ export default function GalleryPageV2({ galleryData, sanityProjects }: GalleryPa
               <span className="font-bold text-[#019934]">Gallery</span>
             </div>
           </div>
-          {/* Centered Hero Content */}
+
+          {/* Centered Hero Content */}
           <motion.div 
             className="relative z-20 flex-1 flex flex-col items-center justify-center text-center px-4 sm:px-6 max-w-5xl mx-auto my-auto"
             initial={{ opacity: 0, y: 30 }}

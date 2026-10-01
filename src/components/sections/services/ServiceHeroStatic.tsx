@@ -31,8 +31,8 @@ export default function ServiceHeroStatic({
       <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
         <motion.img
           initial={{ scale: 1.0 }}
-          animate={{ scale: 1.05 }}
-          transition={{ duration: 25, ease: 'linear', repeat: Infinity, repeatType: 'reverse' }}
+          animate={{ scale: 1.1 }}
+          transition={{ duration: 20, ease: 'linear', repeat: Infinity, repeatType: 'reverse' }}
           src={imageSrc}
           alt={title}
           className={`w-full h-full object-cover ${imagePosition}`}

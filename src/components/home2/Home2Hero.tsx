@@ -38,8 +38,8 @@ export default function Home2Hero() {
       <motion.div 
         className="absolute inset-0 z-0"
         initial={{ scale: 1 }}
-        animate={{ scale: 1.05 }}
-        transition={{ duration: 25, ease: "linear", repeat: Infinity, repeatType: "reverse" }}
+        animate={{ scale: 1.1 }}
+        transition={{ duration: 20, ease: "linear", repeat: Infinity, repeatType: "reverse" }}
       >
         {/* Mobile Background Image */}
         <Image
