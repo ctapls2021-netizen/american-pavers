@@ -249,7 +249,7 @@ export default function Home2BottomCtaBanner({
                     <button
                       type="submit"
                       disabled={status === 'submitting'}
-                      className="bg-[#019934] hover:bg-[#019934] text-[#1A292C] font-semibold text-sm px-6 py-3.5 rounded-none transition-all cursor-pointer flex items-center gap-2"
+                      className="bg-[#019934] hover:bg-[#01802b] text-white font-semibold text-sm px-6 py-3.5 rounded-none transition-all cursor-pointer flex items-center gap-2"
                     >
                       {status === 'submitting' ? (
                         <>

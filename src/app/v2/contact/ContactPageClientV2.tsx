@@ -165,7 +165,7 @@ export default function ContactPageClientV2({ contactData }: ContactPageClientV2
             <div className="mt-6 flex flex-col sm:flex-row items-center justify-center gap-3.5 w-full max-w-xl">
               <a
                 href="#quote-form"
-                className="w-full sm:w-auto px-7 py-3.5 rounded-none bg-[#019934] hover:bg-[#019934] text-[#1A292C] font-semibold text-sm sm:text-base transition-all flex items-center justify-center gap-2 cursor-pointer whitespace-nowrap"
+                className="w-full sm:w-auto px-7 py-3.5 rounded-none bg-[#019934] hover:bg-[#01802b] text-white font-semibold text-sm sm:text-base transition-all flex items-center justify-center gap-2 cursor-pointer whitespace-nowrap"
               >
                 <span className="whitespace-nowrap">Schedule Free 3D Estimate</span>
                 <ChevronRight className="w-4 h-4 shrink-0" />
@@ -478,7 +478,7 @@ export default function ContactPageClientV2({ contactData }: ContactPageClientV2
                       <button
                         type="submit"
                         disabled={isSubmitting}
-                        className="w-full bg-[#019934] hover:bg-[#019934] text-[#1A292C] font-semibold text-sm sm:text-base py-4 rounded-none transition-all transform active:scale-98 flex items-center justify-center gap-2 cursor-pointer disabled:opacity-60"
+                        className="w-full bg-[#019934] hover:bg-[#01802b] text-white font-semibold text-sm sm:text-base py-4 rounded-none transition-all transform active:scale-98 flex items-center justify-center gap-2 cursor-pointer disabled:opacity-60"
                       >
                         {isSubmitting ? (
                           <span>Submitting Request...</span>

@@ -124,7 +124,7 @@ export default function Home2ComparisonAccordion({
             <button
               type="button"
               onClick={onOpenModal}
-              className="w-full sm:w-auto shrink-0 px-8 py-3.5 bg-[#019934] hover:bg-[#019934] text-[#1A292C] font-semibold text-sm transition-all flex items-center justify-center gap-2 cursor-pointer"
+              className="w-full sm:w-auto shrink-0 px-8 py-3.5 bg-[#019934] hover:bg-[#01802b] text-white font-semibold text-sm transition-all flex items-center justify-center gap-2 cursor-pointer"
             >
               <span>{buttonText}</span>
               <ChevronRight className="w-4 h-4" />

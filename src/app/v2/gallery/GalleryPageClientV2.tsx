@@ -389,7 +389,7 @@ export default function GalleryPageV2({ galleryData, sanityProjects }: GalleryPa
               <button
                 onClick={() => handleOpenModal()}
                 type="button"
-                className="w-full sm:w-auto px-7 py-3.5 rounded-none bg-[#019934] hover:bg-[#019934] text-[#1A292C] font-semibold text-sm sm:text-base transition-all flex items-center justify-center gap-2 cursor-pointer whitespace-nowrap"
+                className="w-full sm:w-auto px-7 py-3.5 rounded-none bg-[#019934] hover:bg-[#01802b] text-white font-semibold text-sm sm:text-base transition-all flex items-center justify-center gap-2 cursor-pointer whitespace-nowrap"
               >
                 <span className="whitespace-nowrap">Schedule Free 3D Design</span>
                 <ChevronRight className="w-4 h-4 shrink-0" />
