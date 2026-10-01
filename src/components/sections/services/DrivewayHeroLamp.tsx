@@ -35,7 +35,7 @@ export default function DrivewayHeroLamp({ onOpenModal }: DrivewayHeroLampProps)
           <ChevronRight className="w-3.5 h-3.5 text-stone-400" />
           <span className="text-stone-400">Services</span>
           <ChevronRight className="w-3.5 h-3.5 text-stone-400" />
-          <span className="font-bold text-[#42e078]">Driveway Pavers</span>
+          <span className="font-bold text-[#019934]">Driveway Pavers</span>
         </div>
       </div>
 
@@ -54,7 +54,7 @@ export default function DrivewayHeroLamp({ onOpenModal }: DrivewayHeroLampProps)
           className="text-center text-3xl sm:text-5xl md:text-6xl font-extrabold text-white tracking-tight font-serif-brand leading-[1.14] max-w-4xl drop-shadow-md"
         >
           Engineered Driveway Pavers <br />
-          <span className="text-transparent bg-clip-text bg-gradient-to-r from-stone-100 via-white to-[#42e078]">
+          <span className="text-transparent bg-clip-text bg-gradient-to-r from-stone-100 via-white to-[#019934]">
             Built for a Lifetime
           </span>
         </motion.h1>
@@ -91,7 +91,7 @@ export default function DrivewayHeroLamp({ onOpenModal }: DrivewayHeroLampProps)
             href={`tel:${companyData.phone}`}
             className="w-full sm:w-auto whitespace-nowrap h-13 px-7 flex items-center justify-center gap-2 rounded-none font-bold text-sm sm:text-base text-white border border-white/25 bg-black/30 hover:bg-black/50 backdrop-blur-md transition-all cursor-pointer shadow-lg"
           >
-            <Phone className="w-4 h-4 text-[#42e078] shrink-0" />
+            <Phone className="w-4 h-4 text-[#019934] shrink-0" />
             <span className="whitespace-nowrap">Call {companyData.formattedPhone}</span>
           </a>
         </motion.div>

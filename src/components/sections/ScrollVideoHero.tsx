@@ -360,7 +360,7 @@ export default function ScrollVideoHero({
         className="absolute inset-0 flex flex-col items-center justify-center text-center px-6 z-[10] mt-12 sm:mt-8"
         style={{ pointerEvents: 'auto', willChange: 'transform, filter, opacity' }}
       >
-        <span className="text-[#4CC66E] font-bold text-[10px] sm:text-xs uppercase tracking-[0.2em] mb-4 sm:mb-5 drop-shadow-md">
+        <span className="text-[#019934] font-bold text-[10px] sm:text-xs uppercase tracking-[0.2em] mb-4 sm:mb-5 drop-shadow-md">
           Los Angeles · Pavers & turf
         </span>
         <h1
@@ -407,7 +407,7 @@ export default function ScrollVideoHero({
         style={{ opacity: 1 }}
         className="absolute left-1/2 bottom-8 -translate-x-1/2 flex flex-col items-center justify-center p-3 text-white hover:text-white cursor-pointer z-[50] drop-shadow-md"
       >
-        <ChevronDown className="w-10 h-10 text-[#42e078] animate-bounce drop-shadow-lg" />
+        <ChevronDown className="w-10 h-10 text-[#019934] animate-bounce drop-shadow-lg" />
       </div>
 
       
@@ -415,7 +415,7 @@ export default function ScrollVideoHero({
       <div className="absolute left-0 right-0 bottom-0 h-1.5 bg-white/10 z-30">
         <div
           ref={progressBarRef}
-          className="h-full w-full bg-gradient-to-r from-[#019934] to-[#42e078] origin-left scale-x-0"
+          className="h-full w-full bg-gradient-to-r from-[#019934] to-[#019934] origin-left scale-x-0"
         />
       </div>
     </div>

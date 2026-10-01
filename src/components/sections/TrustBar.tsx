@@ -39,7 +39,7 @@ export default function TrustBar() {
                   idx > 0 ? 'pt-4 sm:pt-0 sm:pl-6' : ''
                 }`}
               >
-                <div className="w-10 h-10 rounded-full bg-[#019934]/15 flex items-center justify-center text-[#42e078] mb-2">
+                <div className="w-10 h-10 rounded-full bg-[#019934]/15 flex items-center justify-center text-[#019934] mb-2">
                   <Icon className="w-5 h-5" />
                 </div>
                 <div className="text-xl sm:text-2xl font-extrabold text-white tracking-tight">

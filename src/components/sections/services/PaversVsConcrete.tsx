@@ -302,7 +302,7 @@ export default function PaversVsConcrete({
 
               {/* Bottom Info */}
               <div className="absolute bottom-3 left-3 right-3 sm:bottom-4 sm:left-4 sm:right-4 z-10">
-                <span className="text-[11px] sm:text-xs uppercase tracking-widest text-[#42e078] font-bold block mb-1">
+                <span className="text-[11px] sm:text-xs uppercase tracking-widest text-[#019934] font-bold block mb-1">
                   {primaryColumnTitle}
                 </span>
                 <h4 className="text-white font-bold text-base sm:text-lg lg:text-xl leading-tight drop-shadow-sm">
@@ -352,7 +352,7 @@ export default function PaversVsConcrete({
             <div className="col-span-4 font-bold text-xs sm:text-sm uppercase tracking-wider text-stone-300">
               Feature / Performance
             </div>
-            <div className="col-span-4 font-bold text-xs sm:text-sm uppercase tracking-wider text-[#42e078] flex items-center gap-2">
+            <div className="col-span-4 font-bold text-xs sm:text-sm uppercase tracking-wider text-[#019934] flex items-center gap-2">
               <ShieldCheck className="w-4 h-4 shrink-0" />
               <span>{primaryColumnTitle}</span>
             </div>
@@ -369,8 +369,8 @@ export default function PaversVsConcrete({
             </div>
             <div className="grid grid-cols-2 gap-2">
               <div className="bg-[#019934]/20 border border-[#019934]/40 rounded-lg p-2 flex items-center gap-1.5 min-w-0">
-                <ShieldCheck className="w-4 h-4 text-[#42e078] shrink-0" />
-                <span className="text-[11px] font-bold uppercase tracking-wide text-[#42e078] leading-tight break-words">
+                <ShieldCheck className="w-4 h-4 text-[#019934] shrink-0" />
+                <span className="text-[11px] font-bold uppercase tracking-wide text-[#019934] leading-tight break-words">
                   {primaryColumnTitle}
                 </span>
               </div>

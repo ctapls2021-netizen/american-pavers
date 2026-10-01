@@ -135,7 +135,7 @@ const galleryItems: GalleryItem[] = [
   },
 ];
 
-// Generative Art Canvas Component adapted to brand green guidelines (#019934 / #42e078)
+// Generative Art Canvas Component adapted to brand green guidelines (#019934 / #019934)
 const GenerativeArtCanvas = ({ isHovered }: { isHovered: boolean }) => {
   const canvasRef = React.useRef<HTMLCanvasElement>(null);
 
@@ -180,7 +180,7 @@ const GenerativeArtCanvas = ({ isHovered }: { isHovered: boolean }) => {
           this.x - Math.cos(this.angle) * this.length,
           this.y - Math.sin(this.angle) * this.length
         );
-        // Brand green stroke: #42e078 / #019934
+        // Brand green stroke: #019934 / #019934
         ctx.strokeStyle = `rgba(66, 224, 120, ${Math.random() * 0.4 + 0.15})`;
         ctx.lineWidth = 1.5;
         ctx.stroke();
@@ -358,13 +358,13 @@ export default function GalleryPage({ galleryData, sanityProjects }: GalleryPage
                 Home
               </Link>
               <ChevronRight className="w-3.5 h-3.5 text-stone-400" />
-              <span className="font-bold text-[#42e078]">Gallery</span>
+              <span className="font-bold text-[#019934]">Gallery</span>
             </div>
           </div>
 
           {/* Centered Hero Content */}
           <div className="relative z-20 flex-1 flex flex-col items-center justify-center text-center px-4 sm:px-6 max-w-5xl mx-auto my-auto">
-            <span className="text-[#42e078] font-bold text-xs uppercase tracking-widest mb-2 drop-shadow">
+            <span className="text-[#019934] font-bold text-xs uppercase tracking-widest mb-2 drop-shadow">
               {galleryData?.hero?.badge || 'Master Installation Portfolio'}
             </span>
 
@@ -399,7 +399,7 @@ export default function GalleryPage({ galleryData, sanityProjects }: GalleryPage
                 href={`tel:${companyData.phone}`}
                 className="w-full sm:w-auto px-6 py-3.5 rounded-none bg-white/15 hover:bg-white/25 backdrop-blur-md border border-white/25 text-white font-semibold text-sm sm:text-base transition-all cursor-pointer shadow-lg flex items-center justify-center gap-2 whitespace-nowrap"
               >
-                <Phone className="w-4 h-4 text-[#42e078] shrink-0" />
+                <Phone className="w-4 h-4 text-[#019934] shrink-0" />
                 <span className="whitespace-nowrap">Call {companyData.formattedPhone}</span>
               </a>
             </div>

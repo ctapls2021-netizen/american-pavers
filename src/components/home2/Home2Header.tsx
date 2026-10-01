@@ -95,12 +95,12 @@ export default function Home2Header({ onOpenQuote, basePath }: Home2HeaderProps)
       <div className="bg-black/20 border-b border-white/10 hidden md:block">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-[34px] flex items-center gap-6">
           <div className="flex items-center gap-1.5 text-[11px] font-medium tracking-[0.06em] uppercase text-stone-300">
-            <ShieldCheck className="w-3.5 h-3.5 text-[#4CC66E] stroke-[1.75]" />
+            <ShieldCheck className="w-3.5 h-3.5 text-[#019934] stroke-[1.75]" />
             <span>Licensed, bonded &amp; insured</span>
           </div>
 
           <div className="flex items-center gap-1.5 text-[11px] font-medium tracking-[0.06em] uppercase text-stone-300">
-            <CheckCircle2 className="w-3.5 h-3.5 text-[#4CC66E] stroke-[1.75]" />
+            <CheckCircle2 className="w-3.5 h-3.5 text-[#019934] stroke-[1.75]" />
             <span>12-year installation warranty</span>
           </div>
         </div>
@@ -147,7 +147,7 @@ export default function Home2Header({ onOpenQuote, basePath }: Home2HeaderProps)
           {basePath ? (
             <Link
               href={basePath}
-              className="flex items-center h-[38px] px-3.5 rounded-[6px] text-sm font-semibold tracking-[0.02em] text-white hover:text-[#4CC66E] hover:bg-white/5 transition-colors"
+              className="flex items-center h-[38px] px-3.5 rounded-[6px] text-sm font-semibold tracking-[0.02em] text-white hover:text-[#019934] hover:bg-white/5 transition-colors"
             >
               Home
             </Link>
@@ -158,7 +158,7 @@ export default function Home2Header({ onOpenQuote, basePath }: Home2HeaderProps)
                 e.preventDefault();
                 scrollTo('top');
               }}
-              className="flex items-center h-[38px] px-3.5 rounded-[6px] text-sm font-semibold tracking-[0.02em] text-white hover:text-[#4CC66E] hover:bg-white/5 transition-colors"
+              className="flex items-center h-[38px] px-3.5 rounded-[6px] text-sm font-semibold tracking-[0.02em] text-white hover:text-[#019934] hover:bg-white/5 transition-colors"
             >
               Home
             </a>
@@ -168,7 +168,7 @@ export default function Home2Header({ onOpenQuote, basePath }: Home2HeaderProps)
           {basePath ? (
             <Link
               href={`${basePath}/about`}
-              className="flex items-center h-[38px] px-3.5 rounded-[6px] text-sm font-semibold tracking-[0.02em] text-white hover:text-[#4CC66E] hover:bg-white/5 transition-colors"
+              className="flex items-center h-[38px] px-3.5 rounded-[6px] text-sm font-semibold tracking-[0.02em] text-white hover:text-[#019934] hover:bg-white/5 transition-colors"
             >
               About Us
             </Link>
@@ -179,7 +179,7 @@ export default function Home2Header({ onOpenQuote, basePath }: Home2HeaderProps)
                 e.preventDefault();
                 scrollTo('about'); // Assuming there's an about section
               }}
-              className="flex items-center h-[38px] px-3.5 rounded-[6px] text-sm font-semibold tracking-[0.02em] text-white hover:text-[#4CC66E] hover:bg-white/5 transition-colors"
+              className="flex items-center h-[38px] px-3.5 rounded-[6px] text-sm font-semibold tracking-[0.02em] text-white hover:text-[#019934] hover:bg-white/5 transition-colors"
             >
               About Us
             </a>
@@ -205,8 +205,8 @@ export default function Home2Header({ onOpenQuote, basePath }: Home2HeaderProps)
               }}
               className={`flex items-center gap-1.5 h-[38px] px-3.5 rounded-[6px] text-sm font-semibold tracking-[0.02em] transition-colors cursor-pointer ${
                 megaOpen
-                  ? 'bg-white/10 text-[#4CC66E]'
-                  : 'text-white hover:text-[#4CC66E] hover:bg-white/5'
+                  ? 'bg-white/10 text-[#019934]'
+                  : 'text-white hover:text-[#019934] hover:bg-white/5'
               }`}
             >
               <span>Services</span>
@@ -222,7 +222,7 @@ export default function Home2Header({ onOpenQuote, basePath }: Home2HeaderProps)
           {basePath ? (
             <Link
               href={`${basePath}/gallery`}
-              className="flex items-center h-[38px] px-3.5 rounded-[6px] text-sm font-semibold tracking-[0.02em] text-white hover:text-[#4CC66E] hover:bg-white/5 transition-colors"
+              className="flex items-center h-[38px] px-3.5 rounded-[6px] text-sm font-semibold tracking-[0.02em] text-white hover:text-[#019934] hover:bg-white/5 transition-colors"
             >
               Gallery
             </Link>
@@ -233,7 +233,7 @@ export default function Home2Header({ onOpenQuote, basePath }: Home2HeaderProps)
                 e.preventDefault();
                 scrollTo('work');
               }}
-              className="flex items-center h-[38px] px-3.5 rounded-[6px] text-sm font-semibold tracking-[0.02em] text-white hover:text-[#4CC66E] hover:bg-white/5 transition-colors"
+              className="flex items-center h-[38px] px-3.5 rounded-[6px] text-sm font-semibold tracking-[0.02em] text-white hover:text-[#019934] hover:bg-white/5 transition-colors"
             >
               Gallery
             </a>
@@ -243,7 +243,7 @@ export default function Home2Header({ onOpenQuote, basePath }: Home2HeaderProps)
           {basePath ? (
             <Link
               href={`${basePath}/contact`}
-              className="flex items-center h-[38px] px-3.5 rounded-[6px] text-sm font-semibold tracking-[0.02em] text-white hover:text-[#4CC66E] hover:bg-white/5 transition-colors"
+              className="flex items-center h-[38px] px-3.5 rounded-[6px] text-sm font-semibold tracking-[0.02em] text-white hover:text-[#019934] hover:bg-white/5 transition-colors"
             >
               Contact Us
             </Link>
@@ -254,7 +254,7 @@ export default function Home2Header({ onOpenQuote, basePath }: Home2HeaderProps)
                 e.preventDefault();
                 scrollTo('quote-section');
               }}
-              className="flex items-center h-[38px] px-3.5 rounded-[6px] text-sm font-semibold tracking-[0.02em] text-white hover:text-[#4CC66E] hover:bg-white/5 transition-colors"
+              className="flex items-center h-[38px] px-3.5 rounded-[6px] text-sm font-semibold tracking-[0.02em] text-white hover:text-[#019934] hover:bg-white/5 transition-colors"
             >
               Contact Us
             </a>
@@ -266,7 +266,7 @@ export default function Home2Header({ onOpenQuote, basePath }: Home2HeaderProps)
           {/* Direct Phone Link */}
           <a
             href={`tel:${companyData.phone}`}
-            className="hidden sm:flex items-center gap-2 text-white hover:text-[#4CC66E] text-sm font-semibold transition-colors"
+            className="hidden sm:flex items-center gap-2 text-white hover:text-[#019934] text-sm font-semibold transition-colors"
           >
             <Phone className="w-4 h-4 stroke-[1.75]" />
             <span>{companyData.formattedPhone}</span>
@@ -285,7 +285,7 @@ export default function Home2Header({ onOpenQuote, basePath }: Home2HeaderProps)
           <button
             type="button"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="lg:hidden p-2 text-white hover:text-[#4CC66E] rounded-md transition-colors"
+            className="lg:hidden p-2 text-white hover:text-[#019934] rounded-md transition-colors"
             aria-label="Toggle Navigation Menu"
           >
             {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
@@ -311,7 +311,7 @@ export default function Home2Header({ onOpenQuote, basePath }: Home2HeaderProps)
                       <Link
                         href={basePath ? `${basePath}/services/${s.slug}` : `/services/${s.slug}`}
                         onClick={() => setMegaOpen(false)}
-                        className="text-stone-300 hover:text-[#4CC66E] transition-colors text-[15px] font-medium"
+                        className="text-stone-300 hover:text-[#019934] transition-colors text-[15px] font-medium"
                       >
                         {s.shortTitle}
                       </Link>
@@ -329,7 +329,7 @@ export default function Home2Header({ onOpenQuote, basePath }: Home2HeaderProps)
                       <Link
                         href={basePath ? `${basePath}/services/${s.slug}` : `/services/${s.slug}`}
                         onClick={() => setMegaOpen(false)}
-                        className="text-stone-300 hover:text-[#4CC66E] transition-colors text-[15px] font-medium"
+                        className="text-stone-300 hover:text-[#019934] transition-colors text-[15px] font-medium"
                       >
                         {s.shortTitle}
                       </Link>
@@ -352,7 +352,7 @@ export default function Home2Header({ onOpenQuote, basePath }: Home2HeaderProps)
                 />
                 <div className="absolute inset-0 bg-[#1A292C]/40 group-hover:bg-[#1A292C]/20 transition-colors" />
                 <div className="absolute left-5 right-5 bottom-5">
-                  <div className="text-[11px] font-semibold tracking-[0.06em] uppercase text-[#4CC66E]">
+                  <div className="text-[11px] font-semibold tracking-[0.06em] uppercase text-[#019934]">
                     Featured
                   </div>
                   <div className="flex items-center gap-2 mt-2 font-serif font-normal text-[22px] leading-snug text-white">
@@ -364,10 +364,10 @@ export default function Home2Header({ onOpenQuote, basePath }: Home2HeaderProps)
 
             {/* Bottom Utility Bar */}
             <div className="mt-10 pt-6 border-t border-white/10 flex flex-wrap items-center gap-8 text-sm text-stone-300">
-              <a href={`tel:${companyData.phone}`} className="flex items-center gap-2 text-stone-300 hover:text-[#4CC66E] transition-colors">
+              <a href={`tel:${companyData.phone}`} className="flex items-center gap-2 text-stone-300 hover:text-[#019934] transition-colors">
                 <Phone className="w-[18px] h-[18px] stroke-[1.5]" />{companyData.formattedPhone}
               </a>
-              <a href={`mailto:${companyData.email}`} className="flex items-center gap-2 text-stone-300 hover:text-[#4CC66E] transition-colors">
+              <a href={`mailto:${companyData.email}`} className="flex items-center gap-2 text-stone-300 hover:text-[#019934] transition-colors">
                 <Mail className="w-[18px] h-[18px] stroke-[1.5]" />{companyData.email}
               </a>
               <span className="flex items-center gap-2 ml-auto">
@@ -387,7 +387,7 @@ export default function Home2Header({ onOpenQuote, basePath }: Home2HeaderProps)
                 <Link
                   href={basePath}
                   onClick={() => setMobileMenuOpen(false)}
-                  className="py-2 text-base font-semibold text-white hover:text-[#4CC66E]"
+                  className="py-2 text-base font-semibold text-white hover:text-[#019934]"
                 >
                   Home
                 </Link>
@@ -395,12 +395,12 @@ export default function Home2Header({ onOpenQuote, basePath }: Home2HeaderProps)
                 <Link
                   href={`${basePath}/about`}
                   onClick={() => setMobileMenuOpen(false)}
-                  className="py-2 text-base font-semibold text-white hover:text-[#4CC66E]"
+                  className="py-2 text-base font-semibold text-white hover:text-[#019934]"
                 >
                   About Us
                 </Link>
 
-                <span className="text-xs font-bold uppercase tracking-widest text-[#4CC66E] py-1 mt-2">
+                <span className="text-xs font-bold uppercase tracking-widest text-[#019934] py-1 mt-2">
                   Services
                 </span>
                 <div className="pl-2 grid grid-cols-1 gap-1 pb-3 border-b border-white/10">
@@ -420,7 +420,7 @@ export default function Home2Header({ onOpenQuote, basePath }: Home2HeaderProps)
                 <Link
                   href={`${basePath}/gallery`}
                   onClick={() => setMobileMenuOpen(false)}
-                  className="py-2 text-base font-semibold text-white hover:text-[#4CC66E] mt-2"
+                  className="py-2 text-base font-semibold text-white hover:text-[#019934] mt-2"
                 >
                   Gallery
                 </Link>
@@ -428,7 +428,7 @@ export default function Home2Header({ onOpenQuote, basePath }: Home2HeaderProps)
                 <Link
                   href={`${basePath}/contact`}
                   onClick={() => setMobileMenuOpen(false)}
-                  className="py-2 text-base font-semibold text-white hover:text-[#4CC66E]"
+                  className="py-2 text-base font-semibold text-white hover:text-[#019934]"
                 >
                   Contact Us
                 </Link>
@@ -441,7 +441,7 @@ export default function Home2Header({ onOpenQuote, basePath }: Home2HeaderProps)
                     e.preventDefault();
                     scrollTo('top');
                   }}
-                  className="py-2 text-base font-semibold text-white hover:text-[#4CC66E]"
+                  className="py-2 text-base font-semibold text-white hover:text-[#019934]"
                 >
                   Home
                 </a>
@@ -452,7 +452,7 @@ export default function Home2Header({ onOpenQuote, basePath }: Home2HeaderProps)
                     e.preventDefault();
                     scrollTo('about');
                   }}
-                  className="py-2 text-base font-semibold text-white hover:text-[#4CC66E]"
+                  className="py-2 text-base font-semibold text-white hover:text-[#019934]"
                 >
                   About Us
                 </a>
@@ -463,7 +463,7 @@ export default function Home2Header({ onOpenQuote, basePath }: Home2HeaderProps)
                     e.preventDefault();
                     scrollTo('services');
                   }}
-                  className="py-2 text-base font-semibold text-[#4CC66E] mt-2"
+                  className="py-2 text-base font-semibold text-[#019934] mt-2"
                 >
                   Services
                 </a>
@@ -489,7 +489,7 @@ export default function Home2Header({ onOpenQuote, basePath }: Home2HeaderProps)
                     e.preventDefault();
                     scrollTo('work');
                   }}
-                  className="py-2 text-base font-semibold text-white hover:text-[#4CC66E] mt-2"
+                  className="py-2 text-base font-semibold text-white hover:text-[#019934] mt-2"
                 >
                   Gallery
                 </a>
@@ -500,7 +500,7 @@ export default function Home2Header({ onOpenQuote, basePath }: Home2HeaderProps)
                     e.preventDefault();
                     scrollTo('quote-section');
                   }}
-                  className="py-2 text-base font-semibold text-white hover:text-[#4CC66E]"
+                  className="py-2 text-base font-semibold text-white hover:text-[#019934]"
                 >
                   Contact Us
                 </a>
@@ -513,7 +513,7 @@ export default function Home2Header({ onOpenQuote, basePath }: Home2HeaderProps)
               href={`tel:${companyData.phone}`}
               className="flex items-center gap-2 text-white font-semibold text-sm"
             >
-              <Phone className="w-4 h-4 text-[#4CC66E]" />
+              <Phone className="w-4 h-4 text-[#019934]" />
               <span>{companyData.formattedPhone}</span>
             </a>
             <button

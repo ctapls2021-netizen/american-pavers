@@ -68,7 +68,7 @@ export default function Home2CTABand({
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16 md:py-20 flex flex-col md:flex-row md:items-center justify-between gap-8">
         {/* Left: Text Content */}
         <div className="max-w-[620px] text-left">
-          <span className="text-xs font-bold uppercase tracking-[0.22em] text-[#4CC66E] block mb-3">
+          <span className="text-xs font-bold uppercase tracking-[0.22em] text-[#019934] block mb-3">
             {badge}
           </span>
 

@@ -69,7 +69,7 @@ export const LampContainer = ({
             duration: 0.8,
             ease: "easeInOut",
           }}
-          className="absolute inset-auto z-30 h-32 w-72 -translate-y-[5rem] rounded-full bg-[#42e078]/35 blur-2xl pointer-events-none"
+          className="absolute inset-auto z-30 h-32 w-72 -translate-y-[5rem] rounded-full bg-[#019934]/35 blur-2xl pointer-events-none"
         />
 
         {/* Thin High-Intensity Lamp Edge */}
@@ -81,7 +81,7 @@ export const LampContainer = ({
             duration: 0.8,
             ease: "easeInOut",
           }}
-          className="absolute inset-auto z-50 h-0.5 w-[32rem] -translate-y-[6rem] bg-[#42e078] shadow-[0_0_20px_#42e078]"
+          className="absolute inset-auto z-50 h-0.5 w-[32rem] -translate-y-[6rem] bg-[#019934] shadow-[0_0_20px_#019934]"
         />
       </div>
 

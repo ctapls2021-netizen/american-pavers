@@ -126,7 +126,7 @@ export default function Home2WorkMosaic() {
                   {item.title}
                 </h3>
                 <div className="flex items-center gap-1 sm:gap-1.5 text-stone-300 text-[10px] sm:text-sm mt-0.5 sm:mt-1.5">
-                  <MapPin className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-[#4CC66E] shrink-0" />
+                  <MapPin className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-[#019934] shrink-0" />
                   <span>{item.location}</span>
                 </div>
               </div>

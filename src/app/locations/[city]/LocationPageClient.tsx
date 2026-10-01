@@ -55,7 +55,7 @@ export default function LocationPageClient({ location }: LocationPageClientProps
           title={
             <>
               {location.name}&rsquo;s Trusted Choice for <br />
-              <span className="text-[#42e078]">Interlocking Pavers & Turf</span>
+              <span className="text-[#019934]">Interlocking Pavers & Turf</span>
             </>
           }
           subtitle={`Over ${location.projectsCompleted.toLocaleString()}+ outdoor renovations completed in ${location.county}. Certified ICPI installations with our 25-Year Master Warranty.`}

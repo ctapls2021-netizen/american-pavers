@@ -53,7 +53,7 @@ export default function AltFooter({ onOpenModal }: AltFooterProps) {
                 <span className="font-serif text-lg tracking-tight text-white uppercase">
                   American Pavers
                 </span>
-                <span className="text-[10px] tracking-[0.25em] text-[#42e078] font-bold uppercase">
+                <span className="text-[10px] tracking-[0.25em] text-[#019934] font-bold uppercase">
                   &amp; Turf Masters
                 </span>
               </div>
@@ -74,7 +74,7 @@ export default function AltFooter({ onOpenModal }: AltFooterProps) {
 
           {/* Col 2: Core Specialties (3 cols) — Pure informative text (no subpage links) */}
           <div className="lg:col-span-3">
-            <span className="text-[10px] sm:text-[11px] font-semibold text-[#42e078] uppercase tracking-[0.22em] block mb-4">
+            <span className="text-[10px] sm:text-[11px] font-semibold text-[#019934] uppercase tracking-[0.22em] block mb-4">
               Core Specialties
             </span>
             <ul className="space-y-2.5 text-xs text-stone-300">
@@ -89,7 +89,7 @@ export default function AltFooter({ onOpenModal }: AltFooterProps) {
 
           {/* Col 3: Service Areas (2 cols) — Pure informative text */}
           <div className="lg:col-span-2">
-            <span className="text-[10px] sm:text-[11px] font-semibold text-[#42e078] uppercase tracking-[0.22em] block mb-4">
+            <span className="text-[10px] sm:text-[11px] font-semibold text-[#019934] uppercase tracking-[0.22em] block mb-4">
               Service Areas
             </span>
             <ul className="space-y-2 text-xs text-stone-400">
@@ -103,7 +103,7 @@ export default function AltFooter({ onOpenModal }: AltFooterProps) {
 
           {/* Col 4: Direct Consultation & Contact (3 cols) */}
           <div className="lg:col-span-3">
-            <span className="text-[10px] sm:text-[11px] font-semibold text-[#42e078] uppercase tracking-[0.22em] block mb-4">
+            <span className="text-[10px] sm:text-[11px] font-semibold text-[#019934] uppercase tracking-[0.22em] block mb-4">
               Free 3D Estimate
             </span>
             <p className="text-xs text-stone-300 mb-4 leading-relaxed font-normal">
@@ -122,7 +122,7 @@ export default function AltFooter({ onOpenModal }: AltFooterProps) {
             <div className="space-y-2 text-xs text-stone-400 border-t border-stone-800/80 pt-4">
               <a
                 href={`tel:${companyData.phone}`}
-                className="flex items-center gap-2 hover:text-[#42e078] transition-colors"
+                className="flex items-center gap-2 hover:text-[#019934] transition-colors"
               >
                 <Phone className="w-3.5 h-3.5 text-[#019934]" />
                 <span className="font-semibold text-white">{companyData.formattedPhone}</span>
@@ -144,7 +144,7 @@ export default function AltFooter({ onOpenModal }: AltFooterProps) {
           <div className="flex items-center gap-4 text-[11px]">
             <span>ICPI Certified Master Paver Installer</span>
             <span>•</span>
-            <span className="text-[#42e078] font-medium">25-Year Workmanship Warranty</span>
+            <span className="text-[#019934] font-medium">25-Year Workmanship Warranty</span>
           </div>
         </div>
       </div>

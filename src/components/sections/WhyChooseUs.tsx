@@ -39,7 +39,7 @@ export default function WhyChooseUs() {
     <section className="py-20 bg-stone-900 text-white border-t border-stone-800">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center max-w-3xl mx-auto mb-14">
-          <span className="text-xs font-bold uppercase tracking-widest text-[#42e078] block">
+          <span className="text-xs font-bold uppercase tracking-widest text-[#019934] block">
             Engineered Comparison
           </span>
           <h2 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight mt-3">
@@ -55,7 +55,7 @@ export default function WhyChooseUs() {
           <div className="min-w-[680px] bg-stone-950 rounded-2xl border border-stone-800 p-6 shadow-2xl">
             <div className="grid grid-cols-12 gap-4 pb-4 border-b border-stone-800 text-xs sm:text-sm font-bold uppercase tracking-wider text-stone-400">
               <div className="col-span-4">Performance Factor</div>
-              <div className="col-span-4 text-[#42e078] font-extrabold">
+              <div className="col-span-4 text-[#019934] font-extrabold">
                 Interlocking Paver System
               </div>
               <div className="col-span-2 text-stone-400">Poured Concrete</div>
@@ -89,7 +89,7 @@ export default function WhyChooseUs() {
                 <Shield className="w-4 h-4 text-[#019934]" />
                 Tested to ASTM C936 and ICPI technical standards.
               </span>
-              <span className="text-[#42e078] font-semibold">
+              <span className="text-[#019934] font-semibold">
                 Increases Home Resale Value by up to 12%
               </span>
             </div>

@@ -50,7 +50,7 @@ export default function Home2ComparisonHotspots({
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="text-center mb-16 lg:mb-24">
-          <div className="text-[#4CC66E] font-bold text-xs sm:text-sm uppercase tracking-widest mb-3">
+          <div className="text-[#019934] font-bold text-xs sm:text-sm uppercase tracking-widest mb-3">
             {overline}
           </div>
           <h2 className="text-3xl sm:text-4xl md:text-[42px] font-serif font-normal text-white leading-tight mb-5">
@@ -120,10 +120,10 @@ export default function Home2ComparisonHotspots({
                     setActiveHotspot(isActive ? null : idx);
                   }}
                   className={`relative flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12 rounded-full transition-all duration-300 shadow-lg cursor-pointer ${
-                    isActive ? 'bg-[#4CC66E] scale-110 shadow-[0_0_20px_rgba(76,198,110,0.6)]' : 'bg-white hover:bg-[#4CC66E] hover:scale-110'
+                    isActive ? 'bg-[#019934] scale-110 shadow-[0_0_20px_rgba(76,198,110,0.6)]' : 'bg-white hover:bg-[#019934] hover:scale-110'
                   }`}
                 >
-                  <span className={`absolute inset-0 rounded-full animate-ping opacity-75 ${isActive ? 'bg-[#4CC66E]' : 'bg-white'}`} style={{ animationDuration: '2s' }} />
+                  <span className={`absolute inset-0 rounded-full animate-ping opacity-75 ${isActive ? 'bg-[#019934]' : 'bg-white'}`} style={{ animationDuration: '2s' }} />
                   <Plus className={`w-5 h-5 sm:w-6 sm:h-6 transition-colors duration-300 ${isActive ? 'text-white rotate-45' : 'text-[#1A292C]'}`} />
                 </button>
 

@@ -50,7 +50,7 @@ export default function Home2About() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 sm:py-28 grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
           {/* Left Column */}
           <div className="lg:col-span-6 text-left">
-            <span className="text-xs font-bold uppercase tracking-[0.22em] text-[#4CC66E] block mb-3">
+            <span className="text-xs font-bold uppercase tracking-[0.22em] text-[#019934] block mb-3">
               ABOUT US
             </span>
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-serif font-normal text-white tracking-tight leading-tight">
@@ -68,7 +68,7 @@ export default function Home2About() {
                 const IconComp = v.icon;
                 return (
                   <div key={v.title} className="text-left">
-                    <span className="text-[#4CC66E] mb-3 block">
+                    <span className="text-[#019934] mb-3 block">
                       <IconComp className="w-6 h-6" />
                     </span>
                     <h3 className="text-base sm:text-lg font-bold text-white mb-1.5">

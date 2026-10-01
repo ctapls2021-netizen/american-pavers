@@ -59,7 +59,7 @@ export default function FoundationSystem({ onOpenModal }: FoundationSystemProps)
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-16">
-          <span className="text-xs font-bold uppercase tracking-widest text-[#42e078] block mb-3">
+          <span className="text-xs font-bold uppercase tracking-widest text-[#019934] block mb-3">
             Engineering Specifications
           </span>
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-white tracking-tight font-serif-brand">
@@ -83,7 +83,7 @@ export default function FoundationSystem({ onOpenModal }: FoundationSystemProps)
                   {layer.step}
                 </div>
                 <div>
-                  <span className="text-[11px] font-bold text-[#42e078] uppercase tracking-wider block">
+                  <span className="text-[11px] font-bold text-[#019934] uppercase tracking-wider block">
                     {layer.depth}
                   </span>
                   <h3 className="text-base sm:text-lg font-bold text-white font-serif-brand mt-0.5 leading-snug">
@@ -101,7 +101,7 @@ export default function FoundationSystem({ onOpenModal }: FoundationSystemProps)
               <div className="lg:w-1/4 border-t lg:border-t-0 lg:border-l border-white/10 pt-4 lg:pt-0 lg:pl-6 space-y-2">
                 {layer.highlights.map((h, i) => (
                   <div key={i} className="flex items-center gap-2 text-xs font-semibold text-stone-200">
-                    <CheckCircle2 className="w-4 h-4 text-[#42e078] shrink-0" />
+                    <CheckCircle2 className="w-4 h-4 text-[#019934] shrink-0" />
                     <span>{h}</span>
                   </div>
                 ))}
@@ -113,7 +113,7 @@ export default function FoundationSystem({ onOpenModal }: FoundationSystemProps)
         {/* ICPI Guarantee Callout */}
         <div className="mt-12 p-6 sm:p-8 bg-gradient-to-r from-[#0c1618] to-[#142326] border border-[#019934]/30 flex flex-col sm:flex-row items-center justify-between gap-6">
           <div className="flex items-center gap-4">
-            <div className="w-12 h-12 bg-[#019934]/20 border border-[#019934]/40 flex items-center justify-center text-[#42e078] shrink-0">
+            <div className="w-12 h-12 bg-[#019934]/20 border border-[#019934]/40 flex items-center justify-center text-[#019934] shrink-0">
               <ShieldCheck className="w-6 h-6" />
             </div>
             <div>

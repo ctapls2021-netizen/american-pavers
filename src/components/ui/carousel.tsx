@@ -132,7 +132,7 @@ const Slide = ({ slide, index, current, total, handleSlideClick }: SlideProps) =
           isCurrent ? 'opacity-100 visible' : 'opacity-0 invisible'
         }`}
       >
-        <span className="text-[11px] sm:text-xs font-bold uppercase tracking-widest text-[#42e078] mb-1.5 drop-shadow">
+        <span className="text-[11px] sm:text-xs font-bold uppercase tracking-widest text-[#019934] mb-1.5 drop-shadow">
           Service Coverage Area
         </span>
         <h3 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-white font-serif-brand tracking-tight drop-shadow-lg">

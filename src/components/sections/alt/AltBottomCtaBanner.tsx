@@ -83,7 +83,7 @@ export default function AltBottomCtaBanner({
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
           {/* Left Column (6 cols): Copy & Assurances */}
           <div className="lg:col-span-6 flex flex-col space-y-6 text-left">
-            <span className="text-[11px] font-semibold uppercase tracking-[0.25em] text-[#42e078] block">
+            <span className="text-[11px] font-semibold uppercase tracking-[0.25em] text-[#019934] block">
               COMPLIMENTARY 3D SESSION
             </span>
 
@@ -98,15 +98,15 @@ export default function AltBottomCtaBanner({
             {/* Value Guarantees with Delicate Border */}
             <div className="space-y-4 pt-4 border-t border-white/10">
               <div className="flex items-start gap-3 text-stone-200 text-sm">
-                <CheckCircle2 className="w-5 h-5 text-[#42e078] shrink-0 mt-0.5" />
+                <CheckCircle2 className="w-5 h-5 text-[#019934] shrink-0 mt-0.5" />
                 <span>Certified ICPI &amp; C-27 Master Installation Crews</span>
               </div>
               <div className="flex items-start gap-3 text-stone-200 text-sm">
-                <CheckCircle2 className="w-5 h-5 text-[#42e078] shrink-0 mt-0.5" />
+                <CheckCircle2 className="w-5 h-5 text-[#019934] shrink-0 mt-0.5" />
                 <span>25-Year to Lifetime Transferable Structural Guarantee</span>
               </div>
               <div className="flex items-start gap-3 text-stone-200 text-sm">
-                <CheckCircle2 className="w-5 h-5 text-[#42e078] shrink-0 mt-0.5" />
+                <CheckCircle2 className="w-5 h-5 text-[#019934] shrink-0 mt-0.5" />
                 <span>Complimentary In-Home 3D Design Simulation &amp; Stone Samples</span>
               </div>
             </div>
@@ -116,9 +116,9 @@ export default function AltBottomCtaBanner({
               <span>Prefer speaking now?</span>
               <a
                 href={`tel:${companyData.phone}`}
-                className="font-bold text-white hover:text-[#42e078] transition-colors inline-flex items-center gap-1.5"
+                className="font-bold text-white hover:text-[#019934] transition-colors inline-flex items-center gap-1.5"
               >
-                <Phone className="w-3.5 h-3.5 text-[#42e078]" />
+                <Phone className="w-3.5 h-3.5 text-[#019934]" />
                 {companyData.formattedPhone}
               </a>
             </div>

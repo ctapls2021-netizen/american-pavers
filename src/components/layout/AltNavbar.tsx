@@ -44,7 +44,7 @@ export default function AltNavbar({ onOpenModal }: AltNavbarProps) {
       {/* Top Micro-Bar (Trust & Phone) */}
       <div className="bg-stone-950 text-stone-300 text-[11px] py-1.5 px-4 sm:px-8 border-b border-white/10 flex items-center justify-between">
         <div className="flex items-center gap-2">
-          <ShieldCheck className="w-3.5 h-3.5 text-[#42e078]" />
+          <ShieldCheck className="w-3.5 h-3.5 text-[#019934]" />
           <span className="font-semibold text-white">Licensed, Bonded &amp; Insured</span>
           <span className="hidden sm:inline text-white/30">•</span>
           <span className="hidden sm:inline text-stone-400">Class B, C-27 Landscape &amp; C-29 Masonry</span>
@@ -54,7 +54,7 @@ export default function AltNavbar({ onOpenModal }: AltNavbarProps) {
           <span className="hidden md:inline text-stone-400">Serving Los Angeles &amp; Orange County</span>
           <a
             href={`tel:${companyData.phone}`}
-            className="flex items-center gap-1.5 text-white font-bold hover:text-[#42e078] transition-colors"
+            className="flex items-center gap-1.5 text-white font-bold hover:text-[#019934] transition-colors"
           >
             <Phone className="w-3 h-3 text-[#019934]" />
             <span>{companyData.formattedPhone}</span>
@@ -92,7 +92,7 @@ export default function AltNavbar({ onOpenModal }: AltNavbarProps) {
               <span className="font-black text-base sm:text-lg tracking-tight text-white leading-tight uppercase font-serif-brand">
                 American Pavers
               </span>
-              <span className="text-[10px] tracking-widest text-[#42e078] font-bold uppercase">
+              <span className="text-[10px] tracking-widest text-[#019934] font-bold uppercase">
                 &amp; Turf Masters
               </span>
             </div>
@@ -118,7 +118,7 @@ export default function AltNavbar({ onOpenModal }: AltNavbarProps) {
               href={`tel:${companyData.phone}`}
               className="px-4 py-2.5 bg-stone-900 hover:bg-stone-800 border border-white/20 text-white font-bold text-xs uppercase tracking-wider transition-colors flex items-center gap-1.5"
             >
-              <Phone className="w-3.5 h-3.5 text-[#42e078]" />
+              <Phone className="w-3.5 h-3.5 text-[#019934]" />
               <span>Call Direct</span>
             </a>
 
@@ -153,7 +153,7 @@ export default function AltNavbar({ onOpenModal }: AltNavbarProps) {
                 key={link.name}
                 href={link.href}
                 onClick={(e) => handleAnchorClick(e, link.href)}
-                className="text-stone-200 hover:text-[#42e078] text-sm font-bold uppercase tracking-wider py-2 border-b border-white/5"
+                className="text-stone-200 hover:text-[#019934] text-sm font-bold uppercase tracking-wider py-2 border-b border-white/5"
               >
                 {link.name}
               </a>
@@ -176,7 +176,7 @@ export default function AltNavbar({ onOpenModal }: AltNavbarProps) {
                 href={`tel:${companyData.phone}`}
                 className="w-full py-3 bg-stone-900 border border-white/20 text-white font-bold text-xs uppercase tracking-wider flex items-center justify-center gap-2"
               >
-                <Phone className="w-3.5 h-3.5 text-[#42e078]" />
+                <Phone className="w-3.5 h-3.5 text-[#019934]" />
                 <span>Call {companyData.formattedPhone}</span>
               </a>
             </div>

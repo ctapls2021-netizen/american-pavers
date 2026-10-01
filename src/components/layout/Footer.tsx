@@ -65,7 +65,7 @@ export default function Footer() {
                 <li key={s.slug}>
                   <Link
                     href={`/services/${s.slug}`}
-                    className="hover:text-[#42e078] transition-colors"
+                    className="hover:text-[#019934] transition-colors"
                   >
                     {s.shortTitle}
                   </Link>
@@ -84,7 +84,7 @@ export default function Footer() {
                 <li key={loc.slug}>
                   <Link
                     href={`/locations/${loc.slug}`}
-                    className="hover:text-[#42e078] transition-colors"
+                    className="hover:text-[#019934] transition-colors"
                   >
                     {loc.name}, {loc.stateCode}
                   </Link>
@@ -100,17 +100,17 @@ export default function Footer() {
             </h3>
             <ul className="space-y-2.5 text-xs text-stone-400">
               <li>
-                <Link href="/about" className="hover:text-[#42e078] transition-colors">
+                <Link href="/about" className="hover:text-[#019934] transition-colors">
                   About Us
                 </Link>
               </li>
               <li>
-                <Link href="/contact" className="hover:text-[#42e078] transition-colors">
+                <Link href="/contact" className="hover:text-[#019934] transition-colors">
                   Contact Us
                 </Link>
               </li>
               <li>
-                <Link href="/gallery" className="hover:text-[#42e078] transition-colors">
+                <Link href="/gallery" className="hover:text-[#019934] transition-colors">
                   Gallery & Transformations
                 </Link>
               </li>

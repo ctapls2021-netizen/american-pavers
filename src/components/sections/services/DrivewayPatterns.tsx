@@ -104,7 +104,7 @@ export default function DrivewayPatterns({ onOpenModal }: DrivewayPatternsProps)
               alt={current.name}
               className="w-full h-full object-cover object-center transition-transform duration-700 hover:scale-105"
             />
-            <div className="absolute top-4 left-4 px-3 py-1 bg-[#1A292C]/90 text-[#42e078] text-xs font-bold uppercase tracking-wider backdrop-blur-md">
+            <div className="absolute top-4 left-4 px-3 py-1 bg-[#1A292C]/90 text-[#019934] text-xs font-bold uppercase tracking-wider backdrop-blur-md">
               10,000+ PSI Rated
             </div>
           </div>

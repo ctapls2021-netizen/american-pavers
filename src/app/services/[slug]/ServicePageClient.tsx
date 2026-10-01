@@ -837,7 +837,7 @@ export default function ServicePageClient({ service, basePath }: ServicePageClie
 
               <div className="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="max-w-3xl space-y-5">
-                  <span className="text-xs font-bold uppercase tracking-widest text-[#42e078] block">
+                  <span className="text-xs font-bold uppercase tracking-widest text-[#019934] block">
                     Master Installation Series
                   </span>
 

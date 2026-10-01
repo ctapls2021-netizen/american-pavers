@@ -51,13 +51,13 @@ export default function ServiceHeroStatic({
             Services
           </Link>
           <ChevronRight className="w-3.5 h-3.5 text-stone-400" />
-          <span className="font-bold text-[#42e078]">{serviceName}</span>
+          <span className="font-bold text-[#019934]">{serviceName}</span>
         </div>
       </div>
 
       {/* 4. Centered Hero Content (Idéntico a la tipografía y botones del Home) */}
       <div className="relative z-20 flex-1 flex flex-col items-center justify-center text-center px-4 sm:px-6 max-w-5xl mx-auto my-auto">
-        <span className="text-[#4CC66E] font-bold text-xs uppercase tracking-[0.22em] mb-2 drop-shadow">
+        <span className="text-[#019934] font-bold text-xs uppercase tracking-[0.22em] mb-2 drop-shadow">
           Master Installation Series
         </span>
 
@@ -93,7 +93,7 @@ export default function ServiceHeroStatic({
             href={`tel:${companyData.phone}`}
             className="w-full sm:w-auto px-6 py-3.5 rounded-none bg-white/15 hover:bg-white/25 backdrop-blur-md border border-white/25 text-white font-semibold text-sm sm:text-base transition-all cursor-pointer shadow-lg flex items-center justify-center gap-2 whitespace-nowrap"
           >
-            <Phone className="w-4 h-4 text-[#42e078] shrink-0" />
+            <Phone className="w-4 h-4 text-[#019934] shrink-0" />
             <span className="whitespace-nowrap">Call {companyData.formattedPhone}</span>
           </a>
         </div>

@@ -48,13 +48,13 @@ export default function AboutPageClientV2() {
                 Home
               </Link>
               <ChevronRight className="w-3.5 h-3.5 text-stone-400" />
-              <span className="font-bold text-[#4CC66E]">About Us</span>
+              <span className="font-bold text-[#019934]">About Us</span>
             </div>
           </div>
 
           {/* Centered Hero Content */}
           <div className="relative z-20 flex-1 flex flex-col items-center justify-center text-center px-4 sm:px-6 max-w-5xl mx-auto my-auto">
-            <span className="text-[#4CC66E] font-bold text-xs uppercase tracking-[0.22em] mb-2 drop-shadow">
+            <span className="text-[#019934] font-bold text-xs uppercase tracking-[0.22em] mb-2 drop-shadow">
               28 Years of Hardscape Excellence
             </span>
 
@@ -86,7 +86,7 @@ export default function AboutPageClientV2() {
                 href={`tel:${companyData.phone}`}
                 className="w-full sm:w-auto px-6 py-3 rounded-[6px] bg-white/10 hover:bg-white/20 backdrop-blur-md border border-white/20 text-white font-semibold text-sm transition-all cursor-pointer flex items-center justify-center gap-2"
               >
-                <Phone className="w-4 h-4 text-[#4CC66E]" />
+                <Phone className="w-4 h-4 text-[#019934]" />
                 <span>Call {companyData.formattedPhone}</span>
               </a>
             </div>

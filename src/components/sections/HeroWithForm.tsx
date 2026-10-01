@@ -55,7 +55,7 @@ export default function HeroWithForm({
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
           {/* Left Column: Value Proposition */}
           <div className="lg:col-span-7 space-y-6">
-            <div className="text-xs font-bold uppercase tracking-widest text-[#42e078]">
+            <div className="text-xs font-bold uppercase tracking-widest text-[#019934]">
               {locationName ? `#1 Rated Outdoor Living in ${locationName}` : `${companyData.projectsCompleted.toLocaleString()}+ Homes Transformed`}
             </div>
 
@@ -63,7 +63,7 @@ export default function HeroWithForm({
               {title || (
                 <>
                   Never Replace <br />
-                  <span className="text-[#42e078]">Cracked Concrete</span> Again.
+                  <span className="text-[#019934]">Cracked Concrete</span> Again.
                 </>
               )}
             </h1>

@@ -101,15 +101,15 @@ export default function BottomCtaBanner({
             {/* Value Highlights */}
             <div className="space-y-3 pt-2">
               <div className="flex items-center gap-3 text-stone-200 text-sm">
-                <CheckCircle2 className="w-5 h-5 text-[#42e078] shrink-0" />
+                <CheckCircle2 className="w-5 h-5 text-[#019934] shrink-0" />
                 <span>Certified ICPI & C-27 Master Installation Crews</span>
               </div>
               <div className="flex items-center gap-3 text-stone-200 text-sm">
-                <CheckCircle2 className="w-5 h-5 text-[#42e078] shrink-0" />
+                <CheckCircle2 className="w-5 h-5 text-[#019934] shrink-0" />
                 <span>25-Year to Lifetime Transferable Structural Guarantee</span>
               </div>
               <div className="flex items-center gap-3 text-stone-200 text-sm">
-                <CheckCircle2 className="w-5 h-5 text-[#42e078] shrink-0" />
+                <CheckCircle2 className="w-5 h-5 text-[#019934] shrink-0" />
                 <span>Complimentary In-Home 3D Design Simulation & Stone Samples</span>
               </div>
             </div>

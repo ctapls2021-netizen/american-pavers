@@ -47,7 +47,7 @@ export default function Home2Hero() {
       <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14 sm:py-20 lg:py-24">
         {/* Copy Container */}
         <div className="max-w-2xl text-left">
-          <span className="text-xs sm:text-sm font-bold uppercase tracking-[0.22em] text-[#4CC66E] block mb-2 sm:mb-3">
+          <span className="text-xs sm:text-sm font-bold uppercase tracking-[0.22em] text-[#019934] block mb-2 sm:mb-3">
             Los Angeles · Pavers &amp; turf
           </span>
 
@@ -99,13 +99,13 @@ export default function Home2Hero() {
                   }`}
                 >
                   <div className="flex items-center gap-2.5 sm:gap-3.5">
-                    <span className="text-[#4CC66E] shrink-0">
+                    <span className="text-[#019934] shrink-0">
                       <IconComp className="w-4 h-4 sm:w-5 sm:h-5" />
                     </span>
                     <div className="min-w-0 flex-1 font-serif text-xl sm:text-2xl lg:text-4xl text-white font-normal leading-none truncate">
                       {s.value}
                       {s.suffix && (
-                        <span className="text-xs sm:text-sm lg:text-base text-[#4CC66E] font-sans ml-0.5">
+                        <span className="text-xs sm:text-sm lg:text-base text-[#019934] font-sans ml-0.5">
                           {s.suffix}
                         </span>
                       )}

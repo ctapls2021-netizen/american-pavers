@@ -81,7 +81,7 @@ export default function AltFaqAccordion({
 
             {/* Direct Expert Assistance Box in Kōzen Mineral Dark */}
             <div className="p-6 sm:p-7 bg-[#1A292C] text-white border border-stone-800">
-              <span className="text-[10px] font-semibold uppercase tracking-[0.2em] text-[#42e078] block mb-2">
+              <span className="text-[10px] font-semibold uppercase tracking-[0.2em] text-[#019934] block mb-2">
                 EXPERT CONSULTATION
               </span>
               <h3 className="text-xl font-serif font-normal text-white">
@@ -93,9 +93,9 @@ export default function AltFaqAccordion({
               <div className="mt-5 pt-4 border-t border-stone-800/80 flex items-center justify-between">
                 <a
                   href={`tel:${companyData.phone}`}
-                  className="inline-flex items-center gap-2 text-sm font-bold text-white hover:text-[#42e078] transition-colors"
+                  className="inline-flex items-center gap-2 text-sm font-bold text-white hover:text-[#019934] transition-colors"
                 >
-                  <Phone className="w-4 h-4 text-[#42e078]" />
+                  <Phone className="w-4 h-4 text-[#019934]" />
                   <span>{companyData.formattedPhone}</span>
                 </a>
                 <span className="text-[11px] text-stone-400">Mon–Sat 7am–7pm</span>

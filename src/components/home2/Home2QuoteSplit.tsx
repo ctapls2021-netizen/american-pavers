@@ -77,7 +77,7 @@ export default function Home2QuoteSplit() {
         <div className="absolute inset-0 bg-[#0E1719]/80" />
 
         <div className="relative z-10 w-full max-w-[560px] mx-auto lg:ml-auto lg:mr-0 text-left">
-          <span className="text-xs sm:text-sm font-bold uppercase tracking-[0.22em] text-[#4CC66E] block mb-3">
+          <span className="text-xs sm:text-sm font-bold uppercase tracking-[0.22em] text-[#019934] block mb-3">
             FREE ESTIMATE
           </span>
 
@@ -94,26 +94,26 @@ export default function Home2QuoteSplit() {
 
           <div className="mt-8 sm:mt-10 space-y-4">
             <div className="flex items-center gap-3.5 text-stone-200 text-sm sm:text-base">
-              <span className="text-[#4CC66E] flex items-center shrink-0">
+              <span className="text-[#019934] flex items-center shrink-0">
                 <MapPin className="w-5 h-5 stroke-[1.75]" />
               </span>
               <span>Serving Los Angeles County — Valley to the South Bay</span>
             </div>
 
             <div className="flex items-center gap-3.5 text-stone-200 text-sm sm:text-base">
-              <span className="text-[#4CC66E] flex items-center shrink-0">
+              <span className="text-[#019934] flex items-center shrink-0">
                 <Clock className="w-5 h-5 stroke-[1.75]" />
               </span>
               <span>Mon–Sat, 7am–6pm</span>
             </div>
 
             <div className="flex items-center gap-3.5 text-stone-200 text-sm sm:text-base">
-              <span className="text-[#4CC66E] flex items-center shrink-0">
+              <span className="text-[#019934] flex items-center shrink-0">
                 <Phone className="w-5 h-5 stroke-[1.75]" />
               </span>
               <a
                 href={`tel:${companyData.phone}`}
-                className="hover:text-[#4CC66E] transition-colors"
+                className="hover:text-[#019934] transition-colors"
               >
                 {companyData.formattedPhone}
               </a>

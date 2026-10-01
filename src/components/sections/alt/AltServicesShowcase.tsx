@@ -138,7 +138,7 @@ export default function AltServicesShowcase({ onOpenModal }: AltServicesShowcase
         {/* Bottom Multi-Service Bundle Banner (Kōzen Architectural Note) */}
         <div className="mt-16 p-8 sm:p-12 bg-[#1A292C] text-white flex flex-col md:flex-row items-center justify-between gap-8 border border-stone-800 shadow-xl">
           <div className="max-w-2xl text-left">
-            <span className="text-[10px] sm:text-xs font-semibold text-[#42e078] uppercase tracking-[0.25em] block mb-2">
+            <span className="text-[10px] sm:text-xs font-semibold text-[#019934] uppercase tracking-[0.25em] block mb-2">
               MULTI-SERVICE PACKAGE
             </span>
             <h4 className="text-2xl sm:text-3xl font-serif font-normal text-white tracking-tight">

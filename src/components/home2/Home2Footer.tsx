@@ -99,9 +99,9 @@ export default function Home2Footer({ basePath }: Home2FooterProps) {
                 fontSize: '0.9375rem',
                 textDecoration: 'none',
               }}
-              className="hover:text-[#4CC66E] transition-colors"
+              className="hover:text-[#019934] transition-colors"
             >
-              <Phone className="w-4 h-4 shrink-0 text-[#4CC66E]" />
+              <Phone className="w-4 h-4 shrink-0 text-[#019934]" />
               <span>{companyData.formattedPhone}</span>
             </a>
 
@@ -115,9 +115,9 @@ export default function Home2Footer({ basePath }: Home2FooterProps) {
                 fontSize: '0.9375rem',
                 textDecoration: 'none',
               }}
-              className="hover:text-[#4CC66E] transition-colors"
+              className="hover:text-[#019934] transition-colors"
             >
-              <Mail className="w-4 h-4 shrink-0 text-[#4CC66E]" />
+              <Mail className="w-4 h-4 shrink-0 text-[#019934]" />
               <span>info@americanpaversturf.com</span>
             </a>
 
@@ -130,7 +130,7 @@ export default function Home2Footer({ basePath }: Home2FooterProps) {
                 color: '#B3C2C6',
               }}
             >
-              <Clock className="w-4 h-4 shrink-0 text-[#4CC66E]" />
+              <Clock className="w-4 h-4 shrink-0 text-[#019934]" />
               <span>Mon–Sat, 7am–6pm</span>
             </span>
           </div>
@@ -148,7 +148,7 @@ export default function Home2Footer({ basePath }: Home2FooterProps) {
                 fontWeight: 600,
                 letterSpacing: '0.22em',
                 textTransform: 'uppercase',
-                color: '#4CC66E', // var(--green-400)
+                color: '#019934', // var(--green-400)
               }}
             >
               {c.title}

@@ -115,7 +115,7 @@ export default function LeadFormModal({
           >
             <X className="w-6 h-6" />
           </button>
-          <div className="text-xs font-bold uppercase tracking-widest text-[#42e078] mb-1.5">
+          <div className="text-xs font-bold uppercase tracking-widest text-[#019934] mb-1.5">
             Zero-Obligation Estimate
           </div>
           <h3 className="text-xl sm:text-2xl font-bold tracking-tight font-serif-brand">

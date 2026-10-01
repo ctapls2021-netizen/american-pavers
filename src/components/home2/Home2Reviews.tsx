@@ -118,7 +118,7 @@ export default function Home2Reviews({
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="max-w-3xl mb-10 sm:mb-16 text-left">
-          <span className="text-xs font-bold uppercase tracking-[0.22em] text-[#4CC66E] block mb-2 sm:mb-3">
+          <span className="text-xs font-bold uppercase tracking-[0.22em] text-[#019934] block mb-2 sm:mb-3">
             {tag}
           </span>
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-serif font-normal text-white tracking-tight leading-tight">
@@ -139,9 +139,9 @@ export default function Home2Reviews({
                 </span>
 
                 <div>
-                  <div className="flex items-center gap-1 text-[#4CC66E] mb-1.5">
+                  <div className="flex items-center gap-1 text-[#019934] mb-1.5">
                     {[...Array(5)].map((_, i) => (
-                      <Star key={i} className="w-3.5 h-3.5 fill-[#4CC66E]" />
+                      <Star key={i} className="w-3.5 h-3.5 fill-[#019934]" />
                     ))}
                   </div>
 
@@ -180,9 +180,9 @@ export default function Home2Reviews({
                   </span>
 
                   <div>
-                    <div className="flex items-center gap-0.5 text-[#4CC66E] mb-1">
+                    <div className="flex items-center gap-0.5 text-[#019934] mb-1">
                       {[...Array(5)].map((_, i) => (
-                        <Star key={i} className="w-3 h-3 fill-[#4CC66E]" />
+                        <Star key={i} className="w-3 h-3 fill-[#019934]" />
                       ))}
                     </div>
 
@@ -216,9 +216,9 @@ export default function Home2Reviews({
               className="bg-white/5 border border-white/10 rounded-lg p-7 sm:p-8 flex flex-col justify-between"
             >
               <div>
-                <div className="flex items-center gap-1 text-[#4CC66E] mb-5">
+                <div className="flex items-center gap-1 text-[#019934] mb-5">
                   {[...Array(5)].map((_, i) => (
-                    <Star key={i} className="w-4 h-4 fill-[#4CC66E]" />
+                    <Star key={i} className="w-4 h-4 fill-[#019934]" />
                   ))}
                 </div>
 
@@ -254,9 +254,9 @@ export default function Home2Reviews({
                 <div key={idx} className="w-full shrink-0">
                   <div className="bg-white/5 border border-white/10 rounded-lg p-5 sm:p-6 flex flex-col justify-between min-h-[200px]">
                     <div>
-                      <div className="flex items-center gap-1 text-[#4CC66E] mb-3">
+                      <div className="flex items-center gap-1 text-[#019934] mb-3">
                         {[...Array(5)].map((_, i) => (
-                          <Star key={i} className="w-3.5 h-3.5 fill-[#4CC66E]" />
+                          <Star key={i} className="w-3.5 h-3.5 fill-[#019934]" />
                         ))}
                       </div>
 
@@ -288,7 +288,7 @@ export default function Home2Reviews({
                 onClick={() => setActiveSlide(i)}
                 className={`transition-all duration-300 rounded-full cursor-pointer ${
                   activeSlide === i
-                    ? 'w-6 h-2 bg-[#4CC66E]'
+                    ? 'w-6 h-2 bg-[#019934]'
                     : 'w-2 h-2 bg-white/30 hover:bg-white/50'
                 }`}
                 aria-label={`Go to slide ${i + 1}`}

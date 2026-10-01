@@ -75,8 +75,8 @@ export default function Home2BottomCtaBanner({
       </div>
 
       {/* Ambient green glows */}
-      <figure className="pointer-events-none absolute -bottom-[40%] left-1/2 z-0 block aspect-square w-[520px] -translate-x-1/2 rounded-full bg-[#4CC66E]/15 blur-[160px]" />
-      <figure className="pointer-events-none absolute left-[4vw] top-[64px] z-10 hidden aspect-square w-[28vw] rounded-full bg-[#4CC66E]/10 opacity-50 blur-[100px] md:block" />
+      <figure className="pointer-events-none absolute -bottom-[40%] left-1/2 z-0 block aspect-square w-[520px] -translate-x-1/2 rounded-full bg-[#019934]/15 blur-[160px]" />
+      <figure className="pointer-events-none absolute left-[4vw] top-[64px] z-10 hidden aspect-square w-[28vw] rounded-full bg-[#019934]/10 opacity-50 blur-[100px] md:block" />
 
       {/* Main Content: Review Marquee at Top + 2-Column Grid */}
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -101,15 +101,15 @@ export default function Home2BottomCtaBanner({
             {/* Value Highlights */}
             <div className="space-y-3 pt-2">
               <div className="flex items-center gap-3 text-stone-200 text-sm">
-                <CheckCircle2 className="w-5 h-5 text-[#42e078] shrink-0" />
+                <CheckCircle2 className="w-5 h-5 text-[#019934] shrink-0" />
                 <span>Certified ICPI & C-27 Master Installation Crews</span>
               </div>
               <div className="flex items-center gap-3 text-stone-200 text-sm">
-                <CheckCircle2 className="w-5 h-5 text-[#42e078] shrink-0" />
+                <CheckCircle2 className="w-5 h-5 text-[#019934] shrink-0" />
                 <span>25-Year to Lifetime Transferable Structural Guarantee</span>
               </div>
               <div className="flex items-center gap-3 text-stone-200 text-sm">
-                <CheckCircle2 className="w-5 h-5 text-[#42e078] shrink-0" />
+                <CheckCircle2 className="w-5 h-5 text-[#019934] shrink-0" />
                 <span>Complimentary In-Home 3D Design Simulation & Stone Samples</span>
               </div>
             </div>
@@ -249,7 +249,7 @@ export default function Home2BottomCtaBanner({
                     <button
                       type="submit"
                       disabled={status === 'submitting'}
-                      className="bg-[#4CC66E] hover:bg-[#42e078] text-[#1A292C] font-semibold text-sm px-6 py-3.5 rounded-none transition-all cursor-pointer flex items-center gap-2"
+                      className="bg-[#019934] hover:bg-[#019934] text-[#1A292C] font-semibold text-sm px-6 py-3.5 rounded-none transition-all cursor-pointer flex items-center gap-2"
                     >
                       {status === 'submitting' ? (
                         <>

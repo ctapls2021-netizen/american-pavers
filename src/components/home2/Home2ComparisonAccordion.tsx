@@ -61,7 +61,7 @@ export default function Home2ComparisonAccordion({
             return (
               <div 
                 key={idx} 
-                className={`bg-white border transition-all duration-300 ${isOpen ? 'border-[#4CC66E] shadow-md' : 'border-stone-200 hover:border-stone-300 shadow-sm'}`}
+                className={`bg-white border transition-all duration-300 ${isOpen ? 'border-[#019934] shadow-md' : 'border-stone-200 hover:border-stone-300 shadow-sm'}`}
               >
                 {/* Accordion Header */}
                 <button
@@ -124,7 +124,7 @@ export default function Home2ComparisonAccordion({
             <button
               type="button"
               onClick={onOpenModal}
-              className="w-full sm:w-auto shrink-0 px-8 py-3.5 bg-[#4CC66E] hover:bg-[#42e078] text-[#1A292C] font-semibold text-sm transition-all flex items-center justify-center gap-2 cursor-pointer"
+              className="w-full sm:w-auto shrink-0 px-8 py-3.5 bg-[#019934] hover:bg-[#019934] text-[#1A292C] font-semibold text-sm transition-all flex items-center justify-center gap-2 cursor-pointer"
             >
               <span>{buttonText}</span>
               <ChevronRight className="w-4 h-4" />
