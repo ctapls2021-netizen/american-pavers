@@ -94,7 +94,7 @@ export default function AboutPageClientV2() {
               </div>
             </div>
 
-            <div className="relative z-20 w-full h-1 bg-gradient-to-r from-transparent via-[#019934] to-transparent opacity-80" />
+            {/* <div className="relative z-20 w-full h-1 bg-gradient-to-r from-transparent via-[#019934] to-transparent opacity-80" /> */}
           </section>
 
           {/* 18 Years & 4 Core Values from Home 2 (Transparent Background) */}
