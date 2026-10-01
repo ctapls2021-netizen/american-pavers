@@ -25,25 +25,31 @@ const VALUES = [
   },
 ];
 
-export default function Home2About() {
+interface Home2AboutProps {
+  transparentBg?: boolean;
+}
+
+export default function Home2About({ transparentBg }: Home2AboutProps = {}) {
   const scrollTo = (id: string) => {
     const el = document.getElementById(id);
     if (el) el.scrollIntoView({ behavior: 'smooth' });
   };
 
   return (
-    <section id="about" className="relative bg-[#0E1719] text-white overflow-hidden scroll-mt-20 w-full max-w-full">
+    <section id="about" className={`relative text-white overflow-hidden scroll-mt-20 w-full max-w-full ${transparentBg ? 'bg-transparent' : 'bg-[#0E1719]'}`}>
       {/* Background Image */}
-      <div className="absolute inset-0 z-0">
-        <Image
-          src="/assets/brand/photo-crew-laying-pavers.png"
-          alt="American Pavers & Turf crew laying a paver driveway"
-          fill
-          sizes="100vw"
-          className="object-cover object-center"
-        />
-        <div className="absolute inset-0 bg-[#0E1719]/80" />
-      </div>
+      {!transparentBg && (
+        <div className="absolute inset-0 z-0">
+          <Image
+            src="/assets/brand/photo-crew-laying-pavers.png"
+            alt="American Pavers & Turf crew laying a paver driveway"
+            fill
+            sizes="100vw"
+            className="object-cover object-center"
+          />
+          <div className="absolute inset-0 bg-[#0E1719]/80" />
+        </div>
+      )}
 
       <div className="relative z-10">
         {/* Upper 2-Column Content */}
