@@ -118,7 +118,7 @@ export default function ContactPageClientV2({ contactData }: ContactPageClientV2
           {/* Static Background Image with zoom */}
           <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
             <img
-              src="/assets/generated/driveway_premium.jpg"
+              src="/assets/real/American_pavers_25_compressed.jpg"
               alt="Contact American Pavers & Turf"
               className="w-full h-full object-cover object-center scale-105"
               loading="eager"
