@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import Image from 'next/image';
+import ProjectVideos from '../ProjectVideos';
 import { notFound } from 'next/navigation';
 import Home2Header from '@/components/home2/Home2Header';
 import Home2Footer from '@/components/home2/Home2Footer';
@@ -76,24 +77,7 @@ export default async function ProjectPage({ params }: PageProps) {
               </div>
             </section>
           )}
-          {project.videos.length > 0 && (
-            <section className="mt-12">
-              <h2 className="font-serif text-3xl text-[#1A292C]">Project videos</h2>
-              <div className="mt-5 grid gap-5 sm:grid-cols-2">
-                {project.videos.map((video, index) => (
-                  <video
-                    key={video}
-                    src={video}
-                    controls
-                    playsInline
-                    preload="none"
-                    aria-label={`${project.title}, video ${index + 1}`}
-                    className="aspect-video w-full bg-stone-950"
-                  />
-                ))}
-              </div>
-            </section>
-          )}
+          {project.videos.length > 0 && <ProjectVideos videos={project.videos} title={project.title} />}
         </section>
         <Home2QuoteSplit />
       </main>

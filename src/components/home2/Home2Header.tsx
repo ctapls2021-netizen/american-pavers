@@ -142,7 +142,7 @@ export default function Home2Header({ onOpenQuote, basePath }: Home2HeaderProps)
         )}
 
         {/* Desktop Navigation Links */}
-        <nav className="hidden lg:flex items-center gap-2">
+        <nav className="hidden xl:flex shrink-0 items-center gap-2 whitespace-nowrap">
           {/* Home */}
           {basePath ? (
             <Link
@@ -285,7 +285,7 @@ export default function Home2Header({ onOpenQuote, basePath }: Home2HeaderProps)
           <button
             type="button"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="lg:hidden p-2 text-white hover:text-[#019934] rounded-md transition-colors"
+            className="xl:hidden p-2 text-white hover:text-[#019934] rounded-md transition-colors"
             aria-label="Toggle Navigation Menu"
           >
             {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
@@ -296,7 +296,7 @@ export default function Home2Header({ onOpenQuote, basePath }: Home2HeaderProps)
       {/* THE NATIVE HOME 2 MEGA MENU PANEL */}
       {megaOpen && (
         <div 
-          className="absolute left-0 right-0 top-full bg-[#1A292C] border-y border-white/10 shadow-2xl animate-in fade-in slide-in-from-top-2 duration-150 cursor-default hidden lg:block"
+          className="absolute left-0 right-0 top-full bg-[#1A292C] border-y border-white/10 shadow-2xl animate-in fade-in slide-in-from-top-2 duration-150 cursor-default hidden xl:block"
           onMouseEnter={handleMouseEnter}
           onMouseLeave={handleMouseLeave}
         >
@@ -380,8 +380,8 @@ export default function Home2Header({ onOpenQuote, basePath }: Home2HeaderProps)
 
       {/* Mobile Drawer Navigation */}
       {mobileMenuOpen && (
-        <div className="lg:hidden bg-[#1A292C] border-t border-white/10 px-4 py-6 space-y-4">
-          <nav className="flex flex-col space-y-2">
+        <div className="xl:hidden bg-[#1A292C] border-t border-white/10 px-4 py-6 space-y-4">
+          <nav className="flex flex-col space-y-2 whitespace-nowrap">
             {basePath ? (
               <>
                 <Link
