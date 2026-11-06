@@ -17,6 +17,7 @@ import BottomCtaBanner from '@/components/sections/BottomCtaBanner';
 import BeforeAfterSlider from '@/components/sections/BeforeAfterSlider';
 import LeadFormModal from '@/components/ui/LeadFormModal';
 import ServiceHeroStatic from '@/components/sections/services/ServiceHeroStatic';
+import { V2_SERVICE_PHOTOS } from '@/data/v2-service-photos';
 import DrivewayFeatureSplit from '@/components/sections/services/DrivewayFeatureSplit';
 import PaversVsConcrete, { ComparisonItem } from '@/components/sections/services/PaversVsConcrete';
 import PaverInstallationLayers from '@/components/sections/services/PaverInstallationLayers';
@@ -278,6 +279,7 @@ export default function ServicePageClient({ service, basePath }: ServicePageClie
     return <BottomCtaBanner onOpenModal={handleOpenModal} title={title} subtitle={subtitle} />;
   };
 
+  const projectPhoto = basePath === '/v3' ? V2_SERVICE_PHOTOS[service.slug] : undefined;
   const isDriveway = service.slug === 'driveway-pavers';
 
   return (
@@ -298,7 +300,7 @@ export default function ServicePageClient({ service, basePath }: ServicePageClie
             <ServiceHeroStatic
               title="Engineered Driveway Pavers"
               tagline="Transforming California residential driveways with 10,000+ PSI interlocking pavers guaranteed for a lifetime."
-              imageSrc="/assets/real/driveway-hero-new.webp"
+              imageSrc={projectPhoto ?? '/assets/real/driveway-hero-new.webp'}
               serviceName={service.shortTitle}
               onOpenModal={handleOpenModal}
               basePath={basePath}
@@ -367,7 +369,7 @@ export default function ServicePageClient({ service, basePath }: ServicePageClie
             <ServiceHeroStatic
               title="Luxury Backyard Patio Pavers"
               tagline="Transforming Southern California backyards into resort-inspired outdoor living spaces with custom interlocking pavers and stone artistry."
-              imageSrc="/assets/real/American pavers (13).jpg"
+              imageSrc={projectPhoto ?? '/assets/real/American pavers (13).jpg'}
               serviceName={service.shortTitle}
               onOpenModal={handleOpenModal}
               basePath={basePath}
@@ -462,7 +464,7 @@ export default function ServicePageClient({ service, basePath }: ServicePageClie
             <ServiceHeroStatic
               title="Slip-Resistant Pool Deck Pavers"
               tagline="Transforming California pool surrounds and coping with cool-touch, non-slip interlocking pavers guaranteed for a lifetime."
-              imageSrc="/assets/real/American pavers (24).jpg"
+              imageSrc={projectPhoto ?? '/assets/real/American pavers (24).jpg'}
               imagePosition="object-bottom"
               serviceName={service.shortTitle}
               onOpenModal={handleOpenModal}
@@ -558,7 +560,7 @@ export default function ServicePageClient({ service, basePath }: ServicePageClie
             <ServiceHeroStatic
               title="Lush Artificial Grass & Putting Greens"
               tagline="Drought-tolerant, pet-friendly, zero-water artificial turf that stays emerald green 365 days a year across Southern California."
-              imageSrc="/assets/real/American pavers (16).jpg"
+              imageSrc={projectPhoto ?? '/assets/real/American pavers (16).jpg'}
               serviceName={service.shortTitle}
               onOpenModal={handleOpenModal}
               basePath={basePath}
@@ -646,7 +648,7 @@ export default function ServicePageClient({ service, basePath }: ServicePageClie
             <ServiceHeroStatic
               title="Custom Outdoor Kitchens & Fire Pits"
               tagline="Gourmet stainless steel BBQ islands, outdoor pizza ovens, granite countertops, and cozy gas fire features."
-              imageSrc="/assets/real/American pavers (21).jpg"
+              imageSrc={projectPhoto ?? '/assets/real/American pavers (21).jpg'}
               serviceName={service.shortTitle}
               onOpenModal={handleOpenModal}
               basePath={basePath}
@@ -731,7 +733,7 @@ export default function ServicePageClient({ service, basePath }: ServicePageClie
             <ServiceHeroStatic
               title="Composite Decks & Louvered Pergolas"
               tagline="Modern composite decking and motorized pergolas engineered for sun protection and modern outdoor living."
-              imageSrc="/assets/real/American pavers (22).jpg"
+              imageSrc={projectPhoto ?? '/assets/real/American pavers (22).jpg'}
               imagePosition="object-[center_20%]"
               serviceName={service.shortTitle}
               onOpenModal={handleOpenModal}

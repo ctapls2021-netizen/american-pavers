@@ -2,7 +2,8 @@
 
 import React from 'react';
 import Image from 'next/image';
-import { motion } from 'framer-motion';
+import Link from 'next/link';
+import { motion, type Variants } from 'framer-motion';
 import { MapPin, ArrowRight } from 'lucide-react';
 
 const WORK_ITEMS = [
@@ -64,12 +65,12 @@ const WORK_ITEMS = [
   },
 ];
 
-const headerVariants: any = {
+const headerVariants: Variants = {
   hidden: { opacity: 0, y: 30 },
   visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeOut" } }
 };
 
-const containerVariants: any = {
+const containerVariants: Variants = {
   hidden: { opacity: 0 },
   visible: { 
     opacity: 1, 
@@ -77,12 +78,29 @@ const containerVariants: any = {
   }
 };
 
-const itemVariants: any = {
+const itemVariants: Variants = {
   hidden: { opacity: 0, scale: 0.95 },
   visible: { opacity: 1, scale: 1, transition: { duration: 0.6, ease: "easeOut" } }
 };
 
-export default function Home2WorkMosaic() {
+interface WorkItem {
+  image: string;
+  tag: string;
+  title: string;
+  location: string;
+  href?: string;
+}
+
+interface WorkMosaicProps {
+  projects?: WorkItem[];
+  galleryHref?: string;
+}
+
+export default function Home2WorkMosaic({ projects, galleryHref }: WorkMosaicProps = {}) {
+  const items: (WorkItem & { spanClass: string })[] = projects?.map((project, index) => ({
+    ...project,
+    spanClass: WORK_ITEMS[index]?.spanClass ?? 'col-span-1 row-span-1',
+  })) ?? WORK_ITEMS;
   const scrollTo = (id: string) => {
     const el = document.getElementById(id);
     if (el) el.scrollIntoView({ behavior: 'smooth' });
@@ -109,6 +127,12 @@ export default function Home2WorkMosaic() {
             </h2>
           </div>
 
+          {galleryHref ? (
+            <Link href={galleryHref} className="w-full sm:w-auto px-6 py-3.5 bg-stone-100 hover:bg-stone-200 text-[#1A292C] font-semibold text-xs sm:text-sm uppercase tracking-wider rounded border border-stone-300 transition-colors flex items-center justify-center gap-2 shrink-0">
+              <span>View the full gallery</span>
+              <ArrowRight className="w-4 h-4" />
+            </Link>
+          ) : (
           <button
             type="button"
             onClick={() => scrollTo('quote-section')}
@@ -117,6 +141,7 @@ export default function Home2WorkMosaic() {
             <span>View the full gallery</span>
             <ArrowRight className="w-4 h-4" />
           </button>
+          )}
         </motion.div>
 
         {/* Animated Mosaic Grid */}
@@ -127,12 +152,12 @@ export default function Home2WorkMosaic() {
           whileInView="visible"
           viewport={{ once: true, margin: "-100px" }}
         >
-          {WORK_ITEMS.map((item, idx) => (
+          {items.map((item, idx) => (
             <motion.div
               key={idx}
               variants={itemVariants}
               className={`group relative rounded-lg overflow-hidden bg-stone-900 shadow-md border border-stone-200 cursor-pointer ${item.spanClass}`}
-              onClick={() => scrollTo('quote-section')}
+              onClick={projects ? undefined : () => scrollTo('quote-section')}
             >
               <Image
                 src={item.image}
@@ -141,6 +166,15 @@ export default function Home2WorkMosaic() {
                 sizes="(max-width: 640px) 50vw, (max-width: 1199px) 50vw, 25vw"
                 className="object-cover object-center group-hover:scale-110 transition-transform duration-[1.5s] ease-[cubic-bezier(0.16,1,0.3,1)]"
               />
+
+              {item.href && (
+                <Link
+                  href={item.href}
+                  prefetch={false}
+                  aria-label={item.title + ' in ' + item.location}
+                  className="absolute inset-0 z-20 focus-visible:outline-2 focus-visible:-outline-offset-4 focus-visible:outline-white"
+                />
+              )}
 
               {/* Scrim Overlay */}
               <div className="absolute inset-0 bg-gradient-to-t from-[#0E1719]/95 via-[#0E1719]/40 to-transparent opacity-80 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />

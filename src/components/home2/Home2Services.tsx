@@ -17,6 +17,8 @@ const SERVICE_ASSETS: Record<string, { iconSrc: string, image: string }> = {
   'decking-pergolas': { iconSrc: '/assets/icons/new/icon (3).png', image: '/assets/generated/pergola_premium.jpg' },
 };
 
+import { V2_SERVICE_PHOTOS } from '@/data/v2-service-photos';
+
 const SERVICES = servicesData.map(s => ({
   slug: s.slug,
   iconSrc: SERVICE_ASSETS[s.slug]?.iconSrc || '/assets/icons/new/icon (2).png',
@@ -89,7 +91,7 @@ export default function Home2Services({ basePath }: Home2ServicesProps) {
               <>
                 {/* Background Image */}
                 <Image
-                  src={s.image}
+                  src={(basePath === '/v3' ? V2_SERVICE_PHOTOS[s.slug] : undefined) ?? s.image}
                   alt={s.title}
                   fill
                   sizes="(max-width: 640px) 50vw, (max-width: 1200px) 50vw, 33vw"

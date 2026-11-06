@@ -98,7 +98,7 @@ export default function PaversVsConcrete({
   comparativeImages,
 }: PaversVsConcreteProps) {
   const pathname = usePathname();
-  const isV2 = pathname?.startsWith('/v2');
+  const isV2 = pathname?.startsWith('/v3');
 
 
   // Smart default comparative images based on section topic
