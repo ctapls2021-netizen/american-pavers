@@ -315,7 +315,7 @@ export default function ScrollVideoHero({
       <picture className="absolute inset-0 w-full h-full pointer-events-none md:hidden">
         <source
           media="(min-width: 769px)"
-          srcSet="/assets/generated/driveway_premium.jpg"
+          srcSet="/assets/generated/driveway_premium.webp"
           type="image/webp"
         />
         <img

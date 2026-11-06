@@ -25,7 +25,7 @@ export default function ProjectVideos({ videos, title }: { videos: string[]; tit
             className="group relative grid aspect-video w-full cursor-pointer place-items-center overflow-hidden rounded-lg bg-stone-950 focus-visible:outline-2 focus-visible:outline-offset-4"
           >
             <Image
-              src={video.replace(/\.mp4$/, '.webp')}
+              src={video.replace(/([^/]+)\/(video-\d+)\.mp4$/, '$1/american-pavers-$1-$2-poster.webp')}
               alt=""
               fill
               sizes="(min-width: 1152px) 534px, (min-width: 640px) 50vw, 100vw"

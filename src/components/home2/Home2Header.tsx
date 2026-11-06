@@ -345,7 +345,7 @@ export default function Home2Header({ onOpenQuote, basePath }: Home2HeaderProps)
                 className="relative block aspect-[4/3] overflow-hidden rounded-[6px] no-underline bg-stone-800 group shadow-md"
               >
                 <Image
-                  src="/assets/real/American pavers (17).jpg"
+                  src="/assets/real/american-pavers-outdoor-paver-project-17.jpg"
                   alt="Featured Outdoor Design"
                   fill
                   className="object-cover transition-transform duration-700 group-hover:scale-105"

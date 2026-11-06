@@ -32,7 +32,7 @@ export const serviceSlides: ServiceSlide[] = [
     buttonText: 'EXPLORE DRIVEWAY PAVERS',
     serviceName: 'Driveway Pavers',
     href: '/services/driveway-pavers',
-    image: '/assets/generated/driveway_premium.jpg',
+    image: '/assets/generated/driveway_premium.webp',
     imageAlt: 'High-strength interlocking paver driveway with custom border stones and estate landscaping',
   },
   {

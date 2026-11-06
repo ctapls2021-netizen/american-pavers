@@ -107,7 +107,7 @@ export default function PaversVsConcrete({
     const slug = (serviceSlug || '').toLowerCase();
     if (slug.includes('turf')) {
       return {
-        primaryImage: '/assets/turf_shot_02.jpg',
+        primaryImage: '/assets/american-pavers-synthetic-turf-project-02.jpg',
         primaryLabel: 'American Drought-Resistant Synthetic Turf',
         primaryBadge: '365 Days Emerald Green · Zero Water',
         secondaryImage: '/assets/transformations/turf-lawn-before.webp',
@@ -127,7 +127,7 @@ export default function PaversVsConcrete({
     }
     if (slug.includes('pool')) {
       return {
-        primaryImage: '/assets/real/American_pavers_22_compressed.jpg',
+        primaryImage: '/assets/real/american-pavers-driveway-paver-installation-22-detail.jpg',
         primaryLabel: 'Slip-Resistant Cool-Touch Pool Pavers & Coping',
         primaryBadge: 'Barefoot Safe · Chlorine & Salt Resistant',
         secondaryImage: '/assets/transformations/pool-deck-before.webp',
@@ -137,7 +137,7 @@ export default function PaversVsConcrete({
     }
     if (slug.includes('kitchen')) {
       return {
-        primaryImage: '/assets/real/Outdoor_kitchen_and_fire_pit_2K_20260924065657.jpeg',
+        primaryImage: '/assets/real/outdoor-kitchen-and-fire-pit.jpeg',
         primaryLabel: 'Custom Welded Steel & Natural Masonry Living',
         primaryBadge: '304 Marine Stainless & Fully Permitted Utilities',
         secondaryImage: '/assets/transformations/fire-pit-before.webp',
@@ -157,7 +157,7 @@ export default function PaversVsConcrete({
     }
     if (slug.includes('driveway')) {
       return {
-        primaryImage: '/assets/real/American_pavers_9_compressed.jpg',
+        primaryImage: '/assets/real/american-pavers-pool-deck-pavers-9-detail.jpg',
         primaryLabel: '10,000+ PSI Interlocking Paver Driveway',
         primaryBadge: '10,000+ PSI · Disperses Ground Settling',
         secondaryImage: '/assets/transformations/driveway-before.webp',
@@ -170,7 +170,7 @@ export default function PaversVsConcrete({
     const t = `${title} ${overline} ${secondaryColumnTitle}`.toLowerCase();
     if (t.includes('turf') || t.includes('grass') || t.includes('lawn')) {
       return {
-        primaryImage: '/assets/turf_shot_02.jpg',
+        primaryImage: '/assets/american-pavers-synthetic-turf-project-02.jpg',
         primaryLabel: 'American Drought-Resistant Synthetic Turf',
         primaryBadge: '365 Days Emerald Green · Zero Water',
         secondaryImage: '/assets/transformations/turf-lawn-before.webp',
@@ -190,7 +190,7 @@ export default function PaversVsConcrete({
     }
     if (t.includes('pool')) {
       return {
-        primaryImage: '/assets/real/American_pavers_22_compressed.jpg',
+        primaryImage: '/assets/real/american-pavers-driveway-paver-installation-22-detail.jpg',
         primaryLabel: 'Slip-Resistant Cool-Touch Pool Pavers & Coping',
         primaryBadge: 'Barefoot Safe · Chlorine & Salt Resistant',
         secondaryImage: '/assets/transformations/pool-deck-before.webp',
@@ -200,7 +200,7 @@ export default function PaversVsConcrete({
     }
     if (t.includes('kitchen')) {
       return {
-        primaryImage: '/assets/real/Outdoor_kitchen_and_fire_pit_2K_20260924065657.jpeg',
+        primaryImage: '/assets/real/outdoor-kitchen-and-fire-pit.jpeg',
         primaryLabel: 'Custom Welded Steel & Natural Masonry Living',
         primaryBadge: '304 Marine Stainless & Fully Permitted Utilities',
         secondaryImage: '/assets/transformations/fire-pit-before.webp',
@@ -221,7 +221,7 @@ export default function PaversVsConcrete({
 
     // Default: Driveway / Pavers vs Concrete
     return {
-      primaryImage: '/assets/real/American_pavers_9_compressed.jpg',
+      primaryImage: '/assets/real/american-pavers-pool-deck-pavers-9-detail.jpg',
       primaryLabel: '10,000+ PSI Interlocking Paver Driveway',
       primaryBadge: '10,000+ PSI · Disperses Ground Settling',
       secondaryImage: '/assets/transformations/driveway-before.webp',

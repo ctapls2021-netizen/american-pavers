@@ -24,7 +24,7 @@ const TURF_TIERS: TurfTier[] = [
     pileHeight: '1-5/8 in.',
     faceWeight: '55 oz.',
     usageDescription: 'Great for light to moderate use',
-    imageSrc: '/assets/products/Close-up_of_artificial_turf_20260924060041.jpeg',
+    imageSrc: '/assets/products/artificial-turf-blades-close-up.jpeg',
     imageAlt: 'SP Turf Standard Artificial Grass',
   },
   {
@@ -34,7 +34,7 @@ const TURF_TIERS: TurfTier[] = [
     pileHeight: '1-3/4 in.',
     faceWeight: '70 oz.',
     usageDescription: 'Great for moderate use',
-    imageSrc: '/assets/products/Artificial_turf_blade_structure_20260924060031.jpeg',
+    imageSrc: '/assets/products/artificial-turf-blade-structure.jpeg',
     imageAlt: 'SP Turf Pro Artificial Grass',
     highlighted: true,
   },
@@ -45,7 +45,7 @@ const TURF_TIERS: TurfTier[] = [
     pileHeight: '2 in.',
     faceWeight: '67 oz.',
     usageDescription: 'Great for moderate to heavy use',
-    imageSrc: '/assets/products/Artificial_turf_side_view_20260924060100.jpeg',
+    imageSrc: '/assets/products/artificial-turf-side-profile.jpeg',
     imageAlt: 'SP Turf Premium Artificial Grass',
   },
 ];

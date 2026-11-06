@@ -19,7 +19,7 @@ interface ServiceHeroStaticProps {
 export default function ServiceHeroStatic({
   title = 'Engineered Driveway Pavers',
   tagline = 'Transforming California residential driveways with 10,000+ PSI interlocking pavers guaranteed for a lifetime.',
-  imageSrc = '/assets/generated/driveway_premium.jpg',
+  imageSrc = '/assets/generated/driveway_premium.webp',
   imagePosition = 'object-center',
   serviceName = 'Driveway Pavers',
   onOpenModal,

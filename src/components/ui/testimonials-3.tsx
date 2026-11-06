@@ -52,7 +52,7 @@ export const testimonials: TestimonialItem[] = [
   {
     testimonial:
       "American Pavers & Turf completely transformed our outdated concrete backyard into a breathtaking private resort. The 3D design session was eye-opening — seeing the exact stone layout and lighting before excavation gave us total confidence. Six months later, the interlocking pavers and custom BBQ island still look brand new. Their craftsmanship is second to none.",
-    image: "/assets/avatars/avatar-1.webp",
+    image: "/assets/avatars/patio-kitchen-review-avatar.webp",
     name: "Elena & David Richardson",
     role: "Patio & Outdoor Kitchen",
     company: "Pasadena, CA",
@@ -63,7 +63,7 @@ export const testimonials: TestimonialItem[] = [
   {
     testimonial:
       "Our cracked, oil-stained driveway was an eyesore. American Pavers replaced it with 10,000 PSI interlocking pavers in just five days. The crew was punctual, clean, and masterfully engineered the slope pitch to prevent water pooling. Neighbors constantly stop on their walks to ask who did our driveway. We couldn't be happier!",
-    image: "/assets/avatars/avatar-2.webp",
+    image: "/assets/avatars/driveway-review-avatar.webp",
     name: "Marcus Vance",
     role: "Interlocking Paver Driveway",
     company: "Newport Beach, CA",
@@ -74,7 +74,7 @@ export const testimonials: TestimonialItem[] = [
   {
     testimonial:
       "From the initial consultation to the final polymeric sand lock, American Pavers & Turf exceeded every expectation. Our kids and dogs love the heat-resistant synthetic grass, and our new composite deck overlooking the hills is our favorite spot for entertaining. Honest pricing, zero hidden fees, and backed by a true lifetime warranty.",
-    image: "/assets/avatars/avatar-3.webp",
+    image: "/assets/avatars/turf-deck-review-avatar.webp",
     name: "Sarah & Liam Chen",
     role: "Synthetic Turf & Composite Deck",
     company: "Irvine, CA",

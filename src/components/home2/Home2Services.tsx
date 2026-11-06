@@ -9,20 +9,20 @@ import { Layers, Ruler, Sprout, Hammer, Droplets, ArrowRight } from 'lucide-reac
 import { servicesData } from '@/data/services';
 
 const SERVICE_ASSETS: Record<string, { iconSrc: string, image: string }> = {
-  'driveway-pavers': { iconSrc: '/assets/icons/new/icon (2).png', image: '/assets/generated/driveway_premium.webp' },
-  'patio-pavers': { iconSrc: '/assets/icons/new/icon (7).png', image: '/assets/generated/patio_premium.jpg' },
-  'pool-deck-pavers': { iconSrc: '/assets/icons/new/icon (1).png', image: '/assets/generated/pool_premium.jpg' },
-  'synthetic-turf': { iconSrc: '/assets/icons/new/icon (4).png', image: '/assets/generated/turf_premium.jpg' },
-  'outdoor-kitchens': { iconSrc: '/assets/icons/new/icon (8).png', image: '/assets/generated/kitchen_premium.jpg' },
-  'decking-pergolas': { iconSrc: '/assets/icons/new/icon (3).png', image: '/assets/generated/pergola_premium.jpg' },
+  'driveway-pavers': { iconSrc: '/assets/icons/new/driveway-pavers-icon.png', image: '/assets/generated/driveway_premium.webp' },
+  'patio-pavers': { iconSrc: '/assets/icons/new/patio-pavers-icon.png', image: '/assets/generated/patio_premium.jpg' },
+  'pool-deck-pavers': { iconSrc: '/assets/icons/new/pool-deck-pavers-icon.png', image: '/assets/generated/pool_premium.jpg' },
+  'synthetic-turf': { iconSrc: '/assets/icons/new/synthetic-turf-icon.png', image: '/assets/generated/turf_premium.jpg' },
+  'outdoor-kitchens': { iconSrc: '/assets/icons/new/outdoor-kitchens-icon.png', image: '/assets/generated/kitchen_premium.jpg' },
+  'decking-pergolas': { iconSrc: '/assets/icons/new/decking-pergolas-icon.png', image: '/assets/generated/pergola_premium.jpg' },
 };
 
 import { V2_SERVICE_PHOTOS } from '@/data/v2-service-photos';
 
 const SERVICES = servicesData.map(s => ({
   slug: s.slug,
-  iconSrc: SERVICE_ASSETS[s.slug]?.iconSrc || '/assets/icons/new/icon (2).png',
-  image: SERVICE_ASSETS[s.slug]?.image || (typeof s.heroImage === 'string' ? s.heroImage : '/assets/generated/driveway_premium.jpg'),
+  iconSrc: SERVICE_ASSETS[s.slug]?.iconSrc || '/assets/icons/new/driveway-pavers-icon.png',
+  image: SERVICE_ASSETS[s.slug]?.image || (typeof s.heroImage === 'string' ? s.heroImage : '/assets/generated/driveway_premium.webp'),
   title: s.shortTitle || s.title,
   description: s.tagline || s.description,
   linkLabel: `See ${s.shortTitle || s.title}`,

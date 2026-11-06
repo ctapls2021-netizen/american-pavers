@@ -30,7 +30,7 @@ const servicesCatalog: ServiceCardData[] = [
     title: 'Interlocking Driveways',
     tag: 'Driveways',
     description: 'Engineered for heavy vehicle loads with zero cracking.',
-    image: '/assets/generated/driveway_premium.jpg',
+    image: '/assets/generated/driveway_premium.webp',
     buttonText: 'Request 3D Plan',
   },
   {

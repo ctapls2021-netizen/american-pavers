@@ -51,7 +51,7 @@ export default function AboutPageClient({ aboutData }: AboutPageClientProps) {
         <section className="relative w-full h-[50vh] min-h-[380px] max-h-[500px] overflow-hidden bg-stone-950 text-white flex flex-col justify-between">
           <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
             <img
-              src="/assets/real/American pavers (17).jpg"
+              src="/assets/real/american-pavers-outdoor-paver-project-17.jpg"
               alt="About American Pavers & Turf"
               className="w-full h-full object-cover object-center scale-105"
               loading="eager"
@@ -179,7 +179,7 @@ export default function AboutPageClient({ aboutData }: AboutPageClientProps) {
               <div className="w-full h-full min-h-[360px] sm:min-h-[420px] lg:min-h-0 flex self-stretch">
                 <div className="relative w-full h-full rounded-none overflow-hidden shadow-xl border border-stone-200/90 bg-stone-100">
                   <img
-                    src="/assets/real/thumbs/American pavers (15).jpg"
+                    src="/assets/real/thumbs/american-pavers-installation-15.jpg"
                     alt="Master Paver Stonemasons in Southern California"
                     className="w-full h-full object-cover object-center"
                   />

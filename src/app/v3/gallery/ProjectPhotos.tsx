@@ -2,7 +2,14 @@
 
 import Image from 'next/image';
 import { ChevronLeft, ChevronRight, X } from 'lucide-react';
+import type { SyntheticEvent } from 'react';
 import { useRef, useState } from 'react';
+
+const croppedPhotoClass = 'object-cover data-[portrait=true]:[filter:url(#project-photo-cleanup)]';
+
+function markPortrait({ currentTarget }: SyntheticEvent<HTMLImageElement>) {
+  currentTarget.dataset.portrait = String(currentTarget.naturalHeight > currentTarget.naturalWidth);
+}
 
 export default function ProjectPhotos({ photos, title }: { photos: string[]; title: string }) {
   const dialog = useRef<HTMLDialogElement>(null);
@@ -20,8 +27,19 @@ export default function ProjectPhotos({ photos, title }: { photos: string[]; tit
 
   return (
     <>
+      <svg aria-hidden="true" width="0" height="0" className="absolute">
+        <defs>
+          <filter id="project-photo-cleanup" colorInterpolationFilters="sRGB">
+            {/* Reduce fine grain before restoring contrast around larger edges. */}
+            <feGaussianBlur stdDeviation={1.18} edgeMode="duplicate" result="smooth" />
+            <feComposite in="SourceGraphic" in2="smooth" operator="arithmetic" k2={0.19} k3={0.81} result="clean" />
+            <feGaussianBlur in="clean" stdDeviation={2.8} edgeMode="duplicate" result="softEdges" />
+            <feComposite in="clean" in2="softEdges" operator="arithmetic" k2={1.42} k3={-0.42} />
+          </filter>
+        </defs>
+      </svg>
       <button type="button" aria-haspopup="dialog" aria-label="Open cover photo" onClick={() => openPhoto(0)} className="relative mt-8 block aspect-[4/3] max-h-[70vh] w-full cursor-zoom-in overflow-hidden rounded-lg">
-        <Image src={cover} alt={title} fill sizes="(min-width: 1152px) 1088px, 100vw" fetchPriority="high" className="object-cover" />
+        <Image src={cover} alt={title} fill sizes="(min-width: 1152px) 1088px, 100vw" fetchPriority="high" onLoad={markPortrait} className={croppedPhotoClass} />
       </button>
       {gallery.length > 0 && (
         <section className="mt-12">
@@ -29,7 +47,7 @@ export default function ProjectPhotos({ photos, title }: { photos: string[]; tit
           <div className="mt-5 grid gap-5 sm:grid-cols-2">
             {gallery.map((photo, index) => (
               <button key={photo} type="button" aria-haspopup="dialog" aria-label={`Open photo ${index + 2}`} onClick={() => openPhoto(index + 1)} className="relative block aspect-[4/3] w-full cursor-zoom-in overflow-hidden rounded-lg">
-                <Image src={photo} alt={`${title}, photo ${index + 2}`} fill sizes="(min-width: 640px) 50vw, 100vw" className="object-cover" />
+                <Image src={photo} alt={`${title}, photo ${index + 2}`} fill sizes="(min-width: 640px) 50vw, 100vw" onLoad={markPortrait} className={croppedPhotoClass} />
               </button>
             ))}
           </div>

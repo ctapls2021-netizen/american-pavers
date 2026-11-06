@@ -7,7 +7,7 @@ export const servicesData: ServiceItem[] = [
     shortTitle: 'Driveway Pavers',
     tagline: 'Transform your home’s curb appeal with cracked-free, 10,000+ PSI engineered driveway pavers.',
     description: 'Say goodbye to ugly cracked concrete, oil stains, and constant sealing. Our interlocking driveway pavers offer 4x the compressive strength of poured concrete, flexible jointing that resists earthquakes and ground movement, and lifetime aesthetic elegance.',
-    heroImage: '/assets/generated/driveway_premium.jpg',
+    heroImage: '/assets/generated/driveway_premium.webp',
     startingPrice: 'Free 3D Design Consultation',
     benefits: [
       'Over 10,000 PSI Compressive Strength (4x stronger than standard concrete)',

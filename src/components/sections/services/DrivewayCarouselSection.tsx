@@ -6,27 +6,27 @@ import Carousel, { SlideData } from '@/components/ui/carousel';
 const drivewaySlides: SlideData[] = [
   {
     title: 'Pasadena, CA',
-    src: '/assets/real/thumbs/American pavers (1).jpg',
+    src: '/assets/real/thumbs/american-pavers-paver-driveway-1.jpg',
   },
   {
     title: 'Beverly Hills, CA',
-    src: '/assets/real/thumbs/American pavers (10).jpg',
+    src: '/assets/real/thumbs/american-pavers-stepped-paver-entry-10.jpg',
   },
   {
     title: 'Newport Beach, CA',
-    src: '/assets/real/thumbs/American pavers (21).jpg',
+    src: '/assets/real/thumbs/american-pavers-charcoal-cobble-walkway-21.jpg',
   },
   {
     title: 'San Fernando Valley, CA',
-    src: '/assets/real/thumbs/American pavers (33).jpg',
+    src: '/assets/real/thumbs/american-pavers-installation-33.jpg',
   },
   {
     title: 'Irvine, CA',
-    src: '/assets/real/thumbs/American pavers (25).jpg',
+    src: '/assets/real/thumbs/american-pavers-porcelain-pool-coping-25.jpg',
   },
   {
     title: 'Encino, CA',
-    src: '/assets/real/thumbs/American pavers (7).jpg',
+    src: '/assets/real/thumbs/american-pavers-driveway-installation-7.jpg',
   },
 ];
 

@@ -83,7 +83,7 @@ export default function GalleryPageV2() {
               initial={{ scale: 1.0 }}
               animate={{ scale: 1.1 }}
               transition={{ duration: 20, ease: 'linear', repeat: Infinity, repeatType: 'reverse' }}
-              src="/assets/v2/projects/rancho-cucamonga/photo-03.webp"
+              src="/assets/v2/projects/rancho-cucamonga/american-pavers-rancho-cucamonga-photo-03.webp"
               alt="American Pavers & Turf Gallery"
               className="w-full h-full object-cover object-center"
               loading="eager"

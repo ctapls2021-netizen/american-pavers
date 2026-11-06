@@ -19,8 +19,8 @@ const transformations: BeforeAfterPair[] = [
     title: 'Aged Concrete to Interlocking Paver Driveway',
     location: 'Pasadena, CA',
     category: 'Driveway Pavers',
-    beforeImg: '/assets/transformations/real/Driveway 01.png',
-    afterImg: '/assets/transformations/real/Driveway 02.jpg',
+    beforeImg: '/assets/transformations/real/driveway-pavers-before.png',
+    afterImg: '/assets/transformations/real/driveway-pavers-after.jpg',
     description: 'Excavated 8 inches of compromised soil, leveled with geotextile aggregate, and installed heavy-duty interlocking pavers with custom soldier course borders.',
   },
   {
@@ -28,8 +28,8 @@ const transformations: BeforeAfterPair[] = [
     title: 'Cramped Slab to Outdoor Kitchen & Dining Retreat',
     location: 'Newport Beach, CA',
     category: 'Patio Pavers',
-    beforeImg: '/assets/transformations/real/Pavers 01.png',
-    afterImg: '/assets/transformations/real/Pavers 02.jpg',
+    beforeImg: '/assets/transformations/real/patio-pavers-before.png',
+    afterImg: '/assets/transformations/real/patio-pavers-after.jpg',
     description: 'Replaced a weathered concrete slab with a 3x larger interlocking paver terrace, complete with built-in BBQ island, smoker station, and shaded dining pergola.',
   },
   {
@@ -37,8 +37,8 @@ const transformations: BeforeAfterPair[] = [
     title: 'Backyard to Modern Pergola & Outdoor Kitchen Lounge',
     location: 'Palm Springs, CA',
     category: 'Decks & Pergolas',
-    beforeImg: '/assets/transformations/real/Cover 01.png',
-    afterImg: '/assets/transformations/real/Cover 02.jpg',
+    beforeImg: '/assets/transformations/real/covered-patio-before.png',
+    afterImg: '/assets/transformations/real/covered-patio-after.jpg',
     description: 'Transformed an open backyard into a shaded outdoor living space with a modern louvered pergola, built-in kitchen, and elegant large-format pavers.',
   },
   {
@@ -46,8 +46,8 @@ const transformations: BeforeAfterPair[] = [
     title: 'Drought-Stricken Brown Lawn to Emerald Synthetic Turf',
     location: 'San Diego, CA',
     category: 'Synthetic Turf',
-    beforeImg: '/assets/transformations/real/Turf 01.png',
-    afterImg: '/assets/transformations/real/Turf 02.jpg',
+    beforeImg: '/assets/transformations/real/synthetic-turf-before.png',
+    afterImg: '/assets/transformations/real/synthetic-turf-after.jpg',
     description: 'Replaced dead, water-thirsty dormant grass with high-drainage, pet-friendly Cool-Blade synthetic turf and integrated interlocking paver patio borders.',
   },
   {
@@ -55,8 +55,8 @@ const transformations: BeforeAfterPair[] = [
     title: 'Overgrown Yard to Modern Outdoor Kitchen',
     location: 'Irvine, CA',
     category: 'Outdoor Kitchens',
-    beforeImg: '/assets/transformations/real/kitchen 01.png',
-    afterImg: '/assets/transformations/real/kitchen 02.png',
+    beforeImg: '/assets/transformations/real/outdoor-kitchen-before.png',
+    afterImg: '/assets/transformations/real/outdoor-kitchen-after.png',
     description: 'Installed architectural large-format pavers and a custom built-in BBQ island for a complete outdoor entertaining experience.',
   },
   {
@@ -64,8 +64,8 @@ const transformations: BeforeAfterPair[] = [
     title: 'Dirt Path to Elegant Paver Walkway',
     location: 'Los Angeles, CA',
     category: 'Walkways',
-    beforeImg: '/assets/transformations/real/Walkways 01.png',
-    afterImg: '/assets/transformations/real/Walkways 02.jpg',
+    beforeImg: '/assets/transformations/real/paver-walkway-before.png',
+    afterImg: '/assets/transformations/real/paver-walkway-after.jpg',
     description: 'Upgraded a simple dirt path into a structurally sound, beautifully bordered interlocking paver walkway providing safe and stylish property access.',
   }
 ];

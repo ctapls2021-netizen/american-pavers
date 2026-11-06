@@ -47,7 +47,7 @@ export default function ServicesGrid({ onOpenModal, customServices, customHeader
             };
             const imgSrc = localMap[service.slug] || (service.heroImage?.asset
               ? urlForImage(service.heroImage).width(1000).height(625).url()
-              : (typeof service.heroImage === 'string' ? service.heroImage : '/assets/generated/driveway_premium.jpg'));
+              : (typeof service.heroImage === 'string' ? service.heroImage : '/assets/generated/driveway_premium.webp'));
 
             return (
             <div

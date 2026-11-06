@@ -36,11 +36,11 @@ export default function AltImageHero({
           />
           <source
             media="(min-width: 769px)"
-            srcSet="/assets/generated/driveway_premium.jpg"
+            srcSet="/assets/generated/driveway_premium.webp"
             type="image/webp"
           />
           <img
-            src="/assets/generated/driveway_premium.jpg"
+            src="/assets/generated/driveway_premium.webp"
             alt="Luxury Estate Custom Interlocking Pavers & Turf by American Pavers & Turf"
             className="w-full h-full object-cover object-[70%_center] sm:object-[65%_center]"
             // @ts-ignore

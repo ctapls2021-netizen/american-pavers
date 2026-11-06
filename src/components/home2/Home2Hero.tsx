@@ -43,7 +43,7 @@ export default function Home2Hero() {
       >
         {/* Mobile Background Image */}
         <Image
-          src="/assets/banners/pavers-02-mobile.jpg"
+          src="/assets/banners/american-pavers-home-hero-mobile.jpg"
           alt="Luxury Paver Driveway by American Pavers & Turf"
           fill
           priority

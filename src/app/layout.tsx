@@ -39,7 +39,7 @@ export default function RootLayout({
         <link
           rel="preload"
           as="image"
-          href="/assets/generated/driveway_premium.jpg"
+          href="/assets/generated/driveway_premium.webp"
           type="image/webp"
           media="(min-width: 769px)"
           // @ts-ignore

@@ -85,7 +85,7 @@ const galleryItems: GalleryItem[] = [
     city: 'Beverly Hills, CA',
     category: 'driveways',
     categoryTitle: 'Driveway Pavers',
-    image: '/assets/driveways/driveway-real-2.webp',
+    image: '/assets/driveways/american-pavers-driveway-installation-2.webp',
     description: 'Heavy vehicular rating aggregate sub-base engineered to withstand full SUV loads.',
   },
   {
@@ -340,7 +340,7 @@ export default function GalleryPage({ galleryData, sanityProjects }: GalleryPage
           {/* Static Background Image with zoom */}
           <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
             <img
-              src="/assets/generated/driveway_premium.jpg"
+              src="/assets/generated/driveway_premium.webp"
               alt="American Pavers & Turf Gallery"
               className="w-full h-full object-cover object-center scale-105"
               loading="eager"

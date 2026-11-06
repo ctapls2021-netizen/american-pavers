@@ -23,7 +23,7 @@ const processPhases: ProcessPhase[] = [
     subtitle: 'Visualize Before You Commit',
     description:
       'A senior hardscaping architect visits your property, assesses grade elevations and water drainage, and generates a realistic 3D architectural rendering of your new yard.',
-    image: '/assets/driveway-slide-1.webp',
+    image: '/assets/american-pavers-driveway-process-1.webp',
   },
   {
     step: '02',

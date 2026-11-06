@@ -14,6 +14,7 @@ interface ProjectEntry {
   city: string;
   title: string;
   cover: number;
+  coverFile?: string;
   categories: ProjectCategory[];
   photoCount: number;
   videoCount?: number;
@@ -25,7 +26,7 @@ const entries: ProjectEntry[] = [
   { slug: 'beverly-hills-turf-rooftop', city: 'Beverly Hills', title: 'Rooftop Turf', cover: 1, categories: ['turf'], photoCount: 3, videoCount: 1 },
   { slug: 'calabasas-putting-green', city: 'Calabasas', title: 'Putting Green', cover: 1, categories: ['turf'], photoCount: 4 },
   { slug: 'chatsworth', city: 'Chatsworth', title: 'Front Lawn', cover: 4, categories: ['turf'], photoCount: 9 },
-  { slug: 'chatsworth-walkway', city: 'Chatsworth', title: 'Paver Walkway', cover: 2, categories: ['walkways'], photoCount: 4 },
+  { slug: 'chatsworth-walkway', city: 'Chatsworth', title: 'Paver Walkway', cover: 2, coverFile: 'american-pavers-chatsworth-walkway-main.jpg', categories: ['walkways'], photoCount: 4 },
   { slug: 'chula-vista', city: 'Chula Vista', title: 'Pavers & Turf', cover: 1, categories: ['patios', 'turf'], photoCount: 2 },
   { slug: 'corona', city: 'Corona', title: 'Stepping Stones & Turf', cover: 2, categories: ['walkways', 'turf'], photoCount: 7 },
   { slug: 'corona-pavers', city: 'Corona', title: 'Front Entry Pavers', cover: 1, categories: ['walkways'], photoCount: 3 },
@@ -57,20 +58,24 @@ function mediaPath(slug: string, name: string) {
 
 function numberedMedia(slug: string, type: 'photo' | 'video', number: number) {
   const extension = type === 'photo' ? 'webp' : 'mp4';
-  return mediaPath(slug, `${type}-${String(number).padStart(2, '0')}.${extension}`);
+  const prefix = type === 'photo' ? `american-pavers-${slug}-` : '';
+  return mediaPath(slug, `${prefix}${type}-${String(number).padStart(2, '0')}.${extension}`);
 }
 
 export const galleryProjects = entries.map((entry) => {
-  const { slug, city, title, categories, cover, photoCount, videoCount = 0, firstPhoto = 1 } = entry;
+  const { slug, city, title, categories, cover, coverFile, photoCount, videoCount = 0, firstPhoto = 1 } = entry;
+  const coverPhoto = coverFile ? mediaPath(slug, coverFile) : numberedMedia(slug, 'photo', cover);
   const photoNumbers = Array.from({ length: photoCount }, (_, index) => index + firstPhoto);
   return {
     slug,
     city,
     title,
     categories,
-    thumbnail: mediaPath(slug, 'cover.webp'),
-    photos: [cover, ...photoNumbers.filter((number) => number !== cover)]
-      .map((number) => numberedMedia(slug, 'photo', number)),
+    thumbnail: mediaPath(slug, `american-pavers-${slug}-cover.webp`),
+    photos: [
+      coverPhoto,
+      ...photoNumbers.filter((number) => number !== cover).map((number) => numberedMedia(slug, 'photo', number)),
+    ],
     videos: Array.from({ length: videoCount }, (_, index) => numberedMedia(slug, 'video', index + 1)),
   };
 });

@@ -122,7 +122,7 @@ export default function ContactPageClientV2({ contactData }: ContactPageClientV2
               initial={{ scale: 1.0 }}
               animate={{ scale: 1.1 }}
               transition={{ duration: 20, ease: 'linear', repeat: Infinity, repeatType: 'reverse' }}
-              src="/assets/real/American_pavers_35.webp"
+              src="/assets/real/american-pavers-paver-patio-35.webp"
               alt="Contact American Pavers & Turf"
               className="w-full h-full object-cover object-center"
               loading="eager"
