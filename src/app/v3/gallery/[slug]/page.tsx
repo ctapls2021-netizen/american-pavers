@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
-import Image from 'next/image';
+import ProjectPhotos from '../ProjectPhotos';
 import ProjectVideos from '../ProjectVideos';
 import { notFound } from 'next/navigation';
 import Home2Header from '@/components/home2/Home2Header';
@@ -33,7 +33,6 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
 export default async function ProjectPage({ params }: PageProps) {
   const project = await getProject(params);
-  const [cover, ...photos] = project.photos;
 
   return (
     <div className="min-h-screen bg-white">
@@ -48,35 +47,7 @@ export default async function ProjectPage({ params }: PageProps) {
           </p>
           <h1 className="mt-2 font-serif text-4xl text-[#1A292C] sm:text-6xl">{project.title}</h1>
           <p className="mt-3 text-lg text-stone-600">{project.city}, California</p>
-          <div className="relative mt-8 w-full aspect-[4/3] max-h-[70vh] overflow-hidden rounded-lg">
-            <Image
-              src={cover}
-              alt={`${project.title} in ${project.city}`}
-              fill
-              sizes="(min-width: 1152px) 1088px, 100vw"
-              fetchPriority="high"
-              className="object-cover"
-            />
-          </div>
-          {photos.length > 0 && (
-            <section className="mt-12">
-              <h2 className="font-serif text-3xl text-[#1A292C]">Project photos</h2>
-              <div className="mt-5 grid gap-5 sm:grid-cols-2">
-                {photos.map((photo, index) => (
-                  <a key={photo} href={photo} className="relative block aspect-[4/3] overflow-hidden rounded-lg" target="_blank" rel="noreferrer">
-                    <Image
-                      src={photo}
-                      alt={`${project.title} in ${project.city}, photo ${index + 2}`}
-                      fill
-                      sizes="(min-width: 640px) 50vw, 100vw"
-                      decoding="async"
-                      className="object-cover"
-                    />
-                  </a>
-                ))}
-              </div>
-            </section>
-          )}
+          <ProjectPhotos photos={project.photos} title={project.title} />
           {project.videos.length > 0 && <ProjectVideos videos={project.videos} title={project.title} />}
         </section>
         <Home2QuoteSplit />
