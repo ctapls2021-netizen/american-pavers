@@ -26,7 +26,7 @@ const entries: ProjectEntry[] = [
   { slug: 'beverly-hills-turf-rooftop', city: 'Beverly Hills', title: 'Rooftop Turf', cover: 1, categories: ['turf'], photoCount: 3, videoCount: 1 },
   { slug: 'calabasas-putting-green', city: 'Calabasas', title: 'Putting Green', cover: 1, categories: ['turf'], photoCount: 4 },
   { slug: 'chatsworth', city: 'Chatsworth', title: 'Front Lawn', cover: 4, categories: ['turf'], photoCount: 9 },
-  { slug: 'chatsworth-walkway', city: 'Chatsworth', title: 'Paver Walkway', cover: 2, coverFile: 'american-pavers-chatsworth-walkway-main.jpg', categories: ['walkways'], photoCount: 4 },
+  { slug: 'chatsworth-walkway', city: 'Chatsworth', title: 'Paver Walkway', cover: 2, coverFile: 'american-pavers-chatsworth-walkway-main.webp', categories: ['walkways'], photoCount: 4 },
   { slug: 'chula-vista', city: 'Chula Vista', title: 'Pavers & Turf', cover: 1, categories: ['patios', 'turf'], photoCount: 2 },
   { slug: 'corona', city: 'Corona', title: 'Stepping Stones & Turf', cover: 2, categories: ['walkways', 'turf'], photoCount: 7 },
   { slug: 'corona-pavers', city: 'Corona', title: 'Front Entry Pavers', cover: 1, categories: ['walkways'], photoCount: 3 },
