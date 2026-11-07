@@ -1,4 +1,6 @@
 import type { Metadata } from 'next';
+import { join } from 'node:path';
+import sharp from 'sharp';
 import Link from 'next/link';
 import ProjectPhotos from '../ProjectPhotos';
 import ProjectVideos from '../ProjectVideos';
@@ -33,6 +35,11 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
 export default async function ProjectPage({ params }: PageProps) {
   const project = await getProject(params);
+  const photos = project.naturalPhotos ?? await Promise.all(project.photos.map(async (src) => {
+    const { width, height } = await sharp(join(process.cwd(), 'public', src)).metadata();
+    if (!width || !height) throw new Error(`Missing dimensions for project photo: ${src}`);
+    return { src, width, height };
+  }));
 
   return (
     <div className="min-h-screen bg-white">
@@ -47,7 +54,7 @@ export default async function ProjectPage({ params }: PageProps) {
           </p>
           <h1 className="mt-2 font-serif text-4xl text-[#1A292C] sm:text-6xl">{project.title}</h1>
           <p className="mt-3 text-lg text-stone-600">{project.city}, California</p>
-          <ProjectPhotos photos={project.photos} title={project.title} naturalPhotos={project.naturalPhotos} />
+          <ProjectPhotos photos={photos} title={project.title} />
           {project.videos.length > 0 && <ProjectVideos videos={project.videos} title={project.title} />}
         </section>
         <Home2QuoteSplit />
