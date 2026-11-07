@@ -1,3 +1,5 @@
+import { retouchedProjectPhotos } from './retouchedPhotos';
+
 export const projectCategories = {
   driveways: 'Driveways',
   patios: 'Patios & Backyards',
@@ -66,13 +68,15 @@ export const galleryProjects = entries.map((entry) => {
   const { slug, city, title, categories, cover, coverFile, photoCount, videoCount = 0, firstPhoto = 1 } = entry;
   const coverPhoto = coverFile ? mediaPath(slug, coverFile) : numberedMedia(slug, 'photo', cover);
   const photoNumbers = Array.from({ length: photoCount }, (_, index) => index + firstPhoto);
+  const naturalPhotos = retouchedProjectPhotos[slug];
   return {
     slug,
     city,
     title,
     categories,
     thumbnail: mediaPath(slug, `american-pavers-${slug}-cover.webp`),
-    photos: [
+    naturalPhotos,
+    photos: naturalPhotos?.map((photo) => photo.src) ?? [
       coverPhoto,
       ...photoNumbers.filter((number) => number !== cover).map((number) => numberedMedia(slug, 'photo', number)),
     ],

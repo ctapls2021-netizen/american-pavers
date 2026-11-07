@@ -47,7 +47,7 @@ export default async function ProjectPage({ params }: PageProps) {
           </p>
           <h1 className="mt-2 font-serif text-4xl text-[#1A292C] sm:text-6xl">{project.title}</h1>
           <p className="mt-3 text-lg text-stone-600">{project.city}, California</p>
-          <ProjectPhotos photos={project.photos} title={project.title} />
+          <ProjectPhotos photos={project.photos} title={project.title} naturalPhotos={project.naturalPhotos} />
           {project.videos.length > 0 && <ProjectVideos videos={project.videos} title={project.title} />}
         </section>
         <Home2QuoteSplit />

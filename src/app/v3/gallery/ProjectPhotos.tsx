@@ -2,8 +2,9 @@
 
 import Image from 'next/image';
 import { ChevronLeft, ChevronRight, X } from 'lucide-react';
-import type { SyntheticEvent } from 'react';
+import type { CSSProperties, SyntheticEvent } from 'react';
 import { useRef, useState } from 'react';
+import type { RetouchedProjectPhoto } from './retouchedPhotos';
 
 const croppedPhotoClass = 'object-cover data-[portrait=true]:[filter:url(#project-photo-cleanup)]';
 
@@ -11,7 +12,11 @@ function markPortrait({ currentTarget }: SyntheticEvent<HTMLImageElement>) {
   currentTarget.dataset.portrait = String(currentTarget.naturalHeight > currentTarget.naturalWidth);
 }
 
-export default function ProjectPhotos({ photos, title }: { photos: string[]; title: string }) {
+export default function ProjectPhotos({ photos, title, naturalPhotos }: {
+  photos: string[];
+  title: string;
+  naturalPhotos?: RetouchedProjectPhoto[];
+}) {
   const dialog = useRef<HTMLDialogElement>(null);
   const [active, setActive] = useState(0);
   const [cover, ...gallery] = photos;
@@ -38,20 +43,48 @@ export default function ProjectPhotos({ photos, title }: { photos: string[]; tit
           </filter>
         </defs>
       </svg>
-      <button type="button" aria-haspopup="dialog" aria-label="Open cover photo" onClick={() => openPhoto(0)} className="relative mt-8 block aspect-[4/3] max-h-[70vh] w-full cursor-zoom-in overflow-hidden rounded-lg">
-        <Image src={cover} alt={title} fill sizes="(min-width: 1152px) 1088px, 100vw" fetchPriority="high" onLoad={markPortrait} className={croppedPhotoClass} />
-      </button>
-      {gallery.length > 0 && (
-        <section className="mt-12">
+      {naturalPhotos ? (
+        <section className="mt-8" aria-label={`${title} project photos`}>
           <h2 className="font-serif text-3xl text-[#1A292C]">Project photos</h2>
-          <div className="mt-5 grid gap-5 sm:grid-cols-2">
-            {gallery.map((photo, index) => (
-              <button key={photo} type="button" aria-haspopup="dialog" aria-label={`Open photo ${index + 2}`} onClick={() => openPhoto(index + 1)} className="relative block aspect-[4/3] w-full cursor-zoom-in overflow-hidden rounded-lg">
-                <Image src={photo} alt={`${title}, photo ${index + 2}`} fill sizes="(min-width: 640px) 50vw, 100vw" onLoad={markPortrait} className={croppedPhotoClass} />
+          <div className="mt-5 grid grid-cols-2 items-start gap-5 sm:flex sm:flex-wrap">
+            {naturalPhotos.map((photo, index) => (
+              <button
+                key={photo.src}
+                type="button"
+                aria-haspopup="dialog"
+                aria-label={`Open photo ${index + 1}`}
+                onClick={() => openPhoto(index)}
+                style={{ '--photo-ratio': `${photo.width} / ${photo.height}` } as CSSProperties}
+                className="relative block aspect-[3/4] w-full shrink-0 cursor-zoom-in overflow-hidden rounded-lg focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#01782a] sm:aspect-[var(--photo-ratio)] sm:h-80 sm:w-auto"
+              >
+                <Image
+                  src={photo.src}
+                  alt={`${title}, photo ${index + 1}`}
+                  fill
+                  sizes={`(max-width: 639px) 50vw, ${Math.round(320 * photo.width / photo.height)}px`}
+                  loading={index === 0 ? 'eager' : 'lazy'}
+                  className="object-cover sm:object-contain"
+                />
               </button>
             ))}
           </div>
         </section>
+      ) : (
+        <>
+          <button type="button" aria-haspopup="dialog" aria-label="Open cover photo" onClick={() => openPhoto(0)} className="relative mt-8 hidden aspect-[4/3] max-h-[70vh] w-full cursor-zoom-in overflow-hidden rounded-lg sm:block">
+            <Image src={cover} alt={title} fill sizes="(min-width: 1152px) 1088px, 100vw" fetchPriority="high" onLoad={markPortrait} className={croppedPhotoClass} />
+          </button>
+            <section className={`mt-8 sm:mt-12 ${gallery.length === 0 ? 'sm:hidden' : ''}`}>
+              <h2 className="font-serif text-3xl text-[#1A292C]">Project photos</h2>
+              <div className="mt-5 grid grid-cols-2 gap-5">
+                {photos.map((photo, index) => (
+                  <button key={photo} type="button" aria-haspopup="dialog" aria-label={`Open photo ${index + 1}`} onClick={() => openPhoto(index)} className={`relative block aspect-[3/4] w-full cursor-zoom-in overflow-hidden rounded-lg sm:aspect-[4/3] ${index === 0 ? 'sm:hidden' : ''}`}>
+                    <Image src={photo} alt={`${title}, photo ${index + 1}`} fill sizes="50vw" onLoad={markPortrait} className={croppedPhotoClass} />
+                  </button>
+                ))}
+              </div>
+            </section>
+        </>
       )}
       <dialog
         ref={dialog}
