@@ -45,17 +45,19 @@ export default async function ProjectPage({ params }: PageProps) {
     <div className="min-h-screen bg-white">
       <Home2Header basePath="/v3" />
       <main>
-        <section className="mx-auto max-w-6xl px-5 py-12 sm:px-8 sm:py-16">
-          <Link href="/v3/gallery" className="text-sm font-bold text-[#01782a] hover:underline">
-            ← Back to project gallery
-          </Link>
-          <p className="mt-8 text-xs font-bold uppercase tracking-widest text-[#01782a]">
-            {project.categories.map((category) => projectCategories[category]).join(' / ')}
-          </p>
-          <h1 className="mt-2 font-serif text-4xl text-[#1A292C] sm:text-6xl">{project.title}</h1>
-          <p className="mt-3 text-lg text-stone-600">{project.city}, California</p>
-          <ProjectPhotos photos={photos} title={project.title} />
-          {project.videos.length > 0 && <ProjectVideos videos={project.videos} title={project.title} />}
+        <section className="border-b border-stone-200 bg-stone-100/70">
+          <div className="mx-auto max-w-6xl px-5 py-12 sm:px-8 sm:py-16">
+            <Link href="/v3/gallery" className="text-sm font-bold text-[#01782a] hover:underline">
+              ← Back to project gallery
+            </Link>
+            <p className="mt-8 text-xs font-bold uppercase tracking-widest text-[#01782a]">
+              {project.categories.map((category) => projectCategories[category]).join(' / ')}
+            </p>
+            <h1 className="mt-2 font-serif text-4xl text-[#1A292C] sm:text-6xl">{project.title}</h1>
+            <p className="mt-3 text-lg text-stone-600">{project.city}, California</p>
+            <ProjectPhotos photos={photos} title={project.title} />
+            {project.videos.length > 0 && <ProjectVideos videos={project.videos} title={project.title} />}
+          </div>
         </section>
         <Home2QuoteSplit />
       </main>
