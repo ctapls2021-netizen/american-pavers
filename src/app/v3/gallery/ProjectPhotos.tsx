@@ -25,11 +25,15 @@ export default function ProjectPhotos({ photos, title }: { photos: GalleryPhoto[
     <>
       <section className="mt-8" aria-label={`${title} project photos`}>
         <h2 className="font-serif text-3xl text-[#1A292C]">Project photos</h2>
-        <div className="mt-5 grid grid-cols-2 gap-5 sm:flex sm:flex-col">
-          {rows.map((row) => (
+        <div className="mt-5 grid grid-cols-2 gap-5 sm:flex sm:flex-col sm:[container-type:inline-size]">
+          {rows.map((row, rowIndex) => (
             <div key={row[0]?.src} className="contents sm:flex sm:items-start sm:gap-5">
               {row.map((photo) => {
                 const index = orderedPhotos.indexOf(photo);
+                const previousRow = rows[rowIndex - 1];
+                const pairedRatio = row.length === 1 && previousRow?.length === 2
+                  ? previousRow.reduce((sum, item) => sum + item.width / item.height, 0)
+                  : undefined;
                 return (
                   <button
                     key={photo.src}
@@ -40,8 +44,11 @@ export default function ProjectPhotos({ photos, title }: { photos: GalleryPhoto[
                     style={{
                       '--photo-ratio': `${photo.width} / ${photo.height}`,
                       '--photo-weight': photo.width / photo.height,
+                      '--paired-ratio': pairedRatio,
                     } as CSSProperties}
-                    className="relative block aspect-[3/4] w-full min-w-0 cursor-zoom-in overflow-hidden rounded-lg focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#01782a] sm:aspect-[var(--photo-ratio)] sm:w-auto sm:basis-0 sm:grow-[var(--photo-weight)]"
+                    className={`relative block aspect-[3/4] w-full min-w-0 cursor-zoom-in overflow-hidden rounded-lg focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#01782a] ${pairedRatio
+                      ? 'sm:aspect-auto sm:h-[calc((100cqw_-_1.25rem)/var(--paired-ratio))]'
+                      : 'sm:aspect-[var(--photo-ratio)] sm:w-auto sm:basis-0 sm:grow-[var(--photo-weight)]'}`}
                   >
                     <Image
                       src={photo.src}
@@ -51,7 +58,7 @@ export default function ProjectPhotos({ photos, title }: { photos: GalleryPhoto[
                         ? '(max-width: 639px) 50vw, (max-width: 1152px) 100vw, 1088px'
                         : '(max-width: 639px) 50vw, (max-width: 1152px) 60vw, 680px'}
                       loading={index === 0 ? 'eager' : 'lazy'}
-                      className="object-cover sm:object-contain"
+                      className={pairedRatio ? 'object-cover' : 'object-cover sm:object-contain'}
                     />
                   </button>
                 );
