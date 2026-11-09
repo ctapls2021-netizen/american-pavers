@@ -7,6 +7,25 @@ export interface GalleryPhoto {
 export function justifiedRows(photos: GalleryPhoto[]): GalleryPhoto[][] {
   if (photos.length < 2) return [photos];
 
+  if (photos.every((photo) => photo.width > photo.height)) {
+    const pairedPhotos = [...photos];
+    const rows: GalleryPhoto[][] = [];
+    let featuredPhoto: GalleryPhoto | undefined;
+
+    if (pairedPhotos.length % 2 === 1) {
+      const highestResolution = pairedPhotos.reduce((best, photo) => (
+        photo.width * photo.height >= best.width * best.height ? photo : best
+      ));
+      [featuredPhoto] = pairedPhotos.splice(pairedPhotos.indexOf(highestResolution), 1);
+    }
+
+    for (let index = 0; index < pairedPhotos.length; index += 2) {
+      rows.push(pairedPhotos.slice(index, index + 2));
+    }
+    if (featuredPhoto) rows.push([featuredPhoto]);
+    return rows;
+  }
+
   const ratios = photos.map((photo) => photo.width / photo.height);
   const sums = [0];
   for (const ratio of ratios) sums.push(sums[sums.length - 1] + ratio);

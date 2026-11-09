@@ -10,6 +10,7 @@ export default function ProjectPhotos({ photos, title }: { photos: GalleryPhoto[
   const dialog = useRef<HTMLDialogElement>(null);
   const [active, setActive] = useState(0);
   const rows = justifiedRows(photos);
+  const orderedPhotos = rows.flat();
 
   function openPhoto(index: number) {
     setActive(index);
@@ -28,7 +29,7 @@ export default function ProjectPhotos({ photos, title }: { photos: GalleryPhoto[
           {rows.map((row) => (
             <div key={row[0]?.src} className="contents sm:flex sm:items-start sm:gap-5">
               {row.map((photo) => {
-                const index = photos.indexOf(photo);
+                const index = orderedPhotos.indexOf(photo);
                 return (
                   <button
                     key={photo.src}
@@ -46,7 +47,9 @@ export default function ProjectPhotos({ photos, title }: { photos: GalleryPhoto[
                       src={photo.src}
                       alt={`${title}, photo ${index + 1}`}
                       fill
-                      sizes="(max-width: 639px) 50vw, (max-width: 1152px) 60vw, 680px"
+                      sizes={row.length === 1
+                        ? '(max-width: 639px) 50vw, (max-width: 1152px) 100vw, 1088px'
+                        : '(max-width: 639px) 50vw, (max-width: 1152px) 60vw, 680px'}
                       loading={index === 0 ? 'eager' : 'lazy'}
                       className="object-cover sm:object-contain"
                     />
@@ -75,7 +78,7 @@ export default function ProjectPhotos({ photos, title }: { photos: GalleryPhoto[
           </button>
         </div>
         <div className="relative h-[68dvh] max-h-[42rem]">
-          <Image src={photos[active].src} alt={`${title}, photo ${active + 1}`} fill sizes="(min-width: 1100px) 64rem, 94vw" className="object-contain" />
+          <Image src={orderedPhotos[active].src} alt={`${title}, photo ${active + 1}`} fill sizes="(min-width: 1100px) 64rem, 94vw" className="object-contain" />
           {photos.length > 1 && (
             <>
               <button type="button" aria-label="Previous photo" onClick={() => movePhoto(-1)} className="absolute left-1 top-1/2 -translate-y-1/2 cursor-pointer rounded-full bg-black/70 p-2 hover:bg-black">
